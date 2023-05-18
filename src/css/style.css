@@ -1918,4 +1918,6 @@ body .main .password-container .password {
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
 @media screen and (max-height: 500px) {}
-
+.error {
+    color: red;
+}

@@ -1,28 +1,182 @@
 <template>
-    <footer>
-        <div class="container p-4">
-            <div class="row">
-                <div class="col columnaBtnDudas">
-                    <button class="btnDudas rounded" type="button">¿Dudas?
-                        <span> contáctanos vía whatsapp</span> <img
-                            src="../assets/img/web/Whatsapp Icono/whatsapp (-3.png" alt="No se encontro icono WhatsApp"
-                            class="imgWhatsBlanco"></button>
-                </div>
+    <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
+    <div class="container">
+        <br><br>
+        <div class="row align-items-end">
+            <div class="col">
+                <!-- <h1 class="tituloPrincipal text-end">Crear nuevo plan de tomas</h1> -->
             </div>
-            <div class="row filaDosPermisos">
-                <div class="col text-center columnaParrafos">
-                    <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
-                    <p class="parrafoAviso">AVISO COFEPRIS</p>
-                    <p class="parrafoNumeroReg">No. REG. MEX: 012M2013 SSA</p>
-                </div>
+            <div class="col-xl-6 col-sm-6 col-md-6">
+                <h1 class="tituloPrincipal text-center">Crear nuevo plan de tomas</h1>
             </div>
         </div>
-    </footer>
+        <br>
+        <div class="row">
+            <form name="formulario" id="formulario" action="" method="post">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-sm-6 col-md-6 text-center">
+                            <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-xl-6 col-sm-6 col-md-6">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <p>Por favor coloque la fecha y hora de las tomas indicadas por
+                                            tu médico.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
+                                        <div class="input-group">
+                                            <input type="date" class="form-control inputFechaEstudioCrear"
+                                                placeholder="18:00 Hrs" aria-label="Input group example"
+                                                aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            <p class="mensajes mt-2" id="mensajes" style="color:red;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <!-- <input type="time" class="form-control" name="" id="emailInput"
+                      placeholder="Hora de la colonoscopía o estudio"> -->
+                                        <div class="input-group">
+                                            <input type="time" class="form-control inputHoraColos" placeholder="18:00 Hrs"
+                                                aria-label="Input group example" aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                                    <path
+                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
+                                        <div class="input-group">
+                                            <input type="date" class="form-control inputFecPriToma" placeholder="18:00 Hrs"
+                                                aria-label="Input group example" aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <!--  <input type="time" class="form-control inputHoraPriToma" name="" id="emailInput"
+                      placeholder="Hora de la primera toma de Picoprep®️"> -->
+                                        <div class="input-group">
+                                            <input type="time" class="form-control inputHoraPriToma" placeholder="18:00 Hrs"
+                                                aria-label="Input group example" aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                                    <path
+                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <!-- <input type="date" class="form-control inputFecSegToma" name="" id="emailInput"
+                      placeholder="Fecha de la segunda toma de Picoprep®️"> -->
+                                        <div class="input-group">
+                                            <input type="date" class="form-control inputFecSegToma" placeholder="18:00 Hrs"
+                                                aria-label="Input group example" aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <!-- <input type="time" class="form-control inputHoraSegToma" name="" id="emailInput"
+                      placeholder="Hora de la segunda toma de Picoprep®️"> -->
+                                        <div class="input-group">
+                                            <input type="time" class="form-control inputHoraSegToma" placeholder="18:00 Hrs"
+                                                aria-label="Input group example" aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                                    <path
+                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <div class="contenidoCentrado">
+                                            <!-- <a type="submit" class="btnCrearPlan rounded" href="">CREAR PLAN DE TOMAS</a> -->
+                                            <!-- <input class="btnCrearPlan  rounded" value="CREAR PLAN DE TOMAS"> -->
+                                            <button class="btnCrearPlan  rounded">CREAR PLAN DE TOMAS</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br><br>
+    </div>
 </template>
 
+<script setup>
+import { ref } from 'vue';
+
+const estadosop = ref([]);
+fetch("https://intestinolimpio.onrender.com/api/v1/data/estados")
+    .then((res) => res.json())
+
+    /* .then((data) => console.log(data)); */
+    .then((data) => estadosop.value = data);
+
+const estados = data.data;
+estados.forEach(estado => {
+    let option = ('<option>');
+    option.text(estado.nombre)
+    option.val(estado.nombre)
+        ("#select_estado").append(option);
+});
+</script>
 <script>
 export default {
-    name: 'Footer',
+    name: 'CrearPlan',
     props: {
         msg: String,
     },

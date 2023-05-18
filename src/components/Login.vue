@@ -1,34 +1,481 @@
 <template>
-    <footer>
-        <div class="container p-4">
-            <div class="row">
-                <div class="col columnaBtnDudas">
-                    <button class="btnDudas rounded" type="button">¿Dudas?
-                        <span> contáctanos vía whatsapp</span> <img
-                            src="../assets/img/web/Whatsapp Icono/whatsapp (-3.png" alt="No se encontro icono WhatsApp"
-                            class="imgWhatsBlanco"></button>
-                </div>
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-xl-6 col-sm-6 col-md-6">
             </div>
-            <div class="row filaDosPermisos">
-                <div class="col text-center columnaParrafos">
-                    <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
-                    <p class="parrafoAviso">AVISO COFEPRIS</p>
-                    <p class="parrafoNumeroReg">No. REG. MEX: 012M2013 SSA</p>
+            <div class="col-xl-6 col-sm-6 col-md-6">
+                <h1 class="tituloPrincipal text-center">Intestino Limpio</h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-sm-6 col-md-6 text-center">
+                        <img src="../assets/img/web/Enmascarar grupo 2.png" class="img-fluid" alt="no hay imagen">
+                    </div>
+                    <div class="col-xl-6 col-sm-6 col-md-6">
+                        <!-- eslint-disable-next-line max-len -->
+                        <p class="m-2 parrafoUno">Mantenga un <span>intestino limpio,</span> previo a los estudios de
+                            Rayos X, colonoscopia o cirugías..</p>
+                        <!-- eslint-disable-next-line max-len -->
+                        <p id="" class="m-2 parrafoNuestra">Con el sitio de Intestino Limpio usted podrá
+                            programar el horario del estudio y recibir
+                            notificaciones cuando sea la hora de toma del
+                            medicamento o de hidratación. Facilitando el apego
+                            al tratamiento.</p>
+                        <!-- eslint-disable-next-line max-len -->
+                        <p class="m-2 parrafoGenera">Para generar tu programación de toma de medicamento, llena los
+                            siguientes campos: <span>(Todos los campos son obligatorios)</span></p>
+                        <!-- eslint-disable-next-line max-len -->
+                        <p class="m-2 parrafoCreaPlanToma">Si ya creó su plan antes, dé clic en iniciar sesión.
+                        </p>
+                        <div class="container">
+                            <div class="row bordered">
+                                <div class="col">
+                                    <!-- Inicio Formulario validacion -->
+                                    <h1>Formulario con Vue.js</h1>
+                                    <form @submit.prevent="submitForm">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre</label>
+                                            <input type="text" id="nombre" v-model="nombre" />
+                                            <span class="error" v-if="errors.nombre">{{ errors.nombre }}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apellido">Apellido</label>
+                                            <input type="text" id="apellido" v-model="apellido" />
+                                            <span class="error" v-if="errors.apellido">{{ errors.apellido }}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edad">Edad</label>
+                                            <input type="number" id="edad" v-model="edad" />
+                                            <span class="error" v-if="errors.edad">{{ errors.edad }}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="celular">Número celular</label>
+                                            <input type="text" id="celular" v-model="celular" />
+                                            <span class="error" style="color: red;" v-if="errors.celular">{{ errors.celular }}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contraseña">Contraseña</label>
+                                            <input type="password" class="form-control" id="contraseña" v-model="contraseña" />
+                                            <span class="error" style="color: red;" v-if="errors.contraseña">{{ errors.contraseña }}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmar">Confirmar contraseña</label>
+                                            <input type="password" class="form-control" id="confirmar" v-model="confirmar" />
+                                            <br>
+                                            <span class="error" style="color: red;" v-if="errors.confirmar">{{ errors.confirmar }}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pais">País</label>
+                                            <select id="pais" v-model="pais">
+                                                <option value="">Selecciona un país</option>
+                                                <option v-for="(item, index) in paises" :key="index" :value="item.name">{{
+                                                    item.name }}</option>
+                                            </select>
+                                            <br>
+                                            <span class="error" v-if="errors.pais">{{ errors.pais }}</span>
+                                        </div>
+                                        <br>
+                                        <button class="btn-primary btnContinuar rounded" type="submit">Enviar</button>
+                                    </form>
+                                    <!-- Fin Formulario validacion -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- eslint-disable-next-line max-len -->
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingOne">
+                                                <!-- eslint-disable-next-line max-len -->
+                                                <button class="btnInicia rounded collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    INICIAR SESIÓN
+                                                </button>
+                                            </h2>
+                                            <!-- eslint-disable-next-line max-len -->
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <!-- eslint-disable-next-line max-len -->
+                                                    <form name="formulario" id="formulario" method="post"
+                                                        @submit.prevent="submitForm">
+                                                        <div class="col-12 col-md-12">
+                                                            <!-- eslint-disable-next-line max-len -->
+                                                            <input type="tel" class="form-control" name="telefono"
+                                                                id="telefono" onkeypress="return validateKey(event);"
+                                                                placeholder="Número de celular">
+                                                            <p class="mensajes mt-2" id="mensajes" style="color:red;">
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-xl-12 col-md-6">
+                                                            <div class="main">
+                                                                <div class="password-container">
+                                                                    <!-- eslint-disable-next-line max-len -->
+                                                                    <div class="password form-group" id="password3">
+                                                                        <input type="password" class="form-control"
+                                                                            id="claveAcceso" placeholder="Clave de acceso"
+                                                                            name="password">
+                                                                        <span class="span"></span>
+                                                                        <p class="mensajeses mt-2" id="mensajeses"
+                                                                            style="color:red;"></p>
+                                                                        <p class="mensajesesver mt-2" id="mensajesesver"
+                                                                            style="color: green;"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-12 col-md-6">
+                                                            <div style="display: flex; flex-direction: row-reverse;">
+                                                                <a href="" target="_blank"
+                                                                    style="font-family: 'OpenSans-Bold'; color: #1155CC;">
+                                                                    <u>Olvidé mi
+                                                                        contraseña</u></a>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col-xl-12 col-md-6">
+                                                            <div class="contenidoCentrado">
+                                                                <div style="display: flex; flex-direction: row-reverse;">
+                                                                    <!--  <input type="submit" value="CONTINUAR"
+                                                                        class="btnContinuar rounded"> -->
+                                                                    <router-link class="btnContinuar rounded" to="/crear"
+                                                                        tag="button">CONTINUAR</router-link>
+                                                                    <button type="submit">Enviar</button>
+                                                                </div>
+                                                                <br>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p id="parrafoGeneraProgramacion" class="parrafoGeneraProgramacion">Para crear
+                                            un plan de tomas por primera vez:</p>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingTwo">
+                                                <button class=" btnCrearPlan rounded collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                    CREAR PLAN POR PRIMERA VEZ
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <div class="container">
+                                                        <form name="formulario2" id="formulario2" action="crearPlan.html"
+                                                            method="post">
+                                                            <div class="row">
+                                                                <div class="col-md-12 mb-3">
+                                                                    <select class="form-select" id="select_pais"
+                                                                        aria-label="Default select example">
+                                                                        <option value="" selected="selected">Seleccione
+                                                                            un país</option>
+                                                                        <option value="mx">Mexico</option>
+                                                                        <option value="cr">Costa rica</option>
+                                                                    </select>
+                                                                    <p class="mensaje_pais mt-2" id="mensaje_pais"
+                                                                        style="color:red;">
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4 mb-3">
+                                                                    <select class="form-select" id="select_lada"
+                                                                        aria-label="Default select example">
+                                                                        <option value="" selected="selected">Lada
+                                                                        </option>
+                                                                        <option id="optionMX" value="1">+52</option>
+                                                                        <option id="optionCR" value="2">+506</option>
+                                                                    </select>
+                                                                    <p class="mensaje_lada mt-2" id="mensaje_lada"
+                                                                        style="color:red;"></p>
+                                                                </div>
+                                                                <div class="col-8 mb-3">
+                                                                    <input type="text" class="form-control" name="telefono"
+                                                                        id="telefonoCel"
+                                                                        onkeypress="return validateKey(event);"
+                                                                        placeholder="Telefono celular">
+                                                                    <p class="mensaje_telfono mt-2" id="mensaje_telfono"
+                                                                        style="color:red;">
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 mb-3">
+                                                                <select class="form-select" id="select_estado"
+                                                                    name="select_estado">
+                                                                    <option value="#">Seleccione un
+                                                                        estado</option>
+                                                                </select>
+                                                                <p class="mensaje_estado mt-2" id="mensaje_estado"
+                                                                    style="color:red;">
+                                                                </p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-5 mb-3">
+                                                                    <input type="text" class="form-control" name=""
+                                                                        id="input_ciudad" placeholder="Ciudad">
+                                                                    <p class="mensaje_ciudad mt-2" id="mensaje_ciudad"
+                                                                        style="color:red;"></p>
+                                                                </div>
+                                                                <div class="col-7">
+                                                                    <div class="row ms-1">
+                                                                        <div class="col-6 col-md-7">
+                                                                            <label for="input_edad"
+                                                                                class=" col-sm-8 col-form-label mb-1 labelEdad">Edad
+                                                                                del paciente: </label>
+                                                                        </div>
+                                                                        <div class="col-6 col-md-5">
+                                                                            <input name="edad" class="form-control"
+                                                                                id="input_edad"
+                                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                                type="number" maxlength="3">
+                                                                            <p class="mensaje_edad mt-2" id="mensaje_edad"
+                                                                                style="color:red;"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12 mb-3">
+                                                                    <input name="peso" class="form-control" id="input_peso"
+                                                                        placeholder="Peso del paciente"
+                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                        type="number" maxlength="3">
+                                                                    <p class="mensaje_peso mt-2" id="mensaje_peso"
+                                                                        style="color:red;"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12 mb-3">
+                                                                    <label for="inputNomMedTrat">
+                                                                        <input type="text" width="" class="form-control"
+                                                                            id="inputNomMedTrat"
+                                                                            placeholder="Nombre de tu médico tratante"
+                                                                            maxlength="90" minlength="80">
+                                                                        <p class="mensaje_nomMedTrat mt-2"
+                                                                            id="mensaje_nomMedTrat" style="color:red;"></p>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12 mb-3">
+                                                                <label for="inputApeMedTrat">
+                                                                    <input type="text" width="" class="form-control"
+                                                                        id="inputApeMedTrat" name="inputApeMedTrat"
+                                                                        placeholder="Apellido de tu médico tratante"
+                                                                        maxlength="90" minlength="80">
+                                                                    <p class="mensaje_apeMedTrat mt-2"
+                                                                        id="mensaje_apeMedTrat" style="color:red;"></p>
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="col-12 mb-3">
+                                                                <div class="main">
+                                                                    <div class="password-container">
+                                                                        <div class="password form-group" id="password1">
+                                                                            <label for="pswd">
+                                                                                <input class="form-control" type="password"
+                                                                                    name="pswd" value="" id="pswd"
+                                                                                    placeholder="Escriba una clave de acceso">
+                                                                                <span class="span"></span>
+                                                                                <p id="message" style="color:red"></p>
+                                                                                <p class="mensaje_clave mt-2"
+                                                                                    id="mensaje_clave" style="color:red;">
+                                                                                </p>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="password form-group" id="password2">
+                                                                            <label for="conpsw">
+                                                                                <input class="form-control" type="password"
+                                                                                    name="conpsw" value="" id="conpsw"
+                                                                                    placeholder="Confirma su clave de acceso">
+                                                                                <span class="span"></span>
+                                                                                <p class="mensaje_confirClave mt-2"
+                                                                                    id="mensaje_confirClave"
+                                                                                    style="color:red"></p>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p class="parrafoRecordaViaWhat">Para recibir
+                                                                    recordatorios
+                                                                    <span>vía whatsapp</span> sobre la toma
+                                                                    de medicamento y la hidratación, es importante
+                                                                    autorizar la recepción de los recordatorios por este
+                                                                    medio, dando clic en la casilla de abajo.
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="form-check form-switch">
+                                                                <label for="flexSwitchCheckDefault">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        role="switch" id="flexSwitchCheckDefault" checked
+                                                                        aria-checked="">
+                                                                    <label class="form-check-label textoSwitchAcepto"
+                                                                        for="fkyu">Acepto
+                                                                        recibir recordatorios
+                                                                        vía
+                                                                        WhatsApp
+                                                                    </label>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <label for="flexRadioDefault">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="flexRadioDefault" id="flexRadioDefault1"
+                                                                        checked>
+                                                                </label>
+                                                                <label class="form-check-label parrafoCheckLeido">He leído y
+                                                                    acepto los <a href=""> términos,condiciones</a> y
+                                                                    el <a href="">aviso de privacidad</a>
+                                                                </label>
+                                                            </div>
+                                                            <div class="contenidoCentrado">
+                                                                <a style="cursor: pointer;" id="btnContinuarForm"
+                                                                    class="btnContinuar rounded">Continuar</a>
+                                                                <!-- eslint-disable-next-line max-len -->
+                                                                <input class="btnContinuar rounded" type="submit"
+                                                                    value="CONTINUAR">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    name: 'Footer',
+    name: 'Login',
     props: {
         msg: String,
+    },
+    data() {
+        return {
+            nombre: "",
+            apellido: "",
+            edad: "",
+            celular: "",
+            contraseña: "",
+            confirmar: "",
+            pais: "",
+            paises: [],
+            errors: {},
+        };
+    },
+    mounted() {
+        // Consumir una API gratuita de paises
+        axios
+            .get("https://restcountries.eu/rest/v2/all")
+            .then((response) => {
+                this.paises = response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+    methods: {
+        submitForm() {
+            // Validar los campos del formulario
+            this.errors = {};
+            let valid = true;
+
+            // Validar que el campo nombre no esté vacío y solo contenga letras
+            if (!this.nombre) {
+                this.errors.nombre = "El nombre es obligatorio";
+                valid = false;
+            } else if (!/^[a-zA-Z]+$/.test(this.nombre)) {
+                this.errors.nombre = "El nombre solo debe contener letras";
+                valid = false;
+            }
+
+            // Validar que el campo apellido no esté vacío y solo contenga letras
+            if (!this.apellido) {
+                this.errors.apellido = "El apellido es obligatorio";
+                valid = false;
+            } else if (!/^[a-zA-Z]+$/.test(this.apellido)) {
+                this.errors.apellido = "El apellido solo debe contener letras";
+                valid = false;
+            }
+
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.edad) {
+                this.errors.edad = "La edad es obligatoria";
+                valid = false;
+            } else if (this.edad <= 0) {
+                this.errors.edad = "La edad debe ser un número positivo";
+                valid = false;
+            }
+
+            // Validar que el campo celular no esté vacío y tenga máximo 10 dígitos numéricos
+            if (!this.celular) {
+                this.errors.celular = "El número celular es obligatorio";
+                valid = false;
+            } else if (!/^\d{10}$/.test(this.celular)) {
+                this.errors.celular =
+                    "El número celular debe tener máximo 10 dígitos numéricos";
+                valid = false;
+            }
+
+            // Validar que el campo contraseña no esté vacío y tenga al menos 6 caracteres
+            if (!this.contraseña) {
+                this.errors.contraseña = "La contraseña es obligatoria";
+                valid = false;
+            } else if (this.contraseña.length < 6) {
+                this.errors.contraseña =
+                    "La contraseña debe tener al menos 6 caracteres";
+                valid = false;
+            }
+
+            // Validar que el campo confirmar no esté vacío y coincida con la contraseña
+            if (!this.confirmar) {
+                this.errors.confirmar = "La confirmación de la contraseña es obligatoria";
+                valid = false;
+            } else if (this.confirmar !== this.contraseña) {
+                this.errors.confirmar =
+                    "La confirmación de la contraseña no coincide con la contraseña";
+                valid = false;
+            }
+
+            // Validar que el campo pais no esté vacío
+            if (!this.pais) {
+                this.errors.pais = "El país es obligatorio";
+                valid = false;
+            }
+
+            // Si todos los campos son válidos, enviar el formulario
+            if (valid) {
+                alert("Formulario enviado correctamente");
+                // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
+            }
+        },
     },
 };
 </script>
 
+
+
+  <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @font-face {
     font-family: 'OpenSans-Bold';
