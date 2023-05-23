@@ -51,17 +51,42 @@
                                             <div id="flush-collapseOne" class="accordion-collapse collapse"
                                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                                 <div class="accordion-body">
+                                                    <!-- <form @submit.prevent="submitForm">
+                                                        <label>
+                                                            Nombre:
+                                                            <input type="text" v-model="nombre"
+                                                                v-on:input="validateNombre" />
+                                                        </label>
+                                                        <span v-if="nombreError" style="color: red;">{{ nombreError
+                                                        }}</span>
+
+                                                        <label>
+                                                            Correo electrónico:
+                                                            <input type="email" v-model="correoElectronico"
+                                                                v-on:input="validateCorreoElectronico" />
+                                                        </label>
+                                                        <span v-if="correoElectronicoError" style="color: red;">{{
+                                                            correoElectronicoError }}</span>
+
+                                                        <button type="submit">Enviar</button>
+                                                    </form> -->
                                                     <!-- eslint-disable-next-line max-len -->
-                                                    <form name="formulario" id="formulario" method="post"
-                                                        @submit.prevent="submitFormUno()" action="https://vuejs.org/">
+                                                    <form name="formulario" @submit.prevent="submitFormUno()"
+                                                        action="/crear">
                                                         <div class="col-12 col-md-12">
+                                                            <!-- <input type="tel" class="form-control" id="nombre"
+                                                                placeholder="Número de celular" required
+                                                                pattern="[0-9]{7,12}" minlength="7" maxlength="10"
+                                                                title="El campo número celular es obligatorio">
+                                                            <input type="submit" value="Enviar"> -->
                                                             <!-- eslint-disable-next-line max-len -->
-                                                            <input type="tel" class="form-control" id="nombre"
-                                                                v-model="telefono" placeholder="Número de celular">
+                                                            <input type="tel" class="form-control" v-model="telefono"
+                                                                @input="validateTelefono" placeholder="Número de celular">
                                                             <span class="error" style="color: red;"
                                                                 v-if="errors.telefono">{{ errors.telefono
                                                                 }}</span>
-                                                            <span class="correct" style="color: green;" v-else></span>
+                                                            <span class="error" v-else style="color: green"></span>
+                                                            <!-- <span class="correct" style="color: green;" v-else></span> -->
                                                             <!-- <p class="mensajes mt-2" id="mensajes" style="color:red;">
                                                             </p> -->
                                                         </div>
@@ -69,7 +94,7 @@
                                                         <div class="col-xl-12 col-md-6">
                                                             <div class="input-group input-group-md">
                                                                 <input :type="inputTypeIcon" class="form-control"
-                                                                    v-model="claveAcceso"
+                                                                    v-model="claveAcceso" @input="validateClaveAcceso"
                                                                     placeholder="Escriba una clave de acceso">
                                                                 <button class="input-group-text"
                                                                     @click.prevent="ToggleInputIcon">
@@ -83,6 +108,7 @@
                                                             </div>
                                                             <span class="error mt-3" style="color: red; margin-top: 3px;"
                                                                 v-if="errors.claveAcceso">{{ errors.claveAcceso }}</span>
+                                                            <span class="error" v-else style="color: green"></span>
                                                         </div>
                                                         <br>
                                                         <div class="col-xl-12 col-md-6">
@@ -101,8 +127,8 @@
                                                                         class="btnContinuar rounded"> -->
                                                                     <!-- <router-link class="btnContinuar rounded" to="/crear"
                                                                         tag="button">CONTINUAR</router-link> -->
-                                                                    <button type="submit" class="btnContinuar rounded"
-                                                                        tag="button">CONTINUAR</button>
+                                                                    <button type="submit" tag="button"
+                                                                        class="btnContinuar rounded">CONTINUAR</button>
                                                                 </div>
                                                                 <br>
                                                             </div>
@@ -130,44 +156,68 @@
                                                             @submit.prevent="submitFormCrearPlan()">
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-3">
-                                                                    <select class="form-select" id="select_pais"
+                                                                    <!-- <select class="form-select" id="select_pais"
                                                                         aria-label="Default select example" v-model="pais">
                                                                         <option value="" selected="selected">Seleccione
                                                                             un país</option>
                                                                         <option value="mx">Mexico</option>
                                                                         <option value="cr">Costa rica</option>
+                                                                    </select> -->
+                                                                    <select class="form-select" id="select_pais"
+                                                                        v-model="selectedCountry" @change="updateLada">
+                                                                        <option value="" disabled selected>Seleccione un
+                                                                            país
+                                                                        </option>
+                                                                        <option value="Mexico">México</option>
+                                                                        <option value="Costa Rica">Costa Rica</option>
                                                                     </select>
                                                                     <p class="mensaje_pais mt-2" id="mensaje_pais"
                                                                         style="color:red;">
                                                                     </p>
                                                                     <span class="error" style="color: red;"
-                                                                        v-if="errors.pais">{{
-                                                                            errors.pais
+                                                                        v-if="errors.selectedCountry">{{
+                                                                            errors.selectedCountry
                                                                         }}</span>
+                                                                    <!-- <span v-else style="color: green;">El país es
+                                                                        válido</span> -->
+
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-4 mb-3">
-                                                                    <select class="form-select" id="select_lada"
+                                                                    <!-- <select class="form-select" id="select_lada"
                                                                         aria-label="Default select example" v-model="lada">
                                                                         <option value="" selected="selected">Lada
                                                                         </option>
                                                                         <option id="optionMX" value="1">+52</option>
                                                                         <option id="optionCR" value="2">+506</option>
+                                                                    </select> -->
+                                                                    <select id="lada" class="form-select"
+                                                                        v-model="selectedLada">
+                                                                        <option value="" disabled selected>Seleccione una
+                                                                            lada
+                                                                        </option>
+                                                                        <option v-if="selectedCountry === 'Mexico'"
+                                                                            value="+52">
+                                                                            +52</option>
+                                                                        <option v-if="selectedCountry === 'Costa Rica'"
+                                                                            value="+506">+506</option>
+                                                                        <option value="52">+52</option>
+                                                                        <option value="506">+506</option>
                                                                     </select>
                                                                     <p class="mensaje_lada mt-2" id="mensaje_lada"
                                                                         style="color:red;"></p>
                                                                     <span class="error" style="color: red;"
-                                                                        v-if="errors.lada">{{
-                                                                            errors.lada
+                                                                        v-if="errors.selectedLada">{{
+                                                                            errors.selectedLada
                                                                         }}</span>
+
                                                                 </div>
                                                                 <div class="col-8 mb-3">
                                                                     <input type="text" class="form-control" name="telefono"
                                                                         id="telefonoCel"
-                                                                        onkeypress="return validateKey(event);"
                                                                         placeholder="Telefono celular"
-                                                                        v-model="telefonoCelular">
+                                                                        v-model="telefonoCelular" @input="validar">
                                                                     <p class="mensaje_telfono mt-2" id="mensaje_telfono"
                                                                         style="color:red;">
                                                                     </p>
@@ -175,13 +225,31 @@
                                                                         v-if="errors.telefonoCelular">{{
                                                                             errors.telefonoCelular
                                                                         }}</span>
+                                                                    <!-- <span v-else style="color: green;">{{ correct.telefonoCelular }}</span> -->
+                                                                    <span v-else style="color: green;">{{ errors.telefonoCelular }}</span>
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mb-3">
-                                                                <select class="form-select" id="select_estado"
+                                                                <!-- <select class="form-select" id="select_estado"
                                                                     name="select_estado" v-model="estado">
                                                                     <option value="#">Seleccione un
                                                                         estado</option>
+                                                                </select> 
+                                                                <select name="" id="" class="form-select"
+                                                                    v-model="seleccionaOpcion">
+                                                                    <option value="#">Seleccione un
+                                                                        estado</option>
+                                                                    <option value="" v-for="option in options"
+                                                                        :key="option.id">{{ option.name }}</option>
+                                                                </select> -->
+                                                                <select v-model="selected" id="select_estado"
+                                                                    class="form-select">
+                                                                    <option value="" disabled selected>Seleccione un estado
+                                                                    </option>
+                                                                    <option v-for="option in options" :key="option.value">
+                                                                        {{ option.text }}
+                                                                    </option>
                                                                 </select>
                                                                 <p class="mensaje_estado mt-2" id="mensaje_estado"
                                                                     style="color:red;">
@@ -190,6 +258,7 @@
                                                                     v-if="errors.estado">{{
                                                                         errors.estado
                                                                     }}</span>
+
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-5 mb-3">
@@ -373,8 +442,10 @@
     </div>
 </template>
 
+  
 <script>
 import axios from 'axios';
+
 export default {
     name: 'Login',
     props: {
@@ -408,9 +479,35 @@ export default {
             apeMedTrat: "",
             claveAccesos: "",
             confClaveAccesos: "",
+
+            selected: "",
+            options: [],
+            selectedCountry: "",
+            selectedLada: "",
+
+            /** */
+            nombre: "",
+            correoElectronico: "",
+            nombreError: "",
+            correoElectronicoError: "",
+            /** */
+
+            /** form de articulo digital */
+            name: '',
+            email: '',
+            username: '',
+            password: '',
+            password_confirmation: '',
+            /** form de articulo digital */
+
+            telefono: '',
+            claveAcceso: '',
+            inputTypeIcon: 'password',
+            errors: {},
+
         };
     },
-    created() {
+    /* created() {
         axios.get('https://intestinolimpio.onrender.com/api/v1/data/estados')
             .then((response) => {
                 this.options = response.data;
@@ -419,180 +516,127 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-    },
+    }, */
     mounted() {
-        // Consumir una API gratuita de paises
+        // Consumir una API 
         axios
             .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
             .then((response) => {
-
-                this.paises = response.data.data;
-                console.log(this.paises);
-            })
-            .catch((error) => {
-                console.log(error);
+                this.options = response.data.data.map((estado) => ({
+                    text: estado.nombre,
+                    value: estado.clave,
+                }));
             });
-        axios
+        /* .catch((error) => {
+            console.log(error);
+        }); */
+        /* axios
             .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-            .then(response => (this.info = response.data.bpi))
+            .then(response => (this.info = response.data.bpi)) */
+        axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
+            this.options = response.data.map((user) => ({
+                text: user.name,
+                value: user.id,
+            }));
+        });
     },
     methods: {
-        submitFormUno() {
-            // Validar los campos del formulario
-            this.errors = {};
-            let valida = true;
+        validateTelefono() {
+            this.errors.telefono = '';
 
-            // Validar que el campo celular no esté vacío y tenga máximo 10 dígitos numéricos
             if (!this.telefono) {
-                this.errors.telefono = "El número celular es obligatorio";
-                valida = false;
-            }
-            else if (isNaN(this.telefono)) {
+                this.errors.telefono = 'El número celular es obligatorio';
+            } else if (isNaN(this.telefono)) {
+                this.errors.telefono = 'El número celular solo debe contener números';
+            } else if (this.telefono.length < 7) {
+                this.errors.telefono = 'El número celular debe tener minimo 7 numeros';
+            } else if (this.telefono.length > 10) {
                 this.errors.telefono =
-                    "El número celular debe contener solo números.";
-                valida = false;
+                    'El número celular no debe exceder de 10 números';
+            } else {
+                this.errors.telefono = 'El número celular es válido';
             }
-            else if (this.telefono.length < 7) {
-                this.errors.telefono =
-                    "El número celular debe tener por lo menos 7 caracteres";
-                valida = false;
-            }
-
-            /* else if (!/^\d{10}$/.test(this.telefono)) { */
-            else if (this.telefono.length > 10) {
-                this.errors.telefono =
-                    "El número celular debe tener máximo 10 dígitos numéricos";
-                valida = false;
-            }
-            /* else if (!/^\d{10}$/.test(this.celular)) {
-                this.errors.celular =
-                    "El número celular debe tener máximo 10 dígitos numéricos";
-                valida = false;
-            } */
-            // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
-            if (!this.claveAcceso) {
-                this.errors.claveAcceso = "La clave de acceso es obligatoria";
-                valida = false;
-            }
-            else if (this.claveAcceso.length < 4) {
-                this.errors.claveAcceso =
-                    "La clave de acceso debe tener por lo menos 4 caracteres";
-                valida = false;
-            }
-            else if (this.claveAcceso.length > 10) {
-                this.errors.claveAcceso =
-                    "La clave de acceso excede 10 caracteres";
-                valida = false;
-            }
-            else {
-                /* this.error.telefono = "Teléfono celular válido"; */
-                this.$router.push('/crear');
-            }
-
-
         },
+        validateClaveAcceso() {
+            this.errors.claveAcceso = '';
 
+            if (!this.claveAcceso) {
+                this.errors.claveAcceso = 'La clave de acceso es obligatoria';
+            } else if (this.claveAcceso.length < 4 || this.claveAcceso.length > 10) {
+                this.errors.claveAcceso = 'La clave de acceso no es válida';
+            } else {
+                this.errors.claveAcceso = 'Clave acceso es válida';
+            }
+        },
+        submitForm() {
+            // Validar los campos antes de enviar el formulario
+            this.validateTelefono();
+            this.validateClaveAcceso();
+
+            // Comprobar si hay errores
+            if (Object.keys(this.errors).length > 0) {
+                return;
+            }
+
+            // Todos los campos son válidos, redirigir a otra vista
+            this.$router.push('/crear');
+        },
         ToggleInput() {
             this.inputType = this.inputType === "password" ? "text" : "password";
         },
         ToggleInputIcon() {
             this.inputTypeIcon = this.inputTypeIcon === "password" ? "text" : "password";
         },
-
-        submitFormCrearPlan() {
+        validarPaisLada() {
             // Validar los campos del formulario
             this.errors = {};
-            let valida = true;
             // Validar que el campo pais
-            if (!this.pais) {
-                this.errors.pais = "El país es obligatorio";
-                valida = false;
+            if (!this.selectedCountry) {
+                this.errors.selectedCountry = "El país es obligatorio";
             }
             // Validar que el campo lada
-            if (!this.lada) {
-                this.errors.lada = "La lada es obligatoria";
-                valida = false;
+            if (!this.selectedLada) {
+                this.errors.selectedLada = "La lada es obligatoria";
             }
-            // Validar que el campo telefonoCelular
+           
+        },
+        validar(){
+            this.errors.claveAcceso = '';
+
             if (!this.telefonoCelular) {
-                this.errors.telefonoCelular = "El telefono celular es obligatorio";
-                valida = false;
+                this.errors.telefonoCelular = 'El telefono celular es obligatorio';
+            } else if (this.telefonoCelular.length < 4 ) {
+                this.errors.telefonoCelular = 'El telefono celular no debe ser menor a 7 números';
+            } else if ( this.telefonoCelular.length > 10) {
+                this.errors.telefonoCelular = 'El telefono celular no debe exceder 10 números';
+            } else {
+                this.correct.telefonoCelular = 'El telefono celular es válido';
             }
-            // Validar que el campo estado
-            if (!this.estado) {
-                this.errors.estado = "El estado es obligatorio";
-                valida = false;
-            }
-            // Validar que el campo ciudad
-            if (!this.ciudad) {
-                this.errors.ciudad = "La ciudad es obligatoria";
-                valida = false;
-            }
-            // Validar que el campo edad
-            if (!this.edad) {
-                this.errors.edad = "La edad es obligatoria";
-                valida = false;
-            }
-            // Validar que el campo peso
-            if (!this.peso) {
-                this.errors.peso = "El peso es obligatorio";
-                valida = false;
-            }
-
-
-            // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
-            if (!this.nomMedTrat) {
-                this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
-                valida = false;
-            } /* else if (this.nomMedTrat.length < 50) {
-                this.errors.nomMedTrat =
-                    "El nombre del médico tratante debe tener al menos 50 caracteres";
-                valida = false;
-            } */
-            else if (this.nomMedTrat.length > 80) {
-                this.errors.nomMedTrat =
-                    "El nombre del médico tratante debe tener máximo 80 caracteres";
-                valida = false;
-            }
-
-            // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
-            if (!this.apeMedTrat) {
-                this.errors.apeMedTrat = "El apellido del médico tratante es obligatorio";
-                valida = false;
-            } /* else if (this.apeMedTrat.length < 50) {
-                this.errors.apeMedTrat =
-                    "El apellido del médico tratante debe tener al menos 50 caracteres";
-                valida = false;
-            } */
-            else if (this.apeMedTrat.length > 80) {
-                this.errors.apeMedTrat =
-                    "El apellido del médico tratante debe tener máximo 80 caracteres";
-                valida = false;
-            }
-
-            // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
-            if (!this.claveAccesos) {
-                this.errors.claveAccesos = "La clave de acceso es obligatoria";
-                valida = false;
-            } else if (this.claveAccesos.length < 4) {
-                this.errors.claveAccesos =
-                    "La clave de acceso debe tener al menos 4 caracteres";
-                valida = false;
-            }
-
-            // Validar que el campo confirmar no esté vacío y coincida con la contraseña
-            if (!this.confClaveAccesos) {
-                this.errors.confClaveAccesos = "La confirmación de la clave acceso es obligatoria";
-                valida = false;
-            } else if (this.confClaveAccesos !== this.claveAccesos) {
-                this.errors.confClaveAccesos =
-                    "La confirmación de la contraseña no coincide con la contraseña";
-                valida = false;
-            }
-
-
             /* this.validarPais();
             this.formularioValidado = this.validarEdad && validarPeso; */
+        },
+        submitFormCrearPlan() {
+            // Validar los campos antes de enviar el formulario
+            this.validarPaisLada();
+            this.validar();
+
+            // Comprobar si hay errores
+            if (Object.keys(this.errors).length > 0) {
+                return;
+            }
+
+            // Todos los campos son válidos, redirigir a otra vista
+            this.$router.push('/crear');
+        },
+
+
+        // Funcion pata actualizar la lada dependiendo de país seleccionado
+        updateLada() {
+            if (this.selectedCountry === "Mexico") {
+                this.selectedLada = "+52";
+            } else if (this.selectedCountry === "Costa Rica") {
+                this.selectedLada = "+506";
+            }
         },
     },
 };
