@@ -1,169 +1,274 @@
 <template>
     <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
     <div class="container">
-        <br><br>
-        <div class="row align-items-end">
-            <div class="col">
-                <!-- <h1 class="tituloPrincipal text-end">Crear nuevo plan de tomas</h1> -->
-            </div>
-            <div class="col-xl-6 col-sm-6 col-md-6">
-                <h1 class="tituloPrincipal text-center">Crear nuevo plan de tomas</h1>
-            </div>
-        </div>
         <br>
         <div class="row">
-            <form name="formulario" id="formulario" action="" method="post" @submit.prevent="submitFormCrearNuevoPlan()">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-sm-6 col-md-6 text-center">
-                            <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
-                        </div>
-                        <div class="col-xl-6 col-sm-6 col-md-6">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <p>Por favor coloque la fecha y hora de las tomas indicadas por
-                                            tu médico.</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
-                                        <div class="input-group">
-                                            <input type="date" class="form-control inputFechaEstudioCrear"
-                                                placeholder="18:00 Hrs" aria-label="Input group example"
-                                                aria-describedby="basic-addon1" v-model="fechaEstudioColonos">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                            <p class="mensajes mt-2" id="mensajes" style="color:red;"></p>
+            <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
+            <div class="col-3 col-md-4 col-sm-6">
+                <a type="button" class="btnFlecha" href="index.html">
+                </a>
+            </div>
+            <div class="col"></div>
+            <div class="col-xl-6 col-sm-3 col-md-3">
+            <!-- <div class="col-9 col-md-8 col-sm-6 pt-3 ps-5"> -->
+                <h1 class="tituloPregFrecu text-center">Preguntas <span>frecuentes</span></h1>
+            </div>
+            <!-- <div class="col-auto border">
+                <p></p>
+            </div> -->
+        </div>
+        <br>
+        <div class="row p-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-sm-6 col-md-6 text-center">
+                        <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-xl-6 col-sm-6 col-md-6 text-center">
+                        <p class="parrafoPregNosInteresa" style="text-align: justify;">En Intestino Limpio nos interesa
+                            resolver todas las preguntas durante la preparación intestinal.
+                            Abajo podrá encontrar las preguntas más frecuentes. Si lo que busca no está aquí, <a
+                                href="http://" target="_blank" rel="noopener noreferrer"
+                                style="color: #1155CC; font-family: 'OpenSans-Bold';"> puede
+                                contáctanos vía whatsapp.</a></p>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item border border-dark rounded-start">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                        style="color: #565757; font-family: 'OpenSans-Bold';">
+                                        1. Alimentación
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p class="text-start"><b>¿Qué alimentos puedo comer durante mi preparación para el
+                                            estudio?</b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">La dieta baja en residuos ayuda a reducir el
+                                                    tamaño y número de
+                                                    deposiciones; uno de sus componentes esenciales es tener una
+                                                    ingesta baja de fibra.</p>
+                                                <p class="text-start">Lo que sí está permitido comer es pan blanco o
+                                                    tostado, bisquets,
+                                                    bolillo, galletas saladas, cereales refinados de arroz, maíz o
+                                                    avena,
+                                                    arroz blanco o pasta refinada; frutas y vegetales en conserva,
+                                                    enlatados, sin cáscara o semilla, leche, queso suave o cottage,
+                                                    yogurt natural, carne asada, pollo sin piel y pescado.</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>D. Ruiz-Romero, F.I.
+                                                        Téllez-Ávila, Preparación para colonoscopia en 2016:
+                                                        recomendaciones actuales utilizando datos nacionales, Depto
+                                                        Gastro INCMNSZ
+                                                        Endoscopia. 2016;28(2):81—89</i></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="time" class="form-control" name="" id="emailInput"
-                      placeholder="Hora de la colonoscopía o estudio"> -->
-                                        <div class="input-group">
-                                            <input type="time" class="form-control inputHoraColos" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                    <path
-                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                </svg>
-                                            </span>
+                                        <p class="text-start"><b>¿Qué alimentos NO puedo comer durante mis tomas con
+                                            Picoprep?</b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Aquellos que contienen fibra. Se debe evitar: pan
+                                                    integral, frutas al
+                                                    natural y vegetales crudos, nueces, semillas, carne con piel.</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>D. Murcio-Pérez E,
+                                                        Téllez-Ávila F. Opciones de preparación para colonoscopia.
+                                                        Endoscopia. 2012;24:23—31</i></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
-                                        <div class="input-group">
-                                            <input type="date" class="form-control inputFecPriToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1"  v-model="fechaPrimerToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.fechaPrimerToma">{{ errors2.fechaPrimerToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!--  <input type="time" class="form-control inputHoraPriToma" name="" id="emailInput"
-                      placeholder="Hora de la primera toma de Picoprep®️"> -->
-                                        <div class="input-group">
-                                            <input type="time" class="form-control inputHoraPriToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaPrimerToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                    <path
-                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.horaPrimerToma">{{ errors2.horaPrimerToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="date" class="form-control inputFecSegToma" name="" id="emailInput"
-                      placeholder="Fecha de la segunda toma de Picoprep®️"> -->
-                                        <div class="input-group">
-                                            <input type="date" class="form-control inputFecSegToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaSegundaToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="time" class="form-control inputHoraSegToma" name="" id="emailInput"
-                      placeholder="Hora de la segunda toma de Picoprep®️"> -->
-                                        <div class="input-group">
-                                            <input type="time" class="form-control inputHoraSegToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaSegundaToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                    <path
-                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <div class="contenidoCentrado">
-                                            <!-- <a type="submit" class="btnCrearPlan rounded" href="">CREAR PLAN DE TOMAS</a> -->
-                                            <!-- <input class="btnCrearPlan  rounded" value="CREAR PLAN DE TOMAS"> -->
-                                            <button class="btnCrearPlan  rounded">CREAR PLAN DE TOMAS</button>
+                                        <p class="text-start"><b>¿Qué tipo de líquidos puedo tomar?</b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Los líquidos que sí están permitidos son los
+                                                    llamados líquidos
+                                                    claros como agua simple, café sin crema, té, jugo de frutas sin
+                                                    pulpa (colado), consomé, gelatina y refrescos sin colorante.</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>Murcio-Pérez E,
+                                                        Téllez-Ávila F. Opciones de preparación para colonoscopia.
+                                                        Endoscopia. 2012;24:23—31</i></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="accordion-item border border-dark rounded-start">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: #565757; font-family: 'OpenSans-Bold';">
+                                        2. Procedimiento/ Estudio
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p class="text-start"><b>¿Debo suspender mis medicamentos previos a la
+                                            colonoscopia?</b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Hable con su médico cuando se le programe una
+                                                    colonoscopía
+                                                    sobre las afecciones médicas que padece y todos los
+                                                    medicamentos recetados por si existe la necesidad de un ajuste en
+                                                    la dosis incluidos los siguientes:
+                                                    aspirina o medicamentos que contengan aspirina
+                                                    antiinflamatorios no esteroides como ibuprofeno o naproxeno
+                                                    medicamentos para la artritis
+                                                    anticoagulantes
+                                                    medicamentos para la diabetes
+                                                    vitaminas que contengan hierro o suplementos de hierro</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>Rex DK, Johnson DA,
+                                                        Anderson JC, Schoenfeld PS, Burke CA, Inadomi JM.
+                                                        American College of Gastroenterology guidelines for colorectal
+                                                        cancer screening
+                                                        2008. American Journal of Gastroenterology. 2009;104(3):739–750.
+                                                        Ko CW, Riffle S, Michaels L, et al. Serious complications within
+                                                        30 days of
+                                                        screening and surveillance colonoscopy are uncommon. Clinical
+                                                        Gastroenterology and Hepatology. 2010;8(2):166–173.</i></p>
+                                            </div>
+                                        </div>
+                                        <p class="text-start"><b>¿Cómo saber que ya estoy listo para mi estudio?</b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Usted verá un aumento en el número de
+                                                    evacuaciones, las cuales
+                                                    cada vez serán más liquidas y claras.</p>
+                                                <img src="../assets/img/web/Intestino limpio_Preguntas Frecuentes.jpg" alt="" class="img-fluid">
+                                                <p class="text-start" style="color: #195ACD;"><i>EnfermEndoscDig
+                                                        2016_3.1-Abril</i></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item  border border-dark rounded-start">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree" style="color: #565757; font-family: 'OpenSans-Bold';">
+                                        3. Sobre PICOPREP
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p class="text-start"><b>¿Cómo tomarme Picoprep?</b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start"><b><u> Régimen de dosis dividido (la tarde
+                                                            anterior al procedimiento y
+                                                            el día del procedimiento)</u></b><br>El primer sobre de
+                                                    PICOPREP se toma la noche anterior al
+                                                    procedimiento y el segundo se toma al siguiente día, en la mañana
+                                                    previa al procedimiento.</p>
+                                                <p></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start"><b>El día anterior al procedimiento- 1
+                                                            sobre:</b><br>El primer sobre reconstituido se toma en
+                                                    la tarde (por ejemplo,
+                                                    entre las 5:00 y las 9:00 P.M., tomando al menos cinco bebidas de
+                                                    250 ml cada una, de líquidos claros durante las horas siguientes a
+                                                    la
+                                                    ingesta del sobre.</p>
+                                                <p></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start"><b> El día del procedimiento 1
+                                                            sobre:</b><br>El segundo sobre reconstituido se toma la
+                                                    mañana del
+                                                    procedimiento (5-9 horas antes del procedimiento), tomando por lo
+                                                    menos de 3 bebidas de 250 ml cada una, de líquidos claros durante
+                                                    las horas siguientes a la ingesta del sobre.
+                                                    Pueden consumirse líquidos claros hasta 2 hr. antes del
+                                                    procedimiento.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start"><b>O</b></p>
+                                                <p class="text-start"><b> Día anterior al procedimiento (tarde
+                                                            anterior al procedimiento
+                                                            únicamente)</b><br>El primer sobre de PICOPREP se toma
+                                                    la tarde o al atardecer y el
+                                                    segundo se toma aproximadamente 6 horas después, durante la
+                                                    noche anterior al procedimiento.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start"><b>Un día antes del procedimiento- 2
+                                                            sobres</b><br>El primer sobre reconstituido se toma en
+                                                    la tarde o al atardecer
+                                                    (por ejemplo, entre las 4:00 a las 6:00 PM), tomando durante las
+                                                    horas posteriores, por lo menos cinco bebidas de 250 ml cada una,
+                                                    de líquidos claros.
+                                                    El segundo sobre reconstituido se toma avanzada la noche (por
+                                                    ejemplo, entre las 10:00 PM y las 12:00 AM), tomando durante las
+                                                    horas posteriores por lo menos 3 bebidas de 250 ml cada una de
+                                                    líquidos claros.
+                                                    Pueden consumirse líquidos claros hasta 2 hr. antes del
+                                                    procedimiento.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start"><b>Niños:</b><br>1-2 años (8.5 a 10.5 kg):
+                                                    1⁄4 de sachet por la mañana, 1⁄4 de sachet
+                                                    por la tarde.</p>
+                                                <p class="text-start">
+                                                    2-4 años (10.6 a 14.7 kg): 1⁄2 sachet por la mañana, 1⁄2 sachet por
+                                                    la
+                                                    tarde.
+                                                </p>
+                                                <p class="text-start">
+                                                    4-9 años (14.8 a 28 kg): 1 sachet por la mañana, 1⁄2 sachet por la
+tarde.
+                                                </p>
+                                                <p class="text-start">
+                                                    9 años y mayores (> 28 kg): la dosis de adulto. <br>
+Niños menores de 4 años se recomienda la hidratación a libre
+demanda, la mayor cantidad de líquidos que acepte.
+                                                </p>
+                                                <p class="text-start">
+                                                    Si tiene alguna duda, consulte a su médico
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <br>
+                        <button type="button" class="rounded btnGuardarPregFrec"
+                            data-bs-dismiss="modal">GUARDAR</button>
+                        <br><br>
                     </div>
                 </div>
-            </form>
+                <br>
+            </div>
+            <br>
         </div>
-        <br><br>
+        <br>
     </div>
 </template>
 <script>
 import moment from 'moment';
 
 export default {
-    name: 'CrearPlan',
+    name: 'PreguntasFrec',
     props: {
         msg: String,
     },
@@ -174,81 +279,9 @@ export default {
             hora1: "",
             hora2: "",
             errors2: {},
-
-            fechaEstudioColonos: "",
-            horaColonoscopia: "",
-            fechaPrimerToma: "",
-            horaPrimerToma: "",
-            fechaSegundaToma: "",
-            horaSegundaToma: "",
         };
     },
     methods: {
-        submitFormCrearNuevoPlan() {
-            // Validar los campos del segundo formulario
-            this.errors2 = {};
-            let valid2 = true;
-
-            // Validar que el campo fecha uno no esté vacío y sea una fecha válida
-            if (!this.fechaPrimerToma) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo fecha dos no esté vacío y sea una fecha válida
-            if (!this.fechaSegundaToma) {
-                this.errors2.fechaSegundaToma = "La fecha de la segunda toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fechaSegundaToma = "La fecha de la segunda toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo fecha dos sea posterior al campo fecha uno
-            // Usando el método isAfter de moment.js para comparar las fechas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.fechaPrimerToma ).isAfter(this.fechaSegundaToma)) {
-                this.errors2.fechaSegundaToma =
-                    "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora uno no esté vacío y sea una hora válida
-            if (!this.horaPrimerToma) {
-                this.errors2.horaPrimerToma = "La hora de la primer toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
-                this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora dos no esté vacío y sea una hora válida
-            if (!this. horaSegundaToma) {
-                this.errors2. horaSegundaToma= "La hora de la segunda toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this. horaSegundaToma, "HH:mm", true).isValid()) {
-                this.errors2. horaSegundaToma = "La hora de la segunda toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora dos sea posterior al campo hora uno
-            // Usando el método isAfter de moment.js para comparar las horas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
-                this.errors2.hora2 =
-                    "La hora dos debe ser posterior a la hora uno";
-                valid2 = false;
-            }
-
-            // Si todos los campos son válidos, enviar el formulario
-            if (valid2) {
-                alert("Los datoa del formulario se enviaron correctamente");
-                // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
-            }
-        },
         submitForm2() {
             // Validar los campos del segundo formulario
             this.errors2 = {};

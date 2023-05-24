@@ -1,23 +1,26 @@
 <template>
-  <div class="crear">
+  
+  <div class="perfil">
     <NavBar />
-    <CrearPlan />
-    <!-- <h1 class="text-center">Aqui se vera la vista Crear plan de tomas</h1> -->
+    <Perfil />
     <Footer />
   </div>
 </template>
+
 <script>
+
 // @ is an alias to /src
-import CrearPlan from '@/components/CrearPlan.vue';
 import Footer from '@/components/Footer.vue';
 import NavBar from '@/components/NavBar.vue';
+import Perfil from '@/components/Perfil.vue';
+
 
 export default {
-  name: 'CrearPlanView',
+  name: 'PerfilView',
   components: {
-    CrearPlan,
     Footer,
     NavBar,
+    Perfil
   },
 };
 </script>

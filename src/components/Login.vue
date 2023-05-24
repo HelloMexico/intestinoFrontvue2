@@ -71,8 +71,7 @@
                                                         <button type="submit">Enviar</button>
                                                     </form> -->
                                                     <!-- eslint-disable-next-line max-len -->
-                                                    <form name="formulario" @submit.prevent="submitFormUno()"
-                                                        action="/crear">
+                                                    <form name="formulario" @submit.prevent="submitForm()">
                                                         <div class="col-12 col-md-12">
                                                             <!-- <input type="tel" class="form-control" id="nombre"
                                                                 placeholder="Número de celular" required
@@ -127,7 +126,7 @@
                                                                         class="btnContinuar rounded"> -->
                                                                     <!-- <router-link class="btnContinuar rounded" to="/crear"
                                                                         tag="button">CONTINUAR</router-link> -->
-                                                                    <button type="submit" tag="button"
+                                                                    <button type="submit"
                                                                         class="btnContinuar rounded">CONTINUAR</button>
                                                                 </div>
                                                                 <br>
@@ -156,13 +155,6 @@
                                                             @submit.prevent="submitFormCrearPlan()">
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-3">
-                                                                    <!-- <select class="form-select" id="select_pais"
-                                                                        aria-label="Default select example" v-model="pais">
-                                                                        <option value="" selected="selected">Seleccione
-                                                                            un país</option>
-                                                                        <option value="mx">Mexico</option>
-                                                                        <option value="cr">Costa rica</option>
-                                                                    </select> -->
                                                                     <select class="form-select" id="select_pais"
                                                                         v-model="selectedCountry" @change="updateLada">
                                                                         <option value="" disabled selected>Seleccione un
@@ -178,20 +170,10 @@
                                                                         v-if="errors.selectedCountry">{{
                                                                             errors.selectedCountry
                                                                         }}</span>
-                                                                    <!-- <span v-else style="color: green;">El país es
-                                                                        válido</span> -->
-
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-4 mb-3">
-                                                                    <!-- <select class="form-select" id="select_lada"
-                                                                        aria-label="Default select example" v-model="lada">
-                                                                        <option value="" selected="selected">Lada
-                                                                        </option>
-                                                                        <option id="optionMX" value="1">+52</option>
-                                                                        <option id="optionCR" value="2">+506</option>
-                                                                    </select> -->
                                                                     <select id="lada" class="form-select"
                                                                         v-model="selectedLada">
                                                                         <option value="" disabled selected>Seleccione una
@@ -215,9 +197,9 @@
                                                                 </div>
                                                                 <div class="col-8 mb-3">
                                                                     <input type="text" class="form-control" name="telefono"
-                                                                        id="telefonoCel"
-                                                                        placeholder="Telefono celular"
-                                                                        v-model="telefonoCelular" @input="validar">
+                                                                        id="telefonoCel" placeholder="Telefono celular"
+                                                                        v-model="telefonoCelular"
+                                                                        @input="validarTelefonoCelular">
                                                                     <p class="mensaje_telfono mt-2" id="mensaje_telfono"
                                                                         style="color:red;">
                                                                     </p>
@@ -225,26 +207,14 @@
                                                                         v-if="errors.telefonoCelular">{{
                                                                             errors.telefonoCelular
                                                                         }}</span>
-                                                                    <!-- <span v-else style="color: green;">{{ correct.telefonoCelular }}</span> -->
-                                                                    <span v-else style="color: green;">{{ errors.telefonoCelular }}</span>
+                                                                    <span v-else style="color: green;">{{
+                                                                        errors.telefonoCelular }}</span>
 
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mb-3">
-                                                                <!-- <select class="form-select" id="select_estado"
-                                                                    name="select_estado" v-model="estado">
-                                                                    <option value="#">Seleccione un
-                                                                        estado</option>
-                                                                </select> 
-                                                                <select name="" id="" class="form-select"
-                                                                    v-model="seleccionaOpcion">
-                                                                    <option value="#">Seleccione un
-                                                                        estado</option>
-                                                                    <option value="" v-for="option in options"
-                                                                        :key="option.id">{{ option.name }}</option>
-                                                                </select> -->
                                                                 <select v-model="selected" id="select_estado"
-                                                                    class="form-select">
+                                                                    class="form-select" @input="validarEstado">
                                                                     <option value="" disabled selected>Seleccione un estado
                                                                     </option>
                                                                     <option v-for="option in options" :key="option.value">
@@ -264,7 +234,7 @@
                                                                 <div class="col-5 mb-3">
                                                                     <input type="text" class="form-control" name=""
                                                                         id="input_ciudad" placeholder="Ciudad"
-                                                                        v-model="edad">
+                                                                        v-model="ciudad" @input="validarCiudad">
                                                                     <p class="mensaje_ciudad mt-2" id="mensaje_ciudad"
                                                                         style="color:red;"></p>
                                                                     <span class="error" style="color: red;"
@@ -283,7 +253,8 @@
                                                                             <input name="edad" class="form-control"
                                                                                 id="input_edad"
                                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                                type="number" maxlength="3" v-model="edad">
+                                                                                type="number" maxlength="3" v-model="edad"
+                                                                                @input="validarEdad">
                                                                             <p class="mensaje_edad mt-2" id="mensaje_edad"
                                                                                 style="color:red;"></p>
                                                                             <span class="error" style="color: red;"
@@ -303,7 +274,8 @@
                                                                     <input name="peso" class="form-control" id="input_peso"
                                                                         placeholder="Peso del paciente"
                                                                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                        type="number" maxlength="3" v-model="peso">
+                                                                        type="number" maxlength="3" v-model="peso"
+                                                                        @input="validarPeso">
                                                                     <p class="mensaje_peso mt-2" id="mensaje_peso"
                                                                         style="color:red;"></p>
                                                                     <span class="error" style="color: red;"
@@ -317,7 +289,7 @@
                                                                     <input type="text" width="" class="form-control"
                                                                         id="inputNomMedTrat"
                                                                         placeholder="Nombre de tu médico tratante"
-                                                                        v-model="nomMedTrat">
+                                                                        v-model="nomMedTrat" @input="validarNomMedTrat">
                                                                     <p class="mensaje_nomMedTrat mt-2"
                                                                         id="mensaje_nomMedTrat" style="color:red;"></p>
                                                                     <span class="error" style="color: red;"
@@ -331,7 +303,7 @@
                                                                 <input type="text" width="" class="form-control"
                                                                     id="inputApeMedTrat" name="inputApeMedTrat"
                                                                     placeholder="Apellido de tu médico tratante"
-                                                                    v-model="apeMedTrat">
+                                                                    v-model="apeMedTrat" @input="validarApeMedTrat">
                                                                 <p class="mensaje_apeMedTrat mt-2" id="mensaje_apeMedTrat"
                                                                     style="color:red;"></p>
                                                                 <span class="error" style="color: red;"
@@ -343,7 +315,7 @@
                                                                 <div class="input-group input-group-md">
                                                                     <input :type="inputTypeIcon" class="form-control"
                                                                         placeholder="Escriba una clave de acceso"
-                                                                        v-model="contraseña">
+                                                                        v-model="contraseña" @input="validarClaveAccessos">
                                                                     <button class="input-group-text"
                                                                         @click.prevent="ToggleInputIcon">
                                                                         <span v-if="inputTypeIcon === 'password'">
@@ -363,7 +335,8 @@
                                                                 <div class="input-group input-group-md">
                                                                     <input :type="inputTypeIcon" class="form-control"
                                                                         placeholder="Confirma clave de acceso"
-                                                                        v-model="confClaveAccesos">
+                                                                        v-model="confClaveAccesos"
+                                                                        @input="validarConfiClaveAccessos">
                                                                     <button class="input-group-text"
                                                                         @click.prevent="ToggleInputIcon">
                                                                         <span v-if="inputTypeIcon === 'password'">
@@ -424,7 +397,8 @@
                                                                     value="CONTINUAR"> -->
 
                                                                 <button type="submit" class="btnContinuar rounded"
-                                                                    tag="button">CONTINUAR</button>
+                                                                    tag="button" to="/crear">CONTINUAR</button>
+                                                                <router-link to="/crear">Go to Home</router-link>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -505,6 +479,8 @@ export default {
             inputTypeIcon: 'password',
             errors: {},
 
+
+
         };
     },
     /* created() {
@@ -576,10 +552,14 @@ export default {
             // Comprobar si hay errores
             if (Object.keys(this.errors).length > 0) {
                 return;
+            } else {
+                this.$router.push({ path: '/crear' })
             }
 
             // Todos los campos son válidos, redirigir a otra vista
-            this.$router.push('/crear');
+            /* this.$router.push('/crear'); */
+            /* this.$router.push({ name: 'Crear' }) */
+            /* window.open("/crear"); */
         },
         ToggleInput() {
             this.inputType = this.inputType === "password" ? "text" : "password";
@@ -593,32 +573,144 @@ export default {
             // Validar que el campo pais
             if (!this.selectedCountry) {
                 this.errors.selectedCountry = "El país es obligatorio";
+            } else {
+                this.errors.telefonoCelular = 'País válido';
             }
             // Validar que el campo lada
             if (!this.selectedLada) {
                 this.errors.selectedLada = "La lada es obligatoria";
+            } else {
+                this.errors.selectedLada = 'Lada válida';
             }
-           
+
         },
-        validar(){
-            this.errors.claveAcceso = '';
+        validarTelefonoCelular() {
+            // Validar los campos del formulario
+            this.errors.telefonoCelular = '';
 
             if (!this.telefonoCelular) {
                 this.errors.telefonoCelular = 'El telefono celular es obligatorio';
-            } else if (this.telefonoCelular.length < 4 ) {
+            } else if (isNaN(this.telefono)) {
+                this.errors.telefono = 'El telefono celular solo debe contener números';
+            } else if (this.telefonoCelular.length < 7) {
                 this.errors.telefonoCelular = 'El telefono celular no debe ser menor a 7 números';
-            } else if ( this.telefonoCelular.length > 10) {
+            } else if (this.telefonoCelular.length > 10) {
                 this.errors.telefonoCelular = 'El telefono celular no debe exceder 10 números';
-            } else {
-                this.correct.telefonoCelular = 'El telefono celular es válido';
-            }
+            } /* else {
+                this.errors.telefonoCelular = 'El telefono celular es válido';
+            } */
             /* this.validarPais();
             this.formularioValidado = this.validarEdad && validarPeso; */
+        },
+        validarEstado() {
+            this.errors.estado = '';
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.estado ) {
+                this.errors.estado  = "El estado es obligatorio";
+            }
+        },
+        validarCiudad(){
+             // Validar los campos del formulario
+             this.errors.ciudad = '';
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.ciudad ) {
+                this.errors.ciudad  = "La ciudad es obligatoria";
+            } else if (this.ciudad  <= 0) {
+                this.errors.ciudad  = "La edad debe ser un número positivo";
+            }
+        },
+        validarEdad() {
+            // Validar los campos del formulario
+            this.errors.edad = '';
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.edad) {
+                this.errors.edad = "La edad es obligatoria";
+            } else if (this.edad <= 0) {
+                this.errors.edad = "La edad debe ser un número positivo";
+            }
+        },
+        validarPeso() {
+            // Validar los campos del formulario
+            this.errors.peso = '';
+            // Validar que el campo peso no esté vacío y sea un número positivo
+            if (!this.peso) {
+                this.errors.peso = "El peso es obligatoria";
+            } else if (this.peso <= 0) {
+                this.errors.peso = "El peso debe ser un número positivo";
+            }
+        },
+        validarNomMedTrat() {
+            // Validar los campos del formulario
+            this.errors.nombre = '';
+            // Validar que el campo nombre no esté vacío y solo contenga letras
+            if (!this.nombre) {
+                this.errors.nombre = "El nombre es obligatorio";
+            } else if (!/^[a-zA-Z]+$/.test(this.nombre)) {
+                this.errors.nombre = "El nombre solo debe contener letras";
+            }
+        },
+        validarApeMedTrat() {
+            // Validar los campos del formulario
+            this.errors.nomMedTrat = '';
+            // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
+            if (!this.nomMedTrat) {
+                this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
+            } else if (this.nomMedTrat.length < 50) {
+                this.errors.nomMedTraT =
+                    "El nombre del médico tratante debe tener al menos 50 caracteres";
+                valida = false;
+            }
+            else if (this.nomMedTrat.length > 80) {
+                this.errors.nomMedTrat =
+                    "El nombre del médico tratante debe tener máximo 80 caracteres";
+            }
+            // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
+            if (!this.apeMedTrat) {
+                this.errors.apeMedTrat = "El apellido del médico tratante es obligatorio";
+            } /* else if (this.apeMedTrat.length < 50) {
+                this.errors.apeMedTrat =
+                    "El apellido del médico tratante debe tener al menos 50 caracteres";
+                valida = false;
+            } */
+            else if (this.apeMedTrat.length > 80) {
+                this.errors.apeMedTrat =
+                    "El apellido del médico tratante debe tener máximo 80 caracteres";
+            }
+        },
+        validarClaveAccessos() {
+            // Validar los campos del formulario;
+            this.errors.claveAccesos = '';
+            // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
+            if (!this.claveAccesos) {
+                this.errors.claveAccesos = "La clave de acceso es obligatoria";
+            } else if (this.claveAccesos.length < 4) {
+                this.errors.claveAccesos =
+                    "La clave de acceso debe tener al menos 4 caracteres";
+            }
+        },
+        validarConfiClaveAccessos() {
+            // Validar los campos del formulario;
+            this.errors.confClaveAccesos = '';
+            // Validar que el campo confirmar no esté vacío y coincida con la contraseña
+            if (!this.confClaveAccesos) {
+                this.errors.confClaveAccesos = "La confirmación de la clave acceso es obligatoria";
+            } else if (this.confClaveAccesos !== this.claveAccesos) {
+                this.errors.confClaveAccesos =
+                    "La confirmación de la contraseña no coincide con la contraseña";
+            }
         },
         submitFormCrearPlan() {
             // Validar los campos antes de enviar el formulario
             this.validarPaisLada();
-            this.validar();
+            this.validarTelefonoCelular();
+            this.validarEstado();
+            this.validarCiudad();
+            this.validarEdad();
+            this.validarPeso();
+            this.validarNomMedTrat();
+            this.validarApeMedTrat();
+            this.validarClaveAccessos();
+            this.validarConfiClaveAccessos();
 
             // Comprobar si hay errores
             if (Object.keys(this.errors).length > 0) {

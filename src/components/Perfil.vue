@@ -1,152 +1,174 @@
 <template>
     <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
     <div class="container">
-        <br><br>
-        <div class="row align-items-end">
-            <div class="col">
-                <!-- <h1 class="tituloPrincipal text-end">Crear nuevo plan de tomas</h1> -->
+        <div class="row">
+            <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
+            <div class="col-4 col-md-6 col-sm-6">
+                <a type="button" class="btnFlecha" href="index.html">
+                </a>
             </div>
-            <div class="col-xl-6 col-sm-6 col-md-6">
-                <h1 class="tituloPrincipal text-center">Crear nuevo plan de tomas</h1>
+            <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
+            <div class="col-8 col-md-6 col-sm-6 pt-3 ps-5">
+                <h1 class="tituloPregFrecu tituloPerfil">Perfil</h1>
             </div>
+            <!-- <div class="col-auto border">
+                <p></p>
+            </div> -->
         </div>
         <br>
-        <div class="row">
-            <form name="formulario" id="formulario" action="" method="post" @submit.prevent="submitFormCrearNuevoPlan()">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-sm-6 col-md-6 text-center">
-                            <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
+        <div class="row p-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-sm-6 col-md-6 text-center">
+                        <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-xl-6 col-sm-6 col-md-6">
+
+                        <form action="" class="row mb-3">
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
+                            </div>
+                            <div class="col-3 mb-3">
+                                <input class="form-control"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type="number" maxlength="4" id="inputLadaperfil" placeholder="+52"
+                                    v-bind:disabled="!input3Enabled">
+                            </div>
+                            <div class="col-8 mb-3">
+                                <input class="form-control"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type="number" maxlength="10" name="" id="inputNumeroCel" placeholder="55467841245"
+                                    onkeypress="return validateKey(event);" disabled>
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
+                                    v-on:click.prevent="enableInput3"></a>
+                            </div>
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Estado</label>
+                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
+                            </div>
+                            <div class="col-11 mb-3">
+                                <select id="selectEstadoPerfil" class="form-select" aria-label="Default select example"
+                                    disabled>
+                                    <option selected value="#">Estado</option>
+                                </select>
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
+                                    v-on:click.prevent="enableInput3"></a>
+                            </div>
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
+                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
+                            </div>
+                            <div class="col-11 mb-3">
+                                <input type="email" class="form-control" name="" id="inputCiudadPerfil"
+                                    placeholder="Mexicali"  v-bind:disabled="!inputCiudadEnabled">
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" class="btnEditarPlan" v-on:click.prevent="enableInputCiudad"></a>
+                            </div>
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Edad</label>
+                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
+                            </div>
+                            <div class="col-11 mb-3">
+                                <input name="edad" class="form-control"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type="number" maxlength="3" id="inputEdad" placeholder="18"
+                                    onkeypress="return validateKey(event);"  v-bind:disabled="!inputEdadEnabled">
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"  v-on:click.prevent="enableInputEdad
+                                "></a>
+                            </div>
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Nombre del médico
+                                    tratante</label>
+                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
+                            </div>
+                            <div class="col-11 mb-3">
+                                <input type="email" class="form-control" name="" id="inputNombMedTrat"
+                                    placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTratEnabled">
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
+                                v-on:click.prevent="enableInputNomMedTrat"></a>
+                            </div>
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-4 col-form-label"> Apellidos del médico
+                                    tratante</label>
+                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
+                            </div>
+                            <div class="col-11 mb-3">
+                                <input type="text" class="form-control" name="" id="inputApellMedTra"
+                                    placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTratEnabled">
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" class="btnEditarPlan" v-on:click.prevent="enableInputApeMedTrat"></a>
+                            </div>
+                            <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-3 col-form-label"> Clave de acceso</label>
+                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
+                            </div>
+                            <div class="col-11 mb-3">
+                                <input type="password" id="inputClaAcceso" class="form-control" name="" placeholder="****"
+                                v-bind:disabled="!inputClaveAccesoEnabled">
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" id="btnEdiInpClaAcceso" class="btnEditarPlan"
+                                v-on:click.prevent="enableInputClaveAcceso"></a>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        He leído y
+                                        acepto los términos, condiciones y el aviso de
+                                        privacidad.
+                                        <p>*El uso de esta plataforma no sustituye bajo ninguna
+                                            circunstancia la recomendación de su médico tratante.</p>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xl-6 col-sm-6 col-md-6">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <p>Por favor coloque la fecha y hora de las tomas indicadas por
-                                            tu médico.</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
-                                        <div class="input-group">
-                                            <input type="date" class="form-control inputFechaEstudioCrear"
-                                                placeholder="18:00 Hrs" aria-label="Input group example"
-                                                aria-describedby="basic-addon1" v-model="fechaEstudioColonos">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                            <p class="mensajes mt-2" id="mensajes" style="color:red;"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="time" class="form-control" name="" id="emailInput"
-                      placeholder="Hora de la colonoscopía o estudio"> -->
-                                        <div class="input-group">
-                                            <input type="time" class="form-control inputHoraColos" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                    <path
-                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
-                                        <div class="input-group">
-                                            <input type="date" class="form-control inputFecPriToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1"  v-model="fechaPrimerToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.fechaPrimerToma">{{ errors2.fechaPrimerToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!--  <input type="time" class="form-control inputHoraPriToma" name="" id="emailInput"
-                      placeholder="Hora de la primera toma de Picoprep®️"> -->
-                                        <div class="input-group">
-                                            <input type="time" class="form-control inputHoraPriToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaPrimerToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                    <path
-                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.horaPrimerToma">{{ errors2.horaPrimerToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="date" class="form-control inputFecSegToma" name="" id="emailInput"
-                      placeholder="Fecha de la segunda toma de Picoprep®️"> -->
-                                        <div class="input-group">
-                                            <input type="date" class="form-control inputFecSegToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaSegundaToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <!-- <input type="time" class="form-control inputHoraSegToma" name="" id="emailInput"
-                      placeholder="Hora de la segunda toma de Picoprep®️"> -->
-                                        <div class="input-group">
-                                            <input type="time" class="form-control inputHoraSegToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaSegundaToma">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                    <path
-                                                        d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <span class="error" style="color: red;" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <div class="contenidoCentrado">
-                                            <!-- <a type="submit" class="btnCrearPlan rounded" href="">CREAR PLAN DE TOMAS</a> -->
-                                            <!-- <input class="btnCrearPlan  rounded" value="CREAR PLAN DE TOMAS"> -->
-                                            <button class="btnCrearPlan  rounded">CREAR PLAN DE TOMAS</button>
+                        <div class="row">
+                            <div class="col">
+                                <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
+                                <a href="" type="button" class="btnGuardar rounded text-center" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal2">GUARDAR</a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header modalHeaderModificar">
+                                                <!-- <div class="contenidoDerecha"> -->
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                                <!-- </div> -->
+
+                                            </div>
+                                            <div class="modal-body" style="border: none;">
+                                                <p class="text-center parrafoVaModificarInfor">Va a modificar la
+                                                    información de ingreso, esto
+                                                    podría afectar las alertas vía WhatsApp</p>
+                                                <p class="parrafoEstasSeguro text-center">¿Está seguro de que quiere
+                                                    continuar?</p>
+
+                                            </div>
+                                            <div class="modal-footer" style="border: none;">
+
+                                                <button type="button" class="rounded btnAceptarModalModifica"
+                                                    data-bs-dismiss="modal">ACEPTAR</button>
+                                                <br><!-- <br> -->
+                                                <button type="button"
+                                                    class="rounded btnCancelarModalModifica">CANCELAR</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -154,16 +176,17 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-        <br><br>
+        <br>
     </div>
 </template>
+<script type="text/javascript" src="../js/jspdf.min.js"></script>
 <script>
 import moment from 'moment';
 
 export default {
-    name: 'CrearPlan',
+    name: 'Perfil',
     props: {
         msg: String,
     },
@@ -175,170 +198,44 @@ export default {
             hora2: "",
             errors2: {},
 
-            fechaEstudioColonos: "",
-            horaColonoscopia: "",
-            fechaPrimerToma: "",
-            horaPrimerToma: "",
-            fechaSegundaToma: "",
-            horaSegundaToma: "",
+            input1Enabled: false,
+            input2Enabled: false,
+            input3Enabled: false,
+
+            inputCiudadEnabled: false,
+            inputEdadEnabled: false,
+            inputNomMedTratEnabled: false,
+            inputApeMedTratEnabled: false,
+            inputClaveAccesoEnabled: false,
         };
     },
     methods: {
-        submitFormCrearNuevoPlan() {
-            // Validar los campos del segundo formulario
-            this.errors2 = {};
-            let valid2 = true;
-
-            // Validar que el campo fecha uno no esté vacío y sea una fecha válida
-            if (!this.fechaPrimerToma) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo fecha dos no esté vacío y sea una fecha válida
-            if (!this.fechaSegundaToma) {
-                this.errors2.fechaSegundaToma = "La fecha de la segunda toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fechaSegundaToma = "La fecha de la segunda toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo fecha dos sea posterior al campo fecha uno
-            // Usando el método isAfter de moment.js para comparar las fechas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.fechaPrimerToma ).isAfter(this.fechaSegundaToma)) {
-                this.errors2.fechaSegundaToma =
-                    "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora uno no esté vacío y sea una hora válida
-            if (!this.horaPrimerToma) {
-                this.errors2.horaPrimerToma = "La hora de la primer toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
-                this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora dos no esté vacío y sea una hora válida
-            if (!this. horaSegundaToma) {
-                this.errors2. horaSegundaToma= "La hora de la segunda toma es obligatoria";
-                valid2 = false;
-            } else if (!moment(this. horaSegundaToma, "HH:mm", true).isValid()) {
-                this.errors2. horaSegundaToma = "La hora de la segunda toma no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora dos sea posterior al campo hora uno
-            // Usando el método isAfter de moment.js para comparar las horas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
-                this.errors2.hora2 =
-                    "La hora dos debe ser posterior a la hora uno";
-                valid2 = false;
-            }
-
-            // Si todos los campos son válidos, enviar el formulario
-            if (valid2) {
-                alert("Los datoa del formulario se enviaron correctamente");
-                // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
-            }
+        enableInput1() {
+            this.input1Enabled = true;
         },
-        submitForm2() {
-            // Validar los campos del segundo formulario
-            this.errors2 = {};
-            let valid2 = true;
-
-            // Validar que el campo fecha uno no esté vacío y sea una fecha válida
-            if (!this.fecha1) {
-                this.errors2.fecha1 = "La fecha uno es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fecha1 = "La fecha uno no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo fecha dos no esté vacío y sea una fecha válida
-            if (!this.fecha2) {
-                this.errors2.fecha2 = "La fecha dos es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fecha2, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fecha2 = "La fecha dos no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo fecha dos sea posterior al campo fecha uno
-            // Usando el método isAfter de moment.js para comparar las fechas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.fecha1).isAfter(this.fecha2)) {
-                this.errors2.fecha2 =
-                    "La fecha dos debe ser posterior a la fecha uno";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora uno no esté vacío y sea una hora válida
-            if (!this.hora1) {
-                this.errors2.hora1 = "La hora uno es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.hora1, "HH:mm", true).isValid()) {
-                this.errors2.hora1 = "La hora uno no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora dos no esté vacío y sea una hora válida
-            if (!this.hora2) {
-                this.errors2.hora2 = "La hora dos es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.hora2, "HH:mm", true).isValid()) {
-                this.errors2.hora2 = "La hora dos no es válida";
-                valid2 = false;
-            }
-
-            // Validar que el campo hora dos sea posterior al campo hora uno
-            // Usando el método isAfter de moment.js para comparar las horas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
-                this.errors2.hora2 =
-                    "La hora dos debe ser posterior a la hora uno";
-                valid2 = false;
-            }
-
-            // Si todos los campos son válidos, enviar el formulario
-            if (valid2) {
-                alert("Los datoa del formulario se enviaron correctamente");
-                // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
-            }
+        enableInput2() {
+            this.input2Enabled = true;
+        },
+        enableInput3() {
+            this.input3Enabled = true;
+        },
+        enableInputCiudad(){
+            this.inputCiudadEnabled = true;
+        },
+        enableInputEdad(){
+            this.inputEdadEnabled = true;
+        },
+        enableInputNomMedTrat(){
+            this.inputNomMedTratEnabled = true;
+        },
+        enableInputApeMedTrat(){
+            this.inputApeMedTratEnabled = true;
+        },
+        enableInputClaveAcceso(){
+            this.inputClaveAccesoEnabled = true;
         },
     },
     computed: {
-        // Obtener la fecha mínima para el campo fecha dos
-        minDate() {
-            // Si la fecha uno está vacía o no es válida, devolver null
-            if (!this.fecha1 || !moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
-                return null;
-            }
-            // Si la fecha uno es válida, devolver el día siguiente de la fecha uno formateado como YYYY-MM-DD
-            else {
-                return moment(this.fecha1).add(1, "days").format("YYYY-MM-DD");
-            }
-        },
-        // Obtener la hora mínima para el campo hora dos
-        minTime() {
-            // Si la hora uno está vacía o no es válida, devolver null
-
-            if (!this.hora1 || !moment(this.hora1, "HH:mm", true).isValid()) {
-                return null;
-            }
-            // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
-            else {
-                return moment(this.hora1, "HH:mm").format("HH:mm");
-            }
-        },
     },
 };
 </script>
