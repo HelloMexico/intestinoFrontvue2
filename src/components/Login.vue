@@ -1,5 +1,56 @@
+<!-- <script setup>
+import { useRouter } from 'vue-router';
+const route = useRoute();
+const router = useRouter();
+
+const back = () =>{
+    router.push('/crear')
+}
+</script> -->
 <template>
     <div class="container">
+        <div class="container">
+            <div class="row">
+                <!-- <form @submit.prevent="procesarFormulario">
+                    <input type="text" class="form-control my-2" placeholder="Ingrese nombre" v-model.trim="tarea.nombre">
+
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="check-1" class="form-check-input" v-model="tarea.categorias"
+                            value="javascript">
+                        <label for="check-1" class="form-check-label">Javascript</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="check-2" class="form-check-input" v-model="tarea.categorias"
+                            value="node js">
+                        <label for="check-2" class="form-check-label">Node.js</label>
+                    </div>
+
+                    <div class="mt-2">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="radio-1" class="form-check-input" value="urgente"
+                                v-model="tarea.estado">
+                            <label for="radio-1" class="form-check-label">Urgente</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="radio-2" class="form-check-input" value="relax" v-model="tarea.estado">
+                            <label for="radio-2" class="form-check-label">Relax</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <input type="number" class="form-control" v-model.number="tarea.numero">
+                    </div>
+
+                    <button class="btn btn-dark mt-2 btn-block" type="submit" :disabled="bloquear">
+                        Procesar
+                    </button>
+                </form> -->
+                <!-- <hr>
+                <p>
+                    {{ tarea }}
+                </p> -->
+            </div>
+        </div>
         <br><br>
         <div class="row">
             <div class="col-xl-6 col-sm-6 col-md-6">
@@ -71,7 +122,8 @@
                                                         <button type="submit">Enviar</button>
                                                     </form> -->
                                                     <!-- eslint-disable-next-line max-len -->
-                                                    <form name="formulario" @submit.prevent="submitForm()">
+                                                    <form
+                                                        @submit.prevent="submitForm()">
                                                         <div class="col-12 col-md-12">
                                                             <!-- <input type="tel" class="form-control" id="nombre"
                                                                 placeholder="Número de celular" required
@@ -79,12 +131,12 @@
                                                                 title="El campo número celular es obligatorio">
                                                             <input type="submit" value="Enviar"> -->
                                                             <!-- eslint-disable-next-line max-len -->
-                                                            <input type="tel" class="form-control" v-model="telefono"
-                                                                @input="validateTelefono" placeholder="Número de celular">
+                                                            <input type="tel" class="form-control" v-model="telefono" @input="validateTelefono"
+                                                                 placeholder="Número de celular">
                                                             <span class="error" style="color: red;"
                                                                 v-if="errors.telefono">{{ errors.telefono
                                                                 }}</span>
-                                                            <span class="error" v-else style="color: green"></span>
+                                                            <!-- <span class="error" v-else style="color: green"></span> -->
                                                             <!-- <span class="correct" style="color: green;" v-else></span> -->
                                                             <!-- <p class="mensajes mt-2" id="mensajes" style="color:red;">
                                                             </p> -->
@@ -128,6 +180,12 @@
                                                                         tag="button">CONTINUAR</router-link> -->
                                                                     <button type="submit"
                                                                         class="btnContinuar rounded">CONTINUAR</button>
+                                                                    <button @click="back"></button>
+                                                                    <!-- <button :disabled="bloquear"
+                                                                    class=" rounded">CONTINUAR</button> -->
+                                                                    <!-- <router-link class="btnContinuar rounded" to="/crear"
+                                                                        tag="button" type="submit">CONTINUAR</router-link> -->
+                                                                    <!-- <button  v-on:click="submitForm">continuar e ir a vista crear</button> -->
                                                                 </div>
                                                                 <br>
                                                             </div>
@@ -151,8 +209,7 @@
                                                 aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                                 <div class="accordion-body">
                                                     <div class="container">
-                                                        <form name="formulario" id="formulario" method="post"
-                                                            @submit.prevent="submitFormCrearPlan()">
+                                                        <form @submit.prevent="submitFormCrearPlan()" method="post">
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-3">
                                                                     <select class="form-select" id="select_pais"
@@ -175,7 +232,7 @@
                                                             <div class="row">
                                                                 <div class="col-4 mb-3">
                                                                     <select id="lada" class="form-select"
-                                                                        v-model="selectedLada">
+                                                                        v-model="selectedLada" @change="validarLada">
                                                                         <option value="" disabled selected>Seleccione una
                                                                             lada
                                                                         </option>
@@ -213,8 +270,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mb-3">
-                                                                <select v-model="selected" id="select_estado"
-                                                                    class="form-select" @input="validarEstado">
+                                                                <select v-model="estado" id="select_estado"
+                                                                    class="form-select" @change="validarEstado">
                                                                     <option value="" disabled selected>Seleccione un estado
                                                                     </option>
                                                                     <option v-for="option in options" :key="option.value">
@@ -315,7 +372,8 @@
                                                                 <div class="input-group input-group-md">
                                                                     <input :type="inputTypeIcon" class="form-control"
                                                                         placeholder="Escriba una clave de acceso"
-                                                                        v-model="contraseña" @input="validarClaveAccessos">
+                                                                        v-model="claveAccesos"
+                                                                        @input="validarClaveAccessos">
                                                                     <button class="input-group-text"
                                                                         @click.prevent="ToggleInputIcon">
                                                                         <span v-if="inputTypeIcon === 'password'">
@@ -366,7 +424,7 @@
                                                             <div class="form-check form-switch">
                                                                 <label for="flexSwitchCheckDefault">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckDefault" checked
+                                                                        role="switch" id="flexSwitchCheckDefault" 
                                                                         aria-checked="">
                                                                     <label class="form-check-label textoSwitchAcepto"
                                                                         for="fkyu">Acepto
@@ -379,8 +437,7 @@
                                                             <div class="form-check">
                                                                 <label for="flexRadioDefault">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="flexRadioDefault" id="flexRadioDefault1"
-                                                                        checked>
+                                                                        name="flexRadioDefault" id="flexRadioDefault1">
                                                                 </label>
                                                                 <label class="form-check-label parrafoCheckLeido">He
                                                                     leído y
@@ -398,7 +455,12 @@
 
                                                                 <button type="submit" class="btnContinuar rounded"
                                                                     tag="button" to="/crear">CONTINUAR</button>
-                                                                <router-link to="/crear">Go to Home</router-link>
+                                                                <router-link to="/crear" type="submit"
+                                                                    class="btnContinuar rounded">Go to
+                                                                    Home</router-link>
+                                                                <!-- <button to="/crear">Form validado ir a crear</button> -->
+                                                                <!-- <a to="/crear" class="btnContinuar rounded" type="submit">CREAR</a> -->
+
                                                             </div>
                                                         </form>
                                                     </div>
@@ -416,10 +478,18 @@
     </div>
 </template>
 
+
   
 <script>
 import axios from 'axios';
+/* import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const back = () => {
+    router.push('/crear')
+}
+ */
 export default {
     name: 'Login',
     props: {
@@ -473,14 +543,24 @@ export default {
             password: '',
             password_confirmation: '',
             /** form de articulo digital */
-
             telefono: '',
             claveAcceso: '',
             inputTypeIcon: 'password',
             errors: {},
 
+            formularioIniciar: {
+                telefono: '',
+                claveAcceso: '',
+                inputTypeIcon: 'password',
+                errors: {},
+            },
 
-
+            tarea: {
+                nombre: '',
+                categorias: [],
+                estado: '',
+                numero: 0
+            }
         };
     },
     /* created() {
@@ -493,6 +573,13 @@ export default {
                 console.log(error);
             });
     }, */
+    computed: {
+        bloquear() {
+            return this.formularioIniciar.telefono.trim() === "" ? true : false
+           /*  ,this.formularioIniciar.claveAcceso.trim() === "" ? true : false */
+
+        }
+    },
     mounted() {
         // Consumir una API 
         axios
@@ -509,26 +596,33 @@ export default {
         /* axios
             .get('https://api.coindesk.com/v1/bpi/currentprice.json')
             .then(response => (this.info = response.data.bpi)) */
-        axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
+        /* axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
             this.options = response.data.map((user) => ({
                 text: user.name,
                 value: user.id,
             }));
-        });
+        }); */
     },
     methods: {
+        irVistaCrear() {
+            this.$router.push({ path: '/crear' });
+        },
         validateTelefono() {
             this.errors.telefono = '';
 
             if (!this.telefono) {
                 this.errors.telefono = 'El número celular es obligatorio';
+                valida = false;
             } else if (isNaN(this.telefono)) {
                 this.errors.telefono = 'El número celular solo debe contener números';
+                valida = false;
             } else if (this.telefono.length < 7) {
                 this.errors.telefono = 'El número celular debe tener minimo 7 numeros';
+                valida = false;
             } else if (this.telefono.length > 10) {
                 this.errors.telefono =
                     'El número celular no debe exceder de 10 números';
+                valida = false;
             } else {
                 this.errors.telefono = 'El número celular es válido';
             }
@@ -538,28 +632,16 @@ export default {
 
             if (!this.claveAcceso) {
                 this.errors.claveAcceso = 'La clave de acceso es obligatoria';
-            } else if (this.claveAcceso.length < 4 || this.claveAcceso.length > 10) {
-                this.errors.claveAcceso = 'La clave de acceso no es válida';
+                valida = false;
+            } else if (this.claveAcceso.length < 4) {
+                this.errors.claveAcceso = 'La clave de acceso debe tener por lo menos 4 caracteres';
+                valida = false;
+            } else if (this.claveAcceso.length > 10) {
+                this.errors.claveAcceso = 'La clave de acceso no debe exceder de 10 caracteres';
+                valida = false;
             } else {
                 this.errors.claveAcceso = 'Clave acceso es válida';
             }
-        },
-        submitForm() {
-            // Validar los campos antes de enviar el formulario
-            this.validateTelefono();
-            this.validateClaveAcceso();
-
-            // Comprobar si hay errores
-            if (Object.keys(this.errors).length > 0) {
-                return;
-            } else {
-                this.$router.push({ path: '/crear' })
-            }
-
-            // Todos los campos son válidos, redirigir a otra vista
-            /* this.$router.push('/crear'); */
-            /* this.$router.push({ name: 'Crear' }) */
-            /* window.open("/crear"); */
         },
         ToggleInput() {
             this.inputType = this.inputType === "password" ? "text" : "password";
@@ -567,23 +649,83 @@ export default {
         ToggleInputIcon() {
             this.inputTypeIcon = this.inputTypeIcon === "password" ? "text" : "password";
         },
+        submitForm() {
+            this.errors = [];
+            // Validar los campos antes de enviar el formulario
+            this.validateTelefono();
+            this.validateClaveAcceso();
+
+            // Comprobar si hay errores
+            /* if ((this.errors).length > 0) {
+                return;
+            } else {
+                this.irVistaCrear();
+            } */
+            /* if (valida) {
+                this.irVistaCrear();
+            }
+
+            console.log(this.selectedCountry); */
+
+             // Comprobar si hay errores
+            if (Object.keys(this.errors).length > 0) {
+                return
+            } else {
+                /* this.$router.push('/crear'); */
+                router.push('/crear');
+            }
+
+            /* if (this.formularioIniciar.telefono.trim() === "") {
+                 console.log('Campo vacío')
+                 return
+             } else {
+                 this.$router.push('/crear');
+                 router.push('/crear');
+             }
+             console.log('no está vacio') */
+
+            // envian los datos
+
+            /* this.formularioIniciar = {
+                telefono: '',
+                claveAcceso: '',
+                inputTypeIcon: 'password',
+                errors: {},
+            } */
+            // Todos los campos son válidos, redirigir a otra vista
+            /* this.$router.push('/crear'); */
+            /* this.$router.push({ name: 'Crear' }) */
+            /* window.open("/crear"); */
+        },
         validarPaisLada() {
             // Validar los campos del formulario
             this.errors = {};
+            this.errors.selectedCountry = '';
+            this.errors.selectedLada = '';
             // Validar que el campo pais
             if (!this.selectedCountry) {
                 this.errors.selectedCountry = "El país es obligatorio";
-            } else {
+
+            } /* else {
                 this.errors.telefonoCelular = 'País válido';
-            }
+            } */
+            // Validar los campos del formulario
+            this.errors.selectedLada = '';
             // Validar que el campo lada
             if (!this.selectedLada) {
                 this.errors.selectedLada = "La lada es obligatoria";
-            } else {
+            } /* else {
                 this.errors.selectedLada = 'Lada válida';
-            }
-
+            } */
         },
+        /* validarPais() {
+
+            updateLada();
+
+        }, */
+        /* validarLada() {
+            
+        }, */
         validarTelefonoCelular() {
             // Validar los campos del formulario
             this.errors.telefonoCelular = '';
@@ -605,18 +747,21 @@ export default {
         validarEstado() {
             this.errors.estado = '';
             // Validar que el campo edad no esté vacío y sea un número positivo
-            if (!this.estado ) {
-                this.errors.estado  = "El estado es obligatorio";
-            }
+            if (!this.estado) {
+                this.errors.estado = "El estado es obligatorio";
+            } /* else {
+                this.errors.estado = "Estado válido";
+            } */
+
         },
-        validarCiudad(){
-             // Validar los campos del formulario
-             this.errors.ciudad = '';
+        validarCiudad() {
+            // Validar los campos del formulario
+            this.errors.ciudad = '';
             // Validar que el campo edad no esté vacío y sea un número positivo
-            if (!this.ciudad ) {
-                this.errors.ciudad  = "La ciudad es obligatoria";
-            } else if (this.ciudad  <= 0) {
-                this.errors.ciudad  = "La edad debe ser un número positivo";
+            if (!this.ciudad) {
+                this.errors.ciudad = "La ciudad es obligatoria";
+            } else if (this.ciudad <= 0) {
+                this.errors.ciudad = "La edad debe ser un número positivo";
             }
         },
         validarEdad() {
@@ -641,29 +786,22 @@ export default {
         },
         validarNomMedTrat() {
             // Validar los campos del formulario
-            this.errors.nombre = '';
-            // Validar que el campo nombre no esté vacío y solo contenga letras
-            if (!this.nombre) {
-                this.errors.nombre = "El nombre es obligatorio";
-            } else if (!/^[a-zA-Z]+$/.test(this.nombre)) {
-                this.errors.nombre = "El nombre solo debe contener letras";
-            }
-        },
-        validarApeMedTrat() {
-            // Validar los campos del formulario
             this.errors.nomMedTrat = '';
             // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
             if (!this.nomMedTrat) {
                 this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
-            } else if (this.nomMedTrat.length < 50) {
+            } /* else if (this.nomMedTrat.length < 50) {
                 this.errors.nomMedTraT =
                     "El nombre del médico tratante debe tener al menos 50 caracteres";
-                valida = false;
-            }
+            } */
             else if (this.nomMedTrat.length > 80) {
                 this.errors.nomMedTrat =
                     "El nombre del médico tratante debe tener máximo 80 caracteres";
             }
+        },
+        validarApeMedTrat() {
+            // Validar los campos del formulario
+            this.errors.apeMedTrat = '';
             // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
             if (!this.apeMedTrat) {
                 this.errors.apeMedTrat = "El apellido del médico tratante es obligatorio";
@@ -682,11 +820,14 @@ export default {
             this.errors.claveAccesos = '';
             // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
             if (!this.claveAccesos) {
-                this.errors.claveAccesos = "La clave de acceso es obligatoria";
+                this.errors.claveAccesos = 'La clave de acceso es obligatoria';
             } else if (this.claveAccesos.length < 4) {
-                this.errors.claveAccesos =
-                    "La clave de acceso debe tener al menos 4 caracteres";
-            }
+                this.errors.claveAccesos = 'La clave de acceso debe tener por lo menos 4 caracteres';
+            } else if (this.claveAccesos.length > 10) {
+                this.errors.claveAccesos = 'La clave de acceso no debe exceder de 10 caracteres';
+            } /* else {
+                this.errors.claveAccesos = 'Clave acceso es válida';
+            } */
         },
         validarConfiClaveAccessos() {
             // Validar los campos del formulario;
@@ -699,9 +840,19 @@ export default {
                     "La confirmación de la contraseña no coincide con la contraseña";
             }
         },
+        // Funcion pata actualizar la lada dependiendo de país seleccionado
+        updateLada() {
+            if (this.selectedCountry === "Mexico") {
+                this.selectedLada = "+52";
+            } else if (this.selectedCountry === "Costa Rica") {
+                this.selectedLada = "+506";
+            }
+        },
         submitFormCrearPlan() {
+            /* this.errors = {}; */
             // Validar los campos antes de enviar el formulario
             this.validarPaisLada();
+            /* this.validarLada(); */
             this.validarTelefonoCelular();
             this.validarEstado();
             this.validarCiudad();
@@ -714,20 +865,49 @@ export default {
 
             // Comprobar si hay errores
             if (Object.keys(this.errors).length > 0) {
-                return;
+                return
+            } else {
+                this.$router.push('/crear');
             }
+            /*  console.log(this.tarea)
+             if (this.formularioIniciar.nombre.trim() === "") {
+                 console.log('Campo vacío')
+                 return
+             } else {
+                 this.$router.push('/crear');
+             }
+             console.log('no está vacio') */
 
+            // envian los datos
+
+            /* this.formularioIniciar = {
+                telefono: '',
+                claveAcceso: '',
+                inputTypeIcon: 'password',
+                errors: {},
+            } */
             // Todos los campos son válidos, redirigir a otra vista
-            this.$router.push('/crear');
+            /* this.$router.push('/crear'); */
+            /* window.location.href = 'CrearPlan.vue'; */
         },
+        procesarFormulario() {
+            console.log(this.tarea)
+            if (this.tarea.nombre.trim() === "") {
+                console.log('Campo vacío')
+                return
+            } else {
+                this.$router.push('/crear');
 
+            }
+            console.log('no está vacio')
 
-        // Funcion pata actualizar la lada dependiendo de país seleccionado
-        updateLada() {
-            if (this.selectedCountry === "Mexico") {
-                this.selectedLada = "+52";
-            } else if (this.selectedCountry === "Costa Rica") {
-                this.selectedLada = "+506";
+            // envian los datos
+
+            this.tarea = {
+                nombre: '',
+                categorias: [],
+                estado: '',
+                numero: 0
             }
         },
     },

@@ -24,24 +24,24 @@
                         <div class="container border border-secondary border-1 border-end-0">
                             <div class="row">
                                 <div class="col col-md-5">
-                                    <p class="parrafoEstudioProgramado">Estudio programado para:</p>
-                                    <p class="parrafoFechaEstudio">Fecha: <span>25/08/2023</span></p>
-                                    <p class="parrafoHoraEstudio">Hora: <span>18:00 hrs</span></p>
-                                    <p class="parrafoHoraEstudio">Hora: <span>18:00 hrs</span></p>
+                                    <p class="parrafoEstudioProgramado">Estudio programado para: <span>Sin datos</span></p>
+                                    <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
+                                    <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
+                                    <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
+                                    <p class="parrafoPrimerToma">Primera toma de Picoprep: <span>Sin datos</span> </p>
                                     <!-- <p class="parrafoFechaPrimerToma">Fecha: <span>24/08/2023</span></p> -->
-                                    <p class="parrafoHoraPrimerToma">Hora: <span>15:00 hrs</span></p>
+                                    <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p class="parrafoSegundaToma">Segunda toma de Picoprep :</p>
+                                    <p class="parrafoSegundaToma">Segunda toma de Picoprep: <span>Sin datos</span> </p>
                                     <!-- <p class="parrafoFechaSegundaToma">Fecha: <span>25/08/2023</span></p> -->
-                                    <p class="parrafoHoraSegundaToma">Hora: <span>08:00 hrs</span></p>
+                                    <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
                                 </div>
                             </div>
                         </div>
@@ -200,20 +200,20 @@
                 <div class="col-3 col-md-3 col-sm-2 border border-dark border-end-0 rounded-start" style=" width: 415px;">
                     <p class="parrafoEstudioProgramado">Estudio programado para:</p>
                     <!-- <br> -->
-                    <p class="parrafoFechaEstudio">Fecha: <span>25/08/2023</span></p>
+                    <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
                     <p class="parrafoHoraEstudio">Hora: <!-- <span>18:00 hrs</span> --><span>Sin datos</span></p>
                 </div>
                 <div class="col-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 415px;">
                     <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
                     <!-- <br> -->
-                    <p class="parrafoFechaPrimerToma">Fecha: <span>24/08/2023</span></p>
-                    <p class="parrafoHoraPrimerToma">Hora: <span>15:00 hrs</span></p>
+                    <p class="parrafoFechaPrimerToma">Fecha: <span>Sin datos</span></p>
+                    <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
                 </div>
                 <div class="col-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 415px;">
-                    <p class="parrafoSegundaToma">Segunda toma de Picoprep :</p>
+                    <p class="parrafoSegundaToma">Segunda toma de Picoprep : Sin datos</p>
                     <!-- <br> -->
-                    <p class="parrafoFechaSegundaToma">Fecha: <span>25/08/2023</span></p>
-                    <p class="parrafoHoraSegundaToma">Hora: <span>08:00 hrs</span></p>
+                    <p class="parrafoFechaSegundaToma">Fecha: <span>Sin datos</span></p>
+                    <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
                 </div>
                 <div class="col-1 col-md-3 col-sm-2 border border-dark rounded-end"
                     style="background-color:  #F2F2F2; display: flex; flex-direction: row; justify-content: center; align-items: center; width: 65px;">
@@ -325,8 +325,8 @@
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUno">
                                     <h5 class="card-title">Primera toma de PICOPREP®️:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text">Hora: 15:00 hrs</p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text">Hora: Sin datos</p>
                                     <p class="card-text"><small class="text-muted">Disolver en 150ml</small></p>
                                 </div>
                             </div>
@@ -342,8 +342,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 15:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -360,8 +360,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 16:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -376,8 +376,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 17:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -394,8 +394,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 17:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -410,8 +410,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 18:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -428,8 +428,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Segunda toma de PICOPREP®️:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text">Hora: 19:00 hrs</p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text">Hora: Sin datos</p>
                                     <p class="card-text"><small class="text-muted">Disolver en 150ml</small></p>
                                 </div>
                             </div>
@@ -445,8 +445,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 19:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -461,8 +461,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 20:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -477,8 +477,8 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text">Fecha: 24/08/2023</p>
-                                    <p class="card-text"><small class="text-muted">Hora: 21:00 hrs</small></p>
+                                    <p class="card-text">Fecha: Sin datos</p>
+                                    <p class="card-text"><small class="text-muted">Hora: Sin datos</small></p>
                                 </div>
                             </div>
                         </div>
@@ -496,18 +496,39 @@
           <button type="submit" class="btnDescargaPlan rounded" href="javascript:genPDF()">DESCARGAR PLAN</button> -->
                         <button class="btnDescargaPlan rounded" id="gpdf">DESCARGAR PLAN</button>
                         <br><br>
+                        
+                        <div>
+                            <center>
+                                <div class="form-check">
+                                    <span><input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault"><label class="form-check-label" for="flexCheckDefault"
+                                            style="font-family:  'Segoe-UI-Semibold';">
+                                            Dejar de recibir notificaciones
+                                        </label></span>
+                                </div>
+                            </center>
+
+                        </div>
+                        <br>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btnDescargaPlan rounded" data-bs-toggle="modal"
-                            data-bs-target="#exampleModalVer">
-                            VER REFERENCIA MÉDICA
+                        <button type="button" class="rounded" style="font-family: 'Segoe-UI-Bold';
+                                    font-size: 18px;
+                                    background-color: #1155CC;
+                                    border: 1px solid #1155CC;
+                                    color: #FFFFFF;
+                                    width: 250px;
+                                    height: 30px;" data-bs-toggle="modal" data-bs-target="#exampleModalVer">
+                            REFERENCIA MÉDICA
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalVer" tabindex="-1" aria-labelledby="exampleModalLabelVer"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabelVer">Referencia Médica</h1>
+                                    <div class="modal-header" style="border: none;">
+                                        <h1 class="modal-title fs-5"
+                                            style="color: #FF9900; font-family: 'OpenSans-Bold'; font-size: 25px; align-items: center;"
+                                            id="exampleModalLabelVer">Referencia Médica</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -539,22 +560,15 @@
                                         accusamus.
                                         Ratione, optio! Deleniti a quam nostrum?
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">GUARDAR</button>
+                                    <div class="modal-footer" style="border: none;">
+                                        <!-- <button type="button" class="btn btn-primary">GUARDAR</button>
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">CANCELAR</button>
+                                            data-bs-dismiss="modal">CANCELAR</button> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br><br>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault"
-                                style="font-family:  'Segoe-UI-Semibold';">
-                                Dejar de recibir notificaciones
-                            </label>
-                        </div>
                     </div>
                 </div>
             </div>

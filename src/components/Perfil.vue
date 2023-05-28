@@ -32,17 +32,17 @@
                                 <input class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number" maxlength="4" id="inputLadaperfil" placeholder="+52"
-                                    v-bind:disabled="!input3Enabled">
+                                    v-bind:disabled="!inputTelPerfilEnabled">
                             </div>
                             <div class="col-8 mb-3">
                                 <input class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number" maxlength="10" name="" id="inputNumeroCel" placeholder="55467841245"
-                                    onkeypress="return validateKey(event);" disabled>
+                                    onkeypress="return validateKey(event);" v-bind:disabled="!inputLadaEnabled" >
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    v-on:click.prevent="enableInput3"></a>
+                                    v-on:click.prevent="enableInputLadaNumero"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Estado</label>
@@ -50,13 +50,13 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <select id="selectEstadoPerfil" class="form-select" aria-label="Default select example"
-                                    disabled>
+                                v-bind:disabled="!selectEstadoEnabled">
                                     <option selected value="#">Estado</option>
                                 </select>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    v-on:click.prevent="enableInput3"></a>
+                                    v-on:click.prevent="enableSelectEstado"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
@@ -202,6 +202,9 @@ export default {
             input2Enabled: false,
             input3Enabled: false,
 
+            inputLadaEnabled: false,
+            inputTelPerfilEnabled: false,
+            selectEstadoEnabled: false,
             inputCiudadEnabled: false,
             inputEdadEnabled: false,
             inputNomMedTratEnabled: false,
@@ -218,6 +221,13 @@ export default {
         },
         enableInput3() {
             this.input3Enabled = true;
+        },
+        enableInputLadaNumero(){
+            this.inputLadaEnabled= true;
+            this.inputTelPerfilEnabled = true;
+        },
+        enableSelectEstado(){
+            this.selectEstadoEnabled = true;
         },
         enableInputCiudad(){
             this.inputCiudadEnabled = true;

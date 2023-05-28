@@ -28,6 +28,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col mb-3">
+                                        <!-- <input type="datetime-local" v-model="date" />
+                                        <button @click="validateDate">Validar</button> -->
+                                        <!-- <input type="date" v-model="date" />
+                                        <button @click="validateDate">Validar</button> -->
                                         <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
                                         <div class="input-group">
                                             <input type="date" class="form-control inputFechaEstudioCrear"
@@ -41,8 +45,9 @@
                                                     </path>
                                                 </svg>
                                             </span>
-                                            <p class="mensajes mt-2" id="mensajes" style="color:red;"></p>
                                         </div>
+                                        <span class="error" style="color: red;" v-if="errors2.fechaEstudioColonos">{{
+                                            errors2.fechaEstudioColonos }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -51,7 +56,8 @@
                       placeholder="Hora de la colonoscopía o estudio"> -->
                                         <div class="input-group">
                                             <input type="time" class="form-control inputHoraColos" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1">
+                                                aria-label="Input group example" aria-describedby="basic-addon1"
+                                                v-model="horaColonoscopia">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -62,6 +68,10 @@
                                                 </svg>
                                             </span>
                                         </div>
+                                        <span class="error" style="color: red;" v-if="errors2.horaColonoscopia">{{
+                                            errors2.horaColonoscopia }}</span>
+                                            <p>{{ horaColonoscopia }}</p>
+                                            <p>{{ this.horaActual }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -69,7 +79,8 @@
                                         <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
                                         <div class="input-group">
                                             <input type="date" class="form-control inputFecPriToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1"  v-model="fechaPrimerToma">
+                                                aria-label="Input group example" aria-describedby="basic-addon1"
+                                                v-model="fechaPrimerToma">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -79,7 +90,8 @@
                                                 </svg>
                                             </span>
                                         </div>
-                                        <span class="error" style="color: red;" v-if="errors2.fechaPrimerToma">{{ errors2.fechaPrimerToma }}</span>
+                                        <span class="error" style="color: red;" v-if="errors2.fechaPrimerToma">{{
+                                            errors2.fechaPrimerToma }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -88,7 +100,8 @@
                       placeholder="Hora de la primera toma de Picoprep®️"> -->
                                         <div class="input-group">
                                             <input type="time" class="form-control inputHoraPriToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaPrimerToma">
+                                                aria-label="Input group example" aria-describedby="basic-addon1"
+                                                v-model="horaPrimerToma">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -99,7 +112,8 @@
                                                 </svg>
                                             </span>
                                         </div>
-                                        <span class="error" style="color: red;" v-if="errors2.horaPrimerToma">{{ errors2.horaPrimerToma }}</span>
+                                        <span class="error" style="color: red;" v-if="errors2.horaPrimerToma">{{
+                                            errors2.horaPrimerToma }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -108,7 +122,8 @@
                       placeholder="Fecha de la segunda toma de Picoprep®️"> -->
                                         <div class="input-group">
                                             <input type="date" class="form-control inputFecSegToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaSegundaToma">
+                                                aria-label="Input group example" aria-describedby="basic-addon1"
+                                                v-model="fechaSegundaToma">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -118,7 +133,8 @@
                                                 </svg>
                                             </span>
                                         </div>
-                                        <span class="error" style="color: red;" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma }}</span>
+                                        <span class="error" style="color: red;" v-if="errors2.fechaSegundaToma">{{
+                                            errors2.fechaSegundaToma }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -127,7 +143,8 @@
                       placeholder="Hora de la segunda toma de Picoprep®️"> -->
                                         <div class="input-group">
                                             <input type="time" class="form-control inputHoraSegToma" placeholder="18:00 Hrs"
-                                                aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaSegundaToma">
+                                                aria-label="Input group example" aria-describedby="basic-addon1"
+                                                v-model="horaSegundaToma">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -138,7 +155,8 @@
                                                 </svg>
                                             </span>
                                         </div>
-                                        <span class="error" style="color: red;" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
+                                        <span class="error" style="color: red;" v-if="errors2.horaSegundaToma">{{
+                                            errors2.horaSegundaToma }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -162,6 +180,8 @@
 <script>
 import moment from 'moment';
 
+import VueMoment from "vue-moment";
+
 export default {
     name: 'CrearPlan',
     props: {
@@ -175,47 +195,94 @@ export default {
             hora2: "",
             errors2: {},
 
+            /* fechaActual: "", */
             fechaEstudioColonos: "",
             horaColonoscopia: "",
             fechaPrimerToma: "",
             horaPrimerToma: "",
             fechaSegundaToma: "",
             horaSegundaToma: "",
+
+            date: "",
         };
     },
     methods: {
+        validateDate() {
+            const ahora = moment();
+            const seleccionFecha = moment(this.date);
+            if (seleccionFecha.isBefore(ahora)) {
+                alert("La fecha debe ser posterior a la fecha y hora actual.");
+            }
+        },
         submitFormCrearNuevoPlan() {
             // Validar los campos del segundo formulario
             this.errors2 = {};
             let valid2 = true;
+            const fechaActual = moment().format('L');
+            // moment().format('LTS');  // 4:43:55 PM
+            /* const horaActual  = moment().format('LTS'); */
+            // moment().format('LT');   // 4:44 PM
+            const horaActual = moment().format('LT');
+            const horaFormateada = Date.parse(horaActual);
+            /* const fechaPrimerToma = this.fechaPrimerToma; */
+            console.log(fechaActual);
+            console.log(horaActual);
+            console.log(horaFormateada);
+            /* console.log(this.fechaEstudioColonos); */
 
-            // Validar que el campo fecha uno no esté vacío y sea una fecha válida
-            if (!this.fechaPrimerToma) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma es obligatoria";
+            //Valida que el campo fecha colonoscopia no este vació y sea una fechs
+            if (!this.fechaEstudioColonos) {
+                this.errors2.fechaEstudioColonos = "La fecha de la colonoscopia es obligatoria";
                 valid2 = false;
-            } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma no es válida";
+            } else if (moment(this.fechaEstudioColonos).isAfter(fechaActual)) {
+                this.errors2.fechaEstudioColonos = "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
                 valid2 = false;
             }
 
-            // Validar que el campo fecha dos no esté vacío y sea una fecha válida
+            // Valida que el campo hora de colonoscopia no este vacia y sea una hora valida
+            if (!this.horaColonoscopia) {
+                this.errors2.horaColonoscopia = "La hora de la colonoscopia es obligatoria";
+                valid2 = false;
+            } else if (moment(this.horaColonoscopia, "HH:mm").isAfter(horaFormateada, "HH:mm")) {
+                this.errors2.horaColonoscopia = "La hora de la colonoscopia debe ser posterior ala fecha actual y hora actual";
+                valid2 = false;
+            }
+
+            // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
+            if (!this.fechaPrimerToma) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma es obligatoria";
+            } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma no es válida";
+            } else if (moment(this.fechaEstudioColonos).isBefore(this.fechaPrimerToma)) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+            } /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
+            } */
+
+            // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
             if (!this.fechaSegundaToma) {
                 this.errors2.fechaSegundaToma = "La fecha de la segunda toma es obligatoria";
                 valid2 = false;
             } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
                 this.errors2.fechaSegundaToma = "La fecha de la segunda toma no es válida";
                 valid2 = false;
-            }
+            } else if (moment(this.fechaPrimerToma).isBefore(this.fechaSegundaToma)) {
+                this.errors2.fechaSegundaToma = "La fecha de la segunda toma  debe ser antes a la fecha de la primer toma";
+            } 
 
             // Validar que el campo fecha dos sea posterior al campo fecha uno
             // Usando el método isAfter de moment.js para comparar las fechas
             // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.fechaPrimerToma ).isAfter(this.fechaSegundaToma)) {
+            else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
                 this.errors2.fechaSegundaToma =
                     "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
                 valid2 = false;
             }
-
+            /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
+                valid2 = false;
+            } */
             // Validar que el campo hora uno no esté vacío y sea una hora válida
             if (!this.horaPrimerToma) {
                 this.errors2.horaPrimerToma = "La hora de la primer toma es obligatoria";
@@ -223,26 +290,43 @@ export default {
             } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
                 this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
                 valid2 = false;
+            }  else if (moment(!this.horaColonoscopia , "HH:mm").isBefore(this.horaPrimerToma, "HH:mm")) {
+                this.errors2.horaSegundaToma =
+                    "La hora de la primer toma debe ser posterior a la hora colonoscopia";
+                valid2 = false;
             }
+
 
             // Validar que el campo hora dos no esté vacío y sea una hora válida
-            if (!this. horaSegundaToma) {
-                this.errors2. horaSegundaToma= "La hora de la segunda toma es obligatoria";
+            if (!this.horaSegundaToma) {
+                this.errors2.horaSegundaToma = "La hora de la segunda toma es obligatoria";
                 valid2 = false;
-            } else if (!moment(this. horaSegundaToma, "HH:mm", true).isValid()) {
-                this.errors2. horaSegundaToma = "La hora de la segunda toma no es válida";
+            } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
+                this.errors2.horaSegundaToma = "La hora de la segunda toma no es válida";
                 valid2 = false;
             }
 
-            // Validar que el campo hora dos sea posterior al campo hora uno
+            // Validar que el campo hora segunda sea posterior al campo hora uno
             // Usando el método isAfter de moment.js para comparar las horas
             // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
-                this.errors2.hora2 =
+            /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(this.horaPrimerToma, "HH:mm")) {
+                this.errors2.horaSegundaToma =
+                    "hora de la segunda toma debe ser posterior a la hora de la primer toma";
+                valid2 = false;
+            } */
+            // Validar que el campo hora segunda toma sea antesr al campo hora colonoscopia
+            // Usando el método isAfter de moment.js para comparar las horas
+            // https://momentjs.com/docs/#/query/is-before/
+            /* else if (moment(this.horaSegundaToma, "HH:mm").isBefore(this.horaColonoscopia, "HH:mm")) {
+                this.errors2.horaSegundaToma =
+                    "La hora de la segunda toma debe ser antes a la hora estudio colonoscopia";
+                valid2 = false;
+            } */
+            else if (moment(this.horaPrimerToma, "HH:mm").isAfter(this.horaSegundaToma, "HH:mm")) {
+                this.errors2.horaSegundaToma =
                     "La hora dos debe ser posterior a la hora uno";
                 valid2 = false;
             }
-
             // Si todos los campos son válidos, enviar el formulario
             if (valid2) {
                 alert("Los datoa del formulario se enviaron correctamente");
@@ -319,27 +403,28 @@ export default {
         // Obtener la fecha mínima para el campo fecha dos
         minDate() {
             // Si la fecha uno está vacía o no es válida, devolver null
-            if (!this.fecha1 || !moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
+            if (!this.fechaEstudioColonos || !moment(this.fechaEstudioColonos, "YYYY-MM-DD", true).isValid()) {
                 return null;
             }
             // Si la fecha uno es válida, devolver el día siguiente de la fecha uno formateado como YYYY-MM-DD
             else {
-                return moment(this.fecha1).add(1, "days").format("YYYY-MM-DD");
+                return moment(this.fechaEstudioColonos).add(1, "days").format("YYYY-MM-DD");
             }
         },
         // Obtener la hora mínima para el campo hora dos
         minTime() {
             // Si la hora uno está vacía o no es válida, devolver null
 
-            if (!this.hora1 || !moment(this.hora1, "HH:mm", true).isValid()) {
+            if (!this.horaColonoscopia || !moment(this.horaColonoscopia, "HH:mm", true).isValid()) {
                 return null;
             }
             // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
             else {
-                return moment(this.hora1, "HH:mm").format("HH:mm");
+                return moment(this.horaColonoscopia, "HH:mm").format("HH:mm");
             }
         },
     },
+    /* mixins: [VueMoment], */
 };
 </script>
 
