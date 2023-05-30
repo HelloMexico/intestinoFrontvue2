@@ -55,6 +55,22 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/PerfilView.vue'),
   },
+  {
+    path: '/olvidar',
+    name: 'olvida',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/OlvidarPasswordView.vue'),
+  },
+  {
+    path: '/nuevo',
+    name: 'nuevo',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/NuevoPasswordView.vue'),
+  },
 ];
 
 const router = new VueRouter({

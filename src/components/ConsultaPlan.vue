@@ -49,9 +49,9 @@
                     <div class="col-2 col-md-4 col-sm-3 border"
                         style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color:  #F2F2F2; width: 50px;">
                         <a href="" type="button" class="btnEditarPlan" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"></a>
+                            data-bs-target="#exampleModalDos"></a>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="exampleModalDos" tabindex="-1" aria-labelledby="exampleModalLabelDos"
                             aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -61,7 +61,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body" style="border: none;">
-                                        <h1 class="modal-title tituloModal" id="exampleModalLabel">Editar plan de tomas e
+                                        <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
                                             hidrataciones</h1>
                                         <form>
                                             <div class="mb-3">
@@ -225,17 +225,141 @@
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                <div class="modal-content">
+                                    <div class="modal-header" style="border: none;">
+
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="border: none;">
+                                        <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
+                                            hidrataciones</h1>
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
+                                                    estudio</label>
+                                                <!-- <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="exampleInputEmail1"
+                        aria-describedby="emailHelp"> -->
+                                                <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control inputLabelFechaModalEditarPlan"
+                                                        placeholder="18:00 Hrs" aria-label="Input group example"
+                                                        aria-describedby="basic-addon1" id="inputLabelFechaModalEditarPlan">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1 labelModalEditarHoraColonos"
+                                                    class="form-label">Hora de la
+                                                    colonoscopía o estudio</label>
+                                                <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
+                                                <div class="input-group">
+                                                    <input type="time" class="form-control" placeholder="18:00 Hrs"
+                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                                            <path
+                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Fecha de la primera
+                                                    toma de Picoprep</label>
+                                                <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" placeholder="18:00 Hrs"
+                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Hora de la primera
+                                                    toma de Picoprep</label>
+                                                <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
+                                                <div class="input-group">
+                                                    <input type="time" class="form-control" placeholder="18:00 Hrs"
+                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                                            <path
+                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Fecha de la segunda
+                                                    toma de Picoprep</label>
+                                                <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" placeholder="18:00 Hrs"
+                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Hora de la segunda
+                                                    toma de Picoprepp</label>
+                                                <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="22:00 Hrs"> -->
+                                                <div class="input-group">
+                                                    <input type="time" class="form-control" placeholder="18:00 Hrs"
+                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                                            <path
+                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer" style="border: none;">
+                                        <div class="container text-center">
+                                            <div class="row">
+                                                <div class="col-md-4 pb-4">
+                                                    <button type="button" class="rounded btnGuardarModalPlan"
+                                                        data-bs-dismiss="modal">GUARDAR</button>
+                                                </div>
+                                                <div class="col-md-4 offset-md-4">
+                                                    <button type="button" class="rounded btnCancelarModalPlan"
+                                                        data-bs-dismiss="modal">CANCELAR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1646,6 +1770,13 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     /* display: inline-flex; */
 }
 
+.tituloRecuperar {
+    color: #FF9900;
+    font-family: 'OpenSans-Bold';
+    font-size: 25px;
+    text-align: left;
+    /* display: inline-flex; */
+}
 /* escritorio web*/
 /* .tituloPlanToma{
     color: #FF9900;
@@ -2413,7 +2544,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         text-align: center; */
         /* display: inline-flex; */
     }
-
     .imgNaranjinPlan {
         display: none;
     }

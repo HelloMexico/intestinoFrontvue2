@@ -1,12 +1,3 @@
-<!-- <script setup>
-import { useRouter } from 'vue-router';
-const route = useRoute();
-const router = useRouter();
-
-const back = () =>{
-    router.push('/crear')
-}
-</script> -->
 <template>
     <div class="container">
         <div class="container">
@@ -122,8 +113,7 @@ const back = () =>{
                                                         <button type="submit">Enviar</button>
                                                     </form> -->
                                                     <!-- eslint-disable-next-line max-len -->
-                                                    <form
-                                                        @submit.prevent="submitForm()">
+                                                    <form @submit.prevent="submitForm()">
                                                         <div class="col-12 col-md-12">
                                                             <!-- <input type="tel" class="form-control" id="nombre"
                                                                 placeholder="Número de celular" required
@@ -164,10 +154,10 @@ const back = () =>{
                                                         <br>
                                                         <div class="col-xl-12 col-md-6">
                                                             <div style="display: flex; flex-direction: row-reverse;">
-                                                                <a href="" target="_blank"
+                                                                <router-link href="" to="/olvidar"
                                                                     style="font-family: 'OpenSans-Bold'; color: #1155CC;">
                                                                     <u>Olvidé mi
-                                                                        contraseña</u></a>
+                                                                        contraseña</u></router-link>
                                                             </div>
                                                         </div>
                                                         <br>
@@ -180,7 +170,6 @@ const back = () =>{
                                                                         tag="button">CONTINUAR</router-link> -->
                                                                     <button type="submit"
                                                                         class="btnContinuar rounded">CONTINUAR</button>
-                                                                    <button @click="back"></button>
                                                                     <!-- <button :disabled="bloquear"
                                                                     class=" rounded">CONTINUAR</button> -->
                                                                     <!-- <router-link class="btnContinuar rounded" to="/crear"
@@ -209,7 +198,7 @@ const back = () =>{
                                                 aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                                 <div class="accordion-body">
                                                     <div class="container">
-                                                        <form @submit.prevent="submitFormCrearPlan()" method="post">
+                                                        <form @submit.prevent="submitFormCrearPlan()">
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-3">
                                                                     <select class="form-select" id="select_pais"
@@ -454,10 +443,11 @@ const back = () =>{
                                                                     value="CONTINUAR"> -->
 
                                                                 <button type="submit" class="btnContinuar rounded"
-                                                                    tag="button" to="/crear">CONTINUAR</button>
-                                                                <router-link to="/crear" type="submit"
+                                                                    >CONTINUAR</button>
+                                                                <!-- <router-link to="/crear" type="submit"
                                                                     class="btnContinuar rounded">Go to
-                                                                    Home</router-link>
+                                                                    Home</router-link> -->
+
                                                                 <!-- <button to="/crear">Form validado ir a crear</button> -->
                                                                 <!-- <a to="/crear" class="btnContinuar rounded" type="submit">CREAR</a> -->
 
@@ -482,14 +472,7 @@ const back = () =>{
   
 <script>
 import axios from 'axios';
-/* import { useRouter } from 'vue-router';
 
-const router = useRouter();
-
-const back = () => {
-    router.push('/crear')
-}
- */
 export default {
     name: 'Login',
     props: {
@@ -560,7 +543,11 @@ export default {
                 categorias: [],
                 estado: '',
                 numero: 0
-            }
+            },
+            
+            inputUno: "",
+            inputDos: "",
+            inputTres: "",
         };
     },
     /* created() {
@@ -576,8 +563,6 @@ export default {
     computed: {
         bloquear() {
             return this.formularioIniciar.telefono.trim() === "" ? true : false
-           /*  ,this.formularioIniciar.claveAcceso.trim() === "" ? true : false */
-
         }
     },
     mounted() {
@@ -624,7 +609,7 @@ export default {
                     'El número celular no debe exceder de 10 números';
                 valida = false;
             } else {
-                this.errors.telefono = 'El número celular es válido';
+                delete this.errors['telefono'];
             }
         },
         validateClaveAcceso() {
@@ -640,7 +625,7 @@ export default {
                 this.errors.claveAcceso = 'La clave de acceso no debe exceder de 10 caracteres';
                 valida = false;
             } else {
-                this.errors.claveAcceso = 'Clave acceso es válida';
+                delete this.errors['claveAcceso'];
             }
         },
         ToggleInput() {
@@ -650,73 +635,36 @@ export default {
             this.inputTypeIcon = this.inputTypeIcon === "password" ? "text" : "password";
         },
         submitForm() {
-            this.errors = [];
-            // Validar los campos antes de enviar el formulario
+            this.errors = {};
             this.validateTelefono();
             this.validateClaveAcceso();
-
-            // Comprobar si hay errores
-            /* if ((this.errors).length > 0) {
-                return;
-            } else {
-                this.irVistaCrear();
-            } */
-            /* if (valida) {
-                this.irVistaCrear();
-            }
-
-            console.log(this.selectedCountry); */
-
              // Comprobar si hay errores
-            if (Object.keys(this.errors).length > 0) {
-                return
-            } else {
-                /* this.$router.push('/crear'); */
-                router.push('/crear');
-            }
-
-            /* if (this.formularioIniciar.telefono.trim() === "") {
-                 console.log('Campo vacío')
+             if (Object.keys(this.errors).length > 0) {
                  return
-             } else {
-                 this.$router.push('/crear');
-                 router.push('/crear');
-             }
-             console.log('no está vacio') */
-
-            // envian los datos
-
-            /* this.formularioIniciar = {
-                telefono: '',
-                claveAcceso: '',
-                inputTypeIcon: 'password',
-                errors: {},
-            } */
-            // Todos los campos son válidos, redirigir a otra vista
-            /* this.$router.push('/crear'); */
-            /* this.$router.push({ name: 'Crear' }) */
-            /* window.open("/crear"); */
+            } else {
+                this.$router.push('/crear');
+            }
         },
         validarPaisLada() {
             // Validar los campos del formulario
-            this.errors = {};
             this.errors.selectedCountry = '';
             this.errors.selectedLada = '';
             // Validar que el campo pais
             if (!this.selectedCountry) {
                 this.errors.selectedCountry = "El país es obligatorio";
-
-            } /* else {
-                this.errors.telefonoCelular = 'País válido';
-            } */
+                valida = false;
+            } else {
+                delete this.errors['selectedCountry'];
+            }
             // Validar los campos del formulario
             this.errors.selectedLada = '';
             // Validar que el campo lada
             if (!this.selectedLada) {
                 this.errors.selectedLada = "La lada es obligatoria";
-            } /* else {
-                this.errors.selectedLada = 'Lada válida';
-            } */
+                valida = false;
+            } else {
+                delete this.errors['selectedLada'];
+            }
         },
         /* validarPais() {
 
@@ -732,15 +680,19 @@ export default {
 
             if (!this.telefonoCelular) {
                 this.errors.telefonoCelular = 'El telefono celular es obligatorio';
+                valida = false;
             } else if (isNaN(this.telefono)) {
                 this.errors.telefono = 'El telefono celular solo debe contener números';
+                valida = false;
             } else if (this.telefonoCelular.length < 7) {
                 this.errors.telefonoCelular = 'El telefono celular no debe ser menor a 7 números';
+                valida = false;
             } else if (this.telefonoCelular.length > 10) {
                 this.errors.telefonoCelular = 'El telefono celular no debe exceder 10 números';
-            } /* else {
-                this.errors.telefonoCelular = 'El telefono celular es válido';
-            } */
+                valida = false;
+            } else {
+                delete this.errors['telefonoCelular'];
+            }
             /* this.validarPais();
             this.formularioValidado = this.validarEdad && validarPeso; */
         },
@@ -749,9 +701,10 @@ export default {
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.estado) {
                 this.errors.estado = "El estado es obligatorio";
-            } /* else {
-                this.errors.estado = "Estado válido";
-            } */
+                valida = false;
+            } else {
+                delete this.errors['estado'];
+            }
 
         },
         validarCiudad() {
@@ -760,8 +713,12 @@ export default {
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.ciudad) {
                 this.errors.ciudad = "La ciudad es obligatoria";
+                valida = false;
             } else if (this.ciudad <= 0) {
                 this.errors.ciudad = "La edad debe ser un número positivo";
+                valida = false;
+            } else{
+                delete this.errors['ciudad'];
             }
         },
         validarEdad() {
@@ -770,8 +727,12 @@ export default {
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.edad) {
                 this.errors.edad = "La edad es obligatoria";
+                valida = false;
             } else if (this.edad <= 0) {
                 this.errors.edad = "La edad debe ser un número positivo";
+                valida = false;
+            } else {
+                delete this.errors['edad'];
             }
         },
         validarPeso() {
@@ -780,8 +741,12 @@ export default {
             // Validar que el campo peso no esté vacío y sea un número positivo
             if (!this.peso) {
                 this.errors.peso = "El peso es obligatoria";
+                valida = false;
             } else if (this.peso <= 0) {
                 this.errors.peso = "El peso debe ser un número positivo";
+                valida = false;
+            } else {
+                delete this.errors['peso'];
             }
         },
         validarNomMedTrat() {
@@ -790,6 +755,7 @@ export default {
             // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
             if (!this.nomMedTrat) {
                 this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
+                valida = false;
             } /* else if (this.nomMedTrat.length < 50) {
                 this.errors.nomMedTraT =
                     "El nombre del médico tratante debe tener al menos 50 caracteres";
@@ -797,6 +763,9 @@ export default {
             else if (this.nomMedTrat.length > 80) {
                 this.errors.nomMedTrat =
                     "El nombre del médico tratante debe tener máximo 80 caracteres";
+                valida = false;
+            } else {
+                delete this.errors['nomMedTrat'];
             }
         },
         validarApeMedTrat() {
@@ -805,6 +774,7 @@ export default {
             // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
             if (!this.apeMedTrat) {
                 this.errors.apeMedTrat = "El apellido del médico tratante es obligatorio";
+                valida = false;
             } /* else if (this.apeMedTrat.length < 50) {
                 this.errors.apeMedTrat =
                     "El apellido del médico tratante debe tener al menos 50 caracteres";
@@ -813,6 +783,9 @@ export default {
             else if (this.apeMedTrat.length > 80) {
                 this.errors.apeMedTrat =
                     "El apellido del médico tratante debe tener máximo 80 caracteres";
+                valida = false;
+            } else {
+                delete this.errors['apeMedTrat'];
             }
         },
         validarClaveAccessos() {
@@ -821,13 +794,16 @@ export default {
             // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
             if (!this.claveAccesos) {
                 this.errors.claveAccesos = 'La clave de acceso es obligatoria';
+                valida = false;
             } else if (this.claveAccesos.length < 4) {
                 this.errors.claveAccesos = 'La clave de acceso debe tener por lo menos 4 caracteres';
+                valida = false;
             } else if (this.claveAccesos.length > 10) {
                 this.errors.claveAccesos = 'La clave de acceso no debe exceder de 10 caracteres';
-            } /* else {
-                this.errors.claveAccesos = 'Clave acceso es válida';
-            } */
+                valida = false;
+            } else {
+                delete this.errors['claveAccesos'];
+            }
         },
         validarConfiClaveAccessos() {
             // Validar los campos del formulario;
@@ -835,21 +811,30 @@ export default {
             // Validar que el campo confirmar no esté vacío y coincida con la contraseña
             if (!this.confClaveAccesos) {
                 this.errors.confClaveAccesos = "La confirmación de la clave acceso es obligatoria";
+                valida = false;
             } else if (this.confClaveAccesos !== this.claveAccesos) {
                 this.errors.confClaveAccesos =
                     "La confirmación de la contraseña no coincide con la contraseña";
+                valida = false;
+            } else {
+                delete this.errors['confClaveAccesos'];
             }
         },
         // Funcion pata actualizar la lada dependiendo de país seleccionado
         updateLada() {
             if (this.selectedCountry === "Mexico") {
                 this.selectedLada = "+52";
+                valida = false;
             } else if (this.selectedCountry === "Costa Rica") {
                 this.selectedLada = "+506";
+                valida = false;
+
+            } else{
+                delete this.errors['selectedCountry'];
             }
         },
         submitFormCrearPlan() {
-            /* this.errors = {}; */
+            this.errors = {};
             // Validar los campos antes de enviar el formulario
             this.validarPaisLada();
             /* this.validarLada(); */
@@ -863,60 +848,18 @@ export default {
             this.validarClaveAccessos();
             this.validarConfiClaveAccessos();
 
-            // Comprobar si hay errores
-            if (Object.keys(this.errors).length > 0) {
-                return
-            } else {
-                this.$router.push('/crear');
-            }
-            /*  console.log(this.tarea)
-             if (this.formularioIniciar.nombre.trim() === "") {
-                 console.log('Campo vacío')
+             // Comprobar si hay errores
+             if (Object.keys(this.errors).length > 0) {
                  return
-             } else {
-                 this.$router.push('/crear');
-             }
-             console.log('no está vacio') */
-
-            // envian los datos
-
-            /* this.formularioIniciar = {
-                telefono: '',
-                claveAcceso: '',
-                inputTypeIcon: 'password',
-                errors: {},
-            } */
-            // Todos los campos son válidos, redirigir a otra vista
-            /* this.$router.push('/crear'); */
-            /* window.location.href = 'CrearPlan.vue'; */
-        },
-        procesarFormulario() {
-            console.log(this.tarea)
-            if (this.tarea.nombre.trim() === "") {
-                console.log('Campo vacío')
-                return
             } else {
                 this.$router.push('/crear');
-
-            }
-            console.log('no está vacio')
-
-            // envian los datos
-
-            this.tarea = {
-                nombre: '',
-                categorias: [],
-                estado: '',
-                numero: 0
             }
         },
     },
 };
 </script>
 
-
-
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @font-face {
     font-family: 'OpenSans-Bold';
