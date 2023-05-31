@@ -121,8 +121,9 @@
                                                                 title="El campo número celular es obligatorio">
                                                             <input type="submit" value="Enviar"> -->
                                                             <!-- eslint-disable-next-line max-len -->
-                                                            <input type="tel" class="form-control" v-model="telefono" @input="validateTelefono"
-                                                                 placeholder="Número de celular">
+                                                            <input type="tel" class="form-control" v-model="telefono"
+                                                                @input="validateTelefono" placeholder="Número de celular"
+                                                                pattern="^[0-9]+" minlength="7" maxlength="14">
                                                             <span class="error" style="color: red;"
                                                                 v-if="errors.telefono">{{ errors.telefono
                                                                 }}</span>
@@ -136,7 +137,8 @@
                                                             <div class="input-group input-group-md">
                                                                 <input :type="inputTypeIcon" class="form-control"
                                                                     v-model="claveAcceso" @input="validateClaveAcceso"
-                                                                    placeholder="Escriba una clave de acceso">
+                                                                    placeholder="Escriba una clave de acceso"
+                                                                    maxlength="11">
                                                                 <button class="input-group-text"
                                                                     @click.prevent="ToggleInputIcon">
                                                                     <span v-if="inputTypeIcon === 'password'">
@@ -245,7 +247,8 @@
                                                                     <input type="text" class="form-control" name="telefono"
                                                                         id="telefonoCel" placeholder="Telefono celular"
                                                                         v-model="telefonoCelular"
-                                                                        @input="validarTelefonoCelular">
+                                                                        @input="validarTelefonoCelular" minlength="7"
+                                                                        maxlength="14">
                                                                     <p class="mensaje_telfono mt-2" id="mensaje_telfono"
                                                                         style="color:red;">
                                                                     </p>
@@ -413,8 +416,8 @@
                                                             <div class="form-check form-switch">
                                                                 <label for="flexSwitchCheckDefault">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckDefault" 
-                                                                        aria-checked="">
+                                                                        role="switch" id="flexSwitchCheckDefault"
+                                                                        aria-checked="" required>
                                                                     <label class="form-check-label textoSwitchAcepto"
                                                                         for="fkyu">Acepto
                                                                         recibir recordatorios
@@ -424,10 +427,9 @@
                                                                 </label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <label for="flexRadioDefault">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="flexRadioDefault" id="flexRadioDefault1">
-                                                                </label>
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    name="flexRadioDefault" id="flexRadioDefault1" required>
+
                                                                 <label class="form-check-label parrafoCheckLeido">He
                                                                     leído y
                                                                     acepto los <a href=""> términos,condiciones</a>
@@ -442,8 +444,8 @@
                                                                 <!-- <input class="btnContinuar rounded" type="submit"
                                                                     value="CONTINUAR"> -->
 
-                                                                <button type="submit" class="btnContinuar rounded"
-                                                                    >CONTINUAR</button>
+                                                                <button type="submit"
+                                                                    class="btnContinuar rounded">CONTINUAR</button>
                                                                 <!-- <router-link to="/crear" type="submit"
                                                                     class="btnContinuar rounded">Go to
                                                                     Home</router-link> -->
@@ -544,7 +546,7 @@ export default {
                 estado: '',
                 numero: 0
             },
-            
+
             inputUno: "",
             inputDos: "",
             inputTres: "",
@@ -594,11 +596,17 @@ export default {
         },
         validateTelefono() {
             this.errors.telefono = '';
-
+            /* const code = (evt.wich) ? evt.whitch : evt.keyCode;
+            if (code == 8) {
+                return true;
+            } else if (code >= 48 && code <= 57) {
+                return true;
+            }  */
+            this.telefono = this.telefono.replace(/[^0-9]/g, "");
             if (!this.telefono) {
                 this.errors.telefono = 'El número celular es obligatorio';
                 valida = false;
-            } else if (isNaN(this.telefono)) {
+            } else if (!/^([0-9])*$/.test(this.telefono)) {
                 this.errors.telefono = 'El número celular solo debe contener números';
                 valida = false;
             } else if (this.telefono.length < 7) {
@@ -638,9 +646,9 @@ export default {
             this.errors = {};
             this.validateTelefono();
             this.validateClaveAcceso();
-             // Comprobar si hay errores
-             if (Object.keys(this.errors).length > 0) {
-                 return
+            // Comprobar si hay errores
+            if (Object.keys(this.errors).length > 0) {
+                return
             } else {
                 this.$router.push('/crear');
             }
@@ -677,12 +685,13 @@ export default {
         validarTelefonoCelular() {
             // Validar los campos del formulario
             this.errors.telefonoCelular = '';
+            this.telefonoCelular = this.telefonoCelular.replace(/[^0-9]/g, "");
 
             if (!this.telefonoCelular) {
                 this.errors.telefonoCelular = 'El telefono celular es obligatorio';
                 valida = false;
-            } else if (isNaN(this.telefono)) {
-                this.errors.telefono = 'El telefono celular solo debe contener números';
+            } else if (isNaN(this.telefonoCelular)) {
+                this.errors.telefonoCelular = 'El telefono celular solo debe contener números';
                 valida = false;
             } else if (this.telefonoCelular.length < 7) {
                 this.errors.telefonoCelular = 'El telefono celular no debe ser menor a 7 números';
@@ -707,20 +716,27 @@ export default {
             }
 
         },
+
         validarCiudad() {
             // Validar los campos del formulario
             this.errors.ciudad = '';
+            /** Expresion regular para solo letras */
+            /* const regex = /^[a-zA-Z]+$/; */
+            this.ciudad = this.ciudad.replace(/[^a-zA-Z]/g, '');
+
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.ciudad) {
                 this.errors.ciudad = "La ciudad es obligatoria";
                 valida = false;
-            } else if (this.ciudad <= 0) {
-                this.errors.ciudad = "La edad debe ser un número positivo";
+            } else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
+                /* this.ciudad = this.ciudad.replace(/[^a-zA-Z]/g, ''); */
+                this.errors.ciudad = 'El nombre del médico tratante solo debe contener solo letras';
                 valida = false;
-            } else{
+            } else {
                 delete this.errors['ciudad'];
             }
         },
+
         validarEdad() {
             // Validar los campos del formulario
             this.errors.edad = '';
@@ -752,11 +768,19 @@ export default {
         validarNomMedTrat() {
             // Validar los campos del formulario
             this.errors.nomMedTrat = '';
+            /* this.nomMedTrat = this.nomMedTrat.replace(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]/g,""); */
+            /** Expresion regular para solo letras */
+            /* const regex = /^[a-zA-Z]+$/; */
+            this.nomMedTrat = this.nomMedTrat.replace(/[^a-zA-Z\s]/g, '');
             // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
             if (!this.nomMedTrat) {
                 this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
                 valida = false;
-            } /* else if (this.nomMedTrat.length < 50) {
+                /* else if (!/^([0-9])*$/.test(this.telefono)) { */
+            } /* else if (/^[ a-zA-Z]+$/.test(this.nomMedTrat)) {
+                this.errors.nomMedTrat = 'El nombre del médico tratante solo debe contener solo letras';
+                valida = false;
+            } *//* else if (this.nomMedTrat.length < 50) {
                 this.errors.nomMedTraT =
                     "El nombre del médico tratante debe tener al menos 50 caracteres";
             } */
@@ -771,6 +795,8 @@ export default {
         validarApeMedTrat() {
             // Validar los campos del formulario
             this.errors.apeMedTrat = '';
+            this.apeMedTrat = this.apeMedTrat.replace(/[^a-zA-Z\s]/g, '');
+
             // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
             if (!this.apeMedTrat) {
                 this.errors.apeMedTrat = "El apellido del médico tratante es obligatorio";
@@ -829,7 +855,7 @@ export default {
                 this.selectedLada = "+506";
                 valida = false;
 
-            } else{
+            } else {
                 delete this.errors['selectedCountry'];
             }
         },
@@ -848,9 +874,9 @@ export default {
             this.validarClaveAccessos();
             this.validarConfiClaveAccessos();
 
-             // Comprobar si hay errores
-             if (Object.keys(this.errors).length > 0) {
-                 return
+            // Comprobar si hay errores
+            if (Object.keys(this.errors).length > 0) {
+                return
             } else {
                 this.$router.push('/crear');
             }
@@ -2824,5 +2850,4 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {}
-</style>
+@media screen and (max-height: 500px) {}</style>

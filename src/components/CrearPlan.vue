@@ -18,21 +18,11 @@
         <input type="submit" value="Enviar" />
       </form> -->
 
-      <form
-        name="formulario"
-        id="formulario"
-        action=""
-        method="post"
-        v-on:submit="validarHora"
-      >
+      <form name="formulario" id="formulario" v-on:submit="validarHora">
         <div class="container">
           <div class="row">
             <div class="col-xl-6 col-sm-6 col-md-6 text-center">
-              <img
-                src="../assets/img/web/Enmascarar grupo 2.png"
-                alt=""
-                class="img-fluid"
-              />
+              <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid" />
             </div>
             <div class="col-xl-6 col-sm-6 col-md-6">
               <div class="container">
@@ -52,36 +42,20 @@
                                         <button @click="validateDate">Validar</button> -->
                     <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
                     <div class="input-group">
-                      <input
-                        type="date"
-                        class="form-control inputFechaEstudioCrear"
-                        placeholder="18:00 Hrs"
-                        aria-label="Input group example"
-                        aria-describedby="basic-addon1"
-                        v-model="fechaEstudioColonos"
-                      />
+                      <input type="date" class="form-control inputFechaEstudioCrear" placeholder="18:00 Hrs"
+                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaEstudioColonos" />
                       <span class="input-group-text" id="basic-addon1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-calendar"
-                          viewBox="0 0 16 16"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
-                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-                          ></path>
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                          </path>
                         </svg>
                       </span>
                     </div>
-                    <span
-                      class="error"
-                      style="color: red"
-                      v-if="errors2.fechaEstudioColonos"
-                      >{{ errors2.fechaEstudioColonos }}</span
-                    >
-                    <p>Fecha actual: {{ this.fechaActual }}</p>
+                    <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
+                      errors2.fechaEstudioColonos }}</span>
+                    <!-- <p>Fecha actual: {{ this.fechaActual }}</p> -->
                   </div>
                 </div>
                 <div class="row">
@@ -89,75 +63,40 @@
                     <!-- <input type="time" class="form-control" name="" id="emailInput"
                       placeholder="Hora de la colonoscopía o estudio"> -->
                     <div class="input-group">
-                      <input
-                        type="time"
-                        class="form-control inputHoraColos"
-                        placeholder="18:00 Hrs"
-                        aria-label="Input group example"
-                        aria-describedby="basic-addon1"
-                        v-model="hora"
-                      />
+                      <input type="time" class="form-control inputHoraColos" placeholder="18:00 Hrs"
+                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="hora" />
                       <span class="input-group-text" id="basic-addon1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-alarm"
-                          viewBox="0 0 16 16"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-alarm" viewBox="0 0 16 16">
                           <path
-                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"
-                          />
+                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
                           <path
-                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"
-                          />
+                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                         </svg>
                       </span>
                     </div>
-                    <span
-                      class="error"
-                      style="color: red"
-                      v-if="errors2.horaColonoscopia"
-                      >{{ errors2.horaColonoscopia }}</span
-                    >
-                    <p>Hora ingresada colonoscopia: {{ hora }}</p>
-                    <p>Hora actual: {{ this.horaActual }}</p>
+                    <span class="error" style="color: red" v-if="errors2.horaIngresada">{{ errors2.horaIngresada }}</span>
+                    <!-- <p>Hora ingresada colonoscopia: {{ hora }}</p>
+                    <p>Hora actual: {{ this.horaActual }}</p> -->
                   </div>
                 </div>
                 <div class="row">
                   <div class="col mb-3">
                     <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
                     <div class="input-group">
-                      <input
-                        type="date"
-                        class="form-control inputFecPriToma"
-                        placeholder="18:00 Hrs"
-                        aria-label="Input group example"
-                        aria-describedby="basic-addon1"
-                        v-model="fechaPrimerToma"
-                      />
+                      <input type="date" class="form-control inputFecPriToma" placeholder="18:00 Hrs"
+                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaPrimerToma" />
                       <span class="input-group-text" id="basic-addon1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-calendar"
-                          viewBox="0 0 16 16"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
-                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-                          ></path>
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                          </path>
                         </svg>
                       </span>
                     </div>
-                    <span
-                      class="error"
-                      style="color: red"
-                      v-if="errors2.fechaPrimerToma"
-                      >{{ errors2.fechaPrimerToma }}</span
-                    >
+                    <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{ errors2.fechaPrimerToma
+                    }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -165,38 +104,20 @@
                     <!--  <input type="time" class="form-control inputHoraPriToma" name="" id="emailInput"
                       placeholder="Hora de la primera toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input
-                        type="time"
-                        class="form-control inputHoraPriToma"
-                        placeholder="18:00 Hrs"
-                        aria-label="Input group example"
-                        aria-describedby="basic-addon1"
-                        v-model="horaPrimerToma"
-                      />
+                      <input type="time" class="form-control inputHoraPriToma" placeholder="18:00 Hrs"
+                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaPrimerToma" />
                       <span class="input-group-text" id="basic-addon1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-alarm"
-                          viewBox="0 0 16 16"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-alarm" viewBox="0 0 16 16">
                           <path
-                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"
-                          />
+                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
                           <path
-                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"
-                          />
+                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                         </svg>
                       </span>
                     </div>
-                    <span
-                      class="error"
-                      style="color: red"
-                      v-if="errors2.horaPrimerToma"
-                      >{{ errors2.horaPrimerToma }}</span
-                    >
+                    <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{ errors2.horaPrimerToma
+                    }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -204,35 +125,19 @@
                     <!-- <input type="date" class="form-control inputFecSegToma" name="" id="emailInput"
                       placeholder="Fecha de la segunda toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input
-                        type="date"
-                        class="form-control inputFecSegToma"
-                        placeholder="18:00 Hrs"
-                        aria-label="Input group example"
-                        aria-describedby="basic-addon1"
-                        v-model="fechaSegundaToma"
-                      />
+                      <input type="date" class="form-control inputFecSegToma" placeholder="18:00 Hrs"
+                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaSegundaToma" />
                       <span class="input-group-text" id="basic-addon1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-calendar"
-                          viewBox="0 0 16 16"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
-                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-                          ></path>
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                          </path>
                         </svg>
                       </span>
                     </div>
-                    <span
-                      class="error"
-                      style="color: red"
-                      v-if="errors2.fechaSegundaToma"
-                      >{{ errors2.fechaSegundaToma }}</span
-                    >
+                    <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma
+                    }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -240,38 +145,20 @@
                     <!-- <input type="time" class="form-control inputHoraSegToma" name="" id="emailInput"
                       placeholder="Hora de la segunda toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input
-                        type="time"
-                        class="form-control inputHoraSegToma"
-                        placeholder="18:00 Hrs"
-                        aria-label="Input group example"
-                        aria-describedby="basic-addon1"
-                        v-model="horaSegundaToma"
-                      />
+                      <input type="time" class="form-control inputHoraSegToma" placeholder="18:00 Hrs"
+                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaSegundaToma" />
                       <span class="input-group-text" id="basic-addon1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-alarm"
-                          viewBox="0 0 16 16"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-alarm" viewBox="0 0 16 16">
                           <path
-                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"
-                          />
+                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
                           <path
-                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"
-                          />
+                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                         </svg>
                       </span>
                     </div>
-                    <span
-                      class="error"
-                      style="color: red"
-                      v-if="errors2.horaSegundaToma"
-                      >{{ errors2.horaSegundaToma }}</span
-                    >
+                    <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma
+                    }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -325,7 +212,7 @@ export default {
     };
   },
   methods: {
-    validarHora1: function (event) {
+    /* validarHora1: function (event) {
       event.preventDefault();
       var horaIngresada = moment(this.hora, "HH:mm:ss");
       var horaActual = moment(this.horaActual, "HH:mm:ss");
@@ -336,7 +223,7 @@ export default {
       } else {
         alert("La hora ingresada es igual a la hora actual");
       }
-    },
+    }, */
 
     validarHora: function (event) {
       this.errors2 = {};
@@ -344,27 +231,25 @@ export default {
       event.preventDefault();
       let valida = true;
       const fechaActual = moment().format("L");
-      const horaIngresada = moment(this.hora, "HH:mm:ss");
-      const horaActual = moment(this.horaActual, "HH:mm:ss");
+      const horaIngresada = moment(this.hora, "HH:mm");
+      const horaActual = moment(this.horaActual, "HH:mm");
 
       //Valida que el campo fecha colonoscopia no este vació y sea una fechs
       if (!this.fechaEstudioColonos) {
         this.errors2.fechaEstudioColonos =
           "La fecha de la colonoscopia es obligatoria";
-        valid2 = false;
+        valida = false;
       } else if (moment(this.fechaEstudioColonos).isBefore(fechaActual)) {
         this.errors2.fechaEstudioColonos =
           "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
-        valid2 = false;
+        valida = false;
       }
 
-      if(!this.horaIngresada){
-        this.errors2.horaColonoscopia =
-          "La hora de la colonoscopia es obligatoria";
-        valid2 = false;
-      }else if (horaIngresada.isAfter(horaActual)) {
-        this.errors2.horaColonoscopia =
-          "La hora ingresada es posterior a la hora actual";
+      if (!horaIngresada) {
+        this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
+        valida = false;
+      } else if (horaIngresada.isBefore(horaActual)) {
+        this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
         valida = false;
         /* alert("La hora ingresada es posterior a la hora actual"); */
       } /* else if (horaIngresada.isBefore(horaActual)) {
@@ -373,6 +258,94 @@ export default {
         alert("La hora ingresada es anterior a la hora actual");
         valida = false;
       } */
+      else {
+        delete this.errors2['horaIngresada'];
+
+      }
+
+      // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
+      if (!this.fechaPrimerToma) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma es obligatoria";
+      } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma no es válida";
+      } else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+      }  else if (moment(this.fechaPrimerToma).isBefore(fechaActual)) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+      }/* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
+            } */
+      else {
+        delete this.errors2['fechaPrimerToma'];
+
+      }
+
+      // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
+      if (!this.fechaSegundaToma) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma es obligatoria";
+        valid2 = false;
+      } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma no es válida";
+        valid2 = false;
+      } else if (moment(this.fechaPrimerToma).isBefore(this.fechaSegundaToma)) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma  debe ser antes a la fecha de la primer toma";
+      }
+
+      // Validar que el campo fecha dos sea posterior al campo fecha uno
+      // Usando el método isAfter de moment.js para comparar las fechas
+      // https://momentjs.com/docs/#/query/is-after/
+      else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
+        valid2 = false;
+      }
+      /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
+                valid2 = false;
+            } */
+      // Validar que el campo hora uno no esté vacío y sea una hora válida
+      if (!this.horaPrimerToma) {
+        this.errors2.horaPrimerToma =
+          "La hora de la primer toma es obligatoria";
+        valid2 = false;
+      } /* else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
+        valid2 = false;
+      } */  else if (this.horaPrimerToma.isBefore(horaIngresada)) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
+        valid2 = false;
+        /* alert("La hora ingresada es posterior a la hora actual"); */
+      } else if (this.horaPrimerToma.isAfter(horaActual)) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
+        valid2 = false;
+        /* alert("La hora ingresada es posterior a la hora actual"); */
+      }
+      else {
+        delete this.errors2['horaPrimerToma'];
+      }
+
+      // Validar que el campo hora dos no esté vacío y sea una hora válida
+      if (!this.horaSegundaToma) {
+        this.errors2.horaSegundaToma =
+          "La hora de la segunda toma es obligatoria";
+        valid2 = false;
+      } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
+        this.errors2.horaSegundaToma =
+          "La hora de la segunda toma no es válida";
+        valid2 = false;
+      } else if (moment(this.horaPrimerToma, "HH:mm").isAfter(this.horaSegundaToma,"HH:mm")) {
+        this.errors2.horaSegundaToma = "La hora dos debe ser posterior a la hora uno";
+        valid2 = false;
+      }
+
     },
 
     validateDate() {
@@ -626,7 +599,9 @@ export default {
   },
   /* mixins: [VueMoment], */
   mounted: function () {
-    this.horaActual = moment().format("HH:mm:ss");
+    this.horaActual = moment().format("HH:mm");
+
+    /* this.horaIngresada = moment().format("HH:mm"); */
   },
 };
 </script>
@@ -1376,8 +1351,7 @@ input.inputFechaEstudioCrear[type="date"]:before {
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png")
-    no-repeat;
+  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
   background: none;
   width: 20px;
   height: 22px;
@@ -1386,8 +1360,7 @@ input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png")
-    no-repeat;
+  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
   background: none;
   width: 20px;
   height: 22px;
@@ -1437,8 +1410,7 @@ input.inputFecPriToma[type="date"]:before {
 
 input.inputFecPriToma[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png")
-    no-repeat;
+  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
   background: none;
   width: 20px;
   height: 20px;
@@ -1447,8 +1419,7 @@ input.inputFecPriToma[type="date"]::-webkit-calendar-picker-indicator {
 
 input.inputFecPriToma[type="date"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png")
-    no-repeat;
+  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
   background: none;
   width: 20px;
   height: 20px;
@@ -1497,8 +1468,7 @@ input.inputFecSegToma[type="date"]:before {
 
 input.inputFecSegToma[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png")
-    no-repeat;
+  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
   background: none;
   width: 20px;
   height: 20px;
@@ -1507,8 +1477,7 @@ input.inputFecSegToma[type="date"]::-webkit-calendar-picker-indicator {
 
 input.inputFecSegToma[type="date"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png")
-    no-repeat;
+  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
   background: none;
   width: 20px;
   height: 20px;
@@ -1565,8 +1534,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     margin-right: auto; */
 }
 
-.contenedorMovil {
-}
+.contenedorMovil {}
 
 .fila {
   display: none;
@@ -2086,6 +2054,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 
 /* } */
 @media (min-width: 768px) {
+
   /*Estilos plam*/
   /* inicia estilos para ventana modal editar */
   .tituloModal {
@@ -2589,6 +2558,5 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {
-}
+@media screen and (max-height: 500px) {}
 </style>
