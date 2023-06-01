@@ -878,7 +878,29 @@ export default {
             if (Object.keys(this.errors).length > 0) {
                 return
             } else {
+                axios.post('https://intestinolimpio.onrender.com/api/v1/data/estados', {
+                    firstName: 'Fred',
+                    lastName: 'Flintstone'
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                 this.$router.push('/crear');
+
+                cosn
+                axios.post('https://intestinolimpio.onrender.com/api/v1/user',data)
+                    .then(
+                        res => {
+                            console.log(res)
+                        }
+                    ).catch(
+                        err => {
+                            console.log(err)
+                        }
+                    )
             }
         },
     },
@@ -2850,4 +2872,5 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {}</style>
+@media screen and (max-height: 500px) {}
+</style>

@@ -22,9 +22,44 @@
                     <div class="col-xl-6 col-sm-6 col-md-6 text-center">
                         <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
                     </div>
+
+                    <div class="col-xl-6 col-sm-6 col-md-6">
+                        <!-- <form @submit.prevent="getMealData">
+                            <label for="meal_id">ID de comida:</label>
+                            <input type="text" id="meal_id" v-model="meal_id">
+                            <button type="submit">Obtener datos de comida</button>
+                        </form>
+                        <div v-if="mealData">
+                            <h2>Datos de la comida:</h2>
+                            <p>Nombre: {{ mealData.strMeal }}</p>
+                            <p>Categoría: {{ mealData.strCategory }}</p>
+                            <p>Área: {{ mealData.strArea }}</p>
+                        </div>
+                        <div v-if="error">
+                            <h2>Error:</h2>
+                            <p>{{ error }}</p>
+                        </div> -->
+                        <form @submit.prevent="getUserData">
+                            <label for="id_user">ID de usuario:</label>
+                            <input type="text" id="id_user" v-model="id_user">
+                            <button type="submit">Obtener datos de usuario</button>
+                        </form>
+                        <div v-if="userData">
+                            <h2>Datos del usuario:</h2>
+                            <p>Nombre del Médico: {{ userData.nombre_medico }}</p>
+                            <p>Apellido del Médico: {{ userData.apellido_medico }}</p>
+                        </div>
+                        <div v-if="error">
+                            <h2>Error:</h2>
+                            <p>{{ error }}</p>
+                        </div>
+                    </div>
                     <div class="col-xl-6 col-sm-6 col-md-6">
 
-                        <form action="" class="row mb-3">
+                        <form action="" class="row mb-3" @submit.prevent="enviarDatos">
+                            <!-- <div class="col-12 mb-3 ms-3">
+                                <input type="text" v-model="info" />
+                            </div> -->
                             <div class="col-12 mb-3 ms-3">
                                 <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
                             </div>
@@ -32,13 +67,13 @@
                                 <input class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number" maxlength="4" id="inputLadaperfil" placeholder="+52"
-                                    v-bind:disabled="!inputTelPerfilEnabled">
+                                    v-bind:disabled="!inputTelPerfilEnabled" v-model="inputTelPerfilEnabled">
                             </div>
                             <div class="col-8 mb-3">
                                 <input class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number" maxlength="10" name="" id="inputNumeroCel" placeholder="55467841245"
-                                    onkeypress="return validateKey(event);" v-bind:disabled="!inputLadaEnabled" >
+                                    v-bind:disabled="!inputLadaEnabled" v-model="inputLadaEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
@@ -49,10 +84,20 @@
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <select id="selectEstadoPerfil" class="form-select" aria-label="Default select example"
-                                v-bind:disabled="!selectEstadoEnabled">
-                                    <option selected value="#">Estado</option>
+                                <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled"
+                                    v-model="selectEstadoEnabled">
+                                    <option value="" disabled selected>Estaado</option>
+                                    <option v-for="option in options" :key="option.value">
+                                        {{ option.text }}
+                                    </option>
                                 </select>
+                                <!-- <select v-model="estado" id="select_estado" class="form-select" @change="validarEstado">
+                                    <option value="" disabled selected>Seleccione un estado
+                                    </option>
+                                    <option v-for="option in options" :key="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select> -->
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
@@ -63,8 +108,9 @@
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <input type="email" class="form-control" name="" id="inputCiudadPerfil"
-                                    placeholder="Mexicali"  v-bind:disabled="!inputCiudadEnabled">
+                                <input type="text" class="form-control" name="" id="inputCiudadPerfil"
+                                    placeholder="Mexicali" v-bind:disabled="!inputCiudadEnabled"
+                                    v-model="inputCiudadEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" class="btnEditarPlan" v-on:click.prevent="enableInputCiudad"></a>
@@ -77,11 +123,11 @@
                                 <input name="edad" class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number" maxlength="3" id="inputEdad" placeholder="18"
-                                    onkeypress="return validateKey(event);"  v-bind:disabled="!inputEdadEnabled">
+                                    v-bind:disabled="!inputEdadEnabled" v-model="inputEdadEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"  v-on:click.prevent="enableInputEdad
-                                "></a>
+                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan" v-on:click.prevent="enableInputEdad
+                                    "></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-4 col-form-label">Nombre del médico
@@ -89,12 +135,13 @@
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <input type="email" class="form-control" name="" id="inputNombMedTrat"
-                                    placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTratEnabled">
+                                <input type="text" class="form-control" name="" id="inputNombMedTrat"
+                                    placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTratEnabled"
+                                    v-model="inputNomMedTratEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
-                                v-on:click.prevent="enableInputNomMedTrat"></a>
+                                    v-on:click.prevent="enableInputNomMedTrat"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-4 col-form-label"> Apellidos del médico
@@ -103,7 +150,8 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputApellMedTra"
-                                    placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTratEnabled">
+                                    placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTratEnabled"
+                                    v-model="inputApeMedTratEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" class="btnEditarPlan" v-on:click.prevent="enableInputApeMedTrat"></a>
@@ -114,66 +162,65 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="password" id="inputClaAcceso" class="form-control" name="" placeholder="****"
-                                v-bind:disabled="!inputClaveAccesoEnabled">
+                                    v-bind:disabled="!inputClaveAccesoEnabled" v-model="inputClaveAccesoEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpClaAcceso" class="btnEditarPlan"
-                                v-on:click.prevent="enableInputClaveAcceso"></a>
+                                    v-on:click.prevent="enableInputClaveAcceso"></a>
                             </div>
-                        </form>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        He leído y
-                                        acepto los términos, condiciones y el aviso de
-                                        privacidad.
-                                        <p>*El uso de esta plataforma no sustituye bajo ninguna
-                                            circunstancia la recomendación de su médico tratante.</p>
-                                    </label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            He leído y
+                                            acepto los términos, condiciones y el aviso de
+                                            privacidad.
+                                            <p>*El uso de esta plataforma no sustituye bajo ninguna
+                                                circunstancia la recomendación de su médico tratante.</p>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
-                                <a href="" type="button" class="btnGuardar rounded text-center" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal2">GUARDAR</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal2" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header modalHeaderModificar">
-                                                <!-- <div class="contenidoDerecha"> -->
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                                <!-- </div> -->
+                            <div class="row">
+                                <div class="col">
+                                    <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
+                                    <button href="" type="submit" class="btnGuardar rounded text-center">GUARDAR</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header modalHeaderModificar">
+                                                    <!-- <div class="contenidoDerecha"> -->
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                    <!-- </div> -->
 
-                                            </div>
-                                            <div class="modal-body" style="border: none;">
-                                                <p class="text-center parrafoVaModificarInfor">Va a modificar la
-                                                    información de ingreso, esto
-                                                    podría afectar las alertas vía WhatsApp</p>
-                                                <p class="parrafoEstasSeguro text-center">¿Está seguro de que quiere
-                                                    continuar?</p>
+                                                </div>
+                                                <div class="modal-body" style="border: none;">
+                                                    <p class="text-center parrafoVaModificarInfor">Va a modificar la
+                                                        información de ingreso, esto
+                                                        podría afectar las alertas vía WhatsApp</p>
+                                                    <p class="parrafoEstasSeguro text-center">¿Está seguro de que quiere
+                                                        continuar?</p>
 
-                                            </div>
-                                            <div class="modal-footer" style="border: none;">
+                                                </div>
+                                                <div class="modal-footer" style="border: none;">
 
-                                                <button type="button" class="rounded btnAceptarModalModifica"
-                                                    data-bs-dismiss="modal">ACEPTAR</button>
-                                                <br><!-- <br> -->
-                                                <button type="button"
-                                                    class="rounded btnCancelarModalModifica">CANCELAR</button>
+                                                    <button type="button" class="rounded btnAceptarModalModifica"
+                                                        data-bs-dismiss="modal">ACEPTAR</button>
+                                                    <br><!-- <br> -->
+                                                    <button type="button"
+                                                        class="rounded btnCancelarModalModifica">CANCELAR</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -184,6 +231,7 @@
 <script type="text/javascript" src="../js/jspdf.min.js"></script>
 <script>
 import moment from 'moment';
+import axios from "axios";
 
 export default {
     name: 'Perfil',
@@ -210,9 +258,79 @@ export default {
             inputNomMedTratEnabled: false,
             inputApeMedTratEnabled: false,
             inputClaveAccesoEnabled: false,
+
+            inputLadaEnabled: false,
+            inputTelPerfilEnabled: false,
+            selectEstadoEnabled: false,
+            inputCiudadEnabled: false,
+            inputEdadEnabled: false,
+            inputNomMedTratEnabled: false,
+            inputApeMedTratEnabled: false,
+            inputClaveAccesoEnabled: false,
+
+            info: null,
+            options: [],
+
+            id_user: '',
+            userData: null,
+            error: null,
+
+            meal_id: '',
+      mealData: null,
+      error: null,
         };
     },
+    mounted() {
+        // Consumir una API 
+        axios
+            .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+            .then((response) => (this.info= response.data.bpi.USD.rate));
+        axios
+            .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
+            .then((response) => {
+                this.options = response.data.data.map((estado) => ({
+                    text: estado.nombre,
+                    value: estado.clave,
+                }));
+            });
+    },
     methods: {
+        getUserData() {
+            axios.get('https://intestinolimpio.onrender.com/api/v1/data/estados', {
+                params: {
+                id_user: this.id_user,
+                },
+            })
+            .then(response => {
+            if (response.data.length === 0) {
+                // La API no contiene datos
+                this.error = 'La API no contiene datos';
+            } else {
+                // La API contiene datos
+                this.userData = response.data;
+            }
+            })
+            .catch(error => {
+            // Se produjo un error durante la solicitud
+            this.error = error.message;
+            });
+    },
+    getMealData() {
+      axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
+        .then(response => {
+          if (response.data.meals === null) {
+            // La API no contiene datos
+            this.error = 'La API no contiene datos';
+          } else {
+            // La API contiene datos
+            this.mealData = response.data.meals[0];
+          }
+        })
+        .catch(error => {
+          // Se produjo un error durante la solicitud
+          this.error = error.message;
+        });
+    },
         enableInput1() {
             this.input1Enabled = true;
         },
@@ -244,6 +362,46 @@ export default {
         enableInputClaveAcceso(){
             this.inputClaveAccesoEnabled = true;
         },
+        enviarDatos(){
+            /* this.errors = {};
+            this.enableInputLadaNumero();
+            this.enableSelectEstado();
+            this.enableInputCiudad();
+            this.enableInputEdad();
+            this.enableInputNomMedTrat();
+            this.enableInputApeMedTrat();
+            this.enableInputClaveAcceso(); */
+            axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
+                params: {
+                    id_user: 'your_id_user'
+                }
+            })
+            .then(response => {
+            if (response.data.length === 0) {
+                // La API no contiene datos
+                console.log('La API no contiene datos');
+            } else {
+                // La API contiene datos
+                console.log(response.data);
+            }
+            })
+            .catch(error => {
+            // Se produjo un error durante la solicitud
+            console.log(error);
+            });
+            const data = {
+                inputLadaEnabled: this.inputLadaEnabled,
+                inputTelPerfilEnabled: this.inputTelPerfilEnabled,
+                selectEstadoEnabled: this.selectEstadoEnabled,
+                inputCiudadEnabled: this.inputCiudadEnabled,
+                inputEdadEnabled: this.inputEdadEnabled,
+                inputNomMedTratEnabled: this.inputNomMedTratEnabled,
+                inputApeMedTratEnabled: this.inputApeMedTratEnabled,
+                inputClaveAccesoEnabled: this.inputClaveAccesoEnabled,
+
+            };
+            console.log(data);
+        }
     },
     computed: {
     },
