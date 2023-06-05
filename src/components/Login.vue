@@ -1,48 +1,7 @@
 <template>
     <div class="container">
-        <div class="container">
-            <div class="row">
-                <!-- <form @submit.prevent="procesarFormulario">
-                    <input type="text" class="form-control my-2" placeholder="Ingrese nombre" v-model.trim="tarea.nombre">
 
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="check-1" class="form-check-input" v-model="tarea.categorias"
-                            value="javascript">
-                        <label for="check-1" class="form-check-label">Javascript</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="check-2" class="form-check-input" v-model="tarea.categorias"
-                            value="node js">
-                        <label for="check-2" class="form-check-label">Node.js</label>
-                    </div>
-
-                    <div class="mt-2">
-                        <div class="form-check form-check-inline">
-                            <input type="radio" id="radio-1" class="form-check-input" value="urgente"
-                                v-model="tarea.estado">
-                            <label for="radio-1" class="form-check-label">Urgente</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" id="radio-2" class="form-check-input" value="relax" v-model="tarea.estado">
-                            <label for="radio-2" class="form-check-label">Relax</label>
-                        </div>
-                    </div>
-
-                    <div class="mt-2">
-                        <input type="number" class="form-control" v-model.number="tarea.numero">
-                    </div>
-
-                    <button class="btn btn-dark mt-2 btn-block" type="submit" :disabled="bloquear">
-                        Procesar
-                    </button>
-                </form> -->
-                <!-- <hr>
-                <p>
-                    {{ tarea }}
-                </p> -->
-            </div>
-        </div>
-        <br><br>
+        <br><!-- <br> -->
         <div class="row">
             <div class="col-xl-6 col-sm-6 col-md-6">
             </div>
@@ -50,13 +9,12 @@
                 <h1 class="tituloPrincipal text-center">Intestino Limpio</h1>
             </div>
         </div>
-
-
         <div class="row">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-sm-6 col-md-6 text-center">
-                        <img src="../assets/img/web/Enmascarar grupo 2.png" class="img-fluid" alt="no hay imagen">
+                        <img src="../assets/img/web/Enmascarar grupo 2.png" class="img-fluid imgNaranjin"
+                            alt="no hay imagen">
                     </div>
                     <div class="col-xl-6 col-sm-6 col-md-6">
                         <!-- eslint-disable-next-line max-len -->
@@ -74,8 +32,7 @@
                         <!-- eslint-disable-next-line max-len -->
                         <p class="m-2 parrafoCreaPlanToma">Si ya creó su plan antes, dé clic en iniciar sesión.
                         </p>
-                        <div class="container">
-
+                        <div class="container" style="margin: 0; padding: 0;">
                             <div class="row">
                                 <div class="col">
                                     <!-- eslint-disable-next-line max-len -->
@@ -92,7 +49,7 @@
                                             <!-- eslint-disable-next-line max-len -->
                                             <div id="flush-collapseOne" class="accordion-collapse collapse"
                                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
+                                                <div class="accordion-body" style="margin: 0; padding: 0;">
                                                     <!-- <form @submit.prevent="submitForm">
                                                         <label>
                                                             Nombre:
@@ -113,76 +70,84 @@
                                                         <button type="submit">Enviar</button>
                                                     </form> -->
                                                     <!-- eslint-disable-next-line max-len -->
-                                                    <form @submit.prevent="submitForm()">
-                                                        <div class="col-12 col-md-12">
-                                                            <!-- <input type="tel" class="form-control" id="nombre"
+                                                    <br>
+                                                    <div class="container">
+                                                        <form @submit.prevent="submitForm()">
+                                                            <div class="col-12 col-md-12">
+                                                                <!-- <input type="tel" class="form-control" id="nombre"
                                                                 placeholder="Número de celular" required
                                                                 pattern="[0-9]{7,12}" minlength="7" maxlength="10"
                                                                 title="El campo número celular es obligatorio">
                                                             <input type="submit" value="Enviar"> -->
-                                                            <!-- eslint-disable-next-line max-len -->
-                                                            <input type="tel" class="form-control" v-model="telefono"
-                                                                @input="validateTelefono" placeholder="Número de celular"
-                                                                pattern="^[0-9]+" minlength="7" maxlength="14">
-                                                            <span class="error" style="color: red;"
-                                                                v-if="errors.telefono">{{ errors.telefono
-                                                                }}</span>
-                                                            <!-- <span class="error" v-else style="color: green"></span> -->
-                                                            <!-- <span class="correct" style="color: green;" v-else></span> -->
-                                                            <!-- <p class="mensajes mt-2" id="mensajes" style="color:red;">
+                                                                <!-- eslint-disable-next-line max-len -->
+                                                                <input type="tel" class="form-control" v-model="telefono"
+                                                                    @input="validateTelefono"
+                                                                    placeholder="Número de celular" pattern="^[0-9]+"
+                                                                    minlength="7" maxlength="14">
+                                                                <span class="error" style="color: red;"
+                                                                    v-if="errors.telefono">{{ errors.telefono
+                                                                    }}</span>
+                                                                <!-- <span class="error" v-else style="color: green"></span> -->
+                                                                <!-- <span class="correct" style="color: green;" v-else>Telefono
+                                                                valido</span> -->
+                                                                <!-- <p class="mensajes mt-2" id="mensajes" style="color:red;">
                                                             </p> -->
-                                                        </div>
-                                                        <br>
-                                                        <div class="col-xl-12 col-md-6">
-                                                            <div class="input-group input-group-md">
-                                                                <input :type="inputTypeIcon" class="form-control"
-                                                                    v-model="claveAcceso" @input="validateClaveAcceso"
-                                                                    placeholder="Escriba una clave de acceso"
-                                                                    maxlength="11">
-                                                                <button class="input-group-text"
-                                                                    @click.prevent="ToggleInputIcon">
-                                                                    <span v-if="inputTypeIcon === 'password'">
-                                                                        <i class="fas fa-eye"></i>
-                                                                    </span>
-                                                                    <span v-else>
-                                                                        <i class="fas fa-eye-slash"></i>
-                                                                    </span>
-                                                                </button>
                                                             </div>
-                                                            <span class="error mt-3" style="color: red; margin-top: 3px;"
-                                                                v-if="errors.claveAcceso">{{ errors.claveAcceso }}</span>
-                                                            <span class="error" v-else style="color: green"></span>
-                                                        </div>
-                                                        <br>
-                                                        <div class="col-xl-12 col-md-6">
-                                                            <div style="display: flex; flex-direction: row-reverse;">
-                                                                <router-link href="" to="/olvidar"
-                                                                    style="font-family: 'OpenSans-Bold'; color: #1155CC;">
-                                                                    <u>Olvidé mi
-                                                                        contraseña</u></router-link>
-                                                            </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="col-xl-12 col-md-6">
-                                                            <div class="contenidoCentrado">
-                                                                <div style="display: flex; flex-direction: row-reverse;">
-                                                                    <!--  <input type="submit" value="CONTINUAR"
-                                                                        class="btnContinuar rounded"> -->
-                                                                    <!-- <router-link class="btnContinuar rounded" to="/crear"
-                                                                        tag="button">CONTINUAR</router-link> -->
-                                                                    <button type="submit"
-                                                                        class="btnContinuar rounded">CONTINUAR</button>
-                                                                    <!-- <button :disabled="bloquear"
-                                                                    class=" rounded">CONTINUAR</button> -->
-                                                                    <!-- <router-link class="btnContinuar rounded" to="/crear"
-                                                                        tag="button" type="submit">CONTINUAR</router-link> -->
-                                                                    <!-- <button  v-on:click="submitForm">continuar e ir a vista crear</button> -->
+                                                            <br>
+                                                            <div class="col-xl-12 col-md-6">
+                                                                <div class="input-group input-group-md">
+                                                                    <input :type="inputTypeIcon" class="form-control"
+                                                                        v-model="claveAcceso" @input="validateClaveAcceso"
+                                                                        placeholder="Escriba una clave de acceso"
+                                                                        maxlength="11">
+                                                                    <button class="input-group-text"
+                                                                        @click.prevent="ToggleInputIcon">
+                                                                        <span v-if="inputTypeIcon === 'password'">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </span>
+                                                                        <span v-else>
+                                                                            <i class="fas fa-eye-slash"></i>
+                                                                        </span>
+                                                                    </button>
                                                                 </div>
-                                                                <br>
+                                                                <span class="error mt-3"
+                                                                    style="color: red; margin-top: 3px;"
+                                                                    v-if="errors.claveAcceso">{{ errors.claveAcceso
+                                                                    }}</span>
+                                                                <span class="error" v-else style="color: green"></span>
                                                             </div>
-                                                        </div>
-                                                        <br>
-                                                    </form>
+                                                            <br>
+                                                            <div class="col-xl-12 col-md-6">
+                                                                <div style="display: flex; flex-direction: row-reverse;">
+                                                                    <router-link href="" to="/olvidar"
+                                                                        style="font-family: 'OpenSans-Bold'; color: #1155CC;">
+                                                                        <u>Olvidé mi
+                                                                            contraseña</u></router-link>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="col-xl-12 col-md-6">
+                                                                <div class="contenidoCentrado">
+                                                                    <div
+                                                                        style="display: flex; flex-direction: row-reverse;">
+                                                                        <!--  <input type="submit" value="CONTINUAR"
+                                                                        class="btnContinuar rounded"> -->
+                                                                        <!-- <router-link class="btnContinuar rounded" to="/crear"
+                                                                        tag="button">CONTINUAR</router-link> -->
+                                                                        <button type="submit"
+                                                                            class="btnContinuar rounded">CONTINUAR</button>
+                                                                        <!-- <button :disabled="bloquear"
+                                                                    class=" rounded">CONTINUAR</button> -->
+                                                                        <!-- <router-link class="btnContinuar rounded" to="/crear"
+                                                                        tag="button" type="submit">CONTINUAR</router-link> -->
+                                                                        <!-- <button  v-on:click="submitForm">continuar e ir a vista crear</button> -->
+                                                                    </div>
+                                                                    <br>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,8 +163,9 @@
                                             </h2>
                                             <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                                 aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
+                                                <div class="accordion-body" style="margin:0; padding: 0;">
                                                     <div class="container">
+                                                        <br>
                                                         <form @submit.prevent="submitFormCrearPlan()">
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-3">
@@ -221,9 +187,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-4 mb-3">
+                                                                <div class="col-md-6 mb-3">
                                                                     <select id="lada" class="form-select"
-                                                                        v-model="selectedLada" @change="validarLada">
+                                                                        v-model="selectedLada">
                                                                         <option value="" disabled selected>Seleccione una
                                                                             lada
                                                                         </option>
@@ -243,7 +209,7 @@
                                                                         }}</span>
 
                                                                 </div>
-                                                                <div class="col-8 mb-3">
+                                                                <div class="col-md-6 mb-3">
                                                                     <input type="text" class="form-control" name="telefono"
                                                                         id="telefonoCel" placeholder="Telefono celular"
                                                                         v-model="telefonoCelular"
@@ -258,7 +224,6 @@
                                                                         }}</span>
                                                                     <span v-else style="color: green;">{{
                                                                         errors.telefonoCelular }}</span>
-
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mb-3">
@@ -437,6 +402,7 @@
                                                                     el <a href="">aviso de privacidad</a>
                                                                 </label>
                                                             </div>
+                                                            <br>
                                                             <div class="contenidoCentrado">
                                                                 <!-- <a style="cursor: pointer;" id="btnContinuarForm"
                                                                     class="btnContinuar rounded">Continuar</a> -->
@@ -576,10 +542,10 @@ export default {
                     text: estado.nombre,
                     value: estado.clave,
                 }));
+            })
+            .catch((error) => {
+                console.log(error);
             });
-        /* .catch((error) => {
-            console.log(error);
-        }); */
         /* axios
             .get('https://api.coindesk.com/v1/bpi/currentprice.json')
             .then(response => (this.info = response.data.bpi)) */
@@ -650,10 +616,12 @@ export default {
             if (Object.keys(this.errors).length > 0) {
                 return
             } else {
-                this.$router.push('/crear');
+                /* this.$router.push('/crear'); */
+                this.$router.push('/consultar');
             }
         },
         validarPaisLada() {
+            let valida = true;
             // Validar los campos del formulario
             this.errors.selectedCountry = '';
             this.errors.selectedLada = '';
@@ -683,6 +651,7 @@ export default {
             
         }, */
         validarTelefonoCelular() {
+            let valida = true;
             // Validar los campos del formulario
             this.errors.telefonoCelular = '';
             this.telefonoCelular = this.telefonoCelular.replace(/[^0-9]/g, "");
@@ -707,6 +676,7 @@ export default {
         },
         validarEstado() {
             this.errors.estado = '';
+            let valida = true;
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.estado) {
                 this.errors.estado = "El estado es obligatorio";
@@ -720,19 +690,25 @@ export default {
         validarCiudad() {
             // Validar los campos del formulario
             this.errors.ciudad = '';
+            let valida = true;
             /** Expresion regular para solo letras */
             /* const regex = /^[a-zA-Z]+$/; */
-            this.ciudad = this.ciudad.replace(/[^a-zA-Z]/g, '');
+            this.nomMedTrat = this.nomMedTrat.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+
 
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.ciudad) {
                 this.errors.ciudad = "La ciudad es obligatoria";
                 valida = false;
-            } else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
-                /* this.ciudad = this.ciudad.replace(/[^a-zA-Z]/g, ''); */
+            } /* else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
                 this.errors.ciudad = 'El nombre del médico tratante solo debe contener solo letras';
                 valida = false;
-            } else {
+            } */ else if (this.ciudad.length > 80) {
+                this.errors.ciudad =
+                    "La ciudad debe tener máximo 80 caracteres";
+                valida = false;
+            }
+            else {
                 delete this.errors['ciudad'];
             }
         },
@@ -740,6 +716,7 @@ export default {
         validarEdad() {
             // Validar los campos del formulario
             this.errors.edad = '';
+            let valida = true;
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.edad) {
                 this.errors.edad = "La edad es obligatoria";
@@ -754,9 +731,10 @@ export default {
         validarPeso() {
             // Validar los campos del formulario
             this.errors.peso = '';
+            let valida = true;
             // Validar que el campo peso no esté vacío y sea un número positivo
             if (!this.peso) {
-                this.errors.peso = "El peso es obligatoria";
+                this.errors.peso = "El peso es obligatorio";
                 valida = false;
             } else if (this.peso <= 0) {
                 this.errors.peso = "El peso debe ser un número positivo";
@@ -768,10 +746,11 @@ export default {
         validarNomMedTrat() {
             // Validar los campos del formulario
             this.errors.nomMedTrat = '';
+            let valida = true;
             /* this.nomMedTrat = this.nomMedTrat.replace(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]/g,""); */
             /** Expresion regular para solo letras */
             /* const regex = /^[a-zA-Z]+$/; */
-            this.nomMedTrat = this.nomMedTrat.replace(/[^a-zA-Z\s]/g, '');
+            this.nomMedTrat = this.nomMedTrat.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
             // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
             if (!this.nomMedTrat) {
                 this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
@@ -795,7 +774,8 @@ export default {
         validarApeMedTrat() {
             // Validar los campos del formulario
             this.errors.apeMedTrat = '';
-            this.apeMedTrat = this.apeMedTrat.replace(/[^a-zA-Z\s]/g, '');
+            let valida = true;
+            this.apeMedTrat = this.apeMedTrat.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
 
             // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
             if (!this.apeMedTrat) {
@@ -817,6 +797,8 @@ export default {
         validarClaveAccessos() {
             // Validar los campos del formulario;
             this.errors.claveAccesos = '';
+            let valida = true;
+
             // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
             if (!this.claveAccesos) {
                 this.errors.claveAccesos = 'La clave de acceso es obligatoria';
@@ -834,6 +816,8 @@ export default {
         validarConfiClaveAccessos() {
             // Validar los campos del formulario;
             this.errors.confClaveAccesos = '';
+            let valida = true;
+
             // Validar que el campo confirmar no esté vacío y coincida con la contraseña
             if (!this.confClaveAccesos) {
                 this.errors.confClaveAccesos = "La confirmación de la clave acceso es obligatoria";
@@ -848,6 +832,7 @@ export default {
         },
         // Funcion pata actualizar la lada dependiendo de país seleccionado
         updateLada() {
+            let valida = true;
             if (this.selectedCountry === "Mexico") {
                 this.selectedLada = "+52";
                 valida = false;
@@ -861,6 +846,7 @@ export default {
         },
         submitFormCrearPlan() {
             this.errors = {};
+            const valida = true;
             // Validar los campos antes de enviar el formulario
             this.validarPaisLada();
             /* this.validarLada(); */
@@ -873,34 +859,40 @@ export default {
             this.validarApeMedTrat();
             this.validarClaveAccessos();
             this.validarConfiClaveAccessos();
+            const data = {
+                selectedCountry: this.selectedCountry,
+                selectedLada: this.selectedLada,
+                telefonoCelular: this.telefonoCelular,
+                estado: this.estado,
+                ciudad: this.ciudad,
+                edad: this.edad,
+                peso: this.peso,
+                nomMedTrat: this.nomMedTrat,
+                apeMedTrat: this.apeMedTrat,
+                claveAccesos: this.claveAccesos,
+                confClaveAccesos: this.confClaveAccesos,
 
+            };
+            console.table(data);
+            // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
+            axios.post('https://intestinolimpio.onrender.com/api/v1/user', data)
+                .then(
+                    res => {
+                        console.log(res)
+                    }
+                ).catch(
+                    err => {
+                        console.log(err)
+                    }
+                )
             // Comprobar si hay errores
             if (Object.keys(this.errors).length > 0) {
                 return
             } else {
-                axios.post('https://intestinolimpio.onrender.com/api/v1/data/estados', {
-                    firstName: 'Fred',
-                    lastName: 'Flintstone'
-                })
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                this.$router.push('/crear');
 
-                cosn
-                axios.post('https://intestinolimpio.onrender.com/api/v1/user',data)
-                    .then(
-                        res => {
-                            console.log(res)
-                        }
-                    ).catch(
-                        err => {
-                            console.log(err)
-                        }
-                    )
+                /* this.$router.push('/crear'); */
+                this.$router.push('/consultar');
+
             }
         },
     },
@@ -2367,7 +2359,19 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 /* Termina estilos para vista Peguntas frecuentes */
 
 /* } */
-@media (min-width: 768px) {
+@media screen and (max-width: 767px) {
+
+    /** */
+    .tituloPrincipal {
+        color: #FF9900;
+        font-family: 'OpenSans-Bold';
+        font-size: 35px;
+        /*  font-size: 100%; */
+    }
+
+    .imgNaranjin {
+        background-image: url("../assets/img/web/Enmascarar grupo 2.png");
+    }
 
     /*Estilos plam*/
     /* inicia estilos para ventana modal editar */
@@ -2377,6 +2381,63 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         font-size: 30px;
         text-align: center;
         /* fin de estilos para ventana modal editar */
+    }
+
+    .parrafoUno {
+        font-family: 'OpenSans-Regular';
+        font-size: 18px;
+        color: #707070;
+        text-align: left;
+        text-align: justify;
+    }
+
+    .parrafoUno span {
+        font-family: 'OpenSans-Bold';
+        font-size: 18px;
+        color: #707070;
+        text-align: left;
+        text-align: justify;
+    }
+
+    .parrafoNuestra {
+        font-family: 'OpenSans-Regular';
+        font-size: 18px;
+        color: #707070;
+        text-align: justify;
+    }
+
+    .parrafoGenera {
+        font-family: 'OpenSans-Regular';
+        font-size: 18px;
+        color: #707070;
+        text-align: justify;
+
+    }
+
+    .parrafoGenera span {
+        font-family: 'OpenSans-Bold';
+        font-size: 18px;
+        color: #FF9900;
+    }
+
+    .parrafoCreastePlanAntes {
+        font-family: 'OpenSans-Bold';
+        font-size: 18px;
+        color: #707070;
+    }
+
+    .parrafoGeneraProgramacion {
+        font-family: 'Segoe-UI-Bold';
+        font-size: 18px;
+        color: #4E4E4E;
+        text-align: center;
+    }
+
+    .parrafoCreaPlanToma {
+        font-family: 'Segoe-UI-Bold';
+        font-size: 18px;
+        color: #4E4E4E;
+        text-align: center;
     }
 
     .columnaUno {
@@ -2872,5 +2933,4 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {}
-</style>
+@media screen and (max-height: 500px) {}</style>

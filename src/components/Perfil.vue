@@ -23,8 +23,8 @@
                         <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
                     </div>
 
-                    <div class="col-xl-6 col-sm-6 col-md-6">
-                        <!-- <form @submit.prevent="getMealData">
+                    <!-- <div class="col-xl-6 col-sm-6 col-md-6">
+                        <form @submit.prevent="getMealData">
                             <label for="meal_id">ID de comida:</label>
                             <input type="text" id="meal_id" v-model="meal_id">
                             <button type="submit">Obtener datos de comida</button>
@@ -38,7 +38,7 @@
                         <div v-if="error">
                             <h2>Error:</h2>
                             <p>{{ error }}</p>
-                        </div> -->
+                        </div>
                         <form @submit.prevent="getUserData">
                             <label for="id_user">ID de usuario:</label>
                             <input type="text" id="id_user" v-model="id_user">
@@ -53,7 +53,7 @@
                             <h2>Error:</h2>
                             <p>{{ error }}</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-xl-6 col-sm-6 col-md-6">
 
                         <form action="" class="row mb-3" @submit.prevent="enviarDatos">
@@ -84,7 +84,7 @@
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled"
+                                <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled "
                                     v-model="selectEstadoEnabled">
                                     <option value="" disabled selected>Estaado</option>
                                     <option v-for="option in options" :key="option.value">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    v-on:click.prevent="enableSelectEstado"></a>
+                                    @click.prevent="selectEstadoEnabled = !selectEstadoEnabled"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
@@ -377,13 +377,13 @@ export default {
                 }
             })
             .then(response => {
-            if (response.data.length === 0) {
-                // La API no contiene datos
-                console.log('La API no contiene datos');
-            } else {
-                // La API contiene datos
-                console.log(response.data);
-            }
+                if (response.data.length === 0) {
+                    // La API no contiene datos
+                    console.log('La API no contiene datos');
+                } else {
+                    // La API contiene datos
+                    console.log(response.data);
+                }
             })
             .catch(error => {
             // Se produjo un error durante la solicitud

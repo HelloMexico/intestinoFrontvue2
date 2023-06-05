@@ -17,7 +17,7 @@
         <input type="time" name="hora" v-model="hora" />
         <input type="submit" value="Enviar" />
       </form> -->
-
+      <!-- <input type="time" id="time" name="time" v-model="time" @blur="validateTime"> -->
       <form name="formulario" id="formulario" v-on:submit="validarHora">
         <div class="container">
           <div class="row">
@@ -53,9 +53,11 @@
                         </svg>
                       </span>
                     </div>
+
                     <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
                       errors2.fechaEstudioColonos }}</span>
-                    <!-- <p>Fecha actual: {{ this.fechaActual }}</p> -->
+                    <p>Fecha actual: {{ this.fechaActual }}</p>
+                
                   </div>
                 </div>
                 <div class="row">
@@ -75,9 +77,10 @@
                         </svg>
                       </span>
                     </div>
-                    <span class="error" style="color: red" v-if="errors2.horaIngresada">{{ errors2.horaIngresada }}</span>
-                    <!-- <p>Hora ingresada colonoscopia: {{ hora }}</p>
-                    <p>Hora actual: {{ this.horaActual }}</p> -->
+                    <span class="error" style="color: red" v-if="errors2.hora ">{{ errors2.hora }}</span>
+                    <span class="error" style="color: red" v-if="errors2.horaIngresada ">{{ errors2.horaIngresada  }}</span>
+                    <!--  --><!-- <p>Hora ingresada colonoscopia: {{ horaIngresada }}</p> -->
+                    <p>Hora actual: {{ this.horaActual }}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -209,9 +212,21 @@ export default {
 
       hora: "", // la hora ingresada en el input
       horaActual: "", // la hora actual obtenida con moment.js
+      fechaActual: "",
+
+      time: ''
     };
   },
   methods: {
+    validateTime() {
+      var now = moment();
+      var inputTime = moment(this.time, 'HH:mm');
+
+      if (inputTime.isBefore(now)) {
+        alert('La hora seleccionada es anterior a la hora actual.');
+        this.time = '';
+      }
+    },
     /* validarHora1: function (event) {
       event.preventDefault();
       var horaIngresada = moment(this.hora, "HH:mm:ss");
@@ -230,56 +245,58 @@ export default {
       // Aquí irá el código para validar la hora ingresada y la hora actual
       event.preventDefault();
       let valida = true;
-      const fechaActual = moment().format("L");
-      const horaIngresada = moment(this.hora, "HH:mm");
-      const horaActual = moment(this.horaActual, "HH:mm");
-
+      const fechaActual = this.fechaActual ? moment(this.fechaActual,'YYYY-MM-DD') : '';
+      const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
+      const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
       //Valida que el campo fecha colonoscopia no este vació y sea una fechs
+      console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
+      
+
       if (!this.fechaEstudioColonos) {
         this.errors2.fechaEstudioColonos =
           "La fecha de la colonoscopia es obligatoria";
-        /* valida = false; */
-      } else if (moment(this.fechaEstudioColonos).isBefore(fechaActual)) {
+        valida = false;
+      } else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
         this.errors2.fechaEstudioColonos =
           "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
-        /* valida = false; */
+          valida = false;
       }
-
-      if (!horaIngresada) {
+      
+      if (horaIngresada === '') {
         this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
-        /* valida = false; */
-      } else if (horaIngresada.isBefore(horaActual)) {
-        this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
-        /* valida = false; */
-        /* alert("La hora ingresada es posterior a la hora actual"); */
-      } /* else if (horaIngresada.isBefore(horaActual)) {
-        this.errors2.horaColonoscopia =
-          "La hora ingresada es anterior a la hora actual";
-        alert("La hora ingresada es anterior a la hora actual");
         valida = false;
-      } */
+        
+      } else if (horaIngresada.isBefore(horaActual, 'hour')){
+        this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
+        valida = false;
+      }
       else {
         delete this.errors2['horaIngresada'];
-
+        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
       }
 
       // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
       if (!this.fechaPrimerToma) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma es obligatoria";
-        /* valida = false; */
+        valida = false;
       } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma no es válida";
-        /* valida = false; */
+        valida = false;
       } else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
-        /* valida = false; */
-      } else if (moment(this.fechaPrimerToma).isBefore(fechaActual)) {
+        valida = false;
+      }
+      else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+        valida = false;
+      }else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma debe ser posterior a la fecha actual";
-        /* valida = false; */
+        valida = false;
       }/* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
                 this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
             } */
@@ -292,25 +309,25 @@ export default {
       if (!this.fechaSegundaToma) {
         this.errors2.fechaSegundaToma =
           "La fecha de la segunda toma es obligatoria";
-        /* valida = false; */
+        valida = false;
       } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
         this.errors2.fechaSegundaToma =
           "La fecha de la segunda toma no es válida";
-        /* valida = false; */
-      } else if (moment(this.fechaPrimerToma).isBefore(this.fechaSegundaToma)) {
+        valida = false;
+      } else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
         this.errors2.fechaSegundaToma =
-          "La fecha de la segunda toma  debe ser antes a la fecha de la primer toma";
-        /* valida = false; */
+          "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
+        valida = false;
       }
 
       // Validar que el campo fecha dos sea posterior al campo fecha uno
       // Usando el método isAfter de moment.js para comparar las fechas
       // https://momentjs.com/docs/#/query/is-after/
-      else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
+      /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
         this.errors2.fechaSegundaToma =
           "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
-        /* valida = false; */
-      }
+        valida = false;
+      }*/
       /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
                 this.errors2.fechaSegundaToma =
                     "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
@@ -320,22 +337,24 @@ export default {
         delete this.errors2['fechaSegundaToma'];
       } */
       // Validar que el campo hora uno no esté vacío y sea una hora válida
+      let horaIng = moment(horaIngresada, "HH:mm")
+      let horaAct = moment(horaActual, "HH:mm") // 22:00
       if (!this.horaPrimerToma) {
         this.errors2.horaPrimerToma =
           "La hora de la primer toma es obligatoria";
-        /* valida = false; */
+        valida = false;
 
       } /* else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
         this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
         valid2 = false;
-      } */  else if (this.horaPrimerToma.isBefore(horaIngresada)) {
+      } */  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
         this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
-        /* valida = false; */
+        valida = false;
 
         /* alert("La hora ingresada es posterior a la hora actual"); */
-      } else if (this.horaPrimerToma.isAfter(horaActual)) {
+      } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
         this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
-        /* valida = false; */
+        valida = false;
 
         /* alert("La hora ingresada es posterior a la hora actual"); */
       }
@@ -347,16 +366,21 @@ export default {
       if (!this.horaSegundaToma) {
         this.errors2.horaSegundaToma =
           "La hora de la segunda toma es obligatoria";
-        /* valida = false; */
+        valida = false;
 
       } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
         this.errors2.horaSegundaToma =
           "La hora de la segunda toma no es válida";
-        /* valida = false; */
+        valida = false;
 
-      } else if (moment(this.horaPrimerToma, "HH:mm").isAfter(this.horaSegundaToma, "HH:mm")) {
-        this.errors2.horaSegundaToma = "La hora dos debe ser posterior a la hora uno";
-        /* valida = false; */
+      }else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct) ) {
+        this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
+        valida = false;
+
+        /* alert("La hora ingresada es posterior a la hora actual"); */
+      }else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm") )) {
+        this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
+        valida = false;
       }
 
     },
@@ -581,7 +605,7 @@ export default {
     // Obtener la fecha mínima para el campo fecha dos
     minDate() {
       // Si la fecha uno está vacía o no es válida, devolver null
-      if (
+      /*if (
         !this.fechaEstudioColonos ||
         !moment(this.fechaEstudioColonos, "YYYY-MM-DD", true).isValid()
       ) {
@@ -592,7 +616,7 @@ export default {
         return moment(this.fechaEstudioColonos)
           .add(1, "days")
           .format("YYYY-MM-DD");
-      }
+      }*/
     },
     // Obtener la hora mínima para el campo hora dos
     minTime() {
@@ -612,8 +636,9 @@ export default {
   },
   /* mixins: [VueMoment], */
   mounted: function () {
+   
     this.horaActual = moment().format("HH:mm");
-
+    this.fechaActual = moment().format("YYYY-MM-DD")
     /* this.horaIngresada = moment().format("HH:mm"); */
   },
 };
