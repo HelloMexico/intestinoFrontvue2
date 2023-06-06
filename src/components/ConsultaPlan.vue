@@ -2,13 +2,14 @@
     <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
     <div class="container">
         <div class="container" id="ignoreContent">
+            <br><br>
             <div class="row filaPlan">
                 <div class="col-2 col-md-2">
                     <a type="button" class="btnFlecha" href="index.html">
                     </a>
                 </div>
                 <div class="col-10 col-md-10">
-                    <h1 class="tituloPlanToma">Plan de tomas e hidrataciones</h1>
+                    <h1 class="tituloPlanToma" id="tituloPlan">Plan de tomas e hidrataciones</h1>
                 </div>
             </div>
             <div class="row filaPlanTabla">
@@ -18,7 +19,7 @@
             </div>
             <br>
             <!-- <div class="filaPlanTabla"> -->
-            <div class="container contenedorMovil ">
+            <div class="container contenedorMovil">
                 <div class="row">
                     <div class="col-10">
                         <div class="container border border-secondary border-1 border-end-0">
@@ -64,6 +65,16 @@
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
                                             hidrataciones</h1>
                                         <form>
+                                            <div class="p-fluid grid formgrid">
+                                                <div class="field col-12 md:col-4">
+                                                    <label for="icon">Fecha de
+                                                        estudio</label>
+                                                    <Calendar id="icon" :locale="es" v-model="date3" :showIcon="true" />
+                                                    <span class="error" style="color: red"
+                                                        v-if="errors2.fechaEstudioColonos">{{
+                                                            errors2.fechaEstudioColonos }}</span>
+                                                </div>
+                                            </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
                                                     estudio</label>
@@ -197,25 +208,26 @@
             </div>
             <br>
             <div class="row fila">
-                <div class="col-3 col-md-3 col-sm-2 border border-dark border-end-0 rounded-start" style=" width: 415px;">
+                <div class="col-xl-3 col-md-3 col-sm-2 border border-dark border-end-0 rounded-start"
+                    style=" width: 415px;">
                     <p class="parrafoEstudioProgramado">Estudio programado para:</p>
                     <!-- <br> -->
                     <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
                     <p class="parrafoHoraEstudio">Hora: <!-- <span>18:00 hrs</span> --><span>Sin datos</span></p>
                 </div>
-                <div class="col-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 415px;">
+                <div class="col-xl-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 415px;">
                     <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
                     <!-- <br> -->
                     <p class="parrafoFechaPrimerToma">Fecha: <span>Sin datos</span></p>
                     <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
                 </div>
-                <div class="col-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 415px;">
+                <div class="col-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 390px;">
                     <p class="parrafoSegundaToma">Segunda toma de Picoprep : Sin datos</p>
                     <!-- <br> -->
                     <p class="parrafoFechaSegundaToma">Fecha: <span>Sin datos</span></p>
                     <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
                 </div>
-                <div class="col-1 col-md-3 col-sm-2 border border-dark rounded-end"
+                <div class="col-xl-1 col-md-3 col-sm-2 border border-dark rounded-end"
                     style="background-color:  #F2F2F2; display: flex; flex-direction: row; justify-content: center; align-items: center; width: 65px;">
                     <!-- <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
                     <a href="" type="button" class="btnEditarPlan" data-bs-toggle="modal"
@@ -223,7 +235,7 @@
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-content">
                                     <div class="modal-header" style="border: none;">
@@ -234,27 +246,28 @@
                                     <div class="modal-body" style="border: none;">
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
                                             hidrataciones</h1>
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
-                                                    estudio</label>
-                                                <!-- <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="exampleInputEmail1"
-                        aria-describedby="emailHelp"> -->
-                                                <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-                                                <div class="input-group">
-                                                    <input type="date" class="form-control inputLabelFechaModalEditarPlan"
-                                                        placeholder="18:00 Hrs" aria-label="Input group example"
-                                                        aria-describedby="basic-addon1" id="inputLabelFechaModalEditarPlan">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
+                                        <form name="formulario" id="formularioEditar" v-on:submit="validarHora">
+                                            <div class="p-fluid grid formgrid">
+                                                <div class="field col-12 md:col-4">
+                                                    <label for="icon">Fecha de
+                                                        estudio</label>
+                                                    <Calendar id="icon" style="" v-model="fechaEstudioColonos"
+                                                        dateFormat="dd/mm/yy" :showIcon="true" />
+                                                    <span class="error" style="color: red"
+                                                        v-if="errors2.fechaEstudioColonos">{{
+                                                            errors2.fechaEstudioColonos }}</span>
+                                                </div>
+                                                <div class="field col-12 md:col-4">
+                                                    <label for="icon">Hora de la
+                                                        colonoscopía o estudio</label>
+                                                    <Calendar  style="" v-model="hora"
+                                                    :showTime="true" hourFormat="12"  :showIcon="true" />
+                                                    <span class="error" style="color: red" v-if="errors2.hora">{{
+                                                        errors2.hora
+                                                    }}</span>
                                                 </div>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1 labelModalEditarHoraColonos"
                                                     class="form-label">Hora de la
@@ -262,7 +275,8 @@
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
-                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                        aria-label="Input group example" aria-describedby="basic-addon1"
+                                                        v-model="hora">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -273,6 +287,12 @@
                                                         </svg>
                                                     </span>
                                                 </div>
+                                                <span class="error" style="color: red" v-if="errors2.hora">{{ errors2.hora
+                                                }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.horaIngresada">{{
+                                                    errors2.horaIngresada }}</span>
+                                                <p>Hora actual: {{ this.horaActual }}</p>
+
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Fecha de la primera
@@ -344,21 +364,20 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer" style="border: none;">
-                                        <div class="container text-center">
-                                            <div class="row">
-                                                <div class="col-md-4 pb-4">
-                                                    <button type="button" class="rounded btnGuardarModalPlan"
-                                                        data-bs-dismiss="modal">GUARDAR</button>
-                                                </div>
-                                                <div class="col-md-4 offset-md-4">
-                                                    <button type="button" class="rounded btnCancelarModalPlan"
-                                                        data-bs-dismiss="modal">CANCELAR</button>
+                                            <div class="modal-footer" style="border: none;">
+                                                <div class="container text-center">
+                                                    <div class="row">
+                                                        <div class="col-md-4 pb-4">
+                                                            <button class="rounded btnGuardarModalPlan">GUARDAR</button>
+                                                        </div>
+                                                        <div class="col-md-4 offset-md-4">
+                                                            <button type="button" class="rounded btnCancelarModalPlan"
+                                                                data-bs-dismiss="modal">CANCELAR</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -386,7 +405,7 @@
                                             <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
                                         </div>
                                         <div class="mb-3">
-                                            <label for=" labelModalEditarHoraColonos" class="form-label">Hora de la
+                                            <label for="labelModalEditarHoraColonos" class="form-label">Hora de la
                                                 colonoscopía o
                                                 estudio</label>
                                             <input type="time" class="form-control inputLabelFechaModalEditarPlan"
@@ -437,7 +456,7 @@
         <!-- </div> -->
 
         <br>
-        <div class="container plan" id="plan">
+        <div class="container" id="element-to-convert">
             <div class="row">
                 <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
                     <img src="../assets/img/web/681332-300-300 1_2.png" class="imgMediPicoprep" alt="..." width="">
@@ -609,31 +628,33 @@
                     </div>
                 </div>
             </div>
-
             <br>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col align-self-center">
                     <div class="contenidoCentrado">
                         <!-- <a href="javascript:genPDF()">DESCARGAR PLAN</a>
           <button type="submit" class="btnDescargaPlan rounded" href="javascript:genPDF()">DESCARGAR PLAN</button> -->
-                        <button class="btnDescargaPlan rounded" id="gpdf">DESCARGAR PLAN</button>
+                        <!-- <button class="btnDescargaPlan rounded" id="gpdf">DESCARGAR PLAN</button> -->
+                        <button class="btnDescargaPlan rounded" @click="descargarPdf()">DESCARGAR PLAN</button>
                         <br><br>
-                        
-                        <div>
-                            <center>
-                                <div class="form-check">
-                                    <span><input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault"><label class="form-check-label" for="flexCheckDefault"
-                                            style="font-family:  'Segoe-UI-Semibold';">
-                                            Dejar de recibir notificaciones
-                                        </label></span>
-                                </div>
-                            </center>
 
+                    </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-7 col-md-3 col-sm-12">
+                                <div class="form-check m-auto">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Dejar de recibir notificaciones
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <br>
+                    </div>
+                    <br>
+                    <div class="contenidoCentrado">
                         <!-- Button trigger modal -->
                         <button type="button" class="rounded" style="font-family: 'Segoe-UI-Bold';
                                     font-size: 18px;
@@ -641,6 +662,7 @@
                                     border: 1px solid #1155CC;
                                     color: #FFFFFF;
                                     width: 250px;
+                                    width: 65%;
                                     height: 30px;" data-bs-toggle="modal" data-bs-target="#exampleModalVer">
                             REFERENCIA MÉDICA
                         </button>
@@ -699,14 +721,35 @@
         </div>
     </div>
 </template>
-<script type="text/javascript" src="../js/jspdf.min.js"></script>
+<!-- <script type="text/javascript" src="../js/jspdf.min.js"></script> -->
 <script>
 import moment from 'moment';
+
+import html2pdf from 'html2pdf.js';
 
 export default {
     name: 'ConsultaPlan',
     props: {
         msg: String,
+    },
+    created() {
+        let today = new Date();
+        let month = today.getMonth();
+        let year = today.getFullYear();
+        let prevMonth = (month === 0) ? 11 : month - 1;
+        let prevYear = (prevMonth === 11) ? year - 1 : year;
+        let nextMonth = (month === 11) ? 0 : month + 1;
+        let nextYear = (nextMonth === 0) ? year + 1 : year;
+        this.minDate = new Date();
+        this.minDate.setMonth(prevMonth);
+        this.minDate.setFullYear(prevYear);
+        this.maxDate = new Date();
+        this.maxDate.setMonth(nextMonth);
+        this.maxDate.setFullYear(nextYear);
+
+        let invalidDate = new Date();
+        invalidDate.setDate(today.getDate() - 1);
+        this.invalidDates = [today, invalidDate];
     },
     data() {
         return {
@@ -715,6 +758,33 @@ export default {
             hora1: "",
             hora2: "",
             errors2: {},
+
+            /* fechaActual: "", */
+            fechaEstudioColonos: "",
+            horaColonoscopia: "",
+            fechaPrimerToma: "",
+            horaPrimerToma: "",
+            fechaSegundaToma: "",
+            horaSegundaToma: "",
+
+            date: "",
+
+            hora: "", // la hora ingresada en el input
+            horaActual: "", // la hora actual obtenida con moment.js
+            fechaActual: "",
+
+            time: '',
+            es: {
+                firstDayOfWeek: 1,
+                dayNames: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+                dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+                dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                today: 'Hoy',
+                clear: 'Borrar',
+                weekHeader: 'Sm'
+            },
         };
     },
     methods: {
@@ -783,31 +853,205 @@ export default {
                 // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
             }
         },
+        validarHora: function (event) {
+            this.errors2 = {};
+            // Aquí irá el código para validar la hora ingresada y la hora actual
+            event.preventDefault();
+            let valida = true;
+            const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
+            const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
+            const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
+            //Valida que el campo fecha colonoscopia no este vació y sea una fechs
+            console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
+
+
+            if (!this.fechaEstudioColonos) {
+                this.errors2.fechaEstudioColonos =
+                    "La fecha de la colonoscopia es obligatoria";
+                valida = false;
+            } else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
+                this.errors2.fechaEstudioColonos =
+                    "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
+                valida = false;
+            }
+
+            if (horaIngresada === '') {
+                this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
+                valida = false;
+
+            } else if (horaIngresada.isBefore(horaActual, 'hour')) {
+                this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
+                valida = false;
+            }
+            else {
+                delete this.errors2['horaIngresada'];
+                /* this.errors2.horaIngresada = "La hora es obligatoria"; */
+            }
+
+            // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
+            if (!this.fechaPrimerToma) {
+                this.errors2.fechaPrimerToma =
+                    "La fecha de la primer toma es obligatoria";
+                valida = false;
+            } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
+                this.errors2.fechaPrimerToma =
+                    "La fecha de la primer toma no es válida";
+                valida = false;
+            } else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
+                this.errors2.fechaPrimerToma =
+                    "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+                valida = false;
+            }
+            else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
+                this.errors2.fechaPrimerToma =
+                    "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+                valida = false;
+            } else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
+                this.errors2.fechaPrimerToma =
+                    "La fecha de la primer toma debe ser posterior a la fecha actual";
+                valida = false;
+            }/* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
+            } */
+            /* else {
+              delete this.errors2['fechaPrimerToma'];
+      
+            } */
+
+            // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
+            if (!this.fechaSegundaToma) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma es obligatoria";
+                valida = false;
+            } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma no es válida";
+                valida = false;
+            } else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
+                valida = false;
+            }
+
+            // Validar que el campo fecha dos sea posterior al campo fecha uno
+            // Usando el método isAfter de moment.js para comparar las fechas
+            // https://momentjs.com/docs/#/query/is-after/
+            /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
+              this.errors2.fechaSegundaToma =
+                "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
+              valida = false;
+            }*/
+            /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
+                      this.errors2.fechaSegundaToma =
+                          "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
+                      valid2 = false;
+                  } */
+            /* else {
+              delete this.errors2['fechaSegundaToma'];
+            } */
+            // Validar que el campo hora uno no esté vacío y sea una hora válida
+            let horaIng = moment(horaIngresada, "HH:mm")
+            let horaAct = moment(horaActual, "HH:mm") // 22:00
+            if (!this.horaPrimerToma) {
+                this.errors2.horaPrimerToma =
+                    "La hora de la primer toma es obligatoria";
+                valida = false;
+
+            } /* else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
+        valid2 = false;
+      } */  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
+                this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
+                valida = false;
+
+                /* alert("La hora ingresada es posterior a la hora actual"); */
+            } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
+                this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
+                valida = false;
+
+                /* alert("La hora ingresada es posterior a la hora actual"); */
+            }
+            /* else {
+              delete this.errors2['horaPrimerToma'];
+            } */
+
+            // Validar que el campo hora dos no esté vacío y sea una hora válida
+            if (!this.horaSegundaToma) {
+                this.errors2.horaSegundaToma =
+                    "La hora de la segunda toma es obligatoria";
+                valida = false;
+
+            } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
+                this.errors2.horaSegundaToma =
+                    "La hora de la segunda toma no es válida";
+                valida = false;
+
+            } else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
+                this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
+                valida = false;
+
+                /* alert("La hora ingresada es posterior a la hora actual"); */
+            } else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm"))) {
+                this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
+                valida = false;
+            }
+
+        },
+        descargarPdf() {
+            /* const doc = new jspdf();
+            const html = this.$refs.content.innerHTML;
+
+            doc.fromHTML(html,15,15,{
+                width: 150,
+            })
+
+            doc.save("PlanTomas.pdf"); */
+            html2pdf(document.getElementById('element-to-convert'), {
+                margin: 0,
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                filename: 'Mi_Plan_De_Tomas.pdf',
+            });
+        }
     },
     computed: {
         // Obtener la fecha mínima para el campo fecha dos
         minDate() {
             // Si la fecha uno está vacía o no es válida, devolver null
-            if (!this.fecha1 || !moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
-                return null;
+            /*if (
+              !this.fechaEstudioColonos ||
+              !moment(this.fechaEstudioColonos, "YYYY-MM-DD", true).isValid()
+            ) {
+              return null;
             }
             // Si la fecha uno es válida, devolver el día siguiente de la fecha uno formateado como YYYY-MM-DD
             else {
-                return moment(this.fecha1).add(1, "days").format("YYYY-MM-DD");
-            }
+              return moment(this.fechaEstudioColonos)
+                .add(1, "days")
+                .format("YYYY-MM-DD");
+            }*/
         },
         // Obtener la hora mínima para el campo hora dos
         minTime() {
             // Si la hora uno está vacía o no es válida, devolver null
 
-            if (!this.hora1 || !moment(this.hora1, "HH:mm", true).isValid()) {
+            if (
+                !this.horaColonoscopia ||
+                !moment(this.horaColonoscopia, "HH:mm", true).isValid()
+            ) {
                 return null;
             }
             // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
             else {
-                return moment(this.hora1, "HH:mm").format("HH:mm");
+                return moment(this.horaColonoscopia, "HH:mm").format("HH:mm");
             }
         },
+    },
+    /* mixins: [VueMoment], */
+    mounted: function () {
+
+        this.horaActual = moment().format("HH:mm");
+        this.fechaActual = moment().format("YYYY-MM-DD")
+        /* this.horaIngresada = moment().format("HH:mm"); */
     },
 };
 </script>
@@ -1563,6 +1807,7 @@ input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
     width: 20px;
     height: 22px;
     color: #8B8A8A;
+    cursor: pointer;
 }
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator:hover {
@@ -1600,7 +1845,7 @@ input.inputHoraColos[type="time"]::-webkit-calendar-picker-indicator {
 input[type="date"]::-webkit-calendar-picker-indicator {
     /* display: block; */
     /* background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat; */
-    background: none;
+    /* background: none; */
     width: 20px;
     height: 20px;
     color: #8B8A8A;
@@ -1765,9 +2010,9 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 .tituloPlanToma {
     color: #FF9900;
     font-family: 'OpenSans-Bold';
-    font-size: 25px;
-    text-align: left;
-    /* display: inline-flex; */
+    /* font-size: 25px;
+    font-size: 40px;
+    text-align: left; */
 }
 
 .tituloRecuperar {
@@ -1777,6 +2022,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     text-align: left;
     /* display: inline-flex; */
 }
+
 /* escritorio web*/
 /* .tituloPlanToma{
     color: #FF9900;
@@ -1960,6 +2206,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     font-family: 'Segoe-UI-Semibold';
     font-size: 20px;
     width: 100%;
+    width: 80%;
     /* width: 600px;
     width: 60%; */
     /* height: 50px; */
@@ -1973,6 +2220,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     font-family: 'Segoe-UI-Semibold';
     font-size: 20px;
     width: 100%;
+    width: 80%;
     /* width: 600px;
     width: 60%; */
     /* height: 50px; */
@@ -2290,6 +2538,15 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         /* fin de estilos para ventana modal editar */
     }
 
+    .tituloPlanToma {
+        color: #FF9900;
+        font-family: 'OpenSans-Bold';
+        font-size: 20px;
+        /* font-size: 40px; */
+        text-align: left;
+        /* display: inline-flex; */
+    }
+
     .columnaUno {
         width: 20%;
     }
@@ -2320,6 +2577,16 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         max-width: 640px;
     }
 
+    /*     .imgNaranjinPlan {
+    width: 100%;
+    height: 100vh;
+    width: 135px;
+    height: 135px;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+} */
     /*Estilos plam*/
 }
 
@@ -2358,6 +2625,15 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     /* Inician Estilo pára la vista Plan de tomas e hidrataciones */
     .btnFlecha {
         display: none;
+    }
+
+    .tituloPlanToma {
+        color: #FF9900;
+        font-family: 'OpenSans-Bold';
+        font-size: 40px;
+        /* font-size: 40px; */
+        text-align: left;
+        /* display: inline-flex; */
     }
 
     /* .columnaUno{
@@ -2544,6 +2820,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         text-align: center; */
         /* display: inline-flex; */
     }
+
     .imgNaranjinPlan {
         display: none;
     }
@@ -2782,5 +3059,4 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {}
-</style>
+@media screen and (max-height: 500px) {}</style>
