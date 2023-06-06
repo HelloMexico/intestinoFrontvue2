@@ -86,7 +86,7 @@
                             <div class="col-11 mb-3">
                                 <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled "
                                     v-model="selectEstadoEnabled">
-                                    <option value="" disabled selected>Estaado</option>
+                                    <option value="" disabled selected>Estado</option>
                                     <option v-for="option in options" :key="option.value">
                                         {{ option.text }}
                                     </option>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    @click.prevent="selectEstadoEnabled = !selectEstadoEnabled"></a>
+                                    @click.prevent="selectEstadoEnabled = !selectEstado"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
@@ -109,11 +109,11 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputCiudadPerfil"
-                                    placeholder="Mexicali" v-bind:disabled="!inputCiudadEnabled"
+                                    placeholder="Mexicali" v-bind:disabled="!inputCiudad"
                                     v-model="inputCiudadEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" class="btnEditarPlan" v-on:click.prevent="enableInputCiudad"></a>
+                                <a type="button" class="btnEditarPlan" @click.prevent="inputCiudad = !inputCiudad"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Edad</label>
@@ -123,11 +123,10 @@
                                 <input name="edad" class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number" maxlength="3" id="inputEdad" placeholder="18"
-                                    v-bind:disabled="!inputEdadEnabled" v-model="inputEdadEnabled">
+                                    v-bind:disabled="!inputEdad" v-model="inputEdadEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan" v-on:click.prevent="enableInputEdad
-                                    "></a>
+                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan" @click.prevent="inputEdad= !inputEdad"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-4 col-form-label">Nombre del médico
@@ -136,12 +135,12 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputNombMedTrat"
-                                    placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTratEnabled"
+                                    placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTrat"
                                     v-model="inputNomMedTratEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
-                                    v-on:click.prevent="enableInputNomMedTrat"></a>
+                                @click.prevent="inputNomMedTrat = !inputNomMedTrat"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-4 col-form-label"> Apellidos del médico
@@ -150,11 +149,11 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputApellMedTra"
-                                    placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTratEnabled"
+                                    placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTrat"
                                     v-model="inputApeMedTratEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" class="btnEditarPlan" v-on:click.prevent="enableInputApeMedTrat"></a>
+                                <a type="button" class="btnEditarPlan"  @click.prevent="inputApeMedTrat = !inputApeMedTrat"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-3 col-form-label"> Clave de acceso</label>
@@ -162,11 +161,11 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="password" id="inputClaAcceso" class="form-control" name="" placeholder="****"
-                                    v-bind:disabled="!inputClaveAccesoEnabled" v-model="inputClaveAccesoEnabled">
+                                    v-bind:disabled="!inputClaveAcceso" v-model="inputClaveAccesoEnabled">
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpClaAcceso" class="btnEditarPlan"
-                                    v-on:click.prevent="enableInputClaveAcceso"></a>
+                                @click.prevent="inputClaveAcceso= !inputClaveAcceso"></a>
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -186,7 +185,7 @@
                             <div class="row">
                                 <div class="col">
                                     <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
-                                    <button href="" type="submit" class="btnGuardar rounded text-center">GUARDAR</button>
+                                    <button href="" type="submit" class="btnGuardar rounded text-center" data-bs-toggle="modal" data-bs-target="#exampleModal2">GUARDAR</button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1"
                                         aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -250,23 +249,23 @@ export default {
             input2Enabled: false,
             input3Enabled: false,
 
-            inputLadaEnabled: false,
-            inputTelPerfilEnabled: false,
-            selectEstadoEnabled: false,
-            inputCiudadEnabled: false,
-            inputEdadEnabled: false,
-            inputNomMedTratEnabled: false,
-            inputApeMedTratEnabled: false,
-            inputClaveAccesoEnabled: false,
+            inputLadaEnabled: null,
+            inputTelPerfilEnabled: null,
+            selectEstadoEnabled: null,
+            inputCiudadEnabled: null,
+            inputEdadEnabled: null,
+            inputNomMedTratEnabled: null,
+            inputApeMedTratEnabled: null,
+            inputClaveAccesoEnabled: null,
 
-            inputLadaEnabled: false,
-            inputTelPerfilEnabled: false,
-            selectEstadoEnabled: false,
-            inputCiudadEnabled: false,
-            inputEdadEnabled: false,
-            inputNomMedTratEnabled: false,
-            inputApeMedTratEnabled: false,
-            inputClaveAccesoEnabled: false,
+            inputLada: null,
+            inputTelPerfil: null,
+            selectEstado: null,
+            inputCiudad: null,
+            inputEdad: null,
+            inputNomMedTrat: null,
+            inputApeMedTrat: null,
+            inputClaveAcceso: null,
 
             info: null,
             options: [],
@@ -276,8 +275,8 @@ export default {
             error: null,
 
             meal_id: '',
-      mealData: null,
-      error: null,
+            mealData: null,
+            error: null,
         };
     },
     mounted() {
@@ -340,7 +339,7 @@ export default {
         enableInput3() {
             this.input3Enabled = true;
         },
-        enableInputLadaNumero(){
+        /* enableInputLadaNumero(){
             this.inputLadaEnabled= true;
             this.inputTelPerfilEnabled = true;
         },
@@ -361,7 +360,7 @@ export default {
         },
         enableInputClaveAcceso(){
             this.inputClaveAccesoEnabled = true;
-        },
+        }, */
         enviarDatos(){
             /* this.errors = {};
             this.enableInputLadaNumero();

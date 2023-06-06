@@ -2,16 +2,17 @@
     <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
     <div class="container">
         <br>
-        <div class="row">
+        <div class="row align-items-end">
             <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
-            <div class="col-3 col-md-4 col-sm-6">
+            <div class="col-xl-4 col-md-4 col-sm-6">
                 <a type="button" class="btnFlecha" href="index.html">
                 </a>
             </div>
-            <div class="col"></div>
-            <div class="col-xl-6 col-sm-3 col-md-3">
+            <!-- <div class="col"></div> -->
+            <!-- <div class="col"></div> -->
+            <div class="col-xl-8 col-sm-5 col-md-6">
             <!-- <div class="col-9 col-md-8 col-sm-6 pt-3 ps-5"> -->
-                <h1 class="tituloPregFrecu text-center">Preguntas <span>frecuentes</span></h1>
+                <h1 class="tituloPregFrecu text-center">Preguntas frecuentes</h1>
             </div>
             <!-- <div class="col-auto border">
                 <p></p>
@@ -1792,6 +1793,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     color: #FF9900;
     font-family: 'OpenSans-Bold';
     font-size: 40px;
+    
     text-align: left;
 }
 
