@@ -1389,8 +1389,8 @@ input.inputFechaEstudioCrear[type="date"]:before {
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 22px;
   color: #8b8a8a;
@@ -1398,8 +1398,8 @@ input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 22px;
   color: #8b8a8a;
@@ -1420,7 +1420,7 @@ input.inputHoraColos[type="time"]:before {
 input.inputHoraColos[type="time"]::-webkit-calendar-picker-indicator {
   /* display: block; */
   /* background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat; */
-  background: none;
+  /* background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
@@ -1429,7 +1429,7 @@ input.inputHoraColos[type="time"]::-webkit-calendar-picker-indicator {
 input[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
   /* background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat; */
-  background: none;
+  /* background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
@@ -1444,24 +1444,27 @@ input.inputFecPriToma[type="date"]:before {
   line-break: normal;
   margin-right: 2rem;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputFecPriToma[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputFecPriToma[type="date"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 /* Terminan Estilos para input "Fecha de la primera toma de Picoprep®️" */
@@ -1473,24 +1476,27 @@ input.inputHoraPriToma[type="time"]:before {
   line-break: normal;
   margin-right: 2rem;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputHoraPriToma[type="time"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputHoraPriToma[type="time"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/reloj-de-pared.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/reloj-de-pared.png") no-repeat; */
+  /* background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 /* Terminan Estilos para input "Hora de la primera toma de Picoprep®️" */
@@ -1506,20 +1512,22 @@ input.inputFecSegToma[type="date"]:before {
 
 input.inputFecSegToma[type="date"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputFecSegToma[type="date"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 /* Terminan Estilos para input "Fecha de la primera toma de Picoprep®️" */
@@ -1531,23 +1539,26 @@ input.inputHoraSegToma[type="time"]:before {
   line-break: normal;
   margin-right: 2rem;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator {
   /* display: block; */
-  background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat;
-  background: none;
+  /* background: url("../assets/img/web/reloj-de-pared\ 2.png") no-repeat;
+  background: none; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
   /* display: block; */
-  background: url("../assets/img/web/reloj-de-pared.png") no-repeat;
+  /* background: url("../assets/img/web/reloj-de-pared.png") no-repeat; */
   width: 20px;
   height: 20px;
   color: #8b8a8a;
+  cursor: pointer;
 }
 
 /* Terminan Estilos para input "Hora de la segunda toma de Picoprep®️" */

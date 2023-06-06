@@ -65,7 +65,7 @@
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
                                             hidrataciones</h1>
                                         <form>
-                                            <div class="p-fluid grid formgrid">
+                                            <!-- <div class="p-fluid grid formgrid">
                                                 <div class="field col-12 md:col-4">
                                                     <label for="icon">Fecha de
                                                         estudio</label>
@@ -74,7 +74,7 @@
                                                         v-if="errors2.fechaEstudioColonos">{{
                                                             errors2.fechaEstudioColonos }}</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="mb-3">
                                                 <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
                                                     estudio</label>
@@ -247,7 +247,7 @@
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
                                             hidrataciones</h1>
                                         <form name="formulario" id="formularioEditar" v-on:submit="validarHora">
-                                            <div class="p-fluid grid formgrid">
+                                            <!-- <div class="p-fluid grid formgrid">
                                                 <div class="field col-12 md:col-4">
                                                     <label for="icon">Fecha de
                                                         estudio</label>
@@ -266,8 +266,30 @@
                                                         errors2.hora
                                                     }}</span>
                                                 </div>
+                                            </div> -->
+                                            <div class="mb-3">
+                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
+                                                    estudio</label>
+                                                <!-- <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="exampleInputEmail1"
+                        aria-describedby="emailHelp"> -->
+                                                <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control inputLabelFechaModalEditarPlan"
+                                                        placeholder="18:00 Hrs" aria-label="Input group example"
+                                                        v-model="fechaEstudioColonos" aria-describedby="basic-addon1"
+                                                        id="inputLabelFechaModalEditarPlan">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
+                                                    errors2.fechaEstudioColonos }}</span>
                                             </div>
-
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1 labelModalEditarHoraColonos"
                                                     class="form-label">Hora de la
@@ -300,7 +322,8 @@
                                                 <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
-                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                        aria-label="Input group example" aria-describedby="basic-addon1"
+                                                        v-model="horaPrimerToma">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -310,6 +333,9 @@
                                                         </svg>
                                                     </span>
                                                 </div>
+                                                <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
+                                                    errors2.horaPrimerToma
+                                                }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Hora de la primera
@@ -317,7 +343,8 @@
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
-                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                        aria-label="Input group example" aria-describedby="basic-addon1"
+                                                        v-model="horaPrimerToma">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -328,6 +355,9 @@
                                                         </svg>
                                                     </span>
                                                 </div>
+                                                <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
+                                                    errors2.horaPrimerToma
+                                                }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Fecha de la segunda
@@ -335,7 +365,8 @@
                                                 <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
-                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                        aria-label="Input group example" aria-describedby="basic-addon1"
+                                                        v-model="fechaSegundaToma">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -345,6 +376,9 @@
                                                         </svg>
                                                     </span>
                                                 </div>
+                                                <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{
+                                                    errors2.fechaSegundaToma
+                                                }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Hora de la segunda
@@ -352,7 +386,7 @@
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="22:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
-                                                        aria-label="Input group example" aria-describedby="basic-addon1">
+                                                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaSegundaToma" >
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -363,6 +397,8 @@
                                                         </svg>
                                                     </span>
                                                 </div>
+                                                <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma
+                    }}</span>
                                             </div>
                                             <div class="modal-footer" style="border: none;">
                                                 <div class="container text-center">
