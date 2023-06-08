@@ -13,24 +13,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-sm-6 col-md-6 text-center">
-                        <img src="../assets/img/web/Enmascarar grupo 2.png" class="img-fluid imgNaranjin"
+                        <img src="../assets/img/web/Enmascarar grupo 2.png" class="imgNaranjin"
                             alt="no hay imagen">
                     </div>
                     <div class="col-xl-6 col-sm-6 col-md-6">
                         <!-- eslint-disable-next-line max-len -->
-                        <p class="m-2 parrafoUno">Mantenga un <span>intestino limpio,</span> previo a los estudios de
-                            Rayos X, colonoscopia o cirugías..</p>
+                        <p class="ms-3 me-4 parrafoUno">Mantenga un <span>intestino limpio,</span> previo a los estudios de
+                            Rayos X, colonoscopia o cirugías.</p>
                         <!-- eslint-disable-next-line max-len -->
-                        <p id="" class="m-2 parrafoNuestra">Con el sitio de Intestino Limpio usted podrá
+                        <p id="" class="ms-3 me-4 parrafoNuestra">Con el sitio de <span>Intestino Limpio </span>usted podrá
                             programar el horario del estudio y recibir
                             notificaciones cuando sea la hora de toma del
                             medicamento o de hidratación. Facilitando el apego
                             al tratamiento.</p>
                         <!-- eslint-disable-next-line max-len -->
-                        <p class="m-2 parrafoGenera">Para generar tu programación de toma de medicamento, llena los
+                        <p class="ms-3 me-4  parrafoGenera">Para generar tu programación de toma de medicamento, llena los
                             siguientes campos: <span>(Todos los campos son obligatorios)</span></p>
                         <!-- eslint-disable-next-line max-len -->
-                        <p class="m-2 parrafoCreaPlanToma">Si ya creó su plan antes, dé clic en iniciar sesión.
+                        <p class="m-3 parrafoCreaPlanToma">Si ya creó su plan antes, dé clic en iniciar sesión.
                         </p>
                         <div class="container" style="margin: 0; padding: 0;">
                             <div class="row">
@@ -222,8 +222,8 @@
                                                                         v-if="errors.telefonoCelular">{{
                                                                             errors.telefonoCelular
                                                                         }}</span>
-                                                                    <span v-else style="color: green;">{{
-                                                                        errors.telefonoCelular }}</span>
+                                                                    <!-- <span v-else style="color: green;">{{
+                                                                        errors.telefonoCelular }}</span> -->
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mb-3">
@@ -463,6 +463,7 @@ export default {
             formularioValidado: false,
             showPassword: false,
             inputTypeIcon: "password",
+
             pais: "",
             lada: "",
             telefonoCelular: "",
@@ -2365,12 +2366,21 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     .tituloPrincipal {
         color: #FF9900;
         font-family: 'OpenSans-Bold';
-        font-size: 35px;
+        font-size: 28px;
         /*  font-size: 100%; */
     }
 
     .imgNaranjin {
-        background-image: url("../assets/img/web/Enmascarar grupo 2.png");
+        background-image: url("../assets/img/mobile/Naranjin.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 372px;
+        height: 347px;
+        width: 260px;
+        height: 260px;
+        /* margin-top: 50px; */
+        margin-bottom: 0;
     }
 
     /*Estilos plam*/
@@ -2384,8 +2394,9 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     }
 
     .parrafoUno {
+        margin-top: -30px;
         font-family: 'OpenSans-Regular';
-        font-size: 18px;
+        font-size: 14px;
         color: #707070;
         text-align: left;
         text-align: justify;
@@ -2393,7 +2404,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 
     .parrafoUno span {
         font-family: 'OpenSans-Bold';
-        font-size: 18px;
+        font-size: 14px;
         color: #707070;
         text-align: left;
         text-align: justify;
@@ -2401,14 +2412,21 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 
     .parrafoNuestra {
         font-family: 'OpenSans-Regular';
-        font-size: 18px;
+        font-size: 14px;
         color: #707070;
+        text-align: justify;
+    }
+    .parrafoNuestra span {
+        font-family: 'OpenSans-Bold';
+        font-size: 14px;
+        color: #707070;
+        text-align: left;
         text-align: justify;
     }
 
     .parrafoGenera {
         font-family: 'OpenSans-Regular';
-        font-size: 18px;
+        font-size: 14px;
         color: #707070;
         text-align: justify;
 
@@ -2416,26 +2434,26 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 
     .parrafoGenera span {
         font-family: 'OpenSans-Bold';
-        font-size: 18px;
+        font-size: 14px;
         color: #FF9900;
     }
 
     .parrafoCreastePlanAntes {
         font-family: 'OpenSans-Bold';
-        font-size: 18px;
+        font-size: 14px;
         color: #707070;
     }
 
     .parrafoGeneraProgramacion {
         font-family: 'Segoe-UI-Bold';
-        font-size: 18px;
+        font-size: 14px;
         color: #4E4E4E;
         text-align: center;
     }
 
     .parrafoCreaPlanToma {
         font-family: 'Segoe-UI-Bold';
-        font-size: 18px;
+        font-size: 14px;
         color: #4E4E4E;
         text-align: center;
     }
@@ -2933,4 +2951,5 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {}</style>
+@media screen and (max-height: 500px) {}
+</style>

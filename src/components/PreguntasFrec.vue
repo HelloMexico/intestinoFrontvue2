@@ -11,7 +11,7 @@
             <!-- <div class="col"></div> -->
             <!-- <div class="col"></div> -->
             <div class="col-xl-8 col-sm-5 col-md-6">
-            <!-- <div class="col-9 col-md-8 col-sm-6 pt-3 ps-5"> -->
+                <!-- <div class="col-9 col-md-8 col-sm-6 pt-3 ps-5"> -->
                 <h1 class="tituloPregFrecu text-center">Preguntas frecuentes</h1>
             </div>
             <!-- <div class="col-auto border">
@@ -41,11 +41,12 @@
                                         1. Alimentación
                                     </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse"
-                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p class="text-start"><b>¿Qué alimentos puedo comer durante mi preparación para el
-                                            estudio?</b></p>
+                                        <p class="text-start"><b>¿Qué alimentos se pueden comer durante la preparación para
+                                                el
+                                                estudio?</b></p>
                                         <div class="container">
                                             <div class="row">
                                                 <p class="text-start">La dieta baja en residuos ayuda a reducir el
@@ -66,28 +67,100 @@
                                                         Endoscopia. 2016;28(2):81—89</i></p>
                                             </div>
                                         </div>
-                                        <p class="text-start"><b>¿Qué alimentos NO puedo comer durante mis tomas con
-                                            Picoprep?</b></p>
+                                        <p class="text-start"><b>¿Qué alimentos NO se pueden comer durante las tomas con
+                                                Picoprep?</b></p>
                                         <div class="container">
                                             <div class="row">
                                                 <p class="text-start">Aquellos que contienen fibra. Se debe evitar: pan
                                                     integral, frutas al
                                                     natural y vegetales crudos, nueces, semillas, carne con piel.</p>
-                                                <p class="text-start" style="color: #195ACD;"><i>D. Murcio-Pérez E,
+                                                <p class="text-start" style="color: #195ACD;"><i>Murcio-Pérez E,
                                                         Téllez-Ávila F. Opciones de preparación para colonoscopia.
                                                         Endoscopia. 2012;24:23—31</i></p>
                                             </div>
                                         </div>
-                                        <p class="text-start"><b>¿Qué tipo de líquidos puedo tomar?</b></p>
+                                        <!-- <p class="text-start"><b>¿Cuánto tiempo antes del estudio se pueden ingerir
+                                                alimentos o líquidos?
+                                            </b></p>
                                         <div class="container">
                                             <div class="row">
-                                                <p class="text-start">Los líquidos que sí están permitidos son los
-                                                    llamados líquidos
-                                                    claros como agua simple, café sin crema, té, jugo de frutas sin
-                                                    pulpa (colado), consomé, gelatina y refrescos sin colorante.</p>
+                                                <p class="text-start">Ayuno de sólidos de 6 hr y de líquidos durante 2hr
+                                                    antes del estudio.</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>Ibañez IA, Preparación
+                                                        intestinal para la colonoscopia en pacientes con diferentes
+                                                        patologías, Enferm Endosc Digital 2016.
+                                                    </i></p>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <p class="text-start"><b>¿Cuánto tiempo después del estudio se pueden ingerir
+                                                alimentos?
+                                            </b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Una hora después del estudio se puede comer o beber la
+                                                    dieta habitual. Si se ha recibido sedación no se deberá conducir, beber
+                                                    alcohol ni realizar actividades que requieran concentración mental en
+                                                    las siguientes 12 horas.</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>CMED Instrucciones
+                                                        Colonoscopia Picoprep®| Centro Médico-Quirúrgico de Enfermedades
+                                                        Digestivas
+                                                    </i></p>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <p class="text-start"><b>¿Qué alimentos tienen fibra?
+                                            </b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text">FRUTAS-</p>
+                                                <p class="text-start">Frambuesas, pera, manzana con cáscara, plátanos
+                                                    naranja y fresas.</p>
+                                                <p class="text">VEGETALES-</p>
+                                                <p class="text-start">Chicharos hervidos, brócoli hervido, hojas de nabo
+                                                    hervidas, coles de bruselas hervidas, papa con cascara al horno, maíz
+                                                    dulce hervido, coliflor cruda, zanahoria cruda.</p>
+                                                <p class="text">GRANOS-</p>
+                                                <p class="text-start">Espaguetis de trigo integral cocidos, cebada perlada
+                                                    cocida, copos de salvado, quinoa cocida, panecillos de salvado de avena,
+                                                    avena instantánea cocida, palomitas de maíz, arroz integral cocido, pan
+                                                    de trigo integral, pan de centeno.</p>
+                                                <p class="text">LEGUMBRES, NUECES Y SEMILLAS-</p>
+                                                <p class="text-start">Chícharos partidos hervidos, lentejas hervidas,
+                                                    frijoles hervidos, cocidos o enlatados, semillas de chía, almendras,
+                                                    pistachos y semillas de girasol.</p>
+                                                <p class="text-start" style="color: #195ACD;"><i>Alimentos con alto
+                                                        contenido de fibra - Mayo Clinic
+                                                    </i></p>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <p class="text-start"><b>¿Se pueden endulzar las bebidas?
+                                            </b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Sí se pueden endulzar las bebidas con azúcar, miel,
+                                                    jalea o almíbar.
+                                                </p>
                                                 <p class="text-start" style="color: #195ACD;"><i>Murcio-Pérez E,
                                                         Téllez-Ávila F. Opciones de preparación para colonoscopia.
-                                                        Endoscopia. 2012;24:23—31</i></p>
+                                                        Endoscopia. 2012;24:23---31
+                                                    </i></p>
+                                            </div>
+                                        </div> -->
+
+                                        <p class="text-start"><b>¿Qué tipo de líquidos se pueden tomar?
+                                            </b></p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <p class="text-start">Los líquidos que sí están permitidos son los llamados
+                                                    líquidos claros como agua simple, café sin crema, té, jugo de frutas sin
+                                                    pulpa (colado), consomé, gelatina y refrescos sin colorante.
+                                                </p>
+                                                <p class="text-start" style="color: #195ACD;"><i>Murcio-Pérez E,
+                                                        Téllez-Ávila F. Opciones de preparación para colonoscopia.
+                                                        Endoscopia. 2012;24:23
+                                                    </i></p>
                                             </div>
                                         </div>
                                     </div>
@@ -96,46 +169,47 @@
                             <div class="accordion-item border border-dark rounded-start">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: #565757; font-family: 'OpenSans-Bold';">
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                                        style="color: #565757; font-family: 'OpenSans-Bold';">
                                         2. Procedimiento/ Estudio
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p class="text-start"><b>¿Debo suspender mis medicamentos previos a la
-                                            colonoscopia?</b></p>
+                                        <p class="text-start"><b>¿Se deben suspender los medicamentos previos a la
+                                                colonoscopia?</b></p>
                                         <div class="container">
                                             <div class="row">
-                                                <p class="text-start">Hable con su médico cuando se le programe una
-                                                    colonoscopía
-                                                    sobre las afecciones médicas que padece y todos los
-                                                    medicamentos recetados por si existe la necesidad de un ajuste en
-                                                    la dosis incluidos los siguientes:
-                                                    aspirina o medicamentos que contengan aspirina
-                                                    antiinflamatorios no esteroides como ibuprofeno o naproxeno
-                                                    medicamentos para la artritis
-                                                    anticoagulantes
-                                                    medicamentos para la diabetes
-                                                    vitaminas que contengan hierro o suplementos de hierro</p>
+                                                <p class="text-start">Cuando se programe una colonoscopía el médico debe
+                                                    informar sobre las afecciones que padece y todos los medicamentos
+                                                    recetados por si existe la necesidad de un ajuste en la dosis incluidos
+                                                    los siguientes:</p>
+                                                <div class="container">
+                                                    <ul class="" style="list-style-type: disc; text-align: left;">
+                                                        <li><span>aspirina o medicamentos que contengan aspirina</span></li>
+                                                        <li>antiinflamatorios no esteroides como ibuprofeno o naproxeno</li>
+                                                        <li>medicamentos para la artritis</li>
+                                                        <li>anticoagulantes</li>
+                                                        <li>medicamentos para la diabetes</li>
+                                                        <li>vitaminas que contengan hierro o suplementos de hierro</li>
+                                                    </ul>
+                                                </div>
+
                                                 <p class="text-start" style="color: #195ACD;"><i>Rex DK, Johnson DA,
-                                                        Anderson JC, Schoenfeld PS, Burke CA, Inadomi JM.
-                                                        American College of Gastroenterology guidelines for colorectal
-                                                        cancer screening
-                                                        2008. American Journal of Gastroenterology. 2009;104(3):739–750.
-                                                        Ko CW, Riffle S, Michaels L, et al. Serious complications within
-                                                        30 days of
-                                                        screening and surveillance colonoscopy are uncommon. Clinical
-                                                        Gastroenterology and Hepatology. 2010;8(2):166–173.</i></p>
+                                                        Anderson JC, Schoenfeld PS, Burke CA, Inadomi JM. American College
+                                                        of Gastroenterology guidelines for colorectal cancer screening 2008.
+                                                        American Journal of Gastroenterology. 2009;104(3):739–750.</i></p>
                                             </div>
                                         </div>
-                                        <p class="text-start"><b>¿Cómo saber que ya estoy listo para mi estudio?</b></p>
+                                        <p class="text-start"><b>¿Cómo saber que el paciente está listo para el estudio?</b>
+                                        </p>
                                         <div class="container">
                                             <div class="row">
-                                                <p class="text-start">Usted verá un aumento en el número de
-                                                    evacuaciones, las cuales
-                                                    cada vez serán más liquidas y claras.</p>
-                                                <img src="../assets/img/web/Intestino limpio_Preguntas Frecuentes.jpg" alt="" class="img-fluid">
+                                                <p class="text-start">Se verá un aumento en el número de evacuaciones, las
+                                                    cuales cada vez serán más liquidas y claras.</p>
+                                                <img src="../assets/img/web/Intestino limpio_Preguntas Frecuentes.jpg"
+                                                    alt="" class="img-fluid">
                                                 <p class="text-start" style="color: #195ACD;"><i>EnfermEndoscDig
                                                         2016_3.1-Abril</i></p>
                                             </div>
@@ -146,15 +220,15 @@
                             <div class="accordion-item  border border-dark rounded-start">
                                 <h2 class="accordion-header" id="headingThree">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree" style="color: #565757; font-family: 'OpenSans-Bold';">
+                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                                        style="color: #565757; font-family: 'OpenSans-Bold';">
                                         3. Sobre PICOPREP
                                     </button>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                    data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p class="text-start"><b>¿Cómo tomarme Picoprep?</b></p>
+                                        <p class="text-start"><b>¿Cómo tomar Picoprep?</b></p>
                                         <div class="container">
                                             <div class="row">
                                                 <p class="text-start"><b><u> Régimen de dosis dividido (la tarde
@@ -170,26 +244,35 @@
                                         <div class="container">
                                             <div class="row">
                                                 <p class="text-start"><b>El día anterior al procedimiento- 1
-                                                            sobre:</b><br>El primer sobre reconstituido se toma en
-                                                    la tarde (por ejemplo,
-                                                    entre las 5:00 y las 9:00 P.M., tomando al menos cinco bebidas de
-                                                    250 ml cada una, de líquidos claros durante las horas siguientes a
-                                                    la
-                                                    ingesta del sobre.</p>
-                                                <p></p>
+                                                        sobre:</b><br>
+                                                <ul style="list-style-type: disc; text-align: left;">
+                                                    <li>El primer sobre reconstituido se toma en la tarde (por ejemplo,
+                                                        entre las 5:00 y las 9:00 P.M., tomando al menos cinco bebidas de
+                                                        250 ml cada una, de líquidos claros durante las horas siguientes a
+                                                        la ingesta del sobre.
+                                                    </li>
+                                                </ul>
+                                                </p>
                                             </div>
                                         </div>
 
                                         <div class="container">
                                             <div class="row">
                                                 <p class="text-start"><b> El día del procedimiento 1
-                                                            sobre:</b><br>El segundo sobre reconstituido se toma la
-                                                    mañana del
-                                                    procedimiento (5-9 horas antes del procedimiento), tomando por lo
-                                                    menos de 3 bebidas de 250 ml cada una, de líquidos claros durante
-                                                    las horas siguientes a la ingesta del sobre.
-                                                    Pueden consumirse líquidos claros hasta 2 hr. antes del
-                                                    procedimiento.</p>
+                                                        sobre:</b><br>
+                                                <ul style="list-style-type: disc; text-align: left;">
+                                                    <li>El segundo sobre reconstituido se toma la
+                                                        mañana del
+                                                        procedimiento (5-9 horas antes del procedimiento), tomando por lo
+                                                        menos de 3 bebidas de 250 ml cada una, de líquidos claros durante
+                                                        las horas siguientes a la ingesta del sobre.
+                                                    </li>
+                                                    <li>
+                                                        Pueden consumirse líquidos claros hasta 2 hr. antes del
+                                                        procedimiento.
+                                                    </li>
+                                                </ul>
+                                                </p>
                                             </div>
                                         </div>
 
@@ -197,8 +280,8 @@
                                             <div class="row">
                                                 <p class="text-start"><b>O</b></p>
                                                 <p class="text-start"><b> Día anterior al procedimiento (tarde
-                                                            anterior al procedimiento
-                                                            únicamente)</b><br>El primer sobre de PICOPREP se toma
+                                                        anterior al procedimiento
+                                                        únicamente)</b><br>El primer sobre de PICOPREP se toma
                                                     la tarde o al atardecer y el
                                                     segundo se toma aproximadamente 6 horas después, durante la
                                                     noche anterior al procedimiento.</p>
@@ -208,17 +291,21 @@
                                         <div class="container">
                                             <div class="row">
                                                 <p class="text-start"><b>Un día antes del procedimiento- 2
-                                                            sobres</b><br>El primer sobre reconstituido se toma en
-                                                    la tarde o al atardecer
-                                                    (por ejemplo, entre las 4:00 a las 6:00 PM), tomando durante las
-                                                    horas posteriores, por lo menos cinco bebidas de 250 ml cada una,
-                                                    de líquidos claros.
-                                                    El segundo sobre reconstituido se toma avanzada la noche (por
-                                                    ejemplo, entre las 10:00 PM y las 12:00 AM), tomando durante las
-                                                    horas posteriores por lo menos 3 bebidas de 250 ml cada una de
-                                                    líquidos claros.
-                                                    Pueden consumirse líquidos claros hasta 2 hr. antes del
-                                                    procedimiento.</p>
+                                                        sobres</b><br>
+                                                    <ul>
+                                                        <li>El primer sobre reconstituido se toma en la tarde o al atardecer
+                                                            (por ejemplo, entre las 4:00 a las 6:00 PM), tomando durante las
+                                                            horas posteriores, por lo menos cinco bebidas de 250 ml cada una, de
+                                                            líquidos claros.</li>
+                                                        <li>El segundo sobre reconstituido se toma avanzada la noche (por
+                                                            ejemplo, entre las 10:00 PM y las 12:00 AM), tomando durante las
+                                                            horas posteriores por lo menos 3 bebidas de 250 ml cada una de
+                                                            líquidos claros.</li>
+                                                        <li>Pueden consumirse líquidos claros hasta 2 hr. antes del
+                                                            procedimiento.
+                                                        </li>
+                                                    </ul>
+                                                </p>
                                             </div>
                                         </div>
 
@@ -234,15 +321,14 @@
                                                 </p>
                                                 <p class="text-start">
                                                     4-9 años (14.8 a 28 kg): 1 sachet por la mañana, 1⁄2 sachet por la
-tarde.
+                                                    tarde.
                                                 </p>
                                                 <p class="text-start">
                                                     9 años y mayores (> 28 kg): la dosis de adulto. <br>
-Niños menores de 4 años se recomienda la hidratación a libre
-demanda, la mayor cantidad de líquidos que acepte.
+                                
                                                 </p>
                                                 <p class="text-start">
-                                                    Si tiene alguna duda, consulte a su médico
+                                                    Niños menores de 4 años se recomienda la hidratación a libre demanda, la mayor cantidad de líquidos que acepte.
                                                 </p>
                                             </div>
                                         </div>
@@ -253,8 +339,7 @@ demanda, la mayor cantidad de líquidos que acepte.
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="rounded btnGuardarPregFrec"
-                            data-bs-dismiss="modal">GUARDAR</button>
+                        <button type="button" class="rounded btnGuardarPregFrec" data-bs-dismiss="modal">GUARDAR</button>
                         <br><br>
                     </div>
                 </div>
@@ -1793,7 +1878,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     color: #FF9900;
     font-family: 'OpenSans-Bold';
     font-size: 40px;
-    
+
     text-align: left;
 }
 

@@ -22,10 +22,10 @@
         <div class="container">
           <div class="row">
             <div class="col-xl-6 col-sm-6 col-md-6 text-center">
-              <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid" />
+              <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid imgNaranjin" />
             </div>
             <div class="col-xl-6 col-sm-6 col-md-6">
-              <div class="container">
+              <div class="container" style="margin: 0; padding: 0;">
                 <div class="row">
                   <div class="col mb-3">
                     <p>
@@ -42,21 +42,23 @@
                                         <button @click="validateDate">Validar</button> -->
                     <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
                     <div class="input-group">
-                      <input type="date" class="form-control inputFechaEstudioCrear" placeholder="18:00 Hrs"
-                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaEstudioColonos" />
-                      <span class="input-group-text" id="basic-addon1">
+                      <input type="date" class="form-control inputFechaEstudioCrear" v-model="fechaEstudioColonos" />
+                      <!-- inicia icono -->
+                        <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
                           </path>
                         </svg>
-                      </span>
+                      </span> -->
+                      <!-- fin icono -->
+
                     </div>
 
                     <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
                       errors2.fechaEstudioColonos }}</span>
-                    <p>Fecha actual: {{ this.fechaActual }}</p>
+                    <!-- <p>Fecha actual: {{ this.fechaActual }}</p> -->
                 
                   </div>
                 </div>
@@ -65,9 +67,8 @@
                     <!-- <input type="time" class="form-control" name="" id="emailInput"
                       placeholder="Hora de la colonoscopía o estudio"> -->
                     <div class="input-group">
-                      <input type="time" class="form-control inputHoraColos" placeholder="18:00 Hrs"
-                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="hora" />
-                      <span class="input-group-text" id="basic-addon1">
+                      <input type="time" class="form-control inputHoraColos" v-model="hora" />
+                      <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-alarm" viewBox="0 0 16 16">
                           <path
@@ -75,28 +76,28 @@
                           <path
                             d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                         </svg>
-                      </span>
+                      </span> -->
                     </div>
                     <span class="error" style="color: red" v-if="errors2.hora ">{{ errors2.hora }}</span>
                     <span class="error" style="color: red" v-if="errors2.horaIngresada ">{{ errors2.horaIngresada  }}</span>
                     <!--  --><!-- <p>Hora ingresada colonoscopia: {{ horaIngresada }}</p> -->
-                    <p>Hora actual: {{ this.horaActual }}</p>
+                    <!-- <p>Hora actual: {{ this.horaActual }}</p> -->
                   </div>
                 </div>
                 <div class="row">
                   <div class="col mb-3">
                     <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
                     <div class="input-group">
-                      <input type="date" class="form-control inputFecPriToma" placeholder="18:00 Hrs"
-                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaPrimerToma" />
-                      <span class="input-group-text" id="basic-addon1">
+                      <input type="date" class="form-control inputFecPriToma"
+                         v-model="fechaPrimerToma" />
+                      <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
                           </path>
                         </svg>
-                      </span>
+                      </span> -->
                     </div>
                     <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{ errors2.fechaPrimerToma
                     }}</span>
@@ -107,9 +108,9 @@
                     <!--  <input type="time" class="form-control inputHoraPriToma" name="" id="emailInput"
                       placeholder="Hora de la primera toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input type="time" class="form-control inputHoraPriToma" placeholder="18:00 Hrs"
-                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaPrimerToma" />
-                      <span class="input-group-text" id="basic-addon1">
+                      <input type="time" class="form-control inputHoraPriToma"
+                         v-model="horaPrimerToma" />
+                      <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-alarm" viewBox="0 0 16 16">
                           <path
@@ -117,7 +118,7 @@
                           <path
                             d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                         </svg>
-                      </span>
+                      </span> -->
                     </div>
                     <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{ errors2.horaPrimerToma
                     }}</span>
@@ -128,16 +129,16 @@
                     <!-- <input type="date" class="form-control inputFecSegToma" name="" id="emailInput"
                       placeholder="Fecha de la segunda toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input type="date" class="form-control inputFecSegToma" placeholder="18:00 Hrs"
-                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="fechaSegundaToma" />
-                      <span class="input-group-text" id="basic-addon1">
+                      <input type="date" class="form-control inputFecSegToma"
+                        v-model="fechaSegundaToma" />
+                      <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
                           </path>
                         </svg>
-                      </span>
+                      </span> -->
                     </div>
                     <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma
                     }}</span>
@@ -148,9 +149,8 @@
                     <!-- <input type="time" class="form-control inputHoraSegToma" name="" id="emailInput"
                       placeholder="Hora de la segunda toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input type="time" class="form-control inputHoraSegToma" placeholder="18:00 Hrs"
-                        aria-label="Input group example" aria-describedby="basic-addon1" v-model="horaSegundaToma" />
-                      <span class="input-group-text" id="basic-addon1">
+                      <input type="time" class="form-control inputHoraSegToma" v-model="horaSegundaToma" />
+                      <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-alarm" viewBox="0 0 16 16">
                           <path
@@ -158,7 +158,7 @@
                           <path
                             d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                         </svg>
-                      </span>
+                      </span> -->
                     </div>
                     <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma
                     }}</span>
@@ -1380,11 +1380,22 @@ input.inputFechaEstudioCrear[type="date"] {
 }
 
 input.inputFechaEstudioCrear[type="date"]:before {
-  content: "Fecha de estudio: ";
+  content: "Fecha de estudio:  ";
   font-family: "OpenSans-Regular";
-  line-break: normal;
-  margin-right: 2rem;
+  /* font-size: 40px; */
+  /* margin: 0 auto;
+    text-align: center; */
+  /* line-break: normal; */
+  /* margin-right: 2rem; */
+  line-height: normal;
   color: #8b8a8a;
+  margin-right: 2rem;
+  /* width: 200px;
+  height: 20px; */
+  /* text-align: center;
+  justify-content: center;
+  align-items: center; */
+ /*  margin-left: 10px; */
 }
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
@@ -1411,7 +1422,7 @@ input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator:hov
 input.inputHoraColos[type="time"]:before {
   content: "Hora de la colonoscopía o estudio: ";
   font-family: "OpenSans-Regular";
-  line-break: normal;
+  /* line-break: normal; */
   margin-right: 2rem;
   color: #8b8a8a;
   cursor: pointer;
@@ -2102,7 +2113,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 /* Termina estilos para vista Peguntas frecuentes */
 
 /* } */
-@media (min-width: 768px) {
+@media screen and (max-width: 767px)  {
 
   /*Estilos plam*/
   /* inicia estilos para ventana modal editar */
@@ -2113,7 +2124,24 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     text-align: center;
     /* fin de estilos para ventana modal editar */
   }
-
+  .tituloPrincipal {
+        color: #FF9900;
+        font-family: 'OpenSans-Bold';
+        font-size: 28px;
+        /*  font-size: 100%; */
+    }
+  .imgNaranjin {
+        background-image: url("../assets/img/mobile/Naranjin.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 372px;
+        height: 347px;
+        width: 260px;
+        height: 260px;
+        /* margin-top: 50px; */
+        margin-bottom: 0;
+    }
   .columnaUno {
     width: 20%;
   }

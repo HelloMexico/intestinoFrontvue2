@@ -22,41 +22,8 @@
                     <div class="col-xl-6 col-sm-6 col-md-6 text-center">
                         <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
                     </div>
-
-                    <!-- <div class="col-xl-6 col-sm-6 col-md-6">
-                        <form @submit.prevent="getMealData">
-                            <label for="meal_id">ID de comida:</label>
-                            <input type="text" id="meal_id" v-model="meal_id">
-                            <button type="submit">Obtener datos de comida</button>
-                        </form>
-                        <div v-if="mealData">
-                            <h2>Datos de la comida:</h2>
-                            <p>Nombre: {{ mealData.strMeal }}</p>
-                            <p>Categoría: {{ mealData.strCategory }}</p>
-                            <p>Área: {{ mealData.strArea }}</p>
-                        </div>
-                        <div v-if="error">
-                            <h2>Error:</h2>
-                            <p>{{ error }}</p>
-                        </div>
-                        <form @submit.prevent="getUserData">
-                            <label for="id_user">ID de usuario:</label>
-                            <input type="text" id="id_user" v-model="id_user">
-                            <button type="submit">Obtener datos de usuario</button>
-                        </form>
-                        <div v-if="userData">
-                            <h2>Datos del usuario:</h2>
-                            <p>Nombre del Médico: {{ userData.nombre_medico }}</p>
-                            <p>Apellido del Médico: {{ userData.apellido_medico }}</p>
-                        </div>
-                        <div v-if="error">
-                            <h2>Error:</h2>
-                            <p>{{ error }}</p>
-                        </div>
-                    </div> -->
                     <div class="col-xl-6 col-sm-6 col-md-6">
-
-                        <form action="" class="row mb-3" @submit.prevent="enviarDatos">
+                        <form class="row mb-3" @submit.prevent="enviarDatos()">
                             <!-- <div class="col-12 mb-3 ms-3">
                                 <input type="text" v-model="info" />
                             </div> -->
@@ -64,16 +31,20 @@
                                 <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
                             </div>
                             <div class="col-3 mb-3">
-                                <input class="form-control"
-                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                    type="number" maxlength="4" id="inputLadaperfil" placeholder="+52"
-                                    v-bind:disabled="!inputTelPerfilEnabled" v-model="inputTelPerfilEnabled">
+                                <input class="form-control" type="number" maxlength="10" name="" id="inputNumeroCel"
+                                    placeholder="+52" v-bind:disabled="!inputLadaEnabled" v-model="inputLadaEnabled"
+                                    @input="validarLada">
+                                <span class="error" style="color: red;" v-if="errors.inputLadaEnabled">{{
+                                    errors.inputLadaEnabled
+                                }}</span>
                             </div>
                             <div class="col-8 mb-3">
-                                <input class="form-control"
-                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                    type="number" maxlength="10" name="" id="inputNumeroCel" placeholder="55467841245"
-                                    v-bind:disabled="!inputLadaEnabled" v-model="inputLadaEnabled">
+                                <input class="form-control" type="number" maxlength="4" id="inputLadaperfil"
+                                    placeholder="55467841245" v-bind:disabled="!inputTelPerfilEnabled"
+                                    v-model="inputTelPerfilEnabled" @input="validarTelefonoCelular">
+                                <span class="error" style="color: red;" v-if="errors.inputTelPerfilEnabled">{{
+                                    errors.inputTelPerfilEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
@@ -84,20 +55,16 @@
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled "
-                                    v-model="selectEstadoEnabled">
+                                <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled"
+                                    v-model="selectEstadoEnabled" @change="validarEstado">
                                     <option value="" disabled selected>Estado</option>
                                     <option v-for="option in options" :key="option.value">
                                         {{ option.text }}
                                     </option>
                                 </select>
-                                <!-- <select v-model="estado" id="select_estado" class="form-select" @change="validarEstado">
-                                    <option value="" disabled selected>Seleccione un estado
-                                    </option>
-                                    <option v-for="option in options" :key="option.value">
-                                        {{ option.text }}
-                                    </option>
-                                </select> -->
+                                <span class="error" style="color: red;" v-if="errors.selectEstadoEnabled">{{
+                                    errors.selectEstadoEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
@@ -109,8 +76,11 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputCiudadPerfil"
-                                    placeholder="Mexicali" v-bind:disabled="!inputCiudad"
-                                    v-model="inputCiudadEnabled">
+                                    placeholder="Mexicali" v-bind:disabled="!inputCiudad" v-model="inputCiudadEnabled"
+                                    @input="validarCiudad">
+                                <span class="error" style="color: red;" v-if="errors.inputCiudadEnabled">{{
+                                    errors.inputCiudadEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" class="btnEditarPlan" @click.prevent="inputCiudad = !inputCiudad"></a>
@@ -122,11 +92,15 @@
                             <div class="col-11 mb-3">
                                 <input name="edad" class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                    type="number" maxlength="3" id="inputEdad" placeholder="18"
-                                    v-bind:disabled="!inputEdad" v-model="inputEdadEnabled">
+                                    type="number" maxlength="3" id="inputEdad" placeholder="18" v-bind:disabled="!inputEdad"
+                                    v-model="inputEdadEnabled" @input="validarEdad">
+                                <span class="error" style="color: red;" v-if="errors.inputEdadEnabled">{{
+                                    errors.inputEdadEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan" @click.prevent="inputEdad= !inputEdad"></a>
+                                <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
+                                    @click.prevent="inputEdad = !inputEdad"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-4 col-form-label">Nombre del médico
@@ -136,11 +110,14 @@
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputNombMedTrat"
                                     placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTrat"
-                                    v-model="inputNomMedTratEnabled">
+                                    v-model="inputNomMedTratEnabled" @input="validarNomMedTrat">
+                                <span class="error" style="color: red;" v-if="errors.inputNomMedTratEnabled">{{
+                                    errors.inputNomMedTratEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
-                                @click.prevent="inputNomMedTrat = !inputNomMedTrat"></a>
+                                    @click.prevent="inputNomMedTrat = !inputNomMedTrat"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-4 col-form-label"> Apellidos del médico
@@ -150,10 +127,14 @@
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputApellMedTra"
                                     placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTrat"
-                                    v-model="inputApeMedTratEnabled">
+                                    v-model="inputApeMedTratEnabled" @input="validarApeMedTrat">
+                                <span class="error" style="color: red;" v-if="errors.inputApeMedTratEnabled">{{
+                                    errors.inputApeMedTratEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" class="btnEditarPlan"  @click.prevent="inputApeMedTrat = !inputApeMedTrat"></a>
+                                <a type="button" class="btnEditarPlan"
+                                    @click.prevent="inputApeMedTrat = !inputApeMedTrat"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-3 col-form-label"> Clave de acceso</label>
@@ -161,11 +142,15 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="password" id="inputClaAcceso" class="form-control" name="" placeholder="****"
-                                    v-bind:disabled="!inputClaveAcceso" v-model="inputClaveAccesoEnabled">
+                                    v-bind:disabled="!inputClaveAcceso" v-model="inputClaveAccesoEnabled"
+                                    @input="validarClaveAccessos">
+                                <span class="error" style="color: red;" v-if="errors.inputClaveAccesoEnabled">{{
+                                    errors.inputClaveAccesoEnabled
+                                }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpClaAcceso" class="btnEditarPlan"
-                                @click.prevent="inputClaveAcceso= !inputClaveAcceso"></a>
+                                    @click.prevent="inputClaveAcceso = !inputClaveAcceso"></a>
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -185,7 +170,7 @@
                             <div class="row">
                                 <div class="col">
                                     <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
-                                    <button href="" type="submit" class="btnGuardar rounded text-center" data-bs-toggle="modal" data-bs-target="#exampleModal2">GUARDAR</button>
+                                    <button type="submit" class="btnGuardar rounded text-center" data-bs-toggle="modal" data-bs-target="#exampleModal2">GUARDAR</button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1"
                                         aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -208,7 +193,7 @@
                                                 </div>
                                                 <div class="modal-footer" style="border: none;">
 
-                                                    <button type="button" class="rounded btnAceptarModalModifica"
+                                                    <button type="submit" class="rounded btnAceptarModalModifica"
                                                         data-bs-dismiss="modal">ACEPTAR</button>
                                                     <br><!-- <br> -->
                                                     <button type="button"
@@ -239,24 +224,20 @@ export default {
     },
     data() {
         return {
-            fecha1: "",
-            fecha2: "",
-            hora1: "",
-            hora2: "",
-            errors2: {},
+            errors: {},
+            inputLadaEnabled: "",
+            inputTelPerfilEnabled: "",
+            selectEstadoEnabled: "",
+            inputCiudadEnabled: "",
+            inputEdadEnabled: "",
+            inputNomMedTratEnabled: "",
+            inputApeMedTratEnabled: "",
+            inputClaveAccesoEnabled: "",
 
-            input1Enabled: false,
-            input2Enabled: false,
-            input3Enabled: false,
-
-            inputLadaEnabled: null,
-            inputTelPerfilEnabled: null,
-            selectEstadoEnabled: null,
-            inputCiudadEnabled: null,
-            inputEdadEnabled: null,
-            inputNomMedTratEnabled: null,
-            inputApeMedTratEnabled: null,
-            inputClaveAccesoEnabled: null,
+            selected: "",
+            options: [],
+            selectedCountry: "",
+            selectedLada: "",
 
             inputLada: null,
             inputTelPerfil: null,
@@ -313,63 +294,273 @@ export default {
             // Se produjo un error durante la solicitud
             this.error = error.message;
             });
-    },
-    getMealData() {
-      axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
-        .then(response => {
-          if (response.data.meals === null) {
-            // La API no contiene datos
-            this.error = 'La API no contiene datos';
-          } else {
-            // La API contiene datos
-            this.mealData = response.data.meals[0];
-          }
-        })
-        .catch(error => {
-          // Se produjo un error durante la solicitud
-          this.error = error.message;
-        });
-    },
-        enableInput1() {
-            this.input1Enabled = true;
         },
-        enableInput2() {
-            this.input2Enabled = true;
+        getMealData() {
+        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
+            .then(response => {
+            if (response.data.meals === null) {
+                // La API no contiene datos
+                this.error = 'La API no contiene datos';
+            } else {
+                // La API contiene datos
+                this.mealData = response.data.meals[0];
+            }
+            })
+            .catch(error => {
+            // Se produjo un error durante la solicitud
+            this.error = error.message;
+            });
         },
-        enableInput3() {
-            this.input3Enabled = true;
-        },
-        /* enableInputLadaNumero(){
+        enableInputLadaNumero(){
             this.inputLadaEnabled= true;
             this.inputTelPerfilEnabled = true;
         },
-        enableSelectEstado(){
-            this.selectEstadoEnabled = true;
+        
+        validarLada() {
+            let valida = true;
+            // Validar los campos del formulario
+            this.errors.selectedCountry = '';
+            this.errors.inputLadaEnabled = '';
+            
+            // Validar los campos del formulario
+            this.errors.inputLadaEnabled = '';
+            // Validar que el campo lada
+            if (!this.inputLadaEnabled) {
+                this.errors.inputLadaEnabled = "La lada es obligatoria";
+                valida = false;
+            } else {
+                delete this.errors['inputLadaEnabled'];
+            }
         },
-        enableInputCiudad(){
-            this.inputCiudadEnabled = true;
+        validarTelefonoCelular() {
+            let valida = true;
+            // Validar los campos del formulario
+            this.errors.inputTelPerfilEnabled = '';
+            this.inputTelPerfilEnabled = this.inputTelPerfilEnabled.replace(/[^0-9]/g, "");
+
+            if (!this.inputTelPerfilEnabled) {
+                this.errors.inputTelPerfilEnabled = 'El telefono celular es obligatorio';
+                valida = false;
+            } else if (isNaN(this.inputTelPerfilEnabled)) {
+                this.errors.inputTelPerfilEnabled = 'El telefono celular solo debe contener números';
+                valida = false;
+            } else if (this.inputTelPerfilEnabled.length < 7) {
+                this.errors.inputTelPerfilEnabled = 'El telefono celular no debe ser menor a 7 números';
+                valida = false;
+            } else if (this.inputTelPerfilEnabled.length > 10) {
+                this.errors.inputTelPerfilEnabled = 'El telefono celular no debe exceder 10 números';
+                valida = false;
+            } else {
+                delete this.errors['inputTelPerfilEnabled '];
+            }
+            /* this.validarPais();
+            this.formularioValidado = this.validarEdad && validarPeso; */
         },
-        enableInputEdad(){
-            this.inputEdadEnabled = true;
+        validarEstado() {
+            this.errors.selectEstadoEnabled = '';
+            let valida = true;
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.selectEstadoEnabled) {
+                this.errors.selectEstadoEnabled= "El estado es obligatorio";
+                valida = false;
+            } else {
+                delete this.errors['selectEstadoEnabled'];
+            }
+
         },
-        enableInputNomMedTrat(){
-            this.inputNomMedTratEnabled = true;
+
+        validarCiudad() {
+            // Validar los campos del formulario
+            this.errors.inputCiudadEnabled = '';
+            let valida = true;
+            /** Expresion regular para solo letras */
+            /* const regex = /^[a-zA-Z]+$/; */
+            this.inputCiudadEnabled = this.inputCiudadEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+
+
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.inputCiudadEnabled) {
+                this.errors.inputCiudadEnabled = "La ciudad es obligatoria";
+                valida = false;
+            } /* else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
+                this.errors.ciudad = 'El nombre del médico tratante solo debe contener solo letras';
+                valida = false;
+            } */ else if (this.inputCiudadEnabled.length > 80) {
+                this.errors.inputCiudadEnabled =
+                    "La ciudad debe tener máximo 80 caracteres";
+                valida = false;
+            }
+            else {
+                delete this.errors['inputCiudadEnabled'];
+            }
         },
-        enableInputApeMedTrat(){
-            this.inputApeMedTratEnabled = true;
+
+        validarEdad() {
+            // Validar los campos del formulario
+            this.errors.inputEdadEnabled = '';
+            let valida = true;
+            // Validar que el campo edad no esté vacío y sea un número positivo
+            if (!this.inputEdadEnabled) {
+                this.errors.inputEdadEnabled= "La edad es obligatoria";
+                valida = false;
+            } else if (this.inputEdadEnabled <= 0) {
+                this.errors.inputEdadEnabled = "La edad debe ser un número positivo";
+                valida = false;
+            } else {
+                delete this.errors['inputEdadEnabled'];
+            }
         },
-        enableInputClaveAcceso(){
-            this.inputClaveAccesoEnabled = true;
-        }, */
+
+        validarNomMedTrat() {
+            // Validar los campos del formulario
+            this.errors.inputNomMedTratEnabled = '';
+            let valida = true;
+            /* this.inputNomMedTratEnabled = this.inputNomMedTratEnabledt.replace(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]/g,""); */
+            /** Expresion regular para solo letras */
+            /* const regex = /^[a-zA-Z]+$/; */
+            this.inputNomMedTratEnabled = this.inputNomMedTratEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+            // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
+            if (!this.inputNomMedTratEnabled) {
+                this.errors.inputNomMedTratEnabled = "El nombre del médico tratante es obligatorio";
+                valida = false;
+                /* else if (!/^([0-9])*$/.test(this.telefono)) { */
+            } /* else if (/^[ a-zA-Z]+$/.test(this.inputNomMedTratEnabled)) {
+                this.errors.inputNomMedTratEnabled = 'El nombre del médico tratante solo debe contener solo letras';
+                valida = false;
+            } *//* else if (this.inputNomMedTratEnabled.length < 50) {
+                this.errors.inputNomMedTratEnabled =
+                    "El nombre del médico tratante debe tener al menos 50 caracteres";
+            } */
+            else if (this.inputNomMedTratEnabled.length > 80) {
+                this.errors.inputNomMedTratEnabled =
+                    "El nombre del médico tratante debe tener máximo 80 caracteres";
+                valida = false;
+            } else {
+                delete this.errors['inputNomMedTratEnabled'];
+            }
+        },
+        validarApeMedTrat() {
+            // Validar los campos del formulario
+            this.errors.inputApeMedTratEnabled = '';
+            let valida = true;
+            this.inputApeMedTratEnabled = this.inputApeMedTratEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+
+            // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
+            if (!this.inputApeMedTratEnabled) {
+                this.errors.inputApeMedTratEnabled = "El apellido del médico tratante es obligatorio";
+                valida = false;
+            } /* else if (this.inputApeMedTratEnabled.length < 50) {
+                this.errors.inputApeMedTratEnabled =
+                    "El apellido del médico tratante debe tener al menos 50 caracteres";
+                valida = false;
+            } */
+            else if (this.inputApeMedTratEnabledt.length > 80) {
+                this.errors.inputApeMedTratEnabled =
+                    "El apellido del médico tratante debe tener máximo 80 caracteres";
+                valida = false;
+            } else {
+                delete this.errors['inputApeMedTratEnabled'];
+            }
+        },
+        validarClaveAccessos() {
+            // Validar los campos del formulario;
+            this.errors.inputClaveAccesoEnabled = '';
+            let valida = true;
+
+            // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
+            if (!this.inputClaveAccesoEnabled) {
+                this.errors.inputClaveAccesoEnabled = 'La clave de acceso es obligatoria';
+                valida = false;
+            } else if (this.inputClaveAccesoEnabled.length < 4) {
+                this.errors.inputClaveAccesoEnabled = 'La clave de acceso debe tener por lo menos 4 caracteres';
+                valida = false;
+            } else if (this.inputClaveAccesoEnabled.length > 10) {
+                this.errors.inputClaveAccesoEnabled = 'La clave de acceso no debe exceder de 10 caracteres';
+                valida = false;
+            } else {
+                delete this.errors['inputClaveAccesoEnabled'];
+            }
+        },
+        // Funcion pata actualizar la lada dependiendo de país seleccionado
+        updateLada() {
+            let valida = true;
+            if (this.selectedCountry === "Mexico") {
+                this.selectedLada = "+52";
+                valida = false;
+            } else if (this.selectedCountry === "Costa Rica") {
+                this.selectedLada = "+506";
+                valida = false;
+
+            } else {
+                delete this.errors['selectedCountry'];
+            }
+        },
+        submitFormCrearPlan() {
+            this.errors = {};
+            const valida = true;
+            // Validar los campos antes de enviar el formulario
+            this.validarPaisLada();
+            /* this.validarLada(); */
+            this.validarTelefonoCelular();
+            this.validarEstado();
+            this.validarCiudad();
+            this.validarEdad();
+            this.validarPeso();
+            this.validarNomMedTrat();
+            this.validarApeMedTrat();
+            this.validarClaveAccessos();
+            this.validarConfiClaveAccessos();
+            const data = {
+                selectedCountry: this.selectedCountry,
+                selectedLada: this.selectedLada,
+                telefonoCelular: this.telefonoCelular,
+                estado: this.estado,
+                ciudad: this.ciudad,
+                edad: this.edad,
+                peso: this.peso,
+                nomMedTrat: this.nomMedTrat,
+                apeMedTrat: this.apeMedTrat,
+                claveAccesos: this.claveAccesos,
+                confClaveAccesos: this.confClaveAccesos,
+            };
+            console.table(data);
+            // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
+            axios.post('https://intestinolimpio.onrender.com/api/v1/user', data)
+                .then(
+                    res => {
+                        console.log(res)
+                    }
+                ).catch(
+                    err => {
+                        console.log(err)
+                    }
+                )
+            // Comprobar si hay errores
+            if (Object.keys(this.errors).length > 0) {
+                return
+            } else {
+
+                /* this.$router.push('/crear'); */
+                this.$router.push('/');
+
+            }
+        },
         enviarDatos(){
-            /* this.errors = {};
-            this.enableInputLadaNumero();
-            this.enableSelectEstado();
-            this.enableInputCiudad();
-            this.enableInputEdad();
-            this.enableInputNomMedTrat();
-            this.enableInputApeMedTrat();
-            this.enableInputClaveAcceso(); */
+            this.errors = {};
+            const valida = true;
+            // Validar los campos antes de enviar el formulario
+            /* this.validarPaisLada(); */
+            this.validarLada();
+            this.validarTelefonoCelular();
+            this.validarEstado();
+            this.validarCiudad();
+            this.validarEdad();
+            /* this.validarPeso(); */
+            this.validarNomMedTrat();
+            this.validarApeMedTrat();
+            this.validarClaveAccessos();
+            /* this.validarConfiClaveAccessos(); */
+
             axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
                 params: {
                     id_user: 'your_id_user'
