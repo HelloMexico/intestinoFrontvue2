@@ -4,8 +4,8 @@
         <div class="row">
             <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
             <div class="col-4 col-md-6 col-sm-6">
-                <a type="button" class="btnFlecha" href="index.html">
-                </a>
+                <!-- <a type="button" class="btnFlecha" href="index.html">
+                </a> -->
             </div>
             <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
             <div class="col-8 col-md-6 col-sm-6 pt-3 ps-5">
@@ -23,40 +23,57 @@
                         <img src="../assets/img/web/Enmascarar grupo 2.png" alt="" class="img-fluid">
                     </div>
                     <div class="col-xl-6 col-sm-6 col-md-6">
-                        <form class="row mb-3" @submit.prevent="enviarDatos()">
-                            <!-- <div class="col-12 mb-3 ms-3">
+                        <form ref="formPerfil" class="row mb-3" @submit.prevent="enviarDatos">
+                            <!-- <div class="col-12 mb-3 ms-3">  
                                 <input type="text" v-model="info" />
                             </div> -->
                             <div class="col-12 mb-3 ms-3">
                                 <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
                             </div>
                             <div class="col-3 mb-3">
-                                <input class="form-control" type="number" maxlength="10" name="" id="inputNumeroCel"
-                                    placeholder="+52" v-bind:disabled="!inputLadaEnabled" v-model="inputLadaEnabled"
-                                    @input="validarLada">
+                                <!-- <input class="form-control" type="text" maxlength="10" name="" id="inputNumeroCel"
+                                    placeholder="Lada" :disabled="!inputLadaEnabled" v-model="inputLadaEnabled"
+                                    @input="validarLada"> -->
+                                <input type="tel" maxlength="5" class="form-control" placeholder="Lada" id="lada"
+                                    v-model="inputLadaEnabled" :disabled="!editMode" @input="validarLada"
+                                    :class="{ 'error': submitted && !inputLadaEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputLadaEnabled">{{
                                     errors.inputLadaEnabled
                                 }}</span>
+                                <!-- <input type="tel" maxlength="5" class="form-control" placeholder="Lada"  id="lada"
+                                    v-model="inputLadaEnabled" :disabled="!editMode" 
+                                    @input="validarLada"
+                                    :class="{ 'in-inavalid': submitted && !inputLadaEnabled}"
+                                    required>
+                                <div class="invalid-feedback">Lada es obligfatoria</div> -->
                             </div>
                             <div class="col-8 mb-3">
-                                <input class="form-control" type="number" maxlength="4" id="inputLadaperfil"
-                                    placeholder="55467841245" v-bind:disabled="!inputTelPerfilEnabled"
-                                    v-model="inputTelPerfilEnabled" @input="validarTelefonoCelular">
+                                <!-- <input class="form-control" type="text" maxlength="4" id="inputLadaperfil"
+                                    placeholder="Escriba su número celular" v-bind:disabled="!inputTelPerfilEnabled"
+                                    v-model="inputTelPerfilEnabled" @input="validarTelefonoCelular"> -->
+                                <input class="form-control" type="tel" maxlength="10" id="inputLadaperfil"
+                                    placeholder="Escriba su número celular" v-model="inputTelPerfilEnabled"
+                                    :disabled="!editMode" @input="validarTelefonoCelular"
+                                    :class="{ 'error': submitted && !inputTelPerfilEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputTelPerfilEnabled">{{
                                     errors.inputTelPerfilEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">Lada es obligfatoria</div> -->
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    v-on:click.prevent="enableInputLadaNumero"></a>
+                                <!-- <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
+                                    v-on:click.prevent="enableInputLadaNumero"></a> -->
+                                <a type="button" class="btnEditarPlan" @click="editMode = !editMode">{{ editMode ?
+                                    '' : '' }}</a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Estado</label>
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <select id="selectEstadoPerfil" class="form-select" v-bind:disabled="!selectEstadoEnabled"
-                                    v-model="selectEstadoEnabled" @change="validarEstado">
+                                <select id="selectEstadoPerfil" class="form-select" v-model="selectEstadoEnabled"
+                                    v-bind:disabled="!selectEstado" @checked="validarEstado"
+                                    :class="{ 'error': submitted && !selectEstadoEnabled }" required>
                                     <option value="" disabled selected>Estado</option>
                                     <option v-for="option in options" :key="option.value">
                                         {{ option.text }}
@@ -65,10 +82,11 @@
                                 <span class="error" style="color: red;" v-if="errors.selectEstadoEnabled">{{
                                     errors.selectEstadoEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">El estado es obligatorio</div> -->
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    @click.prevent="selectEstadoEnabled = !selectEstado"></a>
+                                    @click.prevent="selectEstadoEnabled = !selectEstadoEnabled"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
@@ -76,11 +94,13 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputCiudadPerfil"
-                                    placeholder="Mexicali" v-bind:disabled="!inputCiudad" v-model="inputCiudadEnabled"
-                                    @input="validarCiudad">
+                                    placeholder="Ejemplo: Mexicali" v-model="inputCiudadEnabled"
+                                    v-bind:disabled="!inputCiudad" @input="validarCiudad"
+                                    :class="{ 'error': submitted && !inputCiudadEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputCiudadEnabled">{{
                                     errors.inputCiudadEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">Ciudad es obligatoria</div> -->
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" class="btnEditarPlan" @click.prevent="inputCiudad = !inputCiudad"></a>
@@ -92,11 +112,14 @@
                             <div class="col-11 mb-3">
                                 <input name="edad" class="form-control"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                    type="number" maxlength="3" id="inputEdad" placeholder="18" v-bind:disabled="!inputEdad"
-                                    v-model="inputEdadEnabled" @input="validarEdad">
+                                    type="number" maxlength="3" id="inputEdad" placeholder="Ejemplo: 18"
+                                    v-model="inputEdadEnabled" v-bind:disabled="!inputEdad" @input="validarEdad"
+                                    :class="{ 'error': submitted && !inputEdadEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputEdadEnabled">{{
                                     errors.inputEdadEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">Lada es obligfatoria</div> -->
+
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
@@ -109,11 +132,14 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputNombMedTrat"
-                                    placeholder="Juan Andrés" maxlength="80" v-bind:disabled="!inputNomMedTrat"
-                                    v-model="inputNomMedTratEnabled" @input="validarNomMedTrat">
+                                    placeholder="Ejemplo: Juan Andrés" v-model="inputNomMedTratEnabled"
+                                    v-bind:disabled="!inputNomMedTrat" @input="validarNomMedTrat"
+                                    :class="{ 'error': submitted && !inputNomMedTratEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputNomMedTratEnabled">{{
                                     errors.inputNomMedTratEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">Lada es obligfatoria</div> -->
+
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEdad" class="btnEditarPlan"
@@ -126,11 +152,14 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="text" class="form-control" name="" id="inputApellMedTra"
-                                    placeholder="Márquez Luria" maxlength="80" v-bind:disabled="!inputApeMedTrat"
-                                    v-model="inputApeMedTratEnabled" @input="validarApeMedTrat">
+                                    placeholder="Ejemplo: Márquez Luria" v-model="inputApeMedTratEnabled"
+                                    v-bind:disabled="!inputApeMedTrat" @input="validarApeMedTrat"
+                                    :class="{ 'error': submitted && !inputApeMedTratEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputApeMedTratEnabled">{{
                                     errors.inputApeMedTratEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">Apellido es obligfatoria</div> -->
+
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" class="btnEditarPlan"
@@ -142,11 +171,14 @@
                             </div>
                             <div class="col-11 mb-3">
                                 <input type="password" id="inputClaAcceso" class="form-control" name="" placeholder="****"
-                                    v-bind:disabled="!inputClaveAcceso" v-model="inputClaveAccesoEnabled"
-                                    @input="validarClaveAccessos">
+                                    v-model="inputClaveAccesoEnabled" v-bind:disabled="!inputClaveAcceso"
+                                    @input="validarClaveAccessos"
+                                    :class="{ 'error': submitted && !inputClaveAccesoEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputClaveAccesoEnabled">{{
                                     errors.inputClaveAccesoEnabled
                                 }}</span>
+                                <!-- <div class="invalid-feedback">Lada es obligfatoria</div> -->
+
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpClaAcceso" class="btnEditarPlan"
@@ -158,8 +190,7 @@
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
                                             checked>
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            He leído y
-                                            acepto los términos, condiciones y el aviso de
+                                            He leído el aviso de
                                             privacidad.
                                             <p>*El uso de esta plataforma no sustituye bajo ninguna
                                                 circunstancia la recomendación de su médico tratante.</p>
@@ -170,41 +201,109 @@
                             <div class="row">
                                 <div class="col">
                                     <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
-                                    <button type="submit" class="btnGuardar rounded text-center" data-bs-toggle="modal" data-bs-target="#exampleModal2">GUARDAR</button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal2" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header modalHeaderModificar">
-                                                    <!-- <div class="contenidoDerecha"> -->
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                    <!-- </div> -->
+                                    <button type="submit" class="btnGuardar rounded text-center">GUARDAR</button>
 
-                                                </div>
-                                                <div class="modal-body" style="border: none;">
-                                                    <p class="text-center parrafoVaModificarInfor">Va a modificar la
-                                                        información de ingreso, esto
-                                                        podría afectar las alertas vía WhatsApp</p>
-                                                    <p class="parrafoEstasSeguro text-center">¿Está seguro de que quiere
-                                                        continuar?</p>
+                                </div>
 
-                                                </div>
-                                                <div class="modal-footer" style="border: none;">
+                            </div>
+                        </form>
+                        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header modalHeaderModificar">
+                                        <!-- <div class="contenidoDerecha"> -->
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                        <!-- </div> -->
 
-                                                    <button type="submit" class="rounded btnAceptarModalModifica"
-                                                        data-bs-dismiss="modal">ACEPTAR</button>
-                                                    <br><!-- <br> -->
-                                                    <button type="button"
-                                                        class="rounded btnCancelarModalModifica">CANCELAR</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div class="modal-body" style="border: none;">
+                                        <p class="text-center parrafoVaModificarInfor">Va a modificar la
+                                            información de ingreso, esto
+                                            podría afectar las alertas vía WhatsApp</p>
+                                        <p class="parrafoEstasSeguro text-center">¿Está seguro de que quiere
+                                            continuar?</p>
+
+                                    </div>
+                                    <div class="modal-footer" style="border: none;">
+
+                                        <!-- <button type="submit" class="rounded btnAceptarModalModifica"
+                                            data-bs-dismiss="modal">ACEPTAR</button> -->
+                                        <button type="submit" class="rounded btnAceptarModalModifica"
+                                            data-bs-dismiss="modal">ACEPTAR</button>
+                                        <br><!-- <br> -->
+                                        <button type="button" class="rounded btnCancelarModalModifica"
+                                            data-bs-dismiss="modal">CANCELAR</button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+
+                        <!-- <form ref="formPruebas" @submit.prevent="submitForm2">
+                            <div class="form__group">
+                                <label class="form__label">Nombre:</label>
+                                <input class="form__input form-control" type="text" v-model="name"
+                                    :class="{ 'is-invalid': submitted && !name }" />
+                                <div class="invalid-feedback">El nombre es requerido</div>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label">Correo electrónico:</label>
+                                <input class="form__input form-control" type="email" v-model="email"
+                                    :class="{ 'is-invalid': submitted && !email }"  />
+                                <div class="invalid-feedback">El correo electrónico es requerido</div>
+                            </div>
+                            <button class="form__button btn btn-primary" type="submit">Enviar</button>
+                        </form> -->
+
+                        <!-- <div class="modal fade" id="successModal2" tabindex="-1" aria-labelledby="successModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="successModalLabel">
+                                            ¡Formulario enviado!
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            Gracias por contactarnos. Nos pondremos en contacto contigo lo
+                                            antes posible.
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- <form @submit.prevent="onSubmit">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" v-model="email"
+                                    aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" v-model="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2"
+                                    v-model="passwordConfirm">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form> -->
+
+                        <!-- Modal -->
+
                     </div>
                 </div>
             </div>
@@ -212,10 +311,9 @@
         <br>
     </div>
 </template>
-<script type="text/javascript" src="../js/jspdf.min.js"></script>
 <script>
-import moment from 'moment';
 import axios from "axios";
+
 
 export default {
     name: 'Perfil',
@@ -258,13 +356,25 @@ export default {
             meal_id: '',
             mealData: null,
             error: null,
+
+            email: '',
+            password: '',
+            passwordConfirm: '',
+
+            lada: '',
+            numero: '',
+            editMode: false,
+
+            name: '',
+            email: '',
+            submitted: false,
         };
     },
     mounted() {
         // Consumir una API 
         axios
             .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-            .then((response) => (this.info= response.data.bpi.USD.rate));
+            .then((response) => (this.info = response.data.bpi.USD.rate));
         axios
             .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
             .then((response) => {
@@ -275,58 +385,113 @@ export default {
             });
     },
     methods: {
+        validateLada() {
+            /* const regex = /^(\+){0,5}(52){0,5}$/;
+            const regex = /^(\+){0,4}{0,1}$/; */
+            const regex = /^[0-9\+]+$/;
+            if (!regex.test(this.lada)) {
+                this.lada = '';
+            }
+            if (this.lada.length > 5) {
+                this.lada = this.lada.slice(0, 5);
+            }
+        },
+        validateNumero() {
+            if (this.numero.length > 10) {
+                this.numero = this.numero.slice(0, 10);
+            }
+        },
         getUserData() {
             axios.get('https://intestinolimpio.onrender.com/api/v1/data/estados', {
                 params: {
-                id_user: this.id_user,
+                    id_user: this.id_user,
                 },
             })
-            .then(response => {
-            if (response.data.length === 0) {
-                // La API no contiene datos
-                this.error = 'La API no contiene datos';
-            } else {
-                // La API contiene datos
-                this.userData = response.data;
-            }
-            })
-            .catch(error => {
-            // Se produjo un error durante la solicitud
-            this.error = error.message;
-            });
+                .then(response => {
+                    if (response.data.length === 0) {
+                        // La API no contiene datos
+                        this.error = 'La API no contiene datos';
+                    } else {
+                        // La API contiene datos
+                        this.userData = response.data;
+                    }
+                })
+                .catch(error => {
+                    // Se produjo un error durante la solicitud
+                    this.error = error.message;
+                });
         },
         getMealData() {
-        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
-            .then(response => {
-            if (response.data.meals === null) {
-                // La API no contiene datos
-                this.error = 'La API no contiene datos';
-            } else {
-                // La API contiene datos
-                this.mealData = response.data.meals[0];
-            }
-            })
-            .catch(error => {
-            // Se produjo un error durante la solicitud
-            this.error = error.message;
-            });
+            axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
+                .then(response => {
+                    if (response.data.meals === null) {
+                        // La API no contiene datos
+                        this.error = 'La API no contiene datos';
+                    } else {
+                        // La API contiene datos
+                        this.mealData = response.data.meals[0];
+                    }
+                })
+                .catch(error => {
+                    // Se produjo un error durante la solicitud
+                    this.error = error.message;
+                });
         },
-        enableInputLadaNumero(){
-            this.inputLadaEnabled= true;
+        /* enableInputLadaNumero() {
+            this.inputLadaEnabled = true;
             this.inputTelPerfilEnabled = true;
-        },
-        
+        }, */
+        /* onSubmit() {
+            if (this.validateForm()) { */
+        // Show modal window with Bootstrap 5
+        /* $('#exampleModal').modal('show');
+    }
+
+}, */
+        /* validateForm() {
+            if (!this.email) {
+                alert('Please enter an email address.');
+                return false;
+            }
+            if (!this.password) {
+                alert('Please enter a password.');
+                return false;
+            }
+            if (this.password !== this.passwordConfirm) {
+                alert('Password and password confirmation do not match.');
+                return false;
+            }
+            return true;
+
+        }, */
+
         validarLada() {
             let valida = true;
             // Validar los campos del formulario
-            this.errors.selectedCountry = '';
             this.errors.inputLadaEnabled = '';
-            
+
             // Validar los campos del formulario
             this.errors.inputLadaEnabled = '';
+            this.inputLadaEnabled = this.inputLadaEnabled.replace(/[^0-9\+]/g, "");
+            /* this.inputLadaEnabled = this.inputLadaEnabled.replace(/^[0-9\+]+$/, ""); */
+            /* const regex = /^[0-9\+]+$/; */
             // Validar que el campo lada
             if (!this.inputLadaEnabled) {
                 this.errors.inputLadaEnabled = "La lada es obligatoria";
+                valida = false;
+            }
+            /* if (!regex.test(this.inputLadaEnabled)) {
+                this.errors.inputLadaEnabled = "La lada es obligatoria";
+                valida = false;
+            } */
+            /* else if (isNaN(this.inputLadaEnabled)) {
+                this.errors.inputLadaEnabled = 'La lada solo debe contener numero y signo +';
+                valida = false;
+            } */ else if (this.inputLadaEnabled.length < 3) {
+                this.errors.inputLadaEnabled = 'La lada  no debe ser menor a 3 caracteres';
+                valida = false;
+            } else if (this.inputLadaEnabled.length > 5) {
+                this.errors.inputLadaEnabled = 'La lada no debe exceder 5 caracteres';
                 valida = false;
             } else {
                 delete this.errors['inputLadaEnabled'];
@@ -339,16 +504,16 @@ export default {
             this.inputTelPerfilEnabled = this.inputTelPerfilEnabled.replace(/[^0-9]/g, "");
 
             if (!this.inputTelPerfilEnabled) {
-                this.errors.inputTelPerfilEnabled = 'El telefono celular es obligatorio';
+                this.errors.inputTelPerfilEnabled = 'El teléfono celular es obligatorio';
                 valida = false;
             } else if (isNaN(this.inputTelPerfilEnabled)) {
-                this.errors.inputTelPerfilEnabled = 'El telefono celular solo debe contener números';
+                this.errors.inputTelPerfilEnabled = 'El teléfono celular solo debe contener números';
                 valida = false;
             } else if (this.inputTelPerfilEnabled.length < 7) {
-                this.errors.inputTelPerfilEnabled = 'El telefono celular no debe ser menor a 7 números';
+                this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe ser menor a 7 números';
                 valida = false;
             } else if (this.inputTelPerfilEnabled.length > 10) {
-                this.errors.inputTelPerfilEnabled = 'El telefono celular no debe exceder 10 números';
+                this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe exceder 10 números';
                 valida = false;
             } else {
                 delete this.errors['inputTelPerfilEnabled '];
@@ -361,7 +526,7 @@ export default {
             let valida = true;
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.selectEstadoEnabled) {
-                this.errors.selectEstadoEnabled= "El estado es obligatorio";
+                this.errors.selectEstadoEnabled = "El estado es obligatorio";
                 valida = false;
             } else {
                 delete this.errors['selectEstadoEnabled'];
@@ -401,7 +566,7 @@ export default {
             let valida = true;
             // Validar que el campo edad no esté vacío y sea un número positivo
             if (!this.inputEdadEnabled) {
-                this.errors.inputEdadEnabled= "La edad es obligatoria";
+                this.errors.inputEdadEnabled = "La edad es obligatoria";
                 valida = false;
             } else if (this.inputEdadEnabled <= 0) {
                 this.errors.inputEdadEnabled = "La edad debe ser un número positivo";
@@ -454,7 +619,7 @@ export default {
                     "El apellido del médico tratante debe tener al menos 50 caracteres";
                 valida = false;
             } */
-            else if (this.inputApeMedTratEnabledt.length > 80) {
+            else if (this.inputApeMedTratEnabled.length > 80) {
                 this.errors.inputApeMedTratEnabled =
                     "El apellido del médico tratante debe tener máximo 80 caracteres";
                 valida = false;
@@ -481,19 +646,92 @@ export default {
                 delete this.errors['inputClaveAccesoEnabled'];
             }
         },
-        // Funcion pata actualizar la lada dependiendo de país seleccionado
-        updateLada() {
-            let valida = true;
-            if (this.selectedCountry === "Mexico") {
-                this.selectedLada = "+52";
-                valida = false;
-            } else if (this.selectedCountry === "Costa Rica") {
-                this.selectedLada = "+506";
-                valida = false;
 
-            } else {
-                delete this.errors['selectedCountry'];
+        submitForm2() {
+            this.submitted = true;
+
+            // Validamos el formulario
+            if (!this.name || !this.email) {
+                return;
             }
+
+            // Si el formulario es válido, mostramos la ventana modal
+            const successModal = new bootstrap.Modal(
+                document.getElementById('successModal')
+            );
+            successModal.show();
+            /* this.$refs.formPruebas.reset(); */
+        },
+
+        enviarDatos() {
+            this.errors = {};
+            const valida = true;
+            this.submitted = true;
+            // Validar los campos antes de enviar el formulario
+            /* this.validarPaisLada(); */
+
+            this.validarLada();
+            this.validarTelefonoCelular();
+            this.validarEstado();
+            this.validarCiudad();
+            this.validarEdad();
+
+            /* this.validarPeso(); */
+
+            this.validarNomMedTrat();
+            this.validarApeMedTrat();
+            this.validarClaveAccessos();
+
+            /* this.validarConfiClaveAccessos(); */
+
+            //validamos el formulario
+            /* if (!this.validarLada || !this.validarTelefonoCelular || !this.validarEstado || !this.validarCiudad || !this.validarEdad || !this.validarNomMedTrat || !this.validarApeMedTrat || !this.validarClaveAccessos) {
+                return;
+            } */
+            // Validación del formulario de Perfil
+            if (!this.inputLadaEnabled || !this.inputTelPerfilEnabled || !this.selectEstadoEnabled || !this.inputCiudadEnabled || !this.inputEdadEnabled || !this.inputNomMedTratEnabled || !this.inputApeMedTratEnabled || !this.inputClaveAccesoEnabled) {
+                return;
+            }
+            else {
+                // Si el formulario es valido, se muestra ventana modal
+                const successModal = new bootstrap.Modal(
+                    document.getElementById('successModal')
+                );
+                successModal.show();
+                this.$refs.formPerfil.reset();
+            }
+
+
+            /* axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
+                params: {
+                    id_user: 'your_id_user'
+                }
+            })
+                .then(response => {
+                    if (response.data.length === 0) { */
+            // La API no contiene datos
+            /* console.log('La API no contiene datos');
+        } else { */
+            // La API contiene datos
+            /* console.log(response.data);
+        }
+    }) */
+            /* .catch(error => { */
+            // Se produjo un error durante la solicitud
+            /* console.log(error); */
+            /* }); */
+            /* const data = {
+                inputLadaEnabled: this.inputLadaEnabled,
+                inputTelPerfilEnabled: this.inputTelPerfilEnabled,
+                selectEstadoEnabled: this.selectEstadoEnabled,
+                inputCiudadEnabled: this.inputCiudadEnabled,
+                inputEdadEnabled: this.inputEdadEnabled,
+                inputNomMedTratEnabled: this.inputNomMedTratEnabled,
+                inputApeMedTratEnabled: this.inputApeMedTratEnabled,
+                inputClaveAccesoEnabled: this.inputClaveAccesoEnabled,
+
+            }; */
+            /* console.log(data); */
         },
         submitFormCrearPlan() {
             this.errors = {};
@@ -545,55 +783,7 @@ export default {
 
             }
         },
-        enviarDatos(){
-            this.errors = {};
-            const valida = true;
-            // Validar los campos antes de enviar el formulario
-            /* this.validarPaisLada(); */
-            this.validarLada();
-            this.validarTelefonoCelular();
-            this.validarEstado();
-            this.validarCiudad();
-            this.validarEdad();
-            /* this.validarPeso(); */
-            this.validarNomMedTrat();
-            this.validarApeMedTrat();
-            this.validarClaveAccessos();
-            /* this.validarConfiClaveAccessos(); */
 
-            axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
-                params: {
-                    id_user: 'your_id_user'
-                }
-            })
-            .then(response => {
-                if (response.data.length === 0) {
-                    // La API no contiene datos
-                    console.log('La API no contiene datos');
-                } else {
-                    // La API contiene datos
-                    console.log(response.data);
-                }
-            })
-            .catch(error => {
-            // Se produjo un error durante la solicitud
-            console.log(error);
-            });
-            const data = {
-                inputLadaEnabled: this.inputLadaEnabled,
-                inputTelPerfilEnabled: this.inputTelPerfilEnabled,
-                selectEstadoEnabled: this.selectEstadoEnabled,
-                inputCiudadEnabled: this.inputCiudadEnabled,
-                inputEdadEnabled: this.inputEdadEnabled,
-                inputNomMedTratEnabled: this.inputNomMedTratEnabled,
-                inputApeMedTratEnabled: this.inputApeMedTratEnabled,
-                inputClaveAccesoEnabled: this.inputClaveAccesoEnabled,
-
-            };
-            console.log(data);
-        }
-    },
-    computed: {
     },
 };
 </script>

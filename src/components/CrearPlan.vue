@@ -44,7 +44,7 @@
                     <div class="input-group">
                       <input type="date" class="form-control inputFechaEstudioCrear" v-model="fechaEstudioColonos" />
                       <!-- inicia icono -->
-                        <!-- <span class="input-group-text" id="basic-addon1">
+                      <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-calendar" viewBox="0 0 16 16">
                           <path
@@ -59,7 +59,7 @@
                     <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
                       errors2.fechaEstudioColonos }}</span>
                     <!-- <p>Fecha actual: {{ this.fechaActual }}</p> -->
-                
+
                   </div>
                 </div>
                 <div class="row">
@@ -78,8 +78,9 @@
                         </svg>
                       </span> -->
                     </div>
-                    <span class="error" style="color: red" v-if="errors2.hora ">{{ errors2.hora }}</span>
-                    <span class="error" style="color: red" v-if="errors2.horaIngresada ">{{ errors2.horaIngresada  }}</span>
+                    <span class="error" style="color: red" v-if="errors2.hora">{{ errors2.hora }}</span>
+                    <span class="error" style="color: red" v-if="errors2.horaIngresada">{{ errors2.horaIngresada
+                    }}</span>
                     <!--  --><!-- <p>Hora ingresada colonoscopia: {{ horaIngresada }}</p> -->
                     <!-- <p>Hora actual: {{ this.horaActual }}</p> -->
                   </div>
@@ -88,8 +89,7 @@
                   <div class="col mb-3">
                     <!-- <input type="date" class="form-control inputFecPriToma" name="" id="emailInput" placeholder=""> -->
                     <div class="input-group">
-                      <input type="date" class="form-control inputFecPriToma"
-                         v-model="fechaPrimerToma" />
+                      <input type="date" class="form-control inputFecPriToma" v-model="fechaPrimerToma" />
                       <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-calendar" viewBox="0 0 16 16">
@@ -108,8 +108,7 @@
                     <!--  <input type="time" class="form-control inputHoraPriToma" name="" id="emailInput"
                       placeholder="Hora de la primera toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input type="time" class="form-control inputHoraPriToma"
-                         v-model="horaPrimerToma" />
+                      <input type="time" class="form-control inputHoraPriToma" v-model="horaPrimerToma" />
                       <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-alarm" viewBox="0 0 16 16">
@@ -129,8 +128,7 @@
                     <!-- <input type="date" class="form-control inputFecSegToma" name="" id="emailInput"
                       placeholder="Fecha de la segunda toma de Picoprep®️"> -->
                     <div class="input-group">
-                      <input type="date" class="form-control inputFecSegToma"
-                        v-model="fechaSegundaToma" />
+                      <input type="date" class="form-control inputFecSegToma" v-model="fechaSegundaToma" />
                       <!-- <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-calendar" viewBox="0 0 16 16">
@@ -245,31 +243,35 @@ export default {
       // Aquí irá el código para validar la hora ingresada y la hora actual
       event.preventDefault();
       let valida = true;
-      const fechaActual = this.fechaActual ? moment(this.fechaActual,'YYYY-MM-DD') : '';
+      const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
       const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
       const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
       //Valida que el campo fecha colonoscopia no este vació y sea una fechs
       console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
-      
+
 
       if (!this.fechaEstudioColonos) {
         this.errors2.fechaEstudioColonos =
           "La fecha de la colonoscopia es obligatoria";
         valida = false;
-      } else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
+      } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
         this.errors2.fechaEstudioColonos =
           "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
           valida = false;
+      } */
+      else {
+        delete this.errors2['fechaEstudioColonos'];
+        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
       }
-      
+
       if (horaIngresada === '') {
         this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
         valida = false;
-        
-      } else if (horaIngresada.isBefore(horaActual, 'hour')){
+
+      } /* else if (horaIngresada.isBefore(horaActual, 'hour')) {
         this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
         valida = false;
-      }
+      } */
       else {
         delete this.errors2['horaIngresada'];
         /* this.errors2.horaIngresada = "La hora es obligatoria"; */
@@ -284,26 +286,29 @@ export default {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma no es válida";
         valida = false;
-      } else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
+      }/*  else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
         valida = false;
-      }
-      else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
+      } */
+
+      /* else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
         valida = false;
-      }else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
+      } else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
         this.errors2.fechaPrimerToma =
           "La fecha de la primer toma debe ser posterior a la fecha actual";
         valida = false;
-      }/* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+      } */
+
+      /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
                 this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
             } */
-      /* else {
+      else {
         delete this.errors2['fechaPrimerToma'];
 
-      } */
+      }
 
       // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
       if (!this.fechaSegundaToma) {
@@ -314,10 +319,13 @@ export default {
         this.errors2.fechaSegundaToma =
           "La fecha de la segunda toma no es válida";
         valida = false;
-      } else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
+      } /* else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
         this.errors2.fechaSegundaToma =
           "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
         valida = false;
+      } */
+      else {
+        delete this.errors2['fechaSegundaToma'];
       }
 
       // Validar que el campo fecha dos sea posterior al campo fecha uno
@@ -344,23 +352,23 @@ export default {
           "La hora de la primer toma es obligatoria";
         valida = false;
 
-      } /* else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+      } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
         this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-        valid2 = false;
-      } */  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
+        valida = false;
+      } /*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
         this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
         valida = false;
 
-        /* alert("La hora ingresada es posterior a la hora actual"); */
+        alert("La hora ingresada es posterior a la hora actual");
       } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
         this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
         valida = false;
 
-        /* alert("La hora ingresada es posterior a la hora actual"); */
-      }
-      /* else {
-        delete this.errors2['horaPrimerToma'];
+        alert("La hora ingresada es posterior a la hora actual");
       } */
+      else {
+        delete this.errors2['horaPrimerToma'];
+      }
 
       // Validar que el campo hora dos no esté vacío y sea una hora válida
       if (!this.horaSegundaToma) {
@@ -373,16 +381,19 @@ export default {
           "La hora de la segunda toma no es válida";
         valida = false;
 
-      }else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct) ) {
+      } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
         this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
         valida = false;
 
-        /* alert("La hora ingresada es posterior a la hora actual"); */
-      }else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm") )) {
+        alert("La hora ingresada es posterior a la hora actual");
+      } else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm"))) {
         this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
         valida = false;
-      }
+      } */
+      else {
+        delete this.errors2['horaSegundaToma'];
 
+      }
     },
 
     validateDate() {
@@ -636,7 +647,7 @@ export default {
   },
   /* mixins: [VueMoment], */
   mounted: function () {
-   
+
     this.horaActual = moment().format("HH:mm");
     this.fechaActual = moment().format("YYYY-MM-DD")
     /* this.horaIngresada = moment().format("HH:mm"); */
@@ -1395,7 +1406,7 @@ input.inputFechaEstudioCrear[type="date"]:before {
   /* text-align: center;
   justify-content: center;
   align-items: center; */
- /*  margin-left: 10px; */
+  /*  margin-left: 10px; */
 }
 
 input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
@@ -1420,7 +1431,7 @@ input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator:hov
 
 /* Inician Estilos para input Hora de la colonoscopía o estudio */
 input.inputHoraColos[type="time"]:before {
-  content: "Hora de la colonoscopía o estudio: ";
+  content: "Hora de la colonoscopia o estudio: ";
   font-family: "OpenSans-Regular";
   /* line-break: normal; */
   margin-right: 2rem;
@@ -2113,7 +2124,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 /* Termina estilos para vista Peguntas frecuentes */
 
 /* } */
-@media screen and (max-width: 767px)  {
+@media screen and (max-width: 767px) {
 
   /*Estilos plam*/
   /* inicia estilos para ventana modal editar */
@@ -2124,24 +2135,27 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     text-align: center;
     /* fin de estilos para ventana modal editar */
   }
+
   .tituloPrincipal {
-        color: #FF9900;
-        font-family: 'OpenSans-Bold';
-        font-size: 28px;
-        /*  font-size: 100%; */
-    }
+    color: #FF9900;
+    font-family: 'OpenSans-Bold';
+    font-size: 28px;
+    /*  font-size: 100%; */
+  }
+
   .imgNaranjin {
-        background-image: url("../assets/img/mobile/Naranjin.png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 372px;
-        height: 347px;
-        width: 260px;
-        height: 260px;
-        /* margin-top: 50px; */
-        margin-bottom: 0;
-    }
+    background-image: url("../assets/img/mobile/Naranjin.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 372px;
+    height: 347px;
+    width: 260px;
+    height: 260px;
+    /* margin-top: 50px; */
+    margin-bottom: 0;
+  }
+
   .columnaUno {
     width: 20%;
   }

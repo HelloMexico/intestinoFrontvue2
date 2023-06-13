@@ -1,12 +1,12 @@
 <template>
     <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
     <div class="container">
-        <div class="container" id="ignoreContent">
+        <div class="container" id="element-to-converte">
             <br><br>
             <div class="row filaPlan">
                 <div class="col-2 col-md-2">
-                    <a type="button" class="btnFlecha" href="index.html">
-                    </a>
+                    <!-- <a type="button" class="btnFlecha" href="index.html">
+                    </a> -->
                 </div>
                 <div class="col-10 col-md-10">
                     <h1 class="tituloPlanToma" id="tituloPlan">Plan de tomas e hidrataciones</h1>
@@ -14,7 +14,7 @@
             </div>
             <div class="row filaPlanTabla">
                 <div class="col-12 col-md-12 col-sm-12 text-center">
-                    <img src="../assets/img/mobile/Recurso 23x.png" class="img-fluid imgNaranjinPlan" alt="...">
+                    <img src="../assets/img/mobile/Recurso 23x.png" class="imgNaranjinPlan" alt="...">
                 </div>
             </div>
             <br>
@@ -28,7 +28,7 @@
                                     <p class="parrafoEstudioProgramado">Estudio programado para: <span>Sin datos</span></p>
                                     <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
                                     <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
-                                    <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -86,14 +86,14 @@
                                                         placeholder="18:00 Hrs" aria-label="Input group example"
                                                         aria-describedby="basic-addon1" id="inputLabelFechaModalEditarPlan"
                                                         v-model="fechaEstudioColonos">
-                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
                                                             </path>
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
                                                     errors2.fechaEstudioColonos }}</span>
@@ -101,13 +101,13 @@
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1 labelModalEditarHoraColonos"
                                                     class="form-label">Hora de la
-                                                    colonoscopía o estudio</label>
+                                                    colonoscopia o estudio</label>
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="hora">
-                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
                                                             <path
@@ -115,7 +115,7 @@
                                                             <path
                                                                 d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.hora">{{ errors2.hora
                                                 }}</span>
@@ -128,15 +128,16 @@
                                                 <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
-                                                        aria-label="Input group example" aria-describedby="basic-addon1">
-                                                    <span class="input-group-text" id="basic-addon1">
+                                                        aria-label="Input group example" aria-describedby="basic-addon1"
+                                                        v-model="fechaPrimerToma">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
                                                             </path>
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{
                                                     errors2.fechaPrimerToma
@@ -150,7 +151,7 @@
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="horaPrimerToma">
-                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
                                                             <path
@@ -158,7 +159,7 @@
                                                             <path
                                                                 d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
                                                     errors2.horaPrimerToma
@@ -172,14 +173,14 @@
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="fechaSegundaToma">
-                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
                                                             </path>
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{
                                                     errors2.fechaSegundaToma
@@ -187,13 +188,13 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Hora de la segunda
-                                                    toma de Picoprepp</label>
+                                                    toma de Picoprep</label>
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="22:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="horaSegundaToma">
-                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
                                                             <path
@@ -201,7 +202,7 @@
                                                             <path
                                                                 d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{
                                                     errors2.horaSegundaToma
@@ -211,7 +212,8 @@
                                                 <div class="container text-center">
                                                     <div class="row">
                                                         <div class="col-md-4 pb-4">
-                                                            <button class="rounded btnGuardarModalPlan">GUARDAR</button>
+                                                            <button class="rounded btnGuardarModalPlan"
+                                                                data-bs-dismiss="modal" aria-label="Close">GUARDAR</button>
                                                         </div>
                                                         <div class="col-md-4 offset-md-4">
                                                             <button type="button" class="rounded btnCancelarModalPlan"
@@ -230,31 +232,94 @@
                 </div>
             </div>
             <br>
-            <div class="row fila">
-                <div class="col-xl-3 col-md-3 col-sm-2 border border-dark border-end-0 rounded-start"
-                    style=" width: 415px;">
-                    <p class="parrafoEstudioProgramado">Estudio programado para:</p>
-                    <!-- <br> -->
-                    <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
-                    <p class="parrafoHoraEstudio">Hora: <!-- <span>18:00 hrs</span> --><span>Sin datos</span></p>
+            
+            <button @click="showModal = true">Abrir modal</button>
+
+    <div class="modal" :class="{ 'is-active': showModal }">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <form @submit.prevent="submitForm">
+          <input type="text" v-model="name" placeholder="Nombre" required>
+          <input type="email" v-model="email" placeholder="Correo electrónico" required>
+          <input type="password" v-model="password" placeholder="Contraseña" required>
+
+          <button type="submit" :disabled="!isValid">Guardar</button>
+        </form>
+      </div>
+      <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
+    </div>
+            <button type="button" @click="showModal = true">Abrir modal</button>
+
+<div class="modal" :class="{ 'is-active': showModal }">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <form @submit.prevent="submitForm">
+            <input type="text" v-model="name" placeholder="Nombre" required>
+            <input type="email" v-model="email" placeholder="Correo electrónico" required>
+            <input type="password" v-model="password" placeholder="Contraseña" required>
+
+            <button type="submit" :disabled="!isValid">Guardar</button>
+        </form>
+    </div>
+    <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
+</div>
+
+            <div class="row fila tamanyo">
+                <!-- <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
+
+                </div> -->
+                <div class="col-3 col-md-2 col-sm-3 columnaTabla" style="  border: 1px solid #FF9900;">
+                    <div class="card mb-3" style="  border: none;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-body" id="cardUnoTabla">
+                                    <p class="parrafoEstudioProgramado">Estudio programado para:</p>
+                                    <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
+                                    <p class="parrafoHoraEstudio">Hora: <!-- <span>18:00 hrs</span> --><span>Sin
+                                            datos</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xl-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 415px;">
-                    <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
-                    <!-- <br> -->
-                    <p class="parrafoFechaPrimerToma">Fecha: <span>Sin datos</span></p>
-                    <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
+                <!-- <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
+                    
+                </div> -->
+                <div class="col-3 col-md-2 col-sm-5 columnaTabla" style="  border: 1px solid #FF9900;">
+                    <div class="card mb-3" style="  border: none;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-body" id="cardUnoTabla">
+                                    <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
+                                    <p class="parrafoFechaPrimerToma">Fecha: <span>Sin datos</span></p>
+                                    <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-3 col-md-3 col-sm-3 border border-dark border-end-0" style=" width: 390px;">
-                    <p class="parrafoSegundaToma">Segunda toma de Picoprep : Sin datos</p>
-                    <!-- <br> -->
-                    <p class="parrafoFechaSegundaToma">Fecha: <span>Sin datos</span></p>
-                    <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
+                <div class="col-3 col-md-2 col-sm-5 columnaTabla" style="  border: 1px solid #FF9900;">
+                    <div class="card mb-3" style="  border: none;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-body" id="cardUnoTabla">
+                                    <p class="parrafoSegundaToma">Segunda toma de Picoprep : Sin datos</p>
+                                    <p class="parrafoFechaSegundaToma">Fecha: <span>Sin datos</span></p>
+                                    <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xl-1 col-md-3 col-sm-2 border border-dark rounded-end"
-                    style="background-color:  #F2F2F2; display: flex; flex-direction: row; justify-content: center; align-items: center; width: 65px;">
+                
+                <div class="col-1 col-md-3 col-sm-2 columnaBotonEditarTabla"
+                    style="border: 1px solid #FF9900; background-color:  #FF9900; display: flex; flex-direction: row; justify-content: center; align-items: center;">
                     <!-- <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
-                    <a href="" type="button" class="btnEditarPlan" data-bs-toggle="modal"
+                    <a href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"></a>
+                    <!-- <button href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"></button> -->
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -267,48 +332,49 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body" style="border: none;">
-                                        <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
+                                        <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de
+                                            tomas e
                                             hidrataciones</h1>
-                                        <form name="formulario" id="formularioEditar" v-on:submit="validarHora">
+                                        <form name="formulario" id="formularioEditar" v-on:submit.prevent="validarHora">
                                             <!-- <div class="p-fluid grid formgrid">
-                                                <div class="field col-12 md:col-4">
-                                                    <label for="icon">Fecha de
-                                                        estudio</label>
-                                                    <Calendar id="icon" style="" v-model="fechaEstudioColonos"
-                                                        dateFormat="dd/mm/yy" :showIcon="true" />
-                                                    <span class="error" style="color: red"
-                                                        v-if="errors2.fechaEstudioColonos">{{
-                                                            errors2.fechaEstudioColonos }}</span>
-                                                </div>
-                                                <div class="field col-12 md:col-4">
-                                                    <label for="icon">Hora de la
-                                                        colonoscopía o estudio</label>
-                                                    <Calendar  style="" v-model="hora"
-                                                    :showTime="true" hourFormat="12"  :showIcon="true" />
-                                                    <span class="error" style="color: red" v-if="errors2.hora">{{
-                                                        errors2.hora
-                                                    }}</span>
-                                                </div>
-                                            </div> -->
+                            <div class="field col-12 md:col-4">
+                                <label for="icon">Fecha de
+                                    estudio</label>
+                                <Calendar id="icon" style="" v-model="fechaEstudioColonos"
+                                    dateFormat="dd/mm/yy" :showIcon="true" />
+                                <span class="error" style="color: red"
+                                    v-if="errors2.fechaEstudioColonos">{{
+                                        errors2.fechaEstudioColonos }}</span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <label for="icon">Hora de la
+                                    colonoscopía o estudio</label>
+                                <Calendar  style="" v-model="hora"
+                                :showTime="true" hourFormat="12"  :showIcon="true" />
+                                <span class="error" style="color: red" v-if="errors2.hora">{{
+                                    errors2.hora
+                                }}</span>
+                            </div>
+                        </div> -->
                                             <div class="mb-3">
                                                 <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
                                                     estudio</label>
                                                 <!-- <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="exampleInputEmail1"
-                        aria-describedby="emailHelp"> -->
+    aria-describedby="emailHelp"> -->
                                                 <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control inputLabelFechaModalEditarPlan"
                                                         placeholder="18:00 Hrs" aria-label="Input group example"
                                                         v-model="fechaEstudioColonos" aria-describedby="basic-addon1"
                                                         id="inputLabelFechaModalEditarPlan">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                        </path>
+                                    </svg>
+                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
                                                     errors2.fechaEstudioColonos }}</span>
@@ -316,48 +382,49 @@
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1 labelModalEditarHoraColonos"
                                                     class="form-label">Hora de la
-                                                    colonoscopía o estudio</label>
+                                                    colonoscopia o estudio</label>
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="hora">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                            <path
-                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                        </svg>
-                                                    </span>
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                        <path
+                                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                    </svg>
+                                </span> -->
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.hora">{{ errors2.hora
+                                                <span class="error" style="color: red" v-if="errors2.hora">{{
+                                                    errors2.hora
                                                 }}</span>
                                                 <span class="error" style="color: red" v-if="errors2.horaIngresada">{{
                                                     errors2.horaIngresada }}</span>
-                                                <p>Hora actual: {{ this.horaActual }}</p>
 
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Fecha de la primera
+                                                <label for="exampleInputPassword1" class="form-label">Fecha de la
+                                                    primera
                                                     toma de Picoprep</label>
                                                 <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaPrimerToma">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
+                                                        v-model="fechaPrimerToma">
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                        </path>
+                                    </svg>
+                                </span> -->
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
-                                                    errors2.horaPrimerToma
+                                                <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{
+                                                    errors2.fechaPrimerToma
                                                 }}</span>
                                             </div>
                                             <div class="mb-3">
@@ -368,36 +435,37 @@
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="horaPrimerToma">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                            <path
-                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                        </svg>
-                                                    </span>
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                        <path
+                                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                    </svg>
+                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
                                                     errors2.horaPrimerToma
                                                 }}</span>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Fecha de la segunda
+                                                <label for="exampleInputPassword1" class="form-label">Fecha de la
+                                                    segunda
                                                     toma de Picoprep</label>
                                                 <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="fechaSegundaToma">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
+                                        </path>
+                                    </svg>
+                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{
                                                     errors2.fechaSegundaToma
@@ -405,21 +473,21 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Hora de la segunda
-                                                    toma de Picoprepp</label>
+                                                    toma de Picoprep</label>
                                                 <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="22:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="horaSegundaToma">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                            <path
-                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                        </svg>
-                                                    </span>
+                                                    <!-- <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                                        <path
+                                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                                    </svg>
+                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{
                                                     errors2.horaSegundaToma
@@ -429,7 +497,10 @@
                                                 <div class="container text-center">
                                                     <div class="row">
                                                         <div class="col-md-4 pb-4">
-                                                            <button class="rounded btnGuardarModalPlan">GUARDAR</button>
+                                                            <!-- <button class="rounded btnGuardarModalPlan"
+                                                                data-bs-dismiss="modal" aria-label="Close">GUARDAR</button> -->
+                                                            <button class="rounded btnGuardarModalPlan"
+                                                                aria-label="Close">GUARDAR</button>
                                                         </div>
                                                         <div class="col-md-4 offset-md-4">
                                                             <button type="button" class="rounded btnCancelarModalPlan"
@@ -473,7 +544,8 @@
                                                 id="exampleInputPassword1" placeholder="18:00 Hrs">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="1" class="form-label">Fecha de la primera toma de Picoprep</label>
+                                            <label for="1" class="form-label">Fecha de la primera toma de
+                                                Picoprep</label>
                                             <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="">
                                         </div>
                                         <div class="mb-3">
@@ -481,7 +553,8 @@
                                             <input type="submit" class="form-control inputLabelFechaModalEditarPlan" id="">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="" class="form-label">Fecha de la segunda toma de Picoprep</label>
+                                            <label for="" class="form-label">Fecha de la segunda toma de
+                                                Picoprep</label>
                                             <input type="date" class="form-control" id="">
                                         </div>
                                         <div class="mb-3">
@@ -512,15 +585,10 @@
                     </div>
                 </div>
             </div>
-            <!-- </div> -->
-        </div>
-        <!-- </div> -->
-
-        <br>
-        <div class="container" id="element-to-convert">
+            <br><br>
             <div class="row">
                 <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
-                    <img src="../assets/img/web/681332-300-300 1_2.png" class="imgMediPicoprep" alt="..." width="">
+                    <img src="../assets/img/web/681332-300-300 1_2.png" alt="..." width="">
                 </div>
                 <div class="col-6 col-md-3 col-sm-5 columnaDos">
                     <!-- <div class="card mb-3" style="max-width: 640px;"> -->
@@ -690,10 +758,17 @@
                 </div>
             </div>
             <br>
+            <!-- </div> -->
         </div>
-        <div class="container">
+        <!-- </div> -->
+
+        <br>
+
+        <div class="container ">
+
             <div class="row">
                 <div class="col align-self-center">
+
                     <div class="contenidoCentrado">
                         <!-- <a href="javascript:genPDF()">DESCARGAR PLAN</a>
           <button type="submit" class="btnDescargaPlan rounded" href="javascript:genPDF()">DESCARGAR PLAN</button> -->
@@ -702,29 +777,11 @@
                         <br><br>
 
                     </div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-7 col-md-3 col-sm-12">
-                                <div class="form-check m-auto">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Dejar de recibir notificaciones
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <br>
-                    <div class="contenidoCentrado">
+                    <div class="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="rounded" style="font-family: 'Segoe-UI-Bold';
-                                    font-size: 18px;
-                                    background-color: #1155CC;
-                                    border: 1px solid #1155CC;
-                                    color: #FFFFFF;
-                                    width: 250px;
-                                    width: 65%;
-                                    height: 30px;" data-bs-toggle="modal" data-bs-target="#exampleModalVer">
+                        <button type="button" class="btnVerReferenciaMedica rounded" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalVer">
                             REFERENCIA MÉDICA
                         </button>
                         <!-- Modal -->
@@ -745,14 +802,16 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <h1>INFORMACIÓN PARA PRESCRIBIR AMPLIA (IPP-A)</h1>
-                                                    <p class="">1. DENOMINACIÓN DISTINTIVA: </p>
-                                                    <p class="">PICOPREP®</p>
+                                                    <p class="tituloModalNegrita">1. DENOMINACIÓN DISTINTIVA: </p>
+                                                    <p class="text-center">PICOPREP®</p>
 
-                                                    <p class="">2. DENOMINACIÓN GENÉRICA: Picosulfato sódico/Óxido de
+                                                    <p class="tituloModalNegrita">2. DENOMINACIÓN GENÉRICA: </p>
+                                                    <p class="text-center">Picosulfato sódico/Óxido de
                                                         magnesio/Ácido
                                                         cítrico</p>
 
-                                                    <p class="">3. FORMA FARMACÉUTICA Y FORMULACIÓN: Polvo para solución
+                                                    <p class="tituloModalNegrita">3. FORMA FARMACÉUTICA Y FORMULACIÓN: </p>
+                                                    <p class="text-center">Polvo para solución
                                                         oral en
                                                         sobre</p>
                                                     <div class="table-responsive">
@@ -1295,15 +1354,26 @@
 
                                                     <p class="tituloModalNegrita">19. NÚMERO DE REGISTRO DEL MEDICAMENTO</p>
                                                     <p class="parraffoJustificado">Reg. No.: 012M2013 SSA IV </p>
-                                                    <p class="parraffoJustificado">Clave IPP:
-                                                        CCDS 15346; Dec 2013 Ver. 2.0 _ ENC_AL</p>
-
+                                                    <pre class="parraffoJustificado">Clave IPP:
+                CCDS 15346; Dec 2013 Ver. 2.0 _ ENC_AL                                                SEP 2019</pre>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="modal-footer" style="border: none;">
+                                        <div class="container">
+                                            <div class="row filaDosPermisos">
+                                                <div class="col text-center columnaParrafos">
+                                                    <p class="parrafoIntestinoAño">Ferring, S.A. de C.V.</p>
+                                                    <p class="parrafoAviso">
+                                                        Av. Nemesio Diez Riega, Mz. 2, Lote 15, No. 15, Parque Industrial
+                                                        Cerrillo II Lerma, Estado de México, C P. 52000. Tel (01) 728 284
+                                                        7104
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <button type="button" data-bs-dismiss="modal" class="btn btn-primary" style="font-family: 'Segoe-UI-Bold';
                                     font-size: 18px;
                                     background-color: #1155CC;
@@ -1316,8 +1386,57 @@
                         </div>
                         <br><br>
                     </div>
+
+                    <div class="col-7 col-md-4 col-sm-12">
+                        <!-- <div class="form-check m-auto">
+                            <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Dejar de recibir notificaciones
+                            </label>
+                        </div> -->
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModalQuiero" style="cursor: pointer;">
+                            <img src="../assets/img/web/campana-web.png" alt=""><span>Quiero dejar de recibir notificaciones
+                                por Whatsapp</span>
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalQuiero" tabindex="-1"
+                            aria-labelledby="exampleModalLabelQuiero" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header modalHeaderModificar">
+                                        <!-- <div class="contenidoDerecha"> -->
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                        <!-- </div> -->
+
+                                    </div>
+                                    <div class="modal-body" style="border: none;">
+
+                                        <p class="parrafoEstasSeguro text-center">¿Está seguro que quieres dejar de recibir
+                                            notificaciones?</p>
+
+                                    </div>
+                                    <div class="modal-footer" style="border: none;">
+                                        <div class="container text-center">
+                                            <div class="row">
+                                                <div class="col-md-4 pb-4">
+                                                    <button type="button" class="rounded btnGuardarModalPlan"
+                                                        data-bs-dismiss="modal">ACEPTAR</button>
+                                                </div>
+                                                <div class="col-md-4 offset-md-4">
+                                                    <button type="button" class="rounded btnCancelarModalPlan"
+                                                        data-bs-dismiss="modal">CANCELAR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <br>
         </div>
     </div>
 </template>
@@ -1385,9 +1504,62 @@ export default {
                 clear: 'Borrar',
                 weekHeader: 'Sm'
             },
+            /* showModal: false,
+            input1: '',
+            input2: '',
+            input3: '', */
+
+            showModal: false,
+            name: '',
+            email: '',
+            password: '',
         };
     },
+    computed: {
+        // Obtener la fecha mínima para el campo fecha dos
+        minDate() {
+            // Si la fecha uno está vacía o no es válida, devolver null
+            /*if (
+              !this.fechaEstudioColonos ||
+              !moment(this.fechaEstudioColonos, "YYYY-MM-DD", true).isValid()
+            ) {
+              return null;
+            }
+            // Si la fecha uno es válida, devolver el día siguiente de la fecha uno formateado como YYYY-MM-DD
+            else {
+              return moment(this.fechaEstudioColonos)
+                .add(1, "days")
+                .format("YYYY-MM-DD");
+            }*/
+        },
+        // Obtener la hora mínima para el campo hora dos
+        minTime() {
+            // Si la hora uno está vacía o no es válida, devolver null
+
+            if (
+                !this.horaColonoscopia ||
+                !moment(this.horaColonoscopia, "HH:mm", true).isValid()
+            ) {
+                return null;
+            }
+            // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
+            else {
+                return moment(this.horaColonoscopia, "HH:mm").format("HH:mm");
+            }
+        },
+        isValid() {
+            return this.name !== '' && this.email !== '' && this.password !== '';
+        },
+    },
     methods: {
+        validateForm() {
+            if (this.input1 && this.input2 && this.input3) {
+                this.showModal = false;
+                alert('Formulario validado correctamente');
+            } else {
+                alert('Por favor complete todos los campos obligatorios');
+            }
+        },
         submitForm2() {
             // Validar los campos del segundo formulario
             this.errors2 = {};
@@ -1453,8 +1625,16 @@ export default {
                 // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
             }
         },
+        submitForm() {
+            // Aquí puedes agregar la lógica para enviar el formulario
+            this.name = '';
+            this.email = '';
+            this.password = '';
+            this.showModal = false;
+        },
         validarHora: function (event) {
             this.errors2 = {};
+            this.submitted = true;
             // Aquí irá el código para validar la hora ingresada y la hora actual
             event.preventDefault();
             let valida = true;
@@ -1469,20 +1649,23 @@ export default {
                 this.errors2.fechaEstudioColonos =
                     "La fecha de la colonoscopia es obligatoria";
                 valida = false;
-            } else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
+            } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
                 this.errors2.fechaEstudioColonos =
                     "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
                 valida = false;
+            } */
+            else {
+                delete this.errors2['fechaEstudioColonos'];
+                /* this.errors2.horaIngresada = "La hora es obligatoria"; */
             }
-
             if (horaIngresada === '') {
                 this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
                 valida = false;
 
-            } else if (horaIngresada.isBefore(horaActual, 'hour')) {
+            }/*  else if (horaIngresada.isBefore(horaActual, 'hour')) {
                 this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
                 valida = false;
-            }
+            } */
             else {
                 delete this.errors2['horaIngresada'];
                 /* this.errors2.horaIngresada = "La hora es obligatoria"; */
@@ -1493,11 +1676,11 @@ export default {
                 this.errors2.fechaPrimerToma =
                     "La fecha de la primer toma es obligatoria";
                 valida = false;
-            } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
+            } /* else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
                 this.errors2.fechaPrimerToma =
                     "La fecha de la primer toma no es válida";
                 valida = false;
-            } else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
+            } */ /* else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
                 this.errors2.fechaPrimerToma =
                     "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
                 valida = false;
@@ -1510,20 +1693,21 @@ export default {
                 this.errors2.fechaPrimerToma =
                     "La fecha de la primer toma debe ser posterior a la fecha actual";
                 valida = false;
-            }/* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+            } */
+            /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
                 this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
             } */
-            /* else {
-              delete this.errors2['fechaPrimerToma'];
-      
-            } */
+            else {
+                delete this.errors2['fechaPrimerToma'];
+
+            }
 
             // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
             if (!this.fechaSegundaToma) {
                 this.errors2.fechaSegundaToma =
                     "La fecha de la segunda toma es obligatoria";
                 valida = false;
-            } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
+            } /* else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
                 this.errors2.fechaSegundaToma =
                     "La fecha de la segunda toma no es válida";
                 valida = false;
@@ -1531,7 +1715,7 @@ export default {
                 this.errors2.fechaSegundaToma =
                     "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
                 valida = false;
-            }
+            } */
 
             // Validar que el campo fecha dos sea posterior al campo fecha uno
             // Usando el método isAfter de moment.js para comparar las fechas
@@ -1546,9 +1730,9 @@ export default {
                           "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
                       valid2 = false;
                   } */
-            /* else {
-              delete this.errors2['fechaSegundaToma'];
-            } */
+            else {
+                delete this.errors2['fechaSegundaToma'];
+            }
             // Validar que el campo hora uno no esté vacío y sea una hora válida
             let horaIng = moment(horaIngresada, "HH:mm")
             let horaAct = moment(horaActual, "HH:mm") // 22:00
@@ -1557,23 +1741,23 @@ export default {
                     "La hora de la primer toma es obligatoria";
                 valida = false;
 
-            } /* else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
-        this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-        valid2 = false;
-      } */  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
+            } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+                this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
+                valid2 = false;
+            }/*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
                 this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
                 valida = false;
 
-                /* alert("La hora ingresada es posterior a la hora actual"); */
+                alert("La hora ingresada es posterior a la hora actual");
             } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
                 this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
                 valida = false;
 
-                /* alert("La hora ingresada es posterior a la hora actual"); */
-            }
-            /* else {
-              delete this.errors2['horaPrimerToma'];
+                alert("La hora ingresada es posterior a la hora actual");
             } */
+            else {
+                delete this.errors2['horaPrimerToma'];
+            }
 
             // Validar que el campo hora dos no esté vacío y sea una hora válida
             if (!this.horaSegundaToma) {
@@ -1586,14 +1770,30 @@ export default {
                     "La hora de la segunda toma no es válida";
                 valida = false;
 
-            } else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
+            } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
                 this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
                 valida = false;
 
-                /* alert("La hora ingresada es posterior a la hora actual"); */
+                alert("La hora ingresada es posterior a la hora actual");
             } else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm"))) {
                 this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
                 valida = false;
+            } */
+
+            else {
+                delete this.errors2['horaSegundaToma'];
+            }
+
+            if (!this.inputLadaEnabled || !this.inputTelPerfilEnabled || !this.selectEstadoEnabled || !this.inputCiudadEnabled || !this.inputEdadEnabled || !this.inputNomMedTratEnabled || !this.inputApeMedTratEnabled || !this.inputClaveAccesoEnabled) {
+                return;
+            }
+            else {
+                // Si el formulario es valido, se muestra ventana modal
+                const successModal = new bootstrap.Modal(
+                    document.getElementById('successModal')
+                );
+                successModal.clase();
+                /* this.$refs.formPerfil.reset(); */
             }
 
         },
@@ -1606,46 +1806,15 @@ export default {
             })
 
             doc.save("PlanTomas.pdf"); */
-            html2pdf(document.getElementById('element-to-convert'), {
+            html2pdf(document.getElementById('element-to-converte'), {
                 margin: 0,
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
                 filename: 'Mi_Plan_De_Tomas.pdf',
             });
         }
     },
-    computed: {
-        // Obtener la fecha mínima para el campo fecha dos
-        minDate() {
-            // Si la fecha uno está vacía o no es válida, devolver null
-            /*if (
-              !this.fechaEstudioColonos ||
-              !moment(this.fechaEstudioColonos, "YYYY-MM-DD", true).isValid()
-            ) {
-              return null;
-            }
-            // Si la fecha uno es válida, devolver el día siguiente de la fecha uno formateado como YYYY-MM-DD
-            else {
-              return moment(this.fechaEstudioColonos)
-                .add(1, "days")
-                .format("YYYY-MM-DD");
-            }*/
-        },
-        // Obtener la hora mínima para el campo hora dos
-        minTime() {
-            // Si la hora uno está vacía o no es válida, devolver null
 
-            if (
-                !this.horaColonoscopia ||
-                !moment(this.horaColonoscopia, "HH:mm", true).isValid()
-            ) {
-                return null;
-            }
-            // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
-            else {
-                return moment(this.horaColonoscopia, "HH:mm").format("HH:mm");
-            }
-        },
-    },
     /* mixins: [VueMoment], */
     mounted: function () {
 
@@ -2084,11 +2253,11 @@ footer {
 }
 
 .filaDosPermisos {
-    padding-top: 100px;
+    /* padding-top: 40px; */
 }
 
 .columnaParrafos {
-    line-height: 0.5rem;
+    /* line-height: 0.1rem; */
 }
 
 .parrafoIntestinoAño {
@@ -2616,6 +2785,10 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     display: none;
 }
 
+.tamanyo {
+    width: 101%;
+}
+
 .filaTabla {
     display: flex;
     flex-direction: row;
@@ -2761,7 +2934,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .btnEditarPlan:hover {
-    background-image: url("../assets/img/web/editar\ \(3\).png");
+    background-image: url("../assets/img/web/Grupo\ 321.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2795,8 +2968,20 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     width: 40%;
 }
 
+.columnaTabla {
+    /** No cambiar esta medida afectaria en la creación del pdf */
+    width: 31.3%;
+    /* width: 31.6%; */
+}
+
 .columnaDos {
     width: 60%;
+}
+
+.columnaUnoTablaEs {
+    width: 10%;
+    /** No cambiar esta medida afectaria en la creación del pdf */
+    width: 8%;
 }
 
 .imgMediPicoprep {
@@ -2821,7 +3006,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     font-family: 'Segoe-UI-Semibold';
     font-size: 20px;
     width: 100%;
-    width: 80%;
+    width: 50%;
     /* width: 600px;
     width: 60%; */
     /* height: 50px; */
@@ -2829,13 +3014,14 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     border: none;
     background-color: #FF9900;
     text-decoration: none;
+
 }
 
 .btnDescargaPlan:hover {
     font-family: 'Segoe-UI-Semibold';
     font-size: 20px;
     width: 100%;
-    width: 80%;
+    width: 50%;
     /* width: 600px;
     width: 60%; */
     /* height: 50px; */
@@ -2847,28 +3033,25 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 
 .btnVerReferenciaMedica {
     font-family: 'Segoe-UI-Semibold';
-    font-size: 20px;
-    width: 100%;
-    /* width: 600px;
-    width: 60%; */
-    /* height: 50px; */
+    font-family: 'Segoe-UI-Bold';
+    font-size: 18px;
+    background-color: #1155CC;
+    border: 1px solid #1155CC;
     color: #FFFFFF;
-    border: none;
-    background-color: #FF9900;
-    text-decoration: none;
+    width: 250px;
+    width: 80%;
+    height: 30px;
 }
 
 .btnVerReferenciaMedica:hover {
-    font-family: 'Segoe-UI-Semibold';
-    font-size: 20px;
-    width: 100%;
-    /* width: 600px;
-    width: 60%; */
-    /* height: 50px; */
-    color: #FFFFFF;
-    border: none;
-    background-color: #FF9900;
-    text-decoration: none;
+    font-family: 'Segoe-UI-Bold';
+    font-size: 18px;
+    background-color: #FFFFFF;
+    border: 1px solid #1155CC;
+    color: #1155CC;
+    width: 250px;
+    width: 80%;
+    height: 30px;
 }
 
 /* Termina estilos para Plan de tomas e hidratacion */
@@ -3170,6 +3353,10 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         width: 30%;
     }
 
+    .columnaUnoTablaEs {
+        width: 10%;
+    }
+
     .card-title {
         font-family: 'OpenSans-Bold';
         font-size: 15px;
@@ -3192,16 +3379,78 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         max-width: 640px;
     }
 
-    /*     .imgNaranjinPlan {
-    width: 100%;
-    height: 100vh;
-    width: 135px;
-    height: 135px;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-} */
+    .imgNaranjinPlan {
+        width: 100%;
+        height: 100vh;
+        width: 135px;
+        height: 135px;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btnDescargaPlan {
+        font-family: 'Segoe-UI-Semibold';
+        font-size: 20px;
+        width: 100%;
+        width: 50%;
+        /* width: 600px;
+    width: 60%; */
+        /* height: 50px; */
+        color: #FFFFFF;
+        border: none;
+        background-color: #FF9900;
+        text-decoration: none;
+
+    }
+
+    .btnDescargaPlan:hover {
+        font-family: 'Segoe-UI-Semibold';
+        font-size: 20px;
+        width: 100%;
+        width: 50%;
+        /* width: 600px;
+    width: 60%; */
+        /* height: 50px; */
+        color: #FF9900;
+        border: none;
+        background-color: #FFFFFF;
+        border: 1px solid #FF9900;
+    }
+
+    .btnVerReferenciaMedica {
+        font-family: 'Segoe-UI-Semibold';
+        font-size: 20px;
+        width: 100%;
+        /* width: 600px;
+    width: 60%; */
+        /* height: 50px; */
+        color: #FFFFFF;
+        border: none;
+        background-color: #FF9900;
+        text-decoration: none;
+        font-family: 'Segoe-UI-Bold';
+        font-size: 18px;
+        background-color: #1155CC;
+        border: 1px solid #1155CC;
+        color: #FFFFFF;
+        width: 250px;
+        width: 25%;
+        height: 30px;
+    }
+
+    .btnVerReferenciaMedica:hover {
+        font-family: 'Segoe-UI-Bold';
+        font-size: 18px;
+        background-color: #FFFFFF;
+        border: 1px solid #1155CC;
+        color: #1155CC;
+        width: 250px;
+        width: 25%;
+        height: 30px;
+    }
+
     /*Estilos plam*/
 }
 
@@ -3230,7 +3479,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     }
 
     .filaDosPermisos {
-        padding-top: 150px;
+        /* padding-top: 150px; */
     }
 
     .parrafoDevice {
@@ -3452,6 +3701,22 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         width: 40%;
     }
 
+    .columnaUnoTablaEs {
+        width: 400px;
+    }
+
+    .columnaDosTablaEs {
+        width: 400px;
+    }
+
+    .columnaTresTablaEs {
+        width: 400px;
+    }
+
+    .columnaBotonEditarTabla {
+        width: 65px;
+    }
+
     .card {
         max-width: 640px;
     }
@@ -3551,6 +3816,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+
         width: 100%;
         height: 100vh;
         width: 23px;
@@ -3562,7 +3828,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     }
 
     .btnEditarPlan:hover {
-        background-image: url("../assets/img/web/editar\ \(3\).png");
+        background-image: url("../assets/img/web/Grupo\ 321.png");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -3674,4 +3940,5 @@ body .main .password-container .password span {
 
 /**/
 /* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {}</style>
+@media screen and (max-height: 500px) {}
+</style>

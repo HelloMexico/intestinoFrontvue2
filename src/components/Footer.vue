@@ -435,7 +435,7 @@ footer {
 }
 
 .imgWhatsBlanco {
-    width: 30px;
+    width: 25px;
     height: 30px;
     padding-bottom: 7px;
     /* gap: 15px; */
