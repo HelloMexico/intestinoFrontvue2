@@ -232,37 +232,37 @@
                 </div>
             </div>
             <br>
-            
-            <button @click="showModal = true">Abrir modal</button>
 
-    <div class="modal" :class="{ 'is-active': showModal }">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <form @submit.prevent="submitForm">
-          <input type="text" v-model="name" placeholder="Nombre" required>
-          <input type="email" v-model="email" placeholder="Correo electrónico" required>
-          <input type="password" v-model="password" placeholder="Contraseña" required>
+            <!-- <button @click="showModal = true">Abrir modal</button>
 
-          <button type="submit" :disabled="!isValid">Guardar</button>
-        </form>
-      </div>
-      <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
-    </div>
+            <div class="modal" :class="{ 'is-active': showModal }">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <form @submit.prevent="submitForm">
+                        <input type="text" v-model="name" placeholder="Nombre" required>
+                        <input type="email" v-model="email" placeholder="Correo electrónico" required>
+                        <input type="password" v-model="password" placeholder="Contraseña" required>
+
+                        <button type="submit" :disabled="!isValid">Guardar</button>
+                    </form>
+                </div>
+                <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
+            </div>
             <button type="button" @click="showModal = true">Abrir modal</button>
 
-<div class="modal" :class="{ 'is-active': showModal }">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-        <form @submit.prevent="submitForm">
-            <input type="text" v-model="name" placeholder="Nombre" required>
-            <input type="email" v-model="email" placeholder="Correo electrónico" required>
-            <input type="password" v-model="password" placeholder="Contraseña" required>
+            <div class="modal" :class="{ 'is-active': showModal }">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <form @submit.prevent="submitForm">
+                        <input type="text" v-model="name" placeholder="Nombre" required>
+                        <input type="email" v-model="email" placeholder="Correo electrónico" required>
+                        <input type="password" v-model="password" placeholder="Contraseña" required>
 
-            <button type="submit" :disabled="!isValid">Guardar</button>
-        </form>
-    </div>
-    <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
-</div>
+                        <button type="submit" :disabled="!isValid">Guardar</button>
+                    </form>
+                </div>
+                <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
+            </div> -->
 
             <div class="row fila tamanyo">
                 <!-- <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
@@ -312,24 +312,24 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-1 col-md-3 col-sm-2 columnaBotonEditarTabla"
                     style="border: 1px solid #FF9900; background-color:  #FF9900; display: flex; flex-direction: row; justify-content: center; align-items: center;">
                     <!-- <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
-                    <a href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"></a>
+                    <a  type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" @click="showModal = true"></a>
                     <!-- <button href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"></button> -->
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" 
+                    role="dialog" :class="{ 'show': showModal }">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-content">
                                     <div class="modal-header" style="border: none;">
 
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                            aria-label="Close" @click="showModal = false"></button>
                                     </div>
                                     <div class="modal-body" style="border: none;">
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de
@@ -500,7 +500,12 @@
                                                             <!-- <button class="rounded btnGuardarModalPlan"
                                                                 data-bs-dismiss="modal" aria-label="Close">GUARDAR</button> -->
                                                             <button class="rounded btnGuardarModalPlan"
-                                                                aria-label="Close">GUARDAR</button>
+                                                                >GUARDAR</button>
+                                                            <!-- <button class="rounded btnGuardarModalPlan"
+                                                                data-bs-dismiss="modal" @click="closeModal">GUARDAR</button> -->
+                                                                <!-- <button class="rounded btnGuardarModalPlan"
+                                                                data-bs-dismiss="modal"
+                                            aria-label="Close" @click="showModal = false">GUARDAR</button> -->
                                                         </div>
                                                         <div class="col-md-4 offset-md-4">
                                                             <button type="button" class="rounded btnCancelarModalPlan"
@@ -515,74 +520,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header" style="border: none;">
-
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" style="border: none;">
-                                    <h1 class="modal-title tituloModal" id="exampleModalLabel1">Editar plan de tomas e
-                                        hidrataciones</h1>
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
-                                                estudio</label>
-                                            <input type="date" class="form-control inputLabelFechaModalEditarPlan"
-                                                id="exampleInputEmail11" aria-describedby="emailHelp">
-                                            <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="labelModalEditarHoraColonos" class="form-label">Hora de la
-                                                colonoscopía o
-                                                estudio</label>
-                                            <input type="time" class="form-control inputLabelFechaModalEditarPlan"
-                                                id="exampleInputPassword1" placeholder="18:00 Hrs">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="1" class="form-label">Fecha de la primera toma de
-                                                Picoprep</label>
-                                            <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Hora de la primera toma de Picoprep</label>
-                                            <input type="submit" class="form-control inputLabelFechaModalEditarPlan" id="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Fecha de la segunda toma de
-                                                Picoprep</label>
-                                            <input type="date" class="form-control" id="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Hora de la segunda toma de Picoprep</label>
-                                            <input type="time" class="form-control" id="">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer" style="border: none;">
-                                    <div class="container text-center">
-                                        <div class="row">
-                                            <div class="col-md-4 pb-4">
-                                                <button type="button" class="rounded btnGuardarModalPlan"
-                                                    data-bs-dismiss="modal">GUARDAR</button>
-                                            </div>
-                                            <div class="col-md-4 pb-4">
-                                                <button type="button" class="rounded btnGuardarModalPlan"
-                                                    data-bs-dismiss="modal">GUARDAR</button>
-                                            </div>
-                                            <div class="col-md-4 offset-md-4">
-                                                <button type="button" class="rounded btnCancelarModalPlan">CANCELAR</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <br><br>
@@ -1632,6 +1570,10 @@ export default {
             this.password = '';
             this.showModal = false;
         },
+        closeModal() {
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+            myModal.hide();
+        },
         validarHora: function (event) {
             this.errors2 = {};
             this.submitted = true;
@@ -1795,7 +1737,14 @@ export default {
                 successModal.clase();
                 /* this.$refs.formPerfil.reset(); */
             }
-
+            if(this.fechaEstudioColonos === '' || this.horaColonoscopia === '' || this.fechaPrimerToma === '' || this.horaPrimerToma === '' || this.fechaSegundaToma || this.horaSegundaToma) {
+                alert('Por favor llene todos los campos.');
+                return false;
+            } else {
+                alert('Formulario validado correctamente.');
+                this.showModal = false;
+                return true;
+            }
         },
         descargarPdf() {
             /* const doc = new jspdf();
