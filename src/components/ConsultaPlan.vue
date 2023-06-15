@@ -1,7 +1,7 @@
 <template>
     <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
     <div class="container">
-        <div class="container" id="element-to-converte">
+        <div class="container-fluid" id="element-to-converte">
             <br><br>
             <div class="row filaPlan">
                 <div class="col-2 col-md-2">
@@ -21,34 +21,19 @@
             <!-- <div class="filaPlanTabla"> -->
             <div class="container contenedorMovil">
                 <div class="row">
-                    <div class="col-10">
-                        <div class="container border border-secondary border-1 border-end-0">
-                            <div class="row">
-                                <div class="col col-md-5">
-                                    <p class="parrafoEstudioProgramado">Estudio programado para: <span>Sin datos</span></p>
-                                    <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
-                                    <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="parrafoPrimerToma">Primera toma de Picoprep: <span>Sin datos</span> </p>
-                                    <!-- <p class="parrafoFechaPrimerToma">Fecha: <span>24/08/2023</span></p> -->
-                                    <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="parrafoSegundaToma">Segunda toma de Picoprep: <span>Sin datos</span> </p>
+                    <div class="col" style="border: 1px solid #FF9900;">
+                        <p class="parrafoEstudioProgramado">Estudio programado para: <span>Sin datos</span></p>
+                        <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
+                        <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
+                        <p class="parrafoPrimerToma">Primera toma de Picoprep: <span>Sin datos</span> </p>
+                        <!-- <p class="parrafoFechaPrimerToma">Fecha: <span>24/08/2023</span></p> -->
+                        <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
+                        <p class="parrafoSegundaToma">Segunda toma de Picoprep: <span>Sin datos</span> </p>
                                     <!-- <p class="parrafoFechaSegundaToma">Fecha: <span>25/08/2023</span></p> -->
                                     <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-2 col-md-4 col-sm-3 border"
-                        style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color:  #F2F2F2; width: 50px;">
+                    <div class="col-2 col-md-4 col-sm-3 "
+                        style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color:  #FF9900; width: 50px;">
                         <a href="" type="button" class="btnEditarPlan" data-bs-toggle="modal"
                             data-bs-target="#exampleModalDos"></a>
                         <!-- Modal -->
@@ -64,7 +49,7 @@
                                     <div class="modal-body" style="border: none;">
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e
                                             hidrataciones</h1>
-                                        <form name="formulario3" id="formulario3" v-on:submit="validarHora">
+                                        <form ref="" name="formulario3" id="formulario3" v-on:submit="validarHora">
                                             <!-- <div class="p-fluid grid formgrid">
                                                 <div class="field col-12 md:col-4">
                                                     <label for="icon">Fecha de
@@ -213,7 +198,7 @@
                                                     <div class="row">
                                                         <div class="col-md-4 pb-4">
                                                             <button class="rounded btnGuardarModalPlan"
-                                                                data-bs-dismiss="modal" aria-label="Close">GUARDAR</button>
+                                                                >GUARDAR</button>
                                                         </div>
                                                         <div class="col-md-4 offset-md-4">
                                                             <button type="button" class="rounded btnCancelarModalPlan"
@@ -231,6 +216,7 @@
                     </div>
                 </div>
             </div>
+            
             <br>
 
             <!-- <button @click="showModal = true">Abrir modal</button>
@@ -316,26 +302,25 @@
                 <div class="col-1 col-md-3 col-sm-2 columnaBotonEditarTabla"
                     style="border: 1px solid #FF9900; background-color:  #FF9900; display: flex; flex-direction: row; justify-content: center; align-items: center;">
                     <!-- <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
-                    <a  type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
+                    <a type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" @click="showModal = true"></a>
                     <!-- <button href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"></button> -->
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" 
-                    role="dialog" :class="{ 'show': showModal }">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" :class="{ 'show': showModal }">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-content">
                                     <div class="modal-header" style="border: none;">
 
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close" @click="showModal = false"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                            @click="showModal = false"></button>
                                     </div>
                                     <div class="modal-body" style="border: none;">
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de
                                             tomas e
                                             hidrataciones</h1>
-                                        <form name="formulario" id="formularioEditar" v-on:submit.prevent="validarHora">
+                                        <form ref="formEditar" name="formulario" id="formularioEditar" v-on:submit.prevent="validarHora">
                                             <!-- <div class="p-fluid grid formgrid">
                             <div class="field col-12 md:col-4">
                                 <label for="icon">Fecha de
@@ -499,11 +484,10 @@
                                                         <div class="col-md-4 pb-4">
                                                             <!-- <button class="rounded btnGuardarModalPlan"
                                                                 data-bs-dismiss="modal" aria-label="Close">GUARDAR</button> -->
-                                                            <button class="rounded btnGuardarModalPlan"
-                                                                >GUARDAR</button>
+                                                            <button type="submit" class="rounded btnGuardarModalPlan">GUARDAR</button>
                                                             <!-- <button class="rounded btnGuardarModalPlan"
                                                                 data-bs-dismiss="modal" @click="closeModal">GUARDAR</button> -->
-                                                                <!-- <button class="rounded btnGuardarModalPlan"
+                                                            <!-- <button class="rounded btnGuardarModalPlan"
                                                                 data-bs-dismiss="modal"
                                             aria-label="Close" @click="showModal = false">GUARDAR</button> -->
                                                         </div>
@@ -520,7 +504,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <br><br>
@@ -1325,15 +1309,15 @@
                         <br><br>
                     </div>
 
-                    <div class="col-7 col-md-4 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <!-- <div class="form-check m-auto">
                             <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Dejar de recibir notificaciones
                             </label>
                         </div> -->
-                        <a data-bs-toggle="modal" data-bs-target="#exampleModalQuiero" style="cursor: pointer;">
-                            <img src="../assets/img/web/campana-web.png" alt=""><span>Quiero dejar de recibir notificaciones
+                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalQuiero" style="cursor: pointer;">
+                            <img src="../assets/img/web/campana-web.png" alt=""><span class="ms-2" style="font-family: 'Opensans-Semibold' ; text-decoration-line: underline;">Quiero dejar de recibir notificaciones
                                 por Whatsapp</span>
                         </a>
                         <!-- Modal -->
@@ -1726,25 +1710,27 @@ export default {
                 delete this.errors2['horaSegundaToma'];
             }
 
-            if (!this.inputLadaEnabled || !this.inputTelPerfilEnabled || !this.selectEstadoEnabled || !this.inputCiudadEnabled || !this.inputEdadEnabled || !this.inputNomMedTratEnabled || !this.inputApeMedTratEnabled || !this.inputClaveAccesoEnabled) {
+            if (!this.fechaEstudioColonos || !this.horaIngresada || !this.fechaPrimerToma || !this.horaPrimerToma || !this.fechaSegundaToma || !this.horaSegundaToma ) {
                 return;
             }
             else {
                 // Si el formulario es valido, se muestra ventana modal
-                const successModal = new bootstrap.Modal(
+                /* const successModal = new bootstrap.Modal(
                     document.getElementById('successModal')
                 );
-                successModal.clase();
-                /* this.$refs.formPerfil.reset(); */
+                successModal.close(); */
+                this.$refs.formEditar.reset();
             }
-            if(this.fechaEstudioColonos === '' || this.horaColonoscopia === '' || this.fechaPrimerToma === '' || this.horaPrimerToma === '' || this.fechaSegundaToma || this.horaSegundaToma) {
+            this.$refs.formEditar.reset();
+
+            /* if (this.fechaEstudioColonos === '' || this.horaColonoscopia === '' || this.fechaPrimerToma === '' || this.horaPrimerToma === '' || this.fechaSegundaToma || this.horaSegundaToma) {
                 alert('Por favor llene todos los campos.');
                 return false;
             } else {
                 alert('Formulario validado correctamente.');
                 this.showModal = false;
                 return true;
-            }
+            } */
         },
         descargarPdf() {
             /* const doc = new jspdf();
@@ -2201,13 +2187,13 @@ footer {
     /* gap: 15px; */
 }
 
-.filaDosPermisos {
-    /* padding-top: 40px; */
-}
+/* .filaDosPermisos {
+    padding-top: 40px;
+} */
 
-.columnaParrafos {
-    /* line-height: 0.1rem; */
-}
+/* .columnaParrafos {
+    line-height: 0.1rem;
+} */
 
 .parrafoIntestinoAño {
     font-family: 'Segoe-UI-Semibold';
@@ -2728,7 +2714,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     margin-right: auto; */
 }
 
-.contenedorMovil {}
+/* .contenedorMovil {} */
 
 .fila {
     display: none;
@@ -2955,7 +2941,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     font-family: 'Segoe-UI-Semibold';
     font-size: 20px;
     width: 100%;
-    width: 50%;
+    width: 70%;
     /* width: 600px;
     width: 60%; */
     /* height: 50px; */
@@ -2970,7 +2956,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     font-family: 'Segoe-UI-Semibold';
     font-size: 20px;
     width: 100%;
-    width: 50%;
+    width: 70%;
     /* width: 600px;
     width: 60%; */
     /* height: 50px; */
@@ -3783,8 +3769,8 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         background-repeat: no-repeat;
         width: 100%;
         height: 100vh;
-        width: 23px;
-        height: 23px;
+        width: 22px;
+        height: 22px;
         flex-direction: column;
         justify-content: center;
         position: relative;

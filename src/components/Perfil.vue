@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    @click.prevent="selectEstadoEnabled = !selectEstadoEnabled"></a>
+                                    @click.prevent="selectEstado = !selectEstado"></a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>

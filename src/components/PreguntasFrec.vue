@@ -5,8 +5,8 @@
         <div class="row align-items-end">
             <!-- <div class="col-xl-6 col-sm-3 col-md-3"> -->
             <div class="col-xl-4 col-md-4 col-sm-6">
-                <a type="button" class="btnFlecha" href="index.html">
-                </a>
+                <!-- <a type="button" class="btnFlecha" href="index.html">
+                </a> -->
             </div>
             <!-- <div class="col"></div> -->
             <!-- <div class="col"></div> -->
