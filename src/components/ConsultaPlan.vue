@@ -401,8 +401,8 @@
                           <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de
                             tomas e
                             hidrataciones</h1>
-                          <form ref="formEditar" name="formulario" id="formularioEditar"
-                            v-on:submit.prevent="validarHora">
+                          <!-- <form ref="formEditar" name="formulario" id="formularioEditar"
+                            v-on:submit.prevent="validarHora"> -->
                             <!-- <div class="p-fluid grid formgrid">
         <div
           class="col-1 col-md-3 col-sm-2 columnaBotonEditarTabla"
@@ -415,7 +415,7 @@
             align-items: center;
           "
         >
-          <!-- <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
+        <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
                             <a type="button" class="btnEditarPlan" style="background-color: " data-bs-toggle="modal"
                               data-bs-target="#exampleModal" @click="showModal = true"></a>
                             <!-- <button href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
@@ -1762,11 +1762,7 @@ Clave IPP:
       </div>
     </div>
   </div>
-  </div>
-  </div>
-  <br />
-  </div>
-</div></template>
+</template>
 <!-- <script type="text/javascript" src="../js/jspdf.min.js"></script> -->
 <script>
 import moment from "moment";
@@ -4185,134 +4181,135 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
-    .btnEditarPlan:hover {
-      background-image: url("../assets/img/web/Grupo\ 321.png");
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100vh;
-      width: 22px;
-      height: 22px;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btnEditarPlan:hover {
-      background-image: url("../assets/img/web/Grupo\ 321.png");
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100vh;
-      width: 23px;
-      height: 23px;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Termina Estilo pára la vista Plan de tomas e hidrataciones */
-    /* Inician estilos para vista Peguntas frecuentes */
-    /* Inician estilos para Titulo preguntas frecuentes*/
-    .tituloPregFrecu {
-      color: #ff9900;
-      font-family: "OpenSans-Bold";
-      font-size: 40px;
-      /* display: flex;
-    flex-direction: column; */
-      margin-left: 220px;
-      /* width: 100%; */
-      /*  margin-right: 60px; */
-      /* text-align: center; */
-      /* margin-right: 400px; */
-    }
-
-    /* Inician estilos para Titulo preguntas frecuentes*/
-
-    /* Inician estilos para parrafo Nos interesa saber */
-    .parrafoPregFrecInteresaSaber {
-      font-family: "OpenSans-Regular";
-      font-size: 20px;
-      text-align: justify;
-      /*  margin: 10px 10px 10px 10px; */
-      /* padding: 10px 10px; */
-    }
-
-    /* Termina estilos para parrafo Nos interesa saber */
-
-    /* Inician Estilos para botón Guardar de vista Preguntas frecuentes*/
-    .btnGuardarPregFrec {
-      font-family: "OpenSans-SemiBold";
-      font-size: 20px;
-      width: 100%;
-      /* height: 50px; */
-      color: #ffffff;
-      border: none;
-      background-color: #ff9900;
-      text-decoration: none;
-    }
-
-    .btnGuardarPregFrec:hover {
-      font-family: "OpenSans-SemiBold";
-      font-size: 20px;
-      width: 100%;
-      /* height: 50px; */
-      color: #ff9900;
-      border: none;
-      background-color: #ffffff;
-      border: 1px solid #ff9900;
-    }
-
-    /* Termina Estilos para botón Guardar de vista Preguntas frecuentes */
-    /* Termina estilos para vista Peguntas frecuentes */
   }
 
-  /**/
-  body .main .password-container .password {
-    margin: 1rem 0;
-    position: relative;
-  }
-
-  body .main .password-container .password input {
-    /* width: calc(100% - (5px + 0.4rem)); */
-    /* padding: 0.7rem; */
-    /* border: 5px groove #c2c2c2; */
-    /* border: 1px solid #c2c2c2; */
-    /* border-radius: 5px; */
-    font-family: "OpenSans-Regular";
-    /* font-size: 16px; */
-    color: #333;
-  }
-
-  body .main .password-container .password input:focus {
-    outline: none;
-  }
-
-  body .main .password-container .password input::placeholder {
-    color: rgba(0, 0, 0, 0.75);
-  }
-
-  body .main .password-container .password span {
-    position: absolute;
-    right: 20px;
-    top: 30%;
-    top: 25px;
-    top: 20px;
-    width: 24px;
-    height: 24px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    background: url("/img/show.svg");
+  .btnEditarPlan:hover {
+    background-image: url("../assets/img/web/Grupo\ 321.png");
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
-    /* font-size: 4px; */
+    width: 100%;
+    height: 100vh;
+    width: 22px;
+    height: 22px;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  /**/
-  /* Cierre seccion DIGITAL EXPERIENCES*/
-  @media screen and (max-height: 500px) {}
+  .btnEditarPlan:hover {
+    background-image: url("../assets/img/web/Grupo\ 321.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    width: 23px;
+    height: 23px;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Termina Estilo pára la vista Plan de tomas e hidrataciones */
+  /* Inician estilos para vista Peguntas frecuentes */
+  /* Inician estilos para Titulo preguntas frecuentes*/
+  .tituloPregFrecu {
+    color: #ff9900;
+    font-family: "OpenSans-Bold";
+    font-size: 40px;
+    /* display: flex;
+    flex-direction: column; */
+    margin-left: 220px;
+    /* width: 100%; */
+    /*  margin-right: 60px; */
+    /* text-align: center; */
+    /* margin-right: 400px; */
+  }
+
+  /* Inician estilos para Titulo preguntas frecuentes*/
+
+  /* Inician estilos para parrafo Nos interesa saber */
+  .parrafoPregFrecInteresaSaber {
+    font-family: "OpenSans-Regular";
+    font-size: 20px;
+    text-align: justify;
+    /*  margin: 10px 10px 10px 10px; */
+    /* padding: 10px 10px; */
+  }
+
+  /* Termina estilos para parrafo Nos interesa saber */
+
+  /* Inician Estilos para botón Guardar de vista Preguntas frecuentes*/
+  .btnGuardarPregFrec {
+    font-family: "OpenSans-SemiBold";
+    font-size: 20px;
+    width: 100%;
+    /* height: 50px; */
+    color: #ffffff;
+    border: none;
+    background-color: #ff9900;
+    text-decoration: none;
+  }
+
+  .btnGuardarPregFrec:hover {
+    font-family: "OpenSans-SemiBold";
+    font-size: 20px;
+    width: 100%;
+    /* height: 50px; */
+    color: #ff9900;
+    border: none;
+    background-color: #ffffff;
+    border: 1px solid #ff9900;
+  }
+
+  /* Termina Estilos para botón Guardar de vista Preguntas frecuentes */
+  /* Termina estilos para vista Peguntas frecuentes */
+}
+
+/**/
+body .main .password-container .password {
+  margin: 1rem 0;
+  position: relative;
+}
+
+body .main .password-container .password input {
+  /* width: calc(100% - (5px + 0.4rem)); */
+  /* padding: 0.7rem; */
+  /* border: 5px groove #c2c2c2; */
+  /* border: 1px solid #c2c2c2; */
+  /* border-radius: 5px; */
+  font-family: "OpenSans-Regular";
+  /* font-size: 16px; */
+  color: #333;
+}
+
+body .main .password-container .password input:focus {
+  outline: none;
+}
+
+body .main .password-container .password input::placeholder {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+body .main .password-container .password span {
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  top: 25px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: url("/img/show.svg");
+  background-repeat: no-repeat;
+  /* font-size: 4px; */
+}
+
+/**/
+/* Cierre seccion DIGITAL EXPERIENCES*/
+@media screen and (max-height: 500px) {}
 </style>

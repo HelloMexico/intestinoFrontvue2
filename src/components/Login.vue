@@ -3392,7 +3392,8 @@ export default {
     mounted() {
         // Consumir una API 
         axios
-            .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
+            /* .get("https://intestinolimpio.onrender.com/api/v1/data/estados") */
+            .get("http://127.0.0.1:3000/api/v1/data/estados")
             .then((response) => {
                 this.options = response.data.data.map((estado) => ({
                     text: estado.nombre,
