@@ -1,6 +1,6 @@
 <template>
-      <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
-      <div class="container">
+    <!-- <h1 class="text-center">Aqui se esta usando el componente de Crear plan</h1> -->
+    <div class="container">
         <div class="container-fluid" id="element-to-converte">
             <br><br>
             <div class="row filaPlan">
@@ -1367,118 +1367,84 @@
 </template>
 <!-- <script type="text/javascript" src="../js/jspdf.min.js"></script> -->
 <script>
-import moment from "moment";
+import moment from 'moment';
 
-import html2pdf from "html2pdf.js";
+import html2pdf from 'html2pdf.js';
 
 export default {
-  name: "ConsultaPlan",
-  props: {
-    msg: String,
-  },
-  created() {
-    let today = new Date();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let prevMonth = month === 0 ? 11 : month - 1;
-    let prevYear = prevMonth === 11 ? year - 1 : year;
-    let nextMonth = month === 11 ? 0 : month + 1;
-    let nextYear = nextMonth === 0 ? year + 1 : year;
-    this.minDate = new Date();
-    this.minDate.setMonth(prevMonth);
-    this.minDate.setFullYear(prevYear);
-    this.maxDate = new Date();
-    this.maxDate.setMonth(nextMonth);
-    this.maxDate.setFullYear(nextYear);
+    name: 'ConsultaPlan',
+    props: {
+        msg: String,
+    },
+    created() {
+        let today = new Date();
+        let month = today.getMonth();
+        let year = today.getFullYear();
+        let prevMonth = (month === 0) ? 11 : month - 1;
+        let prevYear = (prevMonth === 11) ? year - 1 : year;
+        let nextMonth = (month === 11) ? 0 : month + 1;
+        let nextYear = (nextMonth === 0) ? year + 1 : year;
+        this.minDate = new Date();
+        this.minDate.setMonth(prevMonth);
+        this.minDate.setFullYear(prevYear);
+        this.maxDate = new Date();
+        this.maxDate.setMonth(nextMonth);
+        this.maxDate.setFullYear(nextYear);
 
-    let invalidDate = new Date();
-    invalidDate.setDate(today.getDate() - 1);
-    this.invalidDates = [today, invalidDate];
-  },
-  data() {
-    return {
-      fecha1: "",
-      fecha2: "",
-      hora1: "",
-      hora2: "",
-      errors2: {},
+        let invalidDate = new Date();
+        invalidDate.setDate(today.getDate() - 1);
+        this.invalidDates = [today, invalidDate];
+    },
+    data() {
+        return {
+            fecha1: "",
+            fecha2: "",
+            hora1: "",
+            hora2: "",
+            errors2: {},
 
-      /* fechaActual: "", */
-      fechaEstudioColonos: "",
-      horaColonoscopia: "",
-      fechaPrimerToma: "",
-      horaPrimerToma: "",
-      fechaSegundaToma: "",
-      horaSegundaToma: "",
+            /* fechaActual: "", */
+            fechaEstudioColonos: "",
+            horaColonoscopia: "",
+            fechaPrimerToma: "",
+            horaPrimerToma: "",
+            fechaSegundaToma: "",
+            horaSegundaToma: "",
 
-      date: "",
+            date: "",
 
-      hora: "", // la hora ingresada en el input
-      horaActual: "", // la hora actual obtenida con moment.js
-      fechaActual: "",
+            hora: "", // la hora ingresada en el input
+            horaActual: "", // la hora actual obtenida con moment.js
+            fechaActual: "",
 
-      time: "",
-      es: {
-        firstDayOfWeek: 1,
-        dayNames: [
-          "Domingo",
-          "Lunes",
-          "Martes",
-          "Miércoles",
-          "Jueves",
-          "Viernes",
-          "Sábado",
-        ],
-        dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-        dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
-        monthNames: [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre",
-        ],
-        monthNamesShort: [
-          "Ene",
-          "Feb",
-          "Mar",
-          "Abr",
-          "May",
-          "Jun",
-          "Jul",
-          "Ago",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dic",
-        ],
-        today: "Hoy",
-        clear: "Borrar",
-        weekHeader: "Sm",
-      },
-      /* showModal: false,
+            time: '',
+            es: {
+                firstDayOfWeek: 1,
+                dayNames: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+                dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+                dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                today: 'Hoy',
+                clear: 'Borrar',
+                weekHeader: 'Sm'
+            },
+            /* showModal: false,
             input1: '',
             input2: '',
             input3: '', */
 
-      showModal: false,
-      name: "",
-      email: "",
-      password: "",
-    };
-  },
-  computed: {
-    // Obtener la fecha mínima para el campo fecha dos
-    minDate() {
-      // Si la fecha uno está vacía o no es válida, devolver null
-      /*if (
+            showModal: false,
+            name: '',
+            email: '',
+            password: '',
+        };
+    },
+    computed: {
+        // Obtener la fecha mínima para el campo fecha dos
+        minDate() {
+            // Si la fecha uno está vacía o no es válida, devolver null
+            /*if (
               !this.fechaEstudioColonos ||
               !moment(this.fechaEstudioColonos, "YYYY-MM-DD", true).isValid()
             ) {
@@ -1490,155 +1456,156 @@ export default {
                 .add(1, "days")
                 .format("YYYY-MM-DD");
             }*/
+        },
+        // Obtener la hora mínima para el campo hora dos
+        minTime() {
+            // Si la hora uno está vacía o no es válida, devolver null
+
+            if (
+                !this.horaColonoscopia ||
+                !moment(this.horaColonoscopia, "HH:mm", true).isValid()
+            ) {
+                return null;
+            }
+            // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
+            else {
+                return moment(this.horaColonoscopia, "HH:mm").format("HH:mm");
+            }
+        },
+        isValid() {
+            return this.name !== '' && this.email !== '' && this.password !== '';
+        },
     },
-    // Obtener la hora mínima para el campo hora dos
-    minTime() {
-      // Si la hora uno está vacía o no es válida, devolver null
+    methods: {
+        validateForm() {
+            if (this.input1 && this.input2 && this.input3) {
+                this.showModal = false;
+                alert('Formulario validado correctamente');
+            } else {
+                alert('Por favor complete todos los campos obligatorios');
+            }
+        },
+        submitForm2() {
+            // Validar los campos del segundo formulario
+            this.errors2 = {};
+            let valid2 = true;
 
-      if (
-        !this.horaColonoscopia ||
-        !moment(this.horaColonoscopia, "HH:mm", true).isValid()
-      ) {
-        return null;
-      }
-      // Si la hora uno es válida, devolver la hora uno formateada como HH:mm
-      else {
-        return moment(this.horaColonoscopia, "HH:mm").format("HH:mm");
-      }
-    },
-    isValid() {
-      return this.name !== "" && this.email !== "" && this.password !== "";
-    },
-  },
-  methods: {
-    validateForm() {
-      if (this.input1 && this.input2 && this.input3) {
-        this.showModal = false;
-        alert("Formulario validado correctamente");
-      } else {
-        alert("Por favor complete todos los campos obligatorios");
-      }
-    },
-    submitForm2() {
-      // Validar los campos del segundo formulario
-      this.errors2 = {};
-      let valid2 = true;
+            // Validar que el campo fecha uno no esté vacío y sea una fecha válida
+            if (!this.fecha1) {
+                this.errors2.fecha1 = "La fecha uno es obligatoria";
+                valid2 = false;
+            } else if (!moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
+                this.errors2.fecha1 = "La fecha uno no es válida";
+                valid2 = false;
+            }
 
-      // Validar que el campo fecha uno no esté vacío y sea una fecha válida
-      if (!this.fecha1) {
-        this.errors2.fecha1 = "La fecha uno es obligatoria";
-        valid2 = false;
-      } else if (!moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
-        this.errors2.fecha1 = "La fecha uno no es válida";
-        valid2 = false;
-      }
+            // Validar que el campo fecha dos no esté vacío y sea una fecha válida
+            if (!this.fecha2) {
+                this.errors2.fecha2 = "La fecha dos es obligatoria";
+                valid2 = false;
+            } else if (!moment(this.fecha2, "YYYY-MM-DD", true).isValid()) {
+                this.errors2.fecha2 = "La fecha dos no es válida";
+                valid2 = false;
+            }
 
-      // Validar que el campo fecha dos no esté vacío y sea una fecha válida
-      if (!this.fecha2) {
-        this.errors2.fecha2 = "La fecha dos es obligatoria";
-        valid2 = false;
-      } else if (!moment(this.fecha2, "YYYY-MM-DD", true).isValid()) {
-        this.errors2.fecha2 = "La fecha dos no es válida";
-        valid2 = false;
-      }
+            // Validar que el campo fecha dos sea posterior al campo fecha uno
+            // Usando el método isAfter de moment.js para comparar las fechas
+            // https://momentjs.com/docs/#/query/is-after/
+            else if (moment(this.fecha1).isAfter(this.fecha2)) {
+                this.errors2.fecha2 =
+                    "La fecha dos debe ser posterior a la fecha uno";
+                valid2 = false;
+            }
 
-      // Validar que el campo fecha dos sea posterior al campo fecha uno
-      // Usando el método isAfter de moment.js para comparar las fechas
-      // https://momentjs.com/docs/#/query/is-after/
-      else if (moment(this.fecha1).isAfter(this.fecha2)) {
-        this.errors2.fecha2 = "La fecha dos debe ser posterior a la fecha uno";
-        valid2 = false;
-      }
+            // Validar que el campo hora uno no esté vacío y sea una hora válida
+            if (!this.hora1) {
+                this.errors2.hora1 = "La hora uno es obligatoria";
+                valid2 = false;
+            } else if (!moment(this.hora1, "HH:mm", true).isValid()) {
+                this.errors2.hora1 = "La hora uno no es válida";
+                valid2 = false;
+            }
 
-      // Validar que el campo hora uno no esté vacío y sea una hora válida
-      if (!this.hora1) {
-        this.errors2.hora1 = "La hora uno es obligatoria";
-        valid2 = false;
-      } else if (!moment(this.hora1, "HH:mm", true).isValid()) {
-        this.errors2.hora1 = "La hora uno no es válida";
-        valid2 = false;
-      }
+            // Validar que el campo hora dos no esté vacío y sea una hora válida
+            if (!this.hora2) {
+                this.errors2.hora2 = "La hora dos es obligatoria";
+                valid2 = false;
+            } else if (!moment(this.hora2, "HH:mm", true).isValid()) {
+                this.errors2.hora2 = "La hora dos no es válida";
+                valid2 = false;
+            }
 
-      // Validar que el campo hora dos no esté vacío y sea una hora válida
-      if (!this.hora2) {
-        this.errors2.hora2 = "La hora dos es obligatoria";
-        valid2 = false;
-      } else if (!moment(this.hora2, "HH:mm", true).isValid()) {
-        this.errors2.hora2 = "La hora dos no es válida";
-        valid2 = false;
-      }
+            // Validar que el campo hora dos sea posterior al campo hora uno
+            // Usando el método isAfter de moment.js para comparar las horas
+            // https://momentjs.com/docs/#/query/is-after/
+            else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
+                this.errors2.hora2 =
+                    "La hora dos debe ser posterior a la hora uno";
+                valid2 = false;
+            }
 
-      // Validar que el campo hora dos sea posterior al campo hora uno
-      // Usando el método isAfter de moment.js para comparar las horas
-      // https://momentjs.com/docs/#/query/is-after/
-      else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
-        this.errors2.hora2 = "La hora dos debe ser posterior a la hora uno";
-        valid2 = false;
-      }
+            // Si todos los campos son válidos, enviar el formulario
+            if (valid2) {
+                alert("Los datoa del formulario se enviaron correctamente");
+                // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
+            }
+        },
+        submitForm() {
+            // Aquí puedes agregar la lógica para enviar el formulario
+            this.name = '';
+            this.email = '';
+            this.password = '';
+            this.showModal = false;
+        },
+        closeModal() {
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+            myModal.hide();
+        },
+        validarHora: function (event) {
+            this.errors2 = {};
+            this.submitted = true;
+            // Aquí irá el código para validar la hora ingresada y la hora actual
+            event.preventDefault();
+            let valida = true;
+            const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
+            const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
+            const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
+            //Valida que el campo fecha colonoscopia no este vació y sea una fechs
+            console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
 
-      // Si todos los campos son válidos, enviar el formulario
-      if (valid2) {
-        alert("Los datoa del formulario se enviaron correctamente");
-        // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
-      }
-    },
-    submitForm() {
-      // Aquí puedes agregar la lógica para enviar el formulario
-      this.name = "";
-      this.email = "";
-      this.password = "";
-      this.showModal = false;
-    },
-    closeModal() {
-      var myModal = new bootstrap.Modal(document.getElementById("myModal"), {});
-      myModal.hide();
-    },
-    validarHora: function (event) {
-      this.errors2 = {};
-      this.submitted = true;
-      // Aquí irá el código para validar la hora ingresada y la hora actual
-      event.preventDefault();
-      let valida = true;
-      const fechaActual = this.fechaActual
-        ? moment(this.fechaActual, "YYYY-MM-DD")
-        : "";
-      const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : "";
-      const horaActual = this.horaActual
-        ? moment(this.horaActual, "HH:mm")
-        : "";
-      //Valida que el campo fecha colonoscopia no este vació y sea una fechs
-      console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
 
-      if (!this.fechaEstudioColonos) {
-        this.errors2.fechaEstudioColonos =
-          "La fecha de la colonoscopia es obligatoria";
-        valida = false;
-      } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
+            if (!this.fechaEstudioColonos) {
+                this.errors2.fechaEstudioColonos =
+                    "La fecha de la colonoscopia es obligatoria";
+                valida = false;
+            } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
                 this.errors2.fechaEstudioColonos =
                     "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
                 valida = false;
-            } */ else {
-        delete this.errors2["fechaEstudioColonos"];
-        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
-      }
-      if (horaIngresada === "") {
-        this.errors2.horaIngresada =
-          "La hora de la colonoscopia es obligatoria";
-        valida = false;
-      } /*  else if (horaIngresada.isBefore(horaActual, 'hour')) {
+            } */
+            else {
+                delete this.errors2['fechaEstudioColonos'];
+                /* this.errors2.horaIngresada = "La hora es obligatoria"; */
+            }
+            if (horaIngresada === '') {
+                this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
+                valida = false;
+
+            }/*  else if (horaIngresada.isBefore(horaActual, 'hour')) {
                 this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
                 valida = false;
-            } */ else {
-        delete this.errors2["horaIngresada"];
-        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
-      }
+            } */
+            else {
+                delete this.errors2['horaIngresada'];
+                /* this.errors2.horaIngresada = "La hora es obligatoria"; */
+            }
 
-      // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
-      if (!this.fechaPrimerToma) {
-        this.errors2.fechaPrimerToma =
-          "La fecha de la primer toma es obligatoria";
-        valida = false;
-      } /* else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
+            // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
+            if (!this.fechaPrimerToma) {
+                this.errors2.fechaPrimerToma =
+                    "La fecha de la primer toma es obligatoria";
+                valida = false;
+            } /* else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
                 this.errors2.fechaPrimerToma =
                     "La fecha de la primer toma no es válida";
                 valida = false;
@@ -1655,19 +1622,21 @@ export default {
                 this.errors2.fechaPrimerToma =
                     "La fecha de la primer toma debe ser posterior a la fecha actual";
                 valida = false;
-            } */ else {
-        /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
-                  this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
-              } */
-        delete this.errors2["fechaPrimerToma"];
-      }
+            } */
+            /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
+            } */
+            else {
+                delete this.errors2['fechaPrimerToma'];
 
-      // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
-      if (!this.fechaSegundaToma) {
-        this.errors2.fechaSegundaToma =
-          "La fecha de la segunda toma es obligatoria";
-        valida = false;
-      } /* else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
+            }
+
+            // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
+            if (!this.fechaSegundaToma) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma es obligatoria";
+                valida = false;
+            } /* else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
                 this.errors2.fechaSegundaToma =
                     "La fecha de la segunda toma no es válida";
                 valida = false;
@@ -1677,33 +1646,34 @@ export default {
                 valida = false;
             } */
 
-      // Validar que el campo fecha dos sea posterior al campo fecha uno
-      // Usando el método isAfter de moment.js para comparar las fechas
-      // https://momentjs.com/docs/#/query/is-after/
-      /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
+            // Validar que el campo fecha dos sea posterior al campo fecha uno
+            // Usando el método isAfter de moment.js para comparar las fechas
+            // https://momentjs.com/docs/#/query/is-after/
+            /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
               this.errors2.fechaSegundaToma =
                 "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
               valida = false;
             }*/
-      /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
+            /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
                       this.errors2.fechaSegundaToma =
                           "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
                       valid2 = false;
                   } */
-      else {
-        delete this.errors2["fechaSegundaToma"];
-      }
-      // Validar que el campo hora uno no esté vacío y sea una hora válida
-      let horaIng = moment(horaIngresada, "HH:mm");
-      let horaAct = moment(horaActual, "HH:mm"); // 22:00
-      if (!this.horaPrimerToma) {
-        this.errors2.horaPrimerToma =
-          "La hora de la primer toma es obligatoria";
-        valida = false;
-      } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
-        this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-        valid2 = false;
-      } /*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
+            else {
+                delete this.errors2['fechaSegundaToma'];
+            }
+            // Validar que el campo hora uno no esté vacío y sea una hora válida
+            let horaIng = moment(horaIngresada, "HH:mm")
+            let horaAct = moment(horaActual, "HH:mm") // 22:00
+            if (!this.horaPrimerToma) {
+                this.errors2.horaPrimerToma =
+                    "La hora de la primer toma es obligatoria";
+                valida = false;
+
+            } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+                this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
+                valid2 = false;
+            }/*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
                 this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
                 valida = false;
 
@@ -1713,20 +1683,23 @@ export default {
                 valida = false;
 
                 alert("La hora ingresada es posterior a la hora actual");
-            } */ else {
-        delete this.errors2["horaPrimerToma"];
-      }
+            } */
+            else {
+                delete this.errors2['horaPrimerToma'];
+            }
 
-      // Validar que el campo hora dos no esté vacío y sea una hora válida
-      if (!this.horaSegundaToma) {
-        this.errors2.horaSegundaToma =
-          "La hora de la segunda toma es obligatoria";
-        valida = false;
-      } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
-        this.errors2.horaSegundaToma =
-          "La hora de la segunda toma no es válida";
-        valida = false;
-      } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
+            // Validar que el campo hora dos no esté vacío y sea una hora válida
+            if (!this.horaSegundaToma) {
+                this.errors2.horaSegundaToma =
+                    "La hora de la segunda toma es obligatoria";
+                valida = false;
+
+            } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
+                this.errors2.horaSegundaToma =
+                    "La hora de la segunda toma no es válida";
+                valida = false;
+
+            } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
                 this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
                 valida = false;
 
@@ -1736,56 +1709,57 @@ export default {
                 valida = false;
             } */
 
-      else {
-        delete this.errors2['horaSegundaToma'];
-      }
+            else {
+                delete this.errors2['horaSegundaToma'];
+            }
 
-      if (!this.fechaEstudioColonos || !this.horaIngresada || !this.fechaPrimerToma || !this.horaPrimerToma || !this.fechaSegundaToma || !this.horaSegundaToma) {
-        return;
-      }
-      else {
-        // Si el formulario es valido, se muestra ventana modal
-        /* const successModal = new bootstrap.Modal(
-            document.getElementById('successModal')
-        );
-        successModal.close(); */
-        this.$refs.formEditar.reset();
-      }
-      this.$refs.formEditar.reset();
+            if (!this.fechaEstudioColonos || !this.horaIngresada || !this.fechaPrimerToma || !this.horaPrimerToma || !this.fechaSegundaToma || !this.horaSegundaToma ) {
+                return;
+            }
+            else {
+                // Si el formulario es valido, se muestra ventana modal
+                /* const successModal = new bootstrap.Modal(
+                    document.getElementById('successModal')
+                );
+                successModal.close(); */
+                this.$refs.formEditar.reset();
+            }
+            this.$refs.formEditar.reset();
 
-      /* if (this.fechaEstudioColonos === '' || this.horaColonoscopia === '' || this.fechaPrimerToma === '' || this.horaPrimerToma === '' || this.fechaSegundaToma || this.horaSegundaToma) {
-          alert('Por favor llene todos los campos.');
-          return false;
-      } else {
-          alert('Formulario validado correctamente.');
-          this.showModal = false;
-          return true;
-      } */
+            /* if (this.fechaEstudioColonos === '' || this.horaColonoscopia === '' || this.fechaPrimerToma === '' || this.horaPrimerToma === '' || this.fechaSegundaToma || this.horaSegundaToma) {
+                alert('Por favor llene todos los campos.');
+                return false;
+            } else {
+                alert('Formulario validado correctamente.');
+                this.showModal = false;
+                return true;
+            } */
+        },
+        descargarPdf() {
+            /* const doc = new jspdf();
+            const html = this.$refs.content.innerHTML;
+
+            doc.fromHTML(html,15,15,{
+                width: 150,
+            })
+
+            doc.save("PlanTomas.pdf"); */
+            html2pdf(document.getElementById('element-to-converte'), {
+                margin: 0,
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
+                filename: 'Mi_Plan_De_Tomas.pdf',
+            });
+        }
     },
-    descargarPdf() {
-      /* const doc = new jspdf();
-      const html = this.$refs.content.innerHTML;
 
-      doc.fromHTML(html,15,15,{
-          width: 150,
-      })
+    /* mixins: [VueMoment], */
+    mounted: function () {
 
-      doc.save("PlanTomas.pdf"); */
-      html2pdf(document.getElementById("element-to-converte"), {
-        margin: 0,
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "A4", orientation: "landscape" },
-        filename: "Mi_Plan_De_Tomas.pdf",
-      });
+        this.horaActual = moment().format("HH:mm");
+        this.fechaActual = moment().format("YYYY-MM-DD")
+        /* this.horaIngresada = moment().format("HH:mm"); */
     },
-  },
-
-  /* mixins: [VueMoment], */
-  mounted: function () {
-    this.horaActual = moment().format("HH:mm");
-    this.fechaActual = moment().format("YYYY-MM-DD");
-    /* this.horaIngresada = moment().format("HH:mm"); */
-  },
 };
 </script>
 

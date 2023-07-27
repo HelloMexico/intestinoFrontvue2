@@ -2769,28 +2769,26 @@ export default {
                 console.log(error);
             });
     }, */
-  computed: {
-    bloquear() {
-      return this.formularioIniciar.telefono.trim() === "" ? true : false;
+    computed: {
+        bloquear() {
+            return this.formularioIniciar.telefono.trim() === "" ? true : false
+        }
     },
-  },
-  mounted() {
-    // Consumir una API
-    axios
-      .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
-      /* .get("http://127.0.0.1:3000/api/v1/data/estados") */
-      .then((response) => {
-        this.options = response.data.data.map((estado) => ({
-          text: estado.nombre,
-          value: estado.clave,
-        }));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    
-    /* axios
+    mounted() {
+        // Consumir una API 
+        axios
+            /* .get("https://intestinolimpio.onrender.com/api/v1/data/estados") */
+            .get("http://127.0.0.1:3000/api/v1/data/estados")
+            .then((response) => {
+                this.options = response.data.data.map((estado) => ({
+                    text: estado.nombre,
+                    value: estado.clave,
+                }));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        /* axios
             .get('https://api.coindesk.com/v1/bpi/currentprice.json')
             .then(response => (this.info = response.data.bpi)) */
     /* axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
