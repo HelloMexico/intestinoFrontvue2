@@ -19,6 +19,7 @@
       </form> -->
       <!-- <input type="time" id="time" name="time" v-model="time" @blur="validateTime"> -->
       <form name="formulario" id="formulario" v-on:submit="validarHora">
+      <!-- <form name="formulario" id="formulario" v-on:submit="enviarFormCrearPlan"> -->
         <div class="container">
           <div class="row">
             <div class="col-xl-6 col-sm-6 col-md-6 text-center">
@@ -184,6 +185,7 @@
 </template>
 <script>
 import moment from "moment";
+import axios from "axios";
 
 export default {
   name: "CrearPlan",
@@ -247,8 +249,7 @@ export default {
       const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
       const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
       //Valida que el campo fecha colonoscopia no este vació y sea una fechs
-      console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
-
+      /* console.log(moment(this.fechaEstudioColonos).isSame(fechaActual)); */
 
       if (!this.fechaEstudioColonos) {
         this.errors2.fechaEstudioColonos =
@@ -394,6 +395,22 @@ export default {
         delete this.errors2['horaSegundaToma'];
 
       }
+      const data = { 
+        fecha_estudio : this.fechaEstudioColonos, 
+        hora_estudio : this.horaColonoscopia, 
+        fecha_prim_toma : this.fechaPrimerToma, 
+        hora_prim_toma : this.horaPrimerToma, 
+        fecha_seg_toma : this.fechaSegundaToma, 
+        hora_seg_toma : this.horaSegundaToma
+      };
+      axios
+        .post("https://intestinolimpio.onrender.com/api/v1/prescription", data)
+        .then((res) => {
+          console.log(`Respuesta de back💾: ${res} `);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
 
     validateDate() {
@@ -611,6 +628,196 @@ export default {
         // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
       }
     },
+    validarfechaEstudio(){
+      if (!this.fechaEstudioColonos) {
+        this.errors2.fechaEstudioColonos =
+          "La fecha de la colonoscopia es obligatoria";
+        valida = false;
+      } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
+        this.errors2.fechaEstudioColonos =
+          "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
+          valida = false;
+      } */
+      else {
+        delete this.errors2['fechaEstudioColonos'];
+        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
+      }
+    },
+    validarhoraColonos(){
+      const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
+      if (horaIngresada === '') {
+        this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
+        valida = false;
+
+      } /* else if (horaIngresada.isBefore(horaActual, 'hour')) {
+        this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
+        valida = false;
+      } */
+      else {
+        delete this.errors2['horaIngresada'];
+        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
+      }
+    },
+    validarfechaPrimerToma(){
+      // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
+      if (!this.fechaPrimerToma) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma es obligatoria";
+        valida = false;
+      } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma no es válida";
+        valida = false;
+      }/*  else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+        valida = false;
+      } */
+
+      /* else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
+        valida = false;
+      } else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
+        this.errors2.fechaPrimerToma =
+          "La fecha de la primer toma debe ser posterior a la fecha actual";
+        valida = false;
+      } */
+
+      /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
+                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
+            } */
+      else {
+        delete this.errors2['fechaPrimerToma'];
+
+      }
+    },
+    validarhoraPrimerToma(){
+      // Validar que el campo hora uno no esté vacío y sea una hora válida
+      const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
+      let horaIng = moment(horaIngresada, "HH:mm")
+      let horaAct = moment(horaActual, "HH:mm") // 22:00
+      if (!this.horaPrimerToma) {
+        this.errors2.horaPrimerToma =
+          "La hora de la primer toma es obligatoria";
+        valida = false;
+
+      } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
+        valida = false;
+      } /*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
+        valida = false;
+
+        alert("La hora ingresada es posterior a la hora actual");
+      } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
+        valida = false;
+
+        alert("La hora ingresada es posterior a la hora actual");
+      } */
+      else {
+        delete this.errors2['horaPrimerToma'];
+      }
+
+    },
+    validarfechaSegundaToma(){
+      // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
+      if (!this.fechaSegundaToma) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma es obligatoria";
+        valida = false;
+      } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma no es válida";
+        valida = false;
+      } /* else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
+        valida = false;
+      } */
+      else {
+        delete this.errors2['fechaSegundaToma'];
+      }
+
+      // Validar que el campo fecha dos sea posterior al campo fecha uno
+      // Usando el método isAfter de moment.js para comparar las fechas
+      // https://momentjs.com/docs/#/query/is-after/
+      /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
+        this.errors2.fechaSegundaToma =
+          "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
+        valida = false;
+      }*/
+      /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
+                this.errors2.fechaSegundaToma =
+                    "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
+                valid2 = false;
+            } */
+      /* else {
+        delete this.errors2['fechaSegundaToma'];
+      } */
+    },
+    validarhoraSegundaToma(){
+      // Validar que el campo hora dos no esté vacío y sea una hora válida
+      if (!this.horaSegundaToma) {
+        this.errors2.horaSegundaToma =
+          "La hora de la segunda toma es obligatoria";
+        valida = false;
+
+      } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
+        this.errors2.horaSegundaToma =
+          "La hora de la segunda toma no es válida";
+        valida = false;
+
+      } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
+        this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
+        valida = false;
+
+        alert("La hora ingresada es posterior a la hora actual");
+      } else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm"))) {
+        this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
+        valida = false;
+      } */
+      else {
+        delete this.errors2['horaSegundaToma'];
+
+      }
+    },
+    enviarFormCrearPlan(event){
+      this.errors = {};
+      const valida = true;
+      // Validar los campos antes de enviar el formulario
+      this.validarfechaEstudio();
+      this.validarhoraColonos();
+      this.validarfechaPrimerToma();
+      this.validarhoraPrimerToma();
+      this.validarfechaSegundaToma();
+      this.validarhoraSegundaToma();
+      this.errors2 = {};
+      // Aquí irá el código para validar la hora ingresada y la hora actual
+      event.preventDefault();
+      const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
+      //Valida que el campo fecha colonoscopia no este vació y sea una fechs
+      console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
+      const dataPrescription = { 
+        fecha_estudio : this.fechaEstudioColonos, 
+        hora_estudio : this.horaColonoscopia, 
+        fecha_prim_toma : this.fechaPrimerToma, 
+        hora_prim_toma : this.horaPrimerToma, 
+        fecha_seg_toma : this.fechaSegundaToma, 
+        hora_seg_toma : this.horaSegundaToma
+      };
+      console.table(dataPrescription);
+      // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
+      axios
+        .post("https://intestinolimpio.onrender.com/api/v1/prescription", dataPrescription)
+        .then((res) => {
+          console.log(`Respuesta de back💾: ${res}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   },
   computed: {
     // Obtener la fecha mínima para el campo fecha dos
