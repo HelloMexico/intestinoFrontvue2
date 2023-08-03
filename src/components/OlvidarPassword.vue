@@ -10,19 +10,19 @@
         <br><br>
         <div class="row">
             <div class="col">
-                <p class="text-center" style="font-family: 'OpenSans-Bold';">Ingresa tu correo electrónico asociado</p>
+                <p class="text-center" style="font-family: 'OpenSans-Bold';">Ingresa tu número asociado</p>
             </div>
         </div>
         <br>
         <div class="row justify-content-center">
             <div class="col" style="margin: 0 auto;">
-                <input class="form-control" type="email" name="" id="" style="font-family: 'OpenSans-Bold';" placeholder="Correo electrónico">
+                <input class="form-control" type="email" name="" id="" style="font-family: 'OpenSans-Bold';" placeholder="Número telefónico">
             </div>
         </div>
         <br><br>
         <div class="row"> 
             <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-                <router-link class="btnEnvioCorreo rounded text-center" to="/nuevo">Enviar correo de recuperación</router-link >
+                <router-link class="btnEnvioCorreo rounded text-center" to="/nuevo">Enviar número de recuperación</router-link >
             </div>
         </div>
         <br><br><br><br><br><br><br><br><br><br>

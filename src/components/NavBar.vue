@@ -39,10 +39,21 @@
                         </a> -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link textoSwitchAcepto" 
+                            style="cursor: pointer"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
                             <p class="parraffo"> <img src="../assets/img/web/proteccion 2.png" alt="">
-                                Protección de datos
-                                personales</p>
+                                Protección de datos personales
+                            </p>
+                            <div
+                                class="modal fade"
+                                id="exampleModal"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <AvisoPrivacidad/>
+                            </div>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -83,12 +94,14 @@
 </template>
 
 <script>
-export default {
-    name: 'NavBar',
-    props: {
-        msg: String,
-    },
-};
+    import AvisoPrivacidad from "../components/modals/AvisoPrivacidad.vue";
+
+    export default {
+        name: 'NavBar',
+        components: {
+            AvisoPrivacidad
+        },
+    };
 </script>
 
 

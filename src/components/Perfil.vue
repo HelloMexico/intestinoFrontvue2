@@ -311,481 +311,465 @@
         <br>
     </div>
 </template>
+
 <script>
-import axios from "axios";
+    import axios from "axios";
 
-
-export default {
-    name: 'Perfil',
-    props: {
-        msg: String,
-    },
-    data() {
-        return {
-            errors: {},
-            inputLadaEnabled: "",
-            inputTelPerfilEnabled: "",
-            selectEstadoEnabled: "",
-            inputCiudadEnabled: "",
-            inputEdadEnabled: "",
-            inputNomMedTratEnabled: "",
-            inputApeMedTratEnabled: "",
-            inputClaveAccesoEnabled: "",
-
-            selected: "",
-            options: [],
-            selectedCountry: "",
-            selectedLada: "",
-
-            inputLada: null,
-            inputTelPerfil: null,
-            selectEstado: null,
-            inputCiudad: null,
-            inputEdad: null,
-            inputNomMedTrat: null,
-            inputApeMedTrat: null,
-            inputClaveAcceso: null,
-
-            info: null,
-            options: [],
-
-            id_user: '',
-            userData: null,
-            error: null,
-
-            meal_id: '',
-            mealData: null,
-            error: null,
-
-            email: '',
-            password: '',
-            passwordConfirm: '',
-
-            lada: '',
-            numero: '',
-            editMode: false,
-
-            name: '',
-            email: '',
-            submitted: false,
-        };
-    },
-    mounted() {
-        // Consumir una API 
-        axios
-            .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-            .then((response) => (this.info = response.data.bpi.USD.rate));
-        axios
-            .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
-            .then((response) => {
-                this.options = response.data.data.map((estado) => ({
-                    text: estado.nombre,
-                    value: estado.clave,
-                }));
-            });
-    },
-    methods: {
-        validateLada() {
-            /* const regex = /^(\+){0,5}(52){0,5}$/;
-            const regex = /^(\+){0,4}{0,1}$/; */
-            const regex = /^[0-9\+]+$/;
-            if (!regex.test(this.lada)) {
-                this.lada = '';
-            }
-            if (this.lada.length > 5) {
-                this.lada = this.lada.slice(0, 5);
-            }
+    export default {
+        name: 'Perfil',
+        props: {
+            msg: String,
         },
-        validateNumero() {
-            if (this.numero.length > 10) {
-                this.numero = this.numero.slice(0, 10);
-            }
+        data() {
+            return {
+                errors: {},
+                inputLadaEnabled: "",
+                inputTelPerfilEnabled: "",
+                selectEstadoEnabled: "",
+                inputCiudadEnabled: "",
+                inputEdadEnabled: "",
+                inputNomMedTratEnabled: "",
+                inputApeMedTratEnabled: "",
+                inputClaveAccesoEnabled: "",
+
+                selected: "",
+                options: [],
+                selectedCountry: "",
+                selectedLada: "",
+
+                inputLada: null,
+                inputTelPerfil: null,
+                selectEstado: null,
+                inputCiudad: null,
+                inputEdad: null,
+                inputNomMedTrat: null,
+                inputApeMedTrat: null,
+                inputClaveAcceso: null,
+
+                info: null,
+                options: [],
+
+                id_user: '',
+                userData: null,
+                error: null,
+
+                meal_id: '',
+                mealData: null,
+                error: null,
+
+                email: '',
+                password: '',
+                passwordConfirm: '',
+
+                lada: '',
+                numero: '',
+                editMode: false,
+
+                name: '',
+                email: '',
+                submitted: false,
+            };
         },
-        getUserData() {
-            axios.get('https://intestinolimpio.onrender.com/api/v1/data/estados', {
-                params: {
-                    id_user: this.id_user,
-                },
-            })
-                .then(response => {
-                    if (response.data.length === 0) {
-                        // La API no contiene datos
-                        this.error = 'La API no contiene datos';
-                    } else {
-                        // La API contiene datos
-                        this.userData = response.data;
-                    }
-                })
-                .catch(error => {
-                    // Se produjo un error durante la solicitud
-                    this.error = error.message;
+        mounted() {
+            // Consumir una API 
+            axios
+                .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+                .then((response) => (this.info = response.data.bpi.USD.rate));
+
+            axios
+                .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
+                .then((response) => {
+                    this.options = response.data.data.map((estado) => ({
+                        text    : estado.nombre,
+                        value   : estado.clave,
+                    }));
                 });
+
+                this.getUserData();
         },
-        getMealData() {
-            axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
-                .then(response => {
-                    if (response.data.meals === null) {
-                        // La API no contiene datos
-                        this.error = 'La API no contiene datos';
-                    } else {
-                        // La API contiene datos
-                        this.mealData = response.data.meals[0];
-                    }
-                })
-                .catch(error => {
-                    // Se produjo un error durante la solicitud
-                    this.error = error.message;
-                });
-        },
-        /* enableInputLadaNumero() {
-            this.inputLadaEnabled = true;
-            this.inputTelPerfilEnabled = true;
-        }, */
-        /* onSubmit() {
-            if (this.validateForm()) { */
-        // Show modal window with Bootstrap 5
-        /* $('#exampleModal').modal('show');
-    }
+        methods: {
+            validateLada() {
+                /* const regex = /^(\+){0,5}(52){0,5}$/;
+                const regex = /^(\+){0,4}{0,1}$/; */
+                const regex = /^[0-9\+]+$/;
+                if (!regex.test(this.lada)) {
+                    this.lada = '';
+                }
+                if (this.lada.length > 5) {
+                    this.lada = this.lada.slice(0, 5);
+                }
+            },
+            validateNumero() {
+                if (this.numero.length > 10) {
+                    this.numero = this.numero.slice(0, 10);
+                }
+            },
+            async getUserData() {
 
-}, */
-        /* validateForm() {
-            if (!this.email) {
-                alert('Please enter an email address.');
-                return false;
-            }
-            if (!this.password) {
-                alert('Please enter a password.');
-                return false;
-            }
-            if (this.password !== this.passwordConfirm) {
-                alert('Password and password confirmation do not match.');
-                return false;
-            }
-            return true;
+                // this.error = error.message;
+                // this.userData = response.data;
 
-        }, */
+                try {
+                    const userId = localStorage.getItem('userId');
 
-        validarLada() {
-            let valida = true;
-            // Validar los campos del formulario
-            this.errors.inputLadaEnabled = '';
+                    const resp = await axios.get('https://intestinolimpio.onrender.com/api/v1/user');
 
-            // Validar los campos del formulario
-            this.errors.inputLadaEnabled = '';
-            this.inputLadaEnabled = this.inputLadaEnabled.replace(/[^0-9\+]/g, "");
-            /* this.inputLadaEnabled = this.inputLadaEnabled.replace(/^[0-9\+]+$/, ""); */
-            /* const regex = /^[0-9\+]+$/; */
-            // Validar que el campo lada
-            if (!this.inputLadaEnabled) {
-                this.errors.inputLadaEnabled = "La lada es obligatoria";
-                valida = false;
-            }
-            /* if (!regex.test(this.inputLadaEnabled)) {
-                this.errors.inputLadaEnabled = "La lada es obligatoria";
-                valida = false;
-            } */
-            /* else if (isNaN(this.inputLadaEnabled)) {
-                this.errors.inputLadaEnabled = 'La lada solo debe contener numero y signo +';
-                valida = false;
-            } */ else if (this.inputLadaEnabled.length < 3) {
-                this.errors.inputLadaEnabled = 'La lada  no debe ser menor a 3 caracteres';
-                valida = false;
-            } else if (this.inputLadaEnabled.length > 5) {
-                this.errors.inputLadaEnabled = 'La lada no debe exceder 5 caracteres';
-                valida = false;
-            } else {
-                delete this.errors['inputLadaEnabled'];
-            }
-        },
-        validarTelefonoCelular() {
-            let valida = true;
-            // Validar los campos del formulario
-            this.errors.inputTelPerfilEnabled = '';
-            this.inputTelPerfilEnabled = this.inputTelPerfilEnabled.replace(/[^0-9]/g, "");
+                    console.log(resp);
+                    
+                } catch (error) {
+                    console.log(error.message);
+                }
 
-            if (!this.inputTelPerfilEnabled) {
-                this.errors.inputTelPerfilEnabled = 'El teléfono celular es obligatorio';
-                valida = false;
-            } else if (isNaN(this.inputTelPerfilEnabled)) {
-                this.errors.inputTelPerfilEnabled = 'El teléfono celular solo debe contener números';
-                valida = false;
-            } else if (this.inputTelPerfilEnabled.length < 7) {
-                this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe ser menor a 7 números';
-                valida = false;
-            } else if (this.inputTelPerfilEnabled.length > 10) {
-                this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe exceder 10 números';
-                valida = false;
-            } else {
-                delete this.errors['inputTelPerfilEnabled '];
-            }
-            /* this.validarPais();
-            this.formularioValidado = this.validarEdad && validarPeso; */
-        },
-        validarEstado() {
-            this.errors.selectEstadoEnabled = '';
-            let valida = true;
-            // Validar que el campo edad no esté vacío y sea un número positivo
-            if (!this.selectEstadoEnabled) {
-                this.errors.selectEstadoEnabled = "El estado es obligatorio";
-                valida = false;
-            } else {
-                delete this.errors['selectEstadoEnabled'];
-            }
+            },
+            getMealData() {
+                axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.meal_id}`)
+                    .then(response => {
+                        if (response.data.meals === null) {
+                            // La API no contiene datos
+                            this.error = 'La API no contiene datos';
+                        } else {
+                            // La API contiene datos
+                            this.mealData = response.data.meals[0];
+                        }
+                    })
+                    .catch(error => {
+                        // Se produjo un error durante la solicitud
+                        this.error = error.message;
+                    });
+            },
+            /* enableInputLadaNumero() {
+                this.inputLadaEnabled = true;
+                this.inputTelPerfilEnabled = true;
+            }, */
+            /* onSubmit() {
+                if (this.validateForm()) { */
+            // Show modal window with Bootstrap 5
+            /* $('#exampleModal').modal('show');
+        }
 
-        },
+    }, */
+            /* validateForm() {
+                if (!this.email) {
+                    alert('Please enter an email address.');
+                    return false;
+                }
+                if (!this.password) {
+                    alert('Please enter a password.');
+                    return false;
+                }
+                if (this.password !== this.passwordConfirm) {
+                    alert('Password and password confirmation do not match.');
+                    return false;
+                }
+                return true;
 
-        validarCiudad() {
-            // Validar los campos del formulario
-            this.errors.inputCiudadEnabled = '';
-            let valida = true;
-            /** Expresion regular para solo letras */
-            /* const regex = /^[a-zA-Z]+$/; */
-            this.inputCiudadEnabled = this.inputCiudadEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+            }, */
+
+            validarLada() {
+                let valida = true;
+                // Validar los campos del formulario
+                this.errors.inputLadaEnabled = '';
+
+                // Validar los campos del formulario
+                this.errors.inputLadaEnabled = '';
+                this.inputLadaEnabled = this.inputLadaEnabled.replace(/[^0-9\+]/g, "");
+                /* this.inputLadaEnabled = this.inputLadaEnabled.replace(/^[0-9\+]+$/, ""); */
+                /* const regex = /^[0-9\+]+$/; */
+                // Validar que el campo lada
+                if (!this.inputLadaEnabled) {
+                    this.errors.inputLadaEnabled = "La lada es obligatoria";
+                    valida = false;
+                }
+                /* if (!regex.test(this.inputLadaEnabled)) {
+                    this.errors.inputLadaEnabled = "La lada es obligatoria";
+                    valida = false;
+                } */
+                /* else if (isNaN(this.inputLadaEnabled)) {
+                    this.errors.inputLadaEnabled = 'La lada solo debe contener numero y signo +';
+                    valida = false;
+                } */ else if (this.inputLadaEnabled.length < 3) {
+                    this.errors.inputLadaEnabled = 'La lada  no debe ser menor a 3 caracteres';
+                    valida = false;
+                } else if (this.inputLadaEnabled.length > 5) {
+                    this.errors.inputLadaEnabled = 'La lada no debe exceder 5 caracteres';
+                    valida = false;
+                } else {
+                    delete this.errors['inputLadaEnabled'];
+                }
+            },
+            validarTelefonoCelular() {
+                let valida = true;
+                // Validar los campos del formulario
+                this.errors.inputTelPerfilEnabled = '';
+                this.inputTelPerfilEnabled = this.inputTelPerfilEnabled.replace(/[^0-9]/g, "");
+
+                if (!this.inputTelPerfilEnabled) {
+                    this.errors.inputTelPerfilEnabled = 'El teléfono celular es obligatorio';
+                    valida = false;
+                } else if (isNaN(this.inputTelPerfilEnabled)) {
+                    this.errors.inputTelPerfilEnabled = 'El teléfono celular solo debe contener números';
+                    valida = false;
+                } else if (this.inputTelPerfilEnabled.length < 7) {
+                    this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe ser menor a 7 números';
+                    valida = false;
+                } else if (this.inputTelPerfilEnabled.length > 10) {
+                    this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe exceder 10 números';
+                    valida = false;
+                } else {
+                    delete this.errors['inputTelPerfilEnabled '];
+                }
+                /* this.validarPais();
+                this.formularioValidado = this.validarEdad && validarPeso; */
+            },
+            validarEstado() {
+                this.errors.selectEstadoEnabled = '';
+                let valida = true;
+                // Validar que el campo edad no esté vacío y sea un número positivo
+                if (!this.selectEstadoEnabled) {
+                    this.errors.selectEstadoEnabled = "El estado es obligatorio";
+                    valida = false;
+                } else {
+                    delete this.errors['selectEstadoEnabled'];
+                }
+
+            },
+            validarCiudad() {
+                // Validar los campos del formulario
+                this.errors.inputCiudadEnabled = '';
+                let valida = true;
+                /** Expresion regular para solo letras */
+                /* const regex = /^[a-zA-Z]+$/; */
+                this.inputCiudadEnabled = this.inputCiudadEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
 
 
-            // Validar que el campo edad no esté vacío y sea un número positivo
-            if (!this.inputCiudadEnabled) {
-                this.errors.inputCiudadEnabled = "La ciudad es obligatoria";
-                valida = false;
-            } /* else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
-                this.errors.ciudad = 'El nombre del médico tratante solo debe contener solo letras';
-                valida = false;
-            } */ else if (this.inputCiudadEnabled.length > 80) {
-                this.errors.inputCiudadEnabled =
-                    "La ciudad debe tener máximo 80 caracteres";
-                valida = false;
-            }
-            else {
-                delete this.errors['inputCiudadEnabled'];
-            }
-        },
+                // Validar que el campo edad no esté vacío y sea un número positivo
+                if (!this.inputCiudadEnabled) {
+                    this.errors.inputCiudadEnabled = "La ciudad es obligatoria";
+                    valida = false;
+                } /* else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
+                    this.errors.ciudad = 'El nombre del médico tratante solo debe contener solo letras';
+                    valida = false;
+                } */ else if (this.inputCiudadEnabled.length > 80) {
+                    this.errors.inputCiudadEnabled =
+                        "La ciudad debe tener máximo 80 caracteres";
+                    valida = false;
+                }
+                else {
+                    delete this.errors['inputCiudadEnabled'];
+                }
+            },
+            validarEdad() {
+                // Validar los campos del formulario
+                this.errors.inputEdadEnabled = '';
+                let valida = true;
+                // Validar que el campo edad no esté vacío y sea un número positivo
+                if (!this.inputEdadEnabled) {
+                    this.errors.inputEdadEnabled = "La edad es obligatoria";
+                    valida = false;
+                } else if (this.inputEdadEnabled <= 0) {
+                    this.errors.inputEdadEnabled = "La edad debe ser un número positivo";
+                    valida = false;
+                } else {
+                    delete this.errors['inputEdadEnabled'];
+                }
+            },
+            validarNomMedTrat() {
+                // Validar los campos del formulario
+                this.errors.inputNomMedTratEnabled = '';
+                let valida = true;
+                /* this.inputNomMedTratEnabled = this.inputNomMedTratEnabledt.replace(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]/g,""); */
+                /** Expresion regular para solo letras */
+                /* const regex = /^[a-zA-Z]+$/; */
+                this.inputNomMedTratEnabled = this.inputNomMedTratEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+                // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
+                if (!this.inputNomMedTratEnabled) {
+                    this.errors.inputNomMedTratEnabled = "El nombre del médico tratante es obligatorio";
+                    valida = false;
+                    /* else if (!/^([0-9])*$/.test(this.telefono)) { */
+                } /* else if (/^[ a-zA-Z]+$/.test(this.inputNomMedTratEnabled)) {
+                    this.errors.inputNomMedTratEnabled = 'El nombre del médico tratante solo debe contener solo letras';
+                    valida = false;
+                } *//* else if (this.inputNomMedTratEnabled.length < 50) {
+                    this.errors.inputNomMedTratEnabled =
+                        "El nombre del médico tratante debe tener al menos 50 caracteres";
+                } */
+                else if (this.inputNomMedTratEnabled.length > 80) {
+                    this.errors.inputNomMedTratEnabled =
+                        "El nombre del médico tratante debe tener máximo 80 caracteres";
+                    valida = false;
+                } else {
+                    delete this.errors['inputNomMedTratEnabled'];
+                }
+            },
+            validarApeMedTrat() {
+                // Validar los campos del formulario
+                this.errors.inputApeMedTratEnabled = '';
+                let valida = true;
+                this.inputApeMedTratEnabled = this.inputApeMedTratEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
 
-        validarEdad() {
-            // Validar los campos del formulario
-            this.errors.inputEdadEnabled = '';
-            let valida = true;
-            // Validar que el campo edad no esté vacío y sea un número positivo
-            if (!this.inputEdadEnabled) {
-                this.errors.inputEdadEnabled = "La edad es obligatoria";
-                valida = false;
-            } else if (this.inputEdadEnabled <= 0) {
-                this.errors.inputEdadEnabled = "La edad debe ser un número positivo";
-                valida = false;
-            } else {
-                delete this.errors['inputEdadEnabled'];
-            }
-        },
+                // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
+                if (!this.inputApeMedTratEnabled) {
+                    this.errors.inputApeMedTratEnabled = "El apellido del médico tratante es obligatorio";
+                    valida = false;
+                } /* else if (this.inputApeMedTratEnabled.length < 50) {
+                    this.errors.inputApeMedTratEnabled =
+                        "El apellido del médico tratante debe tener al menos 50 caracteres";
+                    valida = false;
+                } */
+                else if (this.inputApeMedTratEnabled.length > 80) {
+                    this.errors.inputApeMedTratEnabled =
+                        "El apellido del médico tratante debe tener máximo 80 caracteres";
+                    valida = false;
+                } else {
+                    delete this.errors['inputApeMedTratEnabled'];
+                }
+            },
+            validarClaveAccessos() {
+                // Validar los campos del formulario;
+                this.errors.inputClaveAccesoEnabled = '';
+                let valida = true;
 
-        validarNomMedTrat() {
-            // Validar los campos del formulario
-            this.errors.inputNomMedTratEnabled = '';
-            let valida = true;
-            /* this.inputNomMedTratEnabled = this.inputNomMedTratEnabledt.replace(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]/g,""); */
-            /** Expresion regular para solo letras */
-            /* const regex = /^[a-zA-Z]+$/; */
-            this.inputNomMedTratEnabled = this.inputNomMedTratEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
-            // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
-            if (!this.inputNomMedTratEnabled) {
-                this.errors.inputNomMedTratEnabled = "El nombre del médico tratante es obligatorio";
-                valida = false;
-                /* else if (!/^([0-9])*$/.test(this.telefono)) { */
-            } /* else if (/^[ a-zA-Z]+$/.test(this.inputNomMedTratEnabled)) {
-                this.errors.inputNomMedTratEnabled = 'El nombre del médico tratante solo debe contener solo letras';
-                valida = false;
-            } *//* else if (this.inputNomMedTratEnabled.length < 50) {
-                this.errors.inputNomMedTratEnabled =
-                    "El nombre del médico tratante debe tener al menos 50 caracteres";
-            } */
-            else if (this.inputNomMedTratEnabled.length > 80) {
-                this.errors.inputNomMedTratEnabled =
-                    "El nombre del médico tratante debe tener máximo 80 caracteres";
-                valida = false;
-            } else {
-                delete this.errors['inputNomMedTratEnabled'];
-            }
-        },
-        validarApeMedTrat() {
-            // Validar los campos del formulario
-            this.errors.inputApeMedTratEnabled = '';
-            let valida = true;
-            this.inputApeMedTratEnabled = this.inputApeMedTratEnabled.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
+                // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
+                if (!this.inputClaveAccesoEnabled) {
+                    this.errors.inputClaveAccesoEnabled = 'La clave de acceso es obligatoria';
+                    valida = false;
+                } else if (this.inputClaveAccesoEnabled.length < 4) {
+                    this.errors.inputClaveAccesoEnabled = 'La clave de acceso debe tener por lo menos 4 caracteres';
+                    valida = false;
+                } else if (this.inputClaveAccesoEnabled.length > 10) {
+                    this.errors.inputClaveAccesoEnabled = 'La clave de acceso no debe exceder de 10 caracteres';
+                    valida = false;
+                } else {
+                    delete this.errors['inputClaveAccesoEnabled'];
+                }
+            },
+            submitForm2() {
+                this.submitted = true;
 
-            // Validar que el campo apellido de medico tratante no este vaci y tenaga minimo 70 y maximo 80 caracteres
-            if (!this.inputApeMedTratEnabled) {
-                this.errors.inputApeMedTratEnabled = "El apellido del médico tratante es obligatorio";
-                valida = false;
-            } /* else if (this.inputApeMedTratEnabled.length < 50) {
-                this.errors.inputApeMedTratEnabled =
-                    "El apellido del médico tratante debe tener al menos 50 caracteres";
-                valida = false;
-            } */
-            else if (this.inputApeMedTratEnabled.length > 80) {
-                this.errors.inputApeMedTratEnabled =
-                    "El apellido del médico tratante debe tener máximo 80 caracteres";
-                valida = false;
-            } else {
-                delete this.errors['inputApeMedTratEnabled'];
-            }
-        },
-        validarClaveAccessos() {
-            // Validar los campos del formulario;
-            this.errors.inputClaveAccesoEnabled = '';
-            let valida = true;
+                // Validamos el formulario
+                if (!this.name || !this.email) {
+                    return;
+                }
 
-            // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
-            if (!this.inputClaveAccesoEnabled) {
-                this.errors.inputClaveAccesoEnabled = 'La clave de acceso es obligatoria';
-                valida = false;
-            } else if (this.inputClaveAccesoEnabled.length < 4) {
-                this.errors.inputClaveAccesoEnabled = 'La clave de acceso debe tener por lo menos 4 caracteres';
-                valida = false;
-            } else if (this.inputClaveAccesoEnabled.length > 10) {
-                this.errors.inputClaveAccesoEnabled = 'La clave de acceso no debe exceder de 10 caracteres';
-                valida = false;
-            } else {
-                delete this.errors['inputClaveAccesoEnabled'];
-            }
-        },
-
-        submitForm2() {
-            this.submitted = true;
-
-            // Validamos el formulario
-            if (!this.name || !this.email) {
-                return;
-            }
-
-            // Si el formulario es válido, mostramos la ventana modal
-            const successModal = new bootstrap.Modal(
-                document.getElementById('successModal')
-            );
-            successModal.show();
-            /* this.$refs.formPruebas.reset(); */
-        },
-
-        enviarDatos() {
-            this.errors = {};
-            const valida = true;
-            this.submitted = true;
-            // Validar los campos antes de enviar el formulario
-            /* this.validarPaisLada(); */
-
-            this.validarLada();
-            this.validarTelefonoCelular();
-            this.validarEstado();
-            this.validarCiudad();
-            this.validarEdad();
-
-            /* this.validarPeso(); */
-
-            this.validarNomMedTrat();
-            this.validarApeMedTrat();
-            this.validarClaveAccessos();
-
-            /* this.validarConfiClaveAccessos(); */
-
-            //validamos el formulario
-            /* if (!this.validarLada || !this.validarTelefonoCelular || !this.validarEstado || !this.validarCiudad || !this.validarEdad || !this.validarNomMedTrat || !this.validarApeMedTrat || !this.validarClaveAccessos) {
-                return;
-            } */
-            // Validación del formulario de Perfil
-            if (!this.inputLadaEnabled || !this.inputTelPerfilEnabled || !this.selectEstadoEnabled || !this.inputCiudadEnabled || !this.inputEdadEnabled || !this.inputNomMedTratEnabled || !this.inputApeMedTratEnabled || !this.inputClaveAccesoEnabled) {
-                return;
-            }
-            else {
-                // Si el formulario es valido, se muestra ventana modal
+                // Si el formulario es válido, mostramos la ventana modal
                 const successModal = new bootstrap.Modal(
                     document.getElementById('successModal')
                 );
                 successModal.show();
-                this.$refs.formPerfil.reset();
-            }
+                /* this.$refs.formPruebas.reset(); */
+            },
+            enviarDatos() {
+                this.errors = {};
+                const valida = true;
+                this.submitted = true;
+                // Validar los campos antes de enviar el formulario
+                /* this.validarPaisLada(); */
 
+                this.validarLada();
+                this.validarTelefonoCelular();
+                this.validarEstado();
+                this.validarCiudad();
+                this.validarEdad();
 
-            /* axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
-                params: {
-                    id_user: 'your_id_user'
+                /* this.validarPeso(); */
+
+                this.validarNomMedTrat();
+                this.validarApeMedTrat();
+                this.validarClaveAccessos();
+
+                /* this.validarConfiClaveAccessos(); */
+
+                //validamos el formulario
+                /* if (!this.validarLada || !this.validarTelefonoCelular || !this.validarEstado || !this.validarCiudad || !this.validarEdad || !this.validarNomMedTrat || !this.validarApeMedTrat || !this.validarClaveAccessos) {
+                    return;
+                } */
+                // Validación del formulario de Perfil
+                if (!this.inputLadaEnabled || !this.inputTelPerfilEnabled || !this.selectEstadoEnabled || !this.inputCiudadEnabled || !this.inputEdadEnabled || !this.inputNomMedTratEnabled || !this.inputApeMedTratEnabled || !this.inputClaveAccesoEnabled) {
+                    return;
                 }
-            })
-                .then(response => {
-                    if (response.data.length === 0) { */
-            // La API no contiene datos
-            /* console.log('La API no contiene datos');
-        } else { */
-            // La API contiene datos
-            /* console.log(response.data);
-        }
-    }) */
-            /* .catch(error => { */
-            // Se produjo un error durante la solicitud
-            /* console.log(error); */
-            /* }); */
-            /* const data = {
-                inputLadaEnabled: this.inputLadaEnabled,
-                inputTelPerfilEnabled: this.inputTelPerfilEnabled,
-                selectEstadoEnabled: this.selectEstadoEnabled,
-                inputCiudadEnabled: this.inputCiudadEnabled,
-                inputEdadEnabled: this.inputEdadEnabled,
-                inputNomMedTratEnabled: this.inputNomMedTratEnabled,
-                inputApeMedTratEnabled: this.inputApeMedTratEnabled,
-                inputClaveAccesoEnabled: this.inputClaveAccesoEnabled,
+                else {
+                    // Si el formulario es valido, se muestra ventana modal
+                    const successModal = new bootstrap.Modal(
+                        document.getElementById('successModal')
+                    );
+                    successModal.show();
+                    this.$refs.formPerfil.reset();
+                }
 
-            }; */
-            /* console.log(data); */
-        },
-        submitFormCrearPlan() {
-            this.errors = {};
-            const valida = true;
-            // Validar los campos antes de enviar el formulario
-            this.validarPaisLada();
-            /* this.validarLada(); */
-            this.validarTelefonoCelular();
-            this.validarEstado();
-            this.validarCiudad();
-            this.validarEdad();
-            this.validarPeso();
-            this.validarNomMedTrat();
-            this.validarApeMedTrat();
-            this.validarClaveAccessos();
-            this.validarConfiClaveAccessos();
-            const data = {
-                selectedCountry: this.selectedCountry,
-                selectedLada: this.selectedLada,
-                telefonoCelular: this.telefonoCelular,
-                estado: this.estado,
-                ciudad: this.ciudad,
-                edad: this.edad,
-                peso: this.peso,
-                nomMedTrat: this.nomMedTrat,
-                apeMedTrat: this.apeMedTrat,
-                claveAccesos: this.claveAccesos,
-                confClaveAccesos: this.confClaveAccesos,
-            };
-            console.table(data);
-            // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
-            axios.post('https://intestinolimpio.onrender.com/api/v1/user', data)
-                .then(
-                    res => {
-                        console.log(res)
+
+                /* axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
+                    params: {
+                        id_user: 'your_id_user'
                     }
-                ).catch(
-                    err => {
-                        console.log(err)
-                    }
-                )
-            // Comprobar si hay errores
-            if (Object.keys(this.errors).length > 0) {
-                return
-            } else {
+                })
+                    .then(response => {
+                        if (response.data.length === 0) { */
+                // La API no contiene datos
+                /* console.log('La API no contiene datos');
+            } else { */
+                // La API contiene datos
+                /* console.log(response.data);
+            }
+        }) */
+                /* .catch(error => { */
+                // Se produjo un error durante la solicitud
+                /* console.log(error); */
+                /* }); */
+                /* const data = {
+                    inputLadaEnabled: this.inputLadaEnabled,
+                    inputTelPerfilEnabled: this.inputTelPerfilEnabled,
+                    selectEstadoEnabled: this.selectEstadoEnabled,
+                    inputCiudadEnabled: this.inputCiudadEnabled,
+                    inputEdadEnabled: this.inputEdadEnabled,
+                    inputNomMedTratEnabled: this.inputNomMedTratEnabled,
+                    inputApeMedTratEnabled: this.inputApeMedTratEnabled,
+                    inputClaveAccesoEnabled: this.inputClaveAccesoEnabled,
+
+                }; */
+                /* console.log(data); */
+            },
+            async submitFormCrearPlan() {
+
+                // Validar los campos antes de enviar el formulario
+                this.errors = {};
+                this.validarPaisLada();
+                /* this.validarLada(); */
+                this.validarTelefonoCelular();
+                this.validarEstado();
+                this.validarCiudad();
+                this.validarEdad();
+                this.validarPeso();
+                this.validarNomMedTrat();
+                this.validarApeMedTrat();
+                this.validarClaveAccessos();
+                this.validarConfiClaveAccessos();
+
+                const data = {
+                    selectedCountry: this.selectedCountry,
+                    selectedLada: this.selectedLada,
+                    telefonoCelular: this.telefonoCelular,
+                    estado: this.estado,
+                    ciudad: this.ciudad,
+                    edad: this.edad,
+                    peso: this.peso,
+                    nomMedTrat: this.nomMedTrat,
+                    apeMedTrat: this.apeMedTrat,
+                    claveAccesos: this.claveAccesos,
+                    confClaveAccesos: this.confClaveAccesos,
+                };
+
+                // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
+                const resp = await axios.post('https://intestinolimpio.onrender.com/api/v1/user', data);
+
+                // Comprobar si hay errores
+                if (Object.keys(this.errors).length > 0) return;
 
                 /* this.$router.push('/crear'); */
                 this.$router.push('/');
 
-            }
+            },
         },
-
-    },
-};
+    };
 </script>
 
 <style scoped>
