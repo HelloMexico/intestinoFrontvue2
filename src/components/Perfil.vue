@@ -34,8 +34,17 @@
                                 <!-- <input class="form-control" type="text" maxlength="10" name="" id="inputNumeroCel"
                                     placeholder="Lada" :disabled="!inputLadaEnabled" v-model="inputLadaEnabled"
                                     @input="validarLada"> -->
-                                <input type="tel" maxlength="5" class="form-control" placeholder="Lada" id="lada"
-                                    v-model="inputLadaEnabled" :disabled="!editMode" @input="validarLada"
+
+                                    
+                                    <input 
+                                    type="tel" 
+                                    maxlength="5" 
+                                    class="form-control" 
+                                    placeholder="Lada"
+                                    id="lada"
+                                    :disabled="!editMode"
+                                    @input="validarLada"
+                                    v-model="inputLadaEnabled"
                                     :class="{ 'error': submitted && !inputLadaEnabled }" required>
                                 <span class="error" style="color: red;" v-if="errors.inputLadaEnabled">{{
                                     errors.inputLadaEnabled
@@ -61,18 +70,23 @@
                                 <!-- <div class="invalid-feedback">Lada es obligfatoria</div> -->
                             </div>
                             <div class="col-1 mb-3 g-2">
-                                <!-- <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
-                                    v-on:click.prevent="enableInputLadaNumero"></a> -->
-                                <a type="button" class="btnEditarPlan" @click="editMode = !editMode">{{ editMode ?
-                                    '' : '' }}</a>
+                                <a 
+                                    type="button" 
+                                    class="btnEditarPlan" 
+                                    @click="editMode = !editMode">
+                                </a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Estado</label>
                                 <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <select id="selectEstadoPerfil" class="form-select" v-model="selectEstadoEnabled"
-                                    v-bind:disabled="!selectEstado" @checked="validarEstado"
+                                <select 
+                                    id="selectEstadoPerfil" 
+                                    class="form-select" 
+                                    v-model="selectEstadoEnabled"
+                                    v-bind:disabled="!selectEstado" 
+                                    @checked="validarEstado"
                                     :class="{ 'error': submitted && !selectEstadoEnabled }" required>
                                     <option value="" disabled selected>Estado</option>
                                     <option v-for="option in options" :key="option.value">
@@ -228,11 +242,14 @@
                                     </div>
                                     <div class="modal-footer" style="border: none;">
 
-                                        <!-- <button type="submit" class="rounded btnAceptarModalModifica"
-                                            data-bs-dismiss="modal">ACEPTAR</button> -->
-                                        <button type="submit" class="rounded btnAceptarModalModifica"
-                                            data-bs-dismiss="modal">ACEPTAR</button>
-                                        <br><!-- <br> -->
+                                        <button 
+                                            type="submit" 
+                                            class="rounded btnAceptarModalModifica"
+                                            @click="submitFormCrearPlan"
+                                            data-bs-dismiss="modal">
+                                            ACEPTAR
+                                        </button>
+                                        <br>
                                         <button type="button" class="rounded btnCancelarModalModifica"
                                             data-bs-dismiss="modal">CANCELAR</button>
                                     </div>
@@ -412,9 +429,24 @@
                 try {
                     const userId = localStorage.getItem('userId');
 
-                    const resp = await axios.get('https://intestinolimpio.onrender.com/api/v1/user');
+                    const resp = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/me', {
+                        id_user : userId
+                    });
 
-                    console.log(resp);
+                    if( resp.data.status == 200 && resp.data.data.rows.length > 0 ) {
+
+                        const dataPost = resp.data.data.rows[0];
+
+                        this.inputLadaEnabled = dataPost.lada;
+                        this.inputTelPerfilEnabled = dataPost.telefono;
+                        this.selectEstadoEnabled = dataPost.estado;
+                        this.inputCiudadEnabled = dataPost.ciudad;
+                        this.inputEdadEnabled = dataPost.edad;
+                        this.inputNomMedTratEnabled = dataPost.nombre_medico;
+                        this.inputApeMedTratEnabled = dataPost.apellido_medico;
+                        this.inputClaveAccesoEnabled = dataPost.pass;
+                    }
+                    
                     
                 } catch (error) {
                     console.log(error.message);
@@ -516,7 +548,7 @@
                     this.errors.inputTelPerfilEnabled = 'El teléfono celular no debe exceder 10 números';
                     valida = false;
                 } else {
-                    delete this.errors['inputTelPerfilEnabled '];
+                    delete this.errors['inputTelPerfilEnabled'];
                 }
                 /* this.validarPais();
                 this.formularioValidado = this.validarEdad && validarPeso; */
@@ -696,76 +728,68 @@
                     this.$refs.formPerfil.reset();
                 }
 
+                const data = {
+                    inputLadaEnabled        : this.inputLadaEnabled,
+                    inputTelPerfilEnabled    : this.inputTelPerfilEnabled,
+                    selectEstadoEnabled     : this.selectEstadoEnabled,
+                    inputCiudadEnabled      : this.inputCiudadEnabled,
+                    inputEdadEnabled        : this.inputEdadEnabled,
+                    inputNomMedTratEnabled  : this.inputNomMedTratEnabled,
+                    inputApeMedTratEnabled  : this.inputApeMedTratEnabled,
+                    inputClaveAccesoEnabled : this.inputClaveAccesoEnabled,
 
-                /* axios.get('https://intestinolimpio.onrender.com/api/v1/user', {
-                    params: {
-                        id_user: 'your_id_user'
-                    }
-                })
-                    .then(response => {
-                        if (response.data.length === 0) { */
-                // La API no contiene datos
-                /* console.log('La API no contiene datos');
-            } else { */
-                // La API contiene datos
-                /* console.log(response.data);
-            }
-        }) */
-                /* .catch(error => { */
-                // Se produjo un error durante la solicitud
-                /* console.log(error); */
-                /* }); */
-                /* const data = {
-                    inputLadaEnabled: this.inputLadaEnabled,
-                    inputTelPerfilEnabled: this.inputTelPerfilEnabled,
-                    selectEstadoEnabled: this.selectEstadoEnabled,
-                    inputCiudadEnabled: this.inputCiudadEnabled,
-                    inputEdadEnabled: this.inputEdadEnabled,
-                    inputNomMedTratEnabled: this.inputNomMedTratEnabled,
-                    inputApeMedTratEnabled: this.inputApeMedTratEnabled,
-                    inputClaveAccesoEnabled: this.inputClaveAccesoEnabled,
-
-                }; */
-                /* console.log(data); */
+                };
             },
             async submitFormCrearPlan() {
 
                 // Validar los campos antes de enviar el formulario
                 this.errors = {};
-                this.validarPaisLada();
-                /* this.validarLada(); */
+                // this.validarPaisLada();
+                this.validarLada();
                 this.validarTelefonoCelular();
                 this.validarEstado();
                 this.validarCiudad();
                 this.validarEdad();
-                this.validarPeso();
+                // this.validarPeso();
                 this.validarNomMedTrat();
                 this.validarApeMedTrat();
                 this.validarClaveAccessos();
-                this.validarConfiClaveAccessos();
+                // this.validarConfiClaveAccessos();
+
+                const userId = localStorage.getItem('userId');
 
                 const data = {
-                    selectedCountry: this.selectedCountry,
-                    selectedLada: this.selectedLada,
-                    telefonoCelular: this.telefonoCelular,
-                    estado: this.estado,
-                    ciudad: this.ciudad,
-                    edad: this.edad,
-                    peso: this.peso,
-                    nomMedTrat: this.nomMedTrat,
-                    apeMedTrat: this.apeMedTrat,
-                    claveAccesos: this.claveAccesos,
-                    confClaveAccesos: this.confClaveAccesos,
+                    id_user         : userId,
+                    nombre_medico   : this.inputNomMedTratEnabled,
+                    apellido_medico : this.inputApeMedTratEnabled,
+                    lada            : this.inputLadaEnabled,
+                    telefono        : this.inputTelPerfilEnabled,
+                    estado          : this.selectEstadoEnabled,
+                    ciudad          : this.inputCiudadEnabled,
+                    edad            : this.inputEdadEnabled,
+                    peso            : this.peso,
+                    pass            : this.inputClaveAccesoEnabled,
                 };
 
-                // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
-                const resp = await axios.post('https://intestinolimpio.onrender.com/api/v1/user', data);
+                if( Object.keys(this.errors).length == 0 ) {
 
-                // Comprobar si hay errores
-                if (Object.keys(this.errors).length > 0) return;
+                    const resp = await axios.put('https://intestinolimpio.onrender.com/api/v1/user', data);
+    
+                    if( resp.data.status == 200 ) {
+                        await this.getUserData();
+
+                        this.editMode = false;
+                        this.inputNomMedTrat = false;
+                        this.inputApeMedTrat = false;
+                        this.inputEdad = false;
+                        this.inputCiudad = false;
+                        this.selectEstado = false;
+                        this.inputClaveAcceso = false;
+                    }
+                }
 
                 /* this.$router.push('/crear'); */
-                this.$router.push('/');
+                // this.$router.push('/');
 
             },
         },
@@ -1838,10 +1862,11 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .btnEditarPlan {
-    background-image: url("../assets/img/web/editar\ \(2\).png");
+    background-image: url("../assets/img/web/editar_2.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    display: block;
     width: 100%;
     height: 100vh;
     width: 23px;
@@ -1853,7 +1878,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .btnEditarPlan:hover {
-    background-image: url("../assets/img/web/editar\ \(3\).png");
+    background-image: url("../assets/img/web/editar_3.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2606,36 +2631,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         font-family: 'OpenSans-Regular';
         font-size: 20px;
         color: #707070;
-    }
-
-    .btnEditarPlan {
-        background-image: url("../assets/img/web/editar\ \(2\).png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100vh;
-        width: 23px;
-        height: 23px;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btnEditarPlan:hover {
-        background-image: url("../assets/img/web/editar\ \(3\).png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100vh;
-        width: 23px;
-        height: 23px;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
     }
 
     /* Termina Estilo pára la vista Plan de tomas e hidrataciones */

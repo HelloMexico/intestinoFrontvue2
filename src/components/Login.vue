@@ -665,17 +665,31 @@
         </div>
       </div>
     </div>
+
+    <div
+      class="modal fade" 
+      id="resultRequest" 
+      tabindex="-1"
+      aria-labelledby="example"
+      aria-hidden="true">
+          <CustomModal :message="'Este usuario no existe'"/>
+      </div>
+
   </div>
+
+  
 </template>
   
 <script>
 import axios from "axios";
 import AvisoPrivacidad from "../components/modals/AvisoPrivacidad.vue";
+import CustomModal from "../components/modals/ShowCustomModal.vue";
 
 export default {
   name : "Login",
   components: {
-    AvisoPrivacidad
+    AvisoPrivacidad,
+    CustomModal
   },
   props: {
     msg: String,
@@ -773,29 +787,29 @@ export default {
       });
   },
   methods: {
-    async crearUsuario() {
+    // async crearUsuario() {
 
-      try {
+    //   try {
 
-        const dataForm = {
-          lada            : this.lada,
-          telefono        : this.telefono,
-          estado          : this.estado,
-          ciudad          : this.ciudad,
-          edad            : this.edad,
-          peso            : this.peso,
-          nombre_medico   : this.nombre_medico,
-          apellido_medico : this.apellido_medico,
-          pass            : this.pass,
-        };
+    //     const dataForm = {
+    //       lada            : this.lada,
+    //       telefono        : this.telefono,
+    //       estado          : this.estado,
+    //       ciudad          : this.ciudad,
+    //       edad            : this.edad,
+    //       peso            : this.peso,
+    //       nombre_medico   : this.nombre_medico,
+    //       apellido_medico : this.apellido_medico,
+    //       pass            : this.pass,
+    //     };
 
-        const response = await axios.post( "https://intestinolimpio.onrender.com/api/v1/user", dataForm );
+    //     const response = await axios.post( "https://intestinolimpio.onrender.com/api/v1/user", dataForm );
 
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    },
+    //     console.log(response.data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // },
     irVistaCrear() {
       this.$router.push({ path: "/crear" });
     },
@@ -810,17 +824,17 @@ export default {
       this.telefono = this.telefono.replace(/[^0-9]/g, "");
       if (!this.telefono) {
         this.errors.telefono = "El número celular es obligatorio";
-        valida = false;
+        this.valida = false;
       } else if (!/^([0-9])*$/.test(this.telefono)) {
         this.errors.telefono = "El número celular solo debe contener números";
-        valida = false;
+        this.valida = false;
       } else if (this.telefono.length < 7) {
         this.errors.telefono = "El número celular debe tener minimo 7 numeros";
-        valida = false;
+        this.valida = false;
       } else if (this.telefono.length > 10) {
         this.errors.telefono =
           "El número celular no debe exceder de 10 números";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["telefono"];
       }
@@ -830,15 +844,15 @@ export default {
 
       if (!this.claveAcceso) {
         this.errors.claveAcceso = "La clave de acceso es obligatoria";
-        valida = false;
+        this.valida = false;
       } else if (this.claveAcceso.length < 4) {
         this.errors.claveAcceso =
           "La clave de acceso debe tener por lo menos 4 caracteres";
-        valida = false;
+        this.valida = false;
       } else if (this.claveAcceso.length > 10) {
         this.errors.claveAcceso =
           "La clave de acceso no debe exceder de 10 caracteres";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["claveAcceso"];
       }
@@ -852,9 +866,6 @@ export default {
     },
     async submitForm() {
 
-      console.log('telefono', this.telefono );
-      console.log('clave acceso',this.claveAcceso);
-
       this.errors = {};
 
       // Comprobar si hay errores
@@ -863,9 +874,25 @@ export default {
       
       if ( Object.keys(this.errors).length > 0 ) return;
 
-      // const res = await axios.post('', { telefono: this.telefono, claveAcceso: this.claveAcceso });
+      const res = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/login', {
+        phone    : this.telefono, 
+        password : this.claveAcceso
+      });
 
-      this.$router.push("/consultar");
+      if( res.data.data.rows.length == 0 ) {
+        this.showModal();
+        return;
+      } 
+
+      if( res.status == 200 && res.data.data.rows.length > 0 ) {
+        localStorage.setItem('userId', res.data.data.rows[0].id );
+        this.$router.push("/consultar");
+      }
+
+
+    },
+    showModal() {
+      $('#resultRequest').modal('show');
     },
     // Funcion para almacenar temporalmente el id_user
     login(){
@@ -879,7 +906,7 @@ export default {
       // Validar que el campo pais
       if (!this.selectedCountry) {
         this.errors.selectedCountry = "El país es obligatorio";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["selectedCountry"];
       }
@@ -888,7 +915,7 @@ export default {
       // Validar que el campo lada
       if (!this.selectedLada) {
         this.errors.selectedLada = "La lada es obligatoria";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["selectedLada"];
       }
@@ -901,19 +928,19 @@ export default {
 
       if (!this.telefonoCelular) {
         this.errors.telefonoCelular = "El teléfono celular es obligatorio";
-        valida = false;
+        this.valida = false;
       } else if (isNaN(this.telefonoCelular)) {
         this.errors.telefonoCelular =
           "El teléfono celular solo debe contener números";
-        valida = false;
+        this.valida = false;
       } else if (this.telefonoCelular.length < 7) {
         this.errors.telefonoCelular =
           "El teléfono celular no debe ser menor a 7 números";
-        valida = false;
+        this.valida = false;
       } else if (this.telefonoCelular.length > 10) {
         this.errors.telefonoCelular =
           "El teléfono celular no debe exceder 10 números";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["telefonoCelular"];
       }
@@ -930,7 +957,7 @@ export default {
       // Validar que el campo edad no esté vacío y sea un número positivo
       if (!this.estado) {
         this.errors.estado = "El estado es obligatorio";
-        valida = false;
+        this.valida = false;
       } else {
         axios
           .post("https://intestinolimpio.onrender.com/api/v1/data/municipios", {
@@ -966,13 +993,13 @@ export default {
       // Validar que el campo edad no esté vacío y sea un número positivo
       if (!this.ciudad) {
         this.errors.ciudad = "La ciudad es obligatoria";
-        valida = false;
+        this.valida = false;
       } /* else if (!/^[a-zA-Z]+$/.test(this.ciudad)) {
                 this.errors.ciudad = 'El nombre del médico tratante solo debe contener solo letras';
-                valida = false;
+                this.valida = false;
             } */ else if (this.ciudad.length > 80) {
         this.errors.ciudad = "La ciudad debe tener máximo 80 caracteres";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["ciudad"];
       }
@@ -984,10 +1011,10 @@ export default {
       // Validar que el campo edad no esté vacío y sea un número positivo
       if (!this.edad) {
         this.errors.edad = "La edad es obligatoria";
-        valida = false;
+        this.valida = false;
       } else if (this.edad <= 0) {
         this.errors.edad = "La edad debe ser un número positivo";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["edad"];
       }
@@ -999,10 +1026,10 @@ export default {
       // Validar que el campo peso no esté vacío y sea un número positivo
       if (!this.peso) {
         this.errors.peso = "El peso es obligatorio";
-        valida = false;
+        this.valida = false;
       } else if (this.peso <= 0) {
         this.errors.peso = "El peso debe ser un número positivo";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["peso"];
       }
@@ -1021,18 +1048,18 @@ export default {
       // Validar que el campo nombre de medico tratante no este vaciO y tenaga minimo 70 y maximo 80 caracteres
       if (!this.nomMedTrat) {
         this.errors.nomMedTrat = "El nombre del médico tratante es obligatorio";
-        valida = false;
+        this.valida = false;
         /* else if (!/^([0-9])*$/.test(this.telefono)) { */
       } /* else if (/^[ a-zA-Z]+$/.test(this.nomMedTrat)) {
                 this.errors.nomMedTrat = 'El nombre del médico tratante solo debe contener solo letras';
-                valida = false;
+                this.valida = false;
             } */ /* else if (this.nomMedTrat.length < 50) {
                 this.errors.nomMedTraT =
                     "El nombre del médico tratante debe tener al menos 50 caracteres";
             } */ else if (this.nomMedTrat.length > 80) {
         this.errors.nomMedTrat =
           "El nombre del médico tratante debe tener máximo 80 caracteres";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["nomMedTrat"];
       }
@@ -1050,15 +1077,15 @@ export default {
       if (!this.apeMedTrat) {
         this.errors.apeMedTrat =
           "El apellido del médico tratante es obligatorio";
-        valida = false;
+        this.valida = false;
       } /* else if (this.apeMedTrat.length < 50) {
                 this.errors.apeMedTrat =
                     "El apellido del médico tratante debe tener al menos 50 caracteres";
-                valida = false;
+                this.valida = false;
             } */ else if (this.apeMedTrat.length > 80) {
         this.errors.apeMedTrat =
           "El apellido del médico tratante debe tener máximo 80 caracteres";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["apeMedTrat"];
       }
@@ -1071,15 +1098,15 @@ export default {
       // Validar que el campo contraseña no esté vacío y tenga al menos 4 caracteres
       if (!this.claveAccesos) {
         this.errors.claveAccesos = "La clave de acceso es obligatoria";
-        valida = false;
+        this.valida = false;
       } else if (this.claveAccesos.length < 4) {
         this.errors.claveAccesos =
           "La clave de acceso debe tener por lo menos 4 caracteres";
-        valida = false;
+        this.valida = false;
       } else if (this.claveAccesos.length > 10) {
         this.errors.claveAccesos =
           "La clave de acceso no debe exceder de 10 caracteres";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["claveAccesos"];
       }
@@ -1093,11 +1120,11 @@ export default {
       if (!this.confClaveAccesos) {
         this.errors.confClaveAccesos =
           "La confirmación de la clave acceso es obligatoria";
-        valida = false;
+        this.valida = false;
       } else if (this.confClaveAccesos !== this.claveAccesos) {
         this.errors.confClaveAccesos =
           "La confirmación de la contraseña no coincide con la contraseña";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["confClaveAccesos"];
       }
@@ -1107,10 +1134,10 @@ export default {
       let valida = true;
       if (this.selectedCountry === "Mexico") {
         this.selectedLada = "+52";
-        valida = false;
+        this.valida = false;
       } else if (this.selectedCountry === "Costa Rica") {
         this.selectedLada = "+506";
-        valida = false;
+        this.valida = false;
       } else {
         delete this.errors["selectedCountry"];
       }
@@ -1150,6 +1177,8 @@ export default {
       
       // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
       const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
+
+      console.log(res.data);
 
       if( res.data.status == 200 ) {
         localStorage.setItem('userId', res.data.data.id_user );

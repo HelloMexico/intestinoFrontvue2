@@ -81,9 +81,12 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#"><img src="../assets/img/web/opcion-de-cerrar-sesion.png"
-                                        alt="">
-                                    Cerrar <br> Sesión</a></li>
+                            <li>
+                                <a class="dropdown-item" @click="closeSession">
+                                    <img src="../assets/img/web/opcion-de-cerrar-sesion.png" alt="">
+                                    Cerrar Sesión
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -101,6 +104,13 @@
         components: {
             AvisoPrivacidad
         },
+        methods: {
+
+            closeSession() {
+                localStorage.clear();
+                this.$router.push("/");
+            }
+        }
     };
 </script>
 

@@ -22,15 +22,17 @@
             <div class="container contenedorMovil">
                 <div class="row">
                     <div class="col" style="border: 1px solid #FF9900;">
-                        <p class="parrafoEstudioProgramado">Estudio programado para: <span>Sin datos</span></p>
-                        <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
-                        <p class="parrafoHoraEstudio">Hora: <span>Sin datos</span></p>
-                        <p class="parrafoPrimerToma">Primera toma de Picoprep: <span>Sin datos</span> </p>
-                        <!-- <p class="parrafoFechaPrimerToma">Fecha: <span>24/08/2023</span></p> -->
-                        <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
-                        <p class="parrafoSegundaToma">Segunda toma de Picoprep: <span>Sin datos</span> </p>
-                        <!-- <p class="parrafoFechaSegundaToma">Fecha: <span>25/08/2023</span></p> -->
-                        <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
+                        <p class="parrafoEstudioProgramado">Estudio programado para: </p>
+                        <p class="parrafoFechaEstudio">Fecha: <span> {{ fechaEstudioColonos == '' ? 'Sin datos' : fechaEstudioColonos }} </span></p>
+                        <p class="parrafoHoraEstudio">Hora: <span> {{ horaColonoscopia == '' ? 'Sin datos' : horaColonoscopia }} </span></p>
+
+                        <p class="parrafoPrimerToma">Primera toma de Picoprep: </p>
+                        <p class="parrafoFechaPrimerToma">Fecha: <span>{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }}</span> </p>
+                        <p class="parrafoHoraPrimerToma">Hora: <span> {{ horaPrimerToma == '' ? 'Sin datos' : horaPrimerToma }} </span></p>
+
+                        <p class="parrafoSegundaToma">Segunda toma de Picoprep: </p>
+                        <p class="parrafoFechaSegundaToma">Fecha: <span>{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }}</span> </p>
+                        <p class="parrafoHoraSegundaToma">Hora: <span> {{ horaSegundaToma == '' ? 'Sin datos' : horaSegundaToma }} </span></p>
                     </div>
                     <div class="col-2 col-md-4 col-sm-3"
                         style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color:  #FF9900; width: 50px;">
@@ -46,7 +48,7 @@
                         <div 
                             class="modal fade" 
                             id="openModal" 
-                            tabindex="-1" 
+                            tabindex="-1"
                             aria-labelledby="openModal" 
                             aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -59,79 +61,32 @@
                                     <div class="modal-body" style="border: none;">
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e hidrataciones</h1>
                                         <form ref="" name="formulario3" id="formulario3" v-on:submit="validarHora">
-                                            <!-- <div class="p-fluid grid formgrid">
-                                                <div class="field col-12 md:col-4">
-                                                    <label for="icon">Fecha de
-                                                        estudio</label>
-                                                    <Calendar id="icon" :locale="es" v-model="date3" :showIcon="true" />
-                                                    <span class="error" style="color: red"
-                                                        v-if="errors2.fechaEstudioColonos">{{
-                                                            errors2.fechaEstudioColonos }}</span>
-                                                </div>
-                                            </div> -->
                                             <div class="mb-3">
-                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
-                                                    estudio</label>
-                                                <!-- <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="exampleInputEmail1"
-                        aria-describedby="emailHelp"> -->
-                                                <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de estudio</label>
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control inputLabelFechaModalEditarPlan"
-                                                        placeholder="18:00 Hrs" aria-label="Input group example"
+                                                    <input type="date" class="form-control inputLabelFechaModalEditarPlan" aria-label="Input group example"
                                                         aria-describedby="basic-addon1" id="inputLabelFechaModalEditarPlan"
                                                         v-model="fechaEstudioColonos">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                            </path>
-                                                        </svg>
-                                                    </span> -->
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
-                                                    errors2.fechaEstudioColonos }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{ errors2.fechaEstudioColonos }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1 labelModalEditarHoraColonos"
-                                                    class="form-label">Hora de la
-                                                    colonoscopia o estudio</label>
-                                                <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
+                                                    class="form-label">Hora de la colonoscopia o estudio</label>
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="hora">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                                            <path
-                                                                d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                                        </svg>
-                                                    </span> -->
+                                                        v-model="horaColonoscopia">
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.hora">{{ errors2.hora
-                                                }}</span>
-                                                <span class="error" style="color: red" v-if="errors2.horaIngresada">{{
-                                                    errors2.horaIngresada }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.horaColonoscopia">{{ errors2.horaColonoscopia }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Fecha de la primera
                                                     toma de Picoprep</label>
-                                                <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="fechaPrimerToma">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                                            </path>
-                                                        </svg>
-                                                    </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{
                                                     errors2.fechaPrimerToma
@@ -162,7 +117,6 @@
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Fecha de la segunda
                                                     toma de Picoprep</label>
-                                                <!-- <input type="date" class="form-control" id="exampleInputPassword1" placeholder="23/11/2022"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
@@ -198,9 +152,8 @@
                                                         </svg>
                                                     </span> -->
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{
-                                                    errors2.horaSegundaToma
-                                                }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.errRequest">{{ errors2.errRequest }}</span>
                                             </div>
                                             <div class="modal-footer" style="border: none;">
                                                 <div class="container text-center">
@@ -226,37 +179,6 @@
 
             <br>
 
-            <!-- <button @click="showModal = true">Abrir modal</button>
-
-            <div class="modal" :class="{ 'is-active': showModal }">
-                <div class="modal-background"></div>
-                <div class="modal-content">
-                    <form @submit.prevent="submitForm">
-                        <input type="text" v-model="name" placeholder="Nombre" required>
-                        <input type="email" v-model="email" placeholder="Correo electrónico" required>
-                        <input type="password" v-model="password" placeholder="Contraseña" required>
-
-                        <button type="submit" :disabled="!isValid">Guardar</button>
-                    </form>
-                </div>
-                <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
-            </div>
-            <button type="button" @click="showModal = true">Abrir modal</button>
-
-            <div class="modal" :class="{ 'is-active': showModal }">
-                <div class="modal-background"></div>
-                <div class="modal-content">
-                    <form @submit.prevent="submitForm">
-                        <input type="text" v-model="name" placeholder="Nombre" required>
-                        <input type="email" v-model="email" placeholder="Correo electrónico" required>
-                        <input type="password" v-model="password" placeholder="Contraseña" required>
-
-                        <button type="submit" :disabled="!isValid">Guardar</button>
-                    </form>
-                </div>
-                <button class="modal-close is-large" aria-label="close" @click="showModal = false"></button>
-            </div> -->
-
             <div class="row fila tamanyo">
                 <!-- <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
 
@@ -267,9 +189,10 @@
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUnoTabla">
                                     <p class="parrafoEstudioProgramado">Estudio programado para:</p>
-                                    <p class="parrafoFechaEstudio">Fecha: <span>Sin datos</span></p>
-                                    <p class="parrafoHoraEstudio">Hora: <!-- <span>18:00 hrs</span> --><span>Sin
-                                            datos</span></p>
+                                    <p class="parrafoFechaEstudio">Fecha: <span> {{ fechaEstudioColonos == '' ? 'Sin datos' : fechaEstudioColonos }} </span></p>
+                                    <p class="parrafoHoraEstudio">Hora: <span>
+                                        {{ horaColonoscopia == '' ? 'Sin datos' : horaColonoscopia }}
+                                    </span> </p>
                                 </div>
                             </div>
                         </div>
@@ -284,8 +207,8 @@
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUnoTabla">
                                     <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
-                                    <p class="parrafoFechaPrimerToma">Fecha: <span>Sin datos</span></p>
-                                    <p class="parrafoHoraPrimerToma">Hora: <span>Sin datos</span></p>
+                                    <p class="parrafoFechaPrimerToma">Fecha: <span>{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }} </span></p>
+                                    <p class="parrafoHoraPrimerToma">Hora: <span>{{ horaPrimerToma == '' ? 'Sin datos' : horaPrimerToma }} </span></p>
                                 </div>
                             </div>
                         </div>
@@ -297,9 +220,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUnoTabla">
-                                    <p class="parrafoSegundaToma">Segunda toma de Picoprep : Sin datos</p>
-                                    <p class="parrafoFechaSegundaToma">Fecha: <span>Sin datos</span></p>
-                                    <p class="parrafoHoraSegundaToma">Hora: <span>Sin datos</span></p>
+                                    <p class="parrafoSegundaToma">Segunda toma de Picoprep:</p>
+                                    <p class="parrafoFechaSegundaToma">Fecha: <span>{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }}</span></p>
+                                    <p class="parrafoHoraSegundaToma">Hora: <span>{{ horaSegundaToma == '' ? 'Sin datos' : horaSegundaToma }}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -308,11 +231,8 @@
 
                 <div class="col-1 col-md-3 col-sm-2 columnaBotonEditarTabla"
                     style="border: 1px solid #FF9900; background-color:  #FF9900; display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                    <!-- <a href="" type="button" class="btnEditarPlan" style="margin-top: 60px;"></a> -->
                     <a type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
                         data-bs-target="#modalEditTomas" @click="showModal = true"></a>
-                    <!-- <button href="" type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"></button> -->
                     <!-- Modal -->
                     <div class="modal fade" id="modalEditTomas" tabindex="-1" role="dialog" :class="{ 'show': showModal }">
                         <div class="modal-dialog modal-lg">
@@ -324,50 +244,16 @@
                                             @click="showModal = false"></button>
                                     </div>
                                     <div class="modal-body" style="border: none;">
-                                        <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de
-                                            tomas e
-                                            hidrataciones</h1>
-                                        <form ref="formEditar" name="formulario" id="formularioEditar"
-                                            v-on:submit.prevent="validarHora">
-                                            <!-- <div class="p-fluid grid formgrid">
-                            <div class="field col-12 md:col-4">
-                                <label for="icon">Fecha de
-                                    estudio</label>
-                                <Calendar id="icon" style="" v-model="fechaEstudioColonos"
-                                    dateFormat="dd/mm/yy" :showIcon="true" />
-                                <span class="error" style="color: red"
-                                    v-if="errors2.fechaEstudioColonos">{{
-                                        errors2.fechaEstudioColonos }}</span>
-                            </div>
-                            <div class="field col-12 md:col-4">
-                                <label for="icon">Hora de la
-                                    colonoscopía o estudio</label>
-                                <Calendar  style="" v-model="hora"
-                                :showTime="true" hourFormat="12"  :showIcon="true" />
-                                <span class="error" style="color: red" v-if="errors2.hora">{{
-                                    errors2.hora
-                                }}</span>
-                            </div>
-                        </div> -->
+                                        <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e hidrataciones</h1>
+                                        <form ref="formEditar" name="formulario" id="formularioEditar" v-on:submit.prevent="validarHora">
                                             <div class="mb-3">
                                                 <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
                                                     estudio</label>
-                                                <!-- <input type="date" class="form-control inputLabelFechaModalEditarPlan" id="exampleInputEmail1"
-    aria-describedby="emailHelp"> -->
-                                                <!-- <input type="date" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"> -->
                                                 <div class="input-group">
                                                     <input type="date" class="form-control inputLabelFechaModalEditarPlan"
                                                         placeholder="18:00 Hrs" aria-label="Input group example"
                                                         v-model="fechaEstudioColonos" aria-describedby="basic-addon1"
                                                         id="inputLabelFechaModalEditarPlan">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                        </path>
-                                    </svg>
-                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
                                                     errors2.fechaEstudioColonos }}</span>
@@ -380,22 +266,9 @@
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="hora">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                        <path
-                                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                    </svg>
-                                </span> -->
+                                                        v-model="horaColonoscopia">
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.hora">{{
-                                                    errors2.hora
-                                                }}</span>
-                                                <span class="error" style="color: red" v-if="errors2.horaIngresada">{{
-                                                    errors2.horaIngresada }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.horaColonoscopia">{{ errors2.horaColonoscopia }}</span>
 
                                             </div>
                                             <div class="mb-3">
@@ -407,14 +280,6 @@
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="fechaPrimerToma">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                        </path>
-                                    </svg>
-                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{
                                                     errors2.fechaPrimerToma
@@ -428,15 +293,6 @@
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="horaPrimerToma">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                        <path
-                                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                    </svg>
-                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
                                                     errors2.horaPrimerToma
@@ -451,14 +307,6 @@
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="fechaSegundaToma">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                                        </path>
-                                    </svg>
-                                </span> -->
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{
                                                     errors2.fechaSegundaToma
@@ -467,42 +315,38 @@
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">Hora de la segunda
                                                     toma de Picoprep</label>
-                                                <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="22:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
                                                         v-model="horaSegundaToma">
-                                                    <!-- <span class="input-group-text" id="basic-addon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                                        <path
-                                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                                    </svg>
-                                </span> -->
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{
-                                                    errors2.horaSegundaToma
-                                                }}</span>
+
+                                                <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
+                                                
+                                                <br>
+                                                <br>
+                                                <span class="error" style="color: red" v-if="errors2.errRequest">{{ errors2.errRequest }}</span>
                                             </div>
+
                                             <div class="modal-footer" style="border: none;">
                                                 <div class="container text-center">
                                                     <div class="row">
                                                         <div class="col-md-4 pb-4">
-                                                            <!-- <button class="rounded btnGuardarModalPlan"
-                                                                data-bs-dismiss="modal" aria-label="Close">GUARDAR</button> -->
-                                                            <button type="submit"
-                                                                class="rounded btnGuardarModalPlan">GUARDAR</button>
-                                                            <!-- <button class="rounded btnGuardarModalPlan"
-                                                                data-bs-dismiss="modal" @click="closeModal">GUARDAR</button> -->
-                                                            <!-- <button class="rounded btnGuardarModalPlan"
-                                                                data-bs-dismiss="modal"
-                                            aria-label="Close" @click="showModal = false">GUARDAR</button> -->
+                                                            
+                                                            <button 
+                                                                type="submit"
+                                                                class="rounded btnGuardarModalPlan">
+                                                                GUARDAR
+                                                            </button>
+                                                            
                                                         </div>
                                                         <div class="col-md-4 offset-md-4">
-                                                            <button type="button" class="rounded btnCancelarModalPlan"
-                                                                data-bs-dismiss="modal">CANCELAR</button>
+                                                            <button 
+                                                                type="button" 
+                                                                class="rounded btnCancelarModalPlan"
+                                                                data-bs-dismiss="modal">
+                                                                CANCELAR
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -527,7 +371,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUno">
-                                    <h5 class="card-title">Primera toma de PICOPREP®️:</h5>
+                                    <h5 class="card-title">Primera toma de PICOPREP®:</h5>
                                     <p class="card-text">Fecha: Sin datos</p>
                                     <p class="card-text">Hora: Sin datos</p>
                                     <p class="card-text"><small class="text-muted">Disolver en 150ml</small></p>
@@ -1371,17 +1215,41 @@
             </div>
             <br>
         </div>
+
+        <div
+        class="modal fade" 
+        id="resultRequest" 
+        tabindex="-1"
+        aria-labelledby="example"
+        aria-hidden="true">
+            <CustomModal :message="'Se edito el plan de tomas correctamente'"/>
+        </div>
+
+        <div
+        class="modal fade" 
+        id="requestError" 
+        tabindex="-1"
+        aria-labelledby="example"
+        aria-hidden="true">
+            <CustomModal :message="'Hubo algun problema'"/>
+        </div>
+
     </div>
 </template>
 <!-- <script type="text/javascript" src="../js/jspdf.min.js"></script> -->
 <script>
     import moment from 'moment';
     import html2pdf from 'html2pdf.js';
+    import axios from "axios";
+    import CustomModal from "../components/modals/ShowCustomModal.vue";
 
     export default {
         name : 'ConsultaPlan',
         props: {
             msg: String,
+        },
+        components: {
+            CustomModal
         },
         created() {
             let today = new Date();
@@ -1410,7 +1278,6 @@
                 hora2: "",
                 errors2: {},
 
-                /* fechaActual: "", */
                 fechaEstudioColonos: "",
                 horaColonoscopia: "",
                 fechaPrimerToma: "",
@@ -1436,10 +1303,6 @@
                     clear: 'Borrar',
                     weekHeader: 'Sm'
                 },
-                /* showModal: false,
-                input1: '',
-                input2: '',
-                input3: '', */
 
                 showModal: false,
                 name: '',
@@ -1565,182 +1428,110 @@
                 this.showModal = false;
             },
             closeModal() {
-                var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
-                myModal.hide();
+
+
+                $("#openModal").removeClass("in");
+                $(".modal-backdrop").remove();
+                $('#openModal').modal('hide');
+
+                $("#modalEditTomas").removeClass("in");
+                $(".modal-backdrop").remove();
+                $('#modalEditTomas').modal('hide');
+
+                $('#resultRequest').modal('show');
             },
-            validarHora: function (event) {
+            validarHora: async function (event) {
+
                 this.errors2 = {};
                 this.submitted = true;
-                // Aquí irá el código para validar la hora ingresada y la hora actual
                 event.preventDefault();
-                let valida = true;
-                const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
-                const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
-                const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
-                //Valida que el campo fecha colonoscopia no este vació y sea una fechs
-                console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
 
 
                 if (!this.fechaEstudioColonos) {
-                    this.errors2.fechaEstudioColonos =
-                        "La fecha de la colonoscopia es obligatoria";
-                    valida = false;
-                } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
-                    this.errors2.fechaEstudioColonos =
-                        "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
-                    valida = false;
-                } */
+                    this.errors2.fechaEstudioColonos = "La fecha de la colonoscopia es obligatoria";
+                    return;
+                }
                 else {
                     delete this.errors2['fechaEstudioColonos'];
-                    /* this.errors2.horaIngresada = "La hora es obligatoria"; */
                 }
-                if (horaIngresada === '') {
-                    this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
-                    valida = false;
 
-                }/*  else if (horaIngresada.isBefore(horaActual, 'hour')) {
-                    this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
-                    valida = false;
-                } */
+                if (this.horaColonoscopia === '') {
+                    this.errors2.horaColonoscopia = "La hora de la colonoscopia es obligatoria";
+                    return;
+                }
                 else {
-                    delete this.errors2['horaIngresada'];
-                    /* this.errors2.horaIngresada = "La hora es obligatoria"; */
+                    delete this.errors2['horaColonoscopia'];
                 }
 
-                // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
                 if (!this.fechaPrimerToma) {
-                    this.errors2.fechaPrimerToma =
-                        "La fecha de la primer toma es obligatoria";
-                    valida = false;
-                } /* else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
-                    this.errors2.fechaPrimerToma =
-                        "La fecha de la primer toma no es válida";
-                    valida = false;
-                } */ /* else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
-                    this.errors2.fechaPrimerToma =
-                        "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
-                    valida = false;
+                    this.errors2.fechaPrimerToma = "La fecha de la primer toma es obligatoria";
+                    return;
                 }
-                else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
-                    this.errors2.fechaPrimerToma =
-                        "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
-                    valida = false;
-                } else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
-                    this.errors2.fechaPrimerToma =
-                        "La fecha de la primer toma debe ser posterior a la fecha actual";
-                    valida = false;
-                } */
-                /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
-                    this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
-                } */
                 else {
                     delete this.errors2['fechaPrimerToma'];
-
                 }
 
-                // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
                 if (!this.fechaSegundaToma) {
-                    this.errors2.fechaSegundaToma =
-                        "La fecha de la segunda toma es obligatoria";
-                    valida = false;
-                } /* else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
-                    this.errors2.fechaSegundaToma =
-                        "La fecha de la segunda toma no es válida";
-                    valida = false;
-                } else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
-                    this.errors2.fechaSegundaToma =
-                        "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
-                    valida = false;
-                } */
-
-                // Validar que el campo fecha dos sea posterior al campo fecha uno
-                // Usando el método isAfter de moment.js para comparar las fechas
-                // https://momentjs.com/docs/#/query/is-after/
-                /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
-                this.errors2.fechaSegundaToma =
-                    "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
-                valida = false;
-                }*/
-                /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
-                        this.errors2.fechaSegundaToma =
-                            "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
-                        valid2 = false;
-                    } */
+                    this.errors2.fechaSegundaToma = "La fecha de la segunda toma es obligatoria";
+                    return;
+                }
                 else {
                     delete this.errors2['fechaSegundaToma'];
                 }
-                // Validar que el campo hora uno no esté vacío y sea una hora válida
-                let horaIng = moment(horaIngresada, "HH:mm")
-                let horaAct = moment(horaActual, "HH:mm") // 22:00
+
                 if (!this.horaPrimerToma) {
-                    this.errors2.horaPrimerToma =
-                        "La hora de la primer toma es obligatoria";
-                    valida = false;
+                    this.errors2.horaPrimerToma = "La hora de la primer toma es obligatoria";
+                    return;
 
                 } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
                     this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-                    valid2 = false;
-                }/*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
-                    this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
-                    valida = false;
-
-                    alert("La hora ingresada es posterior a la hora actual");
-                } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
-                    this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
-                    valida = false;
-
-                    alert("La hora ingresada es posterior a la hora actual");
-                } */
+                    return;
+                }
                 else {
                     delete this.errors2['horaPrimerToma'];
                 }
 
-                // Validar que el campo hora dos no esté vacío y sea una hora válida
                 if (!this.horaSegundaToma) {
-                    this.errors2.horaSegundaToma =
-                        "La hora de la segunda toma es obligatoria";
-                    valida = false;
+                    this.errors2.horaSegundaToma = "La hora de la segunda toma es obligatoria";
+                    return;
 
                 } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
-                    this.errors2.horaSegundaToma =
-                        "La hora de la segunda toma no es válida";
-                    valida = false;
-
-                } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
-                    this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
-                    valida = false;
-
-                    alert("La hora ingresada es posterior a la hora actual");
-                } else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm"))) {
-                    this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
-                    valida = false;
-                } */
-
+                    this.errors2.horaSegundaToma = "La hora de la segunda toma no es válida";
+                    return;
+                }
                 else {
                     delete this.errors2['horaSegundaToma'];
                 }
 
-                if (!this.fechaEstudioColonos || !this.horaIngresada || !this.fechaPrimerToma || !this.horaPrimerToma || !this.fechaSegundaToma || !this.horaSegundaToma ) {
-                    return;
-                }
-                else {
-                    // Si el formulario es valido, se muestra ventana modal
-                    /* const successModal = new bootstrap.Modal(
-                        document.getElementById('successModal')
-                    );
-                    successModal.close(); */
-                    this.$refs.formEditar.reset();
-                }
-                this.$refs.formEditar.reset();
+                try {
+                    const id_prescription = localStorage.getItem( 'id_prescription' );
+    
+                    const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
+                        id_prescription   : id_prescription,
+                        fecha_estudio     : this.fechaEstudioColonos,
+                        hora_estudio      : this.horaColonoscopia,
+                        fecha_prim_toma   : this.fechaPrimerToma,
+                        hora_prim_toma    : this.horaPrimerToma,
+                        fecha_seg_toma    : this.fechaSegundaToma,
+                        hora_seg_toma     : this.horaSegundaToma
+                    });
+    
+                    console.log(resp.data);
 
-                /* if (this.fechaEstudioColonos === '' || this.horaColonoscopia === '' || this.fechaPrimerToma === '' || this.horaPrimerToma === '' || this.fechaSegundaToma || this.horaSegundaToma) {
-                    alert('Por favor llene todos los campos.');
-                    return false;
-                } else {
-                    alert('Formulario validado correctamente.');
-                    this.showModal = false;
-                    return true;
-                } */
+                    if( resp.data.status == 200 ) {
+                        this.closeModal();
+                    } else {
+
+                    }
+                    
+                } catch (error) {
+                    console.log( error.message );
+                    this.showModalError();
+                }
+
+            },
+            showModalError() {
+                $('#requestError').modal('show');
             },
             descargarPdf() {
                 /* const doc = new jspdf();
@@ -1757,13 +1548,40 @@
                     jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
                     filename: 'Mi_Plan_De_Tomas.pdf',
                 });
+            },
+            async getInfoPrescription() {
+
+                try {
+
+                    const id_prescription = localStorage.getItem( 'id_prescription' );
+
+                    console.log(id_prescription);
+
+                    if( id_prescription == null ) return;
+
+                    const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", {
+                        "id_prescription" : id_prescription
+                    });
+
+                    if( resp.data.status == 200 ) {
+                        this.fechaEstudioColonos = resp.data.data.id_prescription[0].fecha_estudio;
+                        this.horaColonoscopia    = resp.data.data.id_prescription[0].hora_estudio;
+                        this.fechaPrimerToma     = resp.data.data.id_prescription[0].fecha_prim_toma;
+                        this.horaPrimerToma      = resp.data.data.id_prescription[0].hora_prim_toma;
+                        this.fechaSegundaToma    = resp.data.data.id_prescription[0].fecha_seg_toma;
+                        this.horaSegundaToma     = resp.data.data.id_prescription[0].hora_seg_toma;
+                    }
+                    
+                } catch (error) {
+                    console.log( error );
+                }
             }
         },
         mounted: function () {
 
             this.horaActual = moment().format("HH:mm");
             this.fechaActual = moment().format("YYYY-MM-DD")
-            /* this.horaIngresada = moment().format("HH:mm"); */
+            this.getInfoPrescription();
         },
     };
 </script>
@@ -2999,7 +2817,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 
 /* Termina estilos para Plan de tomas e hidratacion */
 
-/* Inician estilos para Modal boton Editar Plan de Tomas */
 /* Inician Estilos label Fecha de estudio */
 .labelModalEditarFechaEstu {
     font-family: 'OpenSans-Regular';
@@ -3076,7 +2893,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 /* Termina Estilos para botón Guardar de Modal - Editar Plan*/
-/* Termina estilos para Modal boton Editar Plan de Tomas */
 
 /* Inician Estilos para Perfil*/
 
@@ -3752,37 +3568,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         font-family: 'OpenSans-Regular';
         font-size: 20px;
         color: #707070;
-    }
-
-    .btnEditarPlan {
-        background-image: url("../assets/img/web/editar\ \(2\).png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-
-        width: 100%;
-        height: 100vh;
-        width: 23px;
-        height: 23px;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btnEditarPlan:hover {
-        background-image: url("../assets/img/web/Grupo\ 321.png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100vh;
-        width: 22px;
-        height: 22px;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
     }
 
     /* Termina Estilo pára la vista Plan de tomas e hidrataciones */

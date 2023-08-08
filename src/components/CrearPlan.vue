@@ -139,8 +139,7 @@
                         </svg>
                       </span> -->
                     </div>
-                    <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma
-                    }}</span>
+                    <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{ errors2.fechaSegundaToma }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -159,8 +158,7 @@
                         </svg>
                       </span> -->
                     </div>
-                    <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma
-                    }}</span>
+                    <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -179,18 +177,43 @@
           </div>
         </div>
       </form>
+
+      <div
+        class="modal fade" 
+        id="resultRequest" 
+        tabindex="-1"
+        aria-labelledby="exampleModalLabelQuiero" 
+        aria-hidden="true">
+          <CustomModal :message="'Se creó el plan de tomas correctamente'"/>
+      </div>
+
+      <div
+        class="modal fade" 
+        id="errorRequest"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabelQuiero" 
+        aria-hidden="true">
+
+        <CustomModal :message="errorMessage"/>
+      </div>
+
     </div>
     <br /><br />
   </div>
 </template>
+
 <script>
 import moment from "moment";
 import axios from "axios";
+import CustomModal from "../components/modals/ShowCustomModal.vue";
 
 export default {
   name: "CrearPlan",
   props: {
     msg: String,
+  },
+  components: {
+    CustomModal
   },
   data() {
     return {
@@ -199,6 +222,7 @@ export default {
       hora1: "",
       hora2: "",
       errors2: {},
+      errorMessage:'',
 
       /* fechaActual: "", */
       fechaEstudioColonos: "",
@@ -227,192 +251,120 @@ export default {
         this.time = '';
       }
     },
-    /* validarHora1: function (event) {
-      event.preventDefault();
-      var horaIngresada = moment(this.hora, "HH:mm:ss");
-      var horaActual = moment(this.horaActual, "HH:mm:ss");
-      if (horaIngresada.isAfter(horaActual)) {
-        alert("La hora ingresada es posterior a la hora actual");
-      } else if (horaIngresada.isBefore(horaActual)) {
-        alert("La hora ingresada es anterior a la hora actual");
-      } else {
-        alert("La hora ingresada es igual a la hora actual");
-      }
-    }, */
-
     validarHora: function (event) {
-      this.errors2 = {};
+
       // Aquí irá el código para validar la hora ingresada y la hora actual
+      this.errors2 = {};
       event.preventDefault();
-      let valida = true;
-      const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
+      let validForm = false;
       const horaIngresada = this.hora ? moment(this.hora, "HH:mm") : '';
       const horaActual = this.horaActual ? moment(this.horaActual, "HH:mm") : '';
-      //Valida que el campo fecha colonoscopia no este vació y sea una fechs
-      /* console.log(moment(this.fechaEstudioColonos).isSame(fechaActual)); */
 
       if (!this.fechaEstudioColonos) {
-        this.errors2.fechaEstudioColonos =
-          "La fecha de la colonoscopia es obligatoria";
-        valida = false;
-      } /* else if (!moment(this.fechaEstudioColonos).isSameOrAfter(fechaActual)) {
-        this.errors2.fechaEstudioColonos =
-          "La fecha de la colonoscopia debe ser posterior ala fecha actual y hora actual";
-          valida = false;
-      } */
-      else {
+        this.errors2.fechaEstudioColonos = "La fecha de la colonoscopia es obligatoria";
+        return;
+      } else {
         delete this.errors2['fechaEstudioColonos'];
-        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
       }
 
       if (horaIngresada === '') {
         this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
-        valida = false;
-
-      } /* else if (horaIngresada.isBefore(horaActual, 'hour')) {
-        this.errors2.horaIngresada = "La hora de la colonoscopia debe ser posterior a la hora actual";
-        valida = false;
-      } */
+        return;
+      }
       else {
         delete this.errors2['horaIngresada'];
-        /* this.errors2.horaIngresada = "La hora es obligatoria"; */
       }
 
-      // Validar que el campo fecha de la primer toma no esté vacío y sea una fecha válida
       if (!this.fechaPrimerToma) {
-        this.errors2.fechaPrimerToma =
-          "La fecha de la primer toma es obligatoria";
-        valida = false;
+        this.errors2.fechaPrimerToma = "La fecha de la primer toma es obligatoria";
+        return;
       } else if (!moment(this.fechaPrimerToma, "YYYY-MM-DD", true).isValid()) {
-        this.errors2.fechaPrimerToma =
-          "La fecha de la primer toma no es válida";
-        valida = false;
-      }/*  else if (moment(this.fechaPrimerToma).isAfter(this.fechaEstudioColonos)) {
-        this.errors2.fechaPrimerToma =
-          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
-        valida = false;
-      } */
-
-      /* else if (moment(this.fechaPrimerToma).isSame(this.fechaEstudioColonos)) {
-        this.errors2.fechaPrimerToma =
-          "La fecha de la primer toma debe ser antes a la fecha de la colonoscopia";
-        valida = false;
-      } else if (moment(this.fechaPrimerToma).isAfter(fechaActual)) {
-        this.errors2.fechaPrimerToma =
-          "La fecha de la primer toma debe ser posterior a la fecha actual";
-        valida = false;
-      } */
-
-      /* else if (moment(fechaActual).isAfter(this.fechaPrimerToma)) {
-                this.errors2.fechaPrimerToma = "La fecha de la primer toma debe ser posterior a la fecha y hora actual";
-            } */
+        this.errors2.fechaPrimerToma = "La fecha de la primer toma no es válida";
+        return;
+      }
       else {
         delete this.errors2['fechaPrimerToma'];
-
       }
 
-      // Validar que el campo fecha de la segunda toma no esté vacío y sea una fecha válida
       if (!this.fechaSegundaToma) {
-        this.errors2.fechaSegundaToma =
-          "La fecha de la segunda toma es obligatoria";
-        valida = false;
+        this.errors2.fechaSegundaToma = "La fecha de la segunda toma es obligatoria";
+        return;
       } else if (!moment(this.fechaSegundaToma, "YYYY-MM-DD", true).isValid()) {
-        this.errors2.fechaSegundaToma =
-          "La fecha de la segunda toma no es válida";
-        valida = false;
-      } /* else if (moment(this.fechaPrimerToma).isSameOrAfter(this.fechaSegundaToma)) {
-        this.errors2.fechaSegundaToma =
-          "La fecha de la segunda toma  debe ser posterior a la fecha de la primer toma";
-        valida = false;
-      } */
+        this.errors2.fechaSegundaToma = "La fecha de la segunda toma no es válida";
+        return;
+      }
       else {
         delete this.errors2['fechaSegundaToma'];
       }
 
-      // Validar que el campo fecha dos sea posterior al campo fecha uno
-      // Usando el método isAfter de moment.js para comparar las fechas
-      // https://momentjs.com/docs/#/query/is-after/
-      /*else if (moment(this.fechaSegundaToma).isAfter(this.fechaPrimerToma)) {
-        this.errors2.fechaSegundaToma =
-          "La fecha de la segunda toma debe ser posterior a la fecha de la primer toma";
-        valida = false;
-      }*/
-      /* else if (moment(this.fechaPrimerToma).isBefore(this.fechaEstudioColonos)) {
-                this.errors2.fechaSegundaToma =
-                    "La fecha de la segunda toma debe ser antes a fecha estudio y hora colonoscopia";
-                valid2 = false;
-            } */
-      /* else {
-        delete this.errors2['fechaSegundaToma'];
-      } */
-      // Validar que el campo hora uno no esté vacío y sea una hora válida
-      let horaIng = moment(horaIngresada, "HH:mm")
-      let horaAct = moment(horaActual, "HH:mm") // 22:00
       if (!this.horaPrimerToma) {
-        this.errors2.horaPrimerToma =
-          "La hora de la primer toma es obligatoria";
-        valida = false;
-
-      } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid()) {
+        this.errors2.horaPrimerToma = "La hora de la primer toma es obligatoria";
+        return;
+      } else if (!moment(this.horaPrimerToma, "HH:mm", true).isValid() ) {
         this.errors2.horaPrimerToma = "La hora de la primer toma no es válida";
-        valida = false;
-      } /*  else if (moment(this.horaPrimerToma, "HH:mm").isSameOrAfter(horaIng)) {
-        this.errors2.horaPrimerToma = "La hora de la primer toma debe ser antes a la hora colonoscopia";
-        valida = false;
-
-        alert("La hora ingresada es posterior a la hora actual");
-      } else if (moment(this.horaPrimerToma, "HH:mm").isBefore(horaAct)) {
-        this.errors2.horaPrimerToma = "La hora de la primer toma debe ser posterior a la hora actual";
-        valida = false;
-
-        alert("La hora ingresada es posterior a la hora actual");
-      } */
+        return;
+      }
       else {
         delete this.errors2['horaPrimerToma'];
       }
 
       // Validar que el campo hora dos no esté vacío y sea una hora válida
       if (!this.horaSegundaToma) {
-        this.errors2.horaSegundaToma =
-          "La hora de la segunda toma es obligatoria";
-        valida = false;
-
+        this.errors2.horaSegundaToma = "La hora de la segunda toma es obligatoria";
+        return;
       } else if (!moment(this.horaSegundaToma, "HH:mm", true).isValid()) {
-        this.errors2.horaSegundaToma =
-          "La hora de la segunda toma no es válida";
-        valida = false;
-
-      } /* else if (moment(this.horaSegundaToma, "HH:mm").isAfter(horaAct)) {
-        this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser antes de la fecha y hora actual";
-        valida = false;
-
-        alert("La hora ingresada es posterior a la hora actual");
-      } else if (moment(this.horaSegundaToma, "HH:mm").isSameOrBefore(moment(this.horaPrimerToma, "HH:mm"))) {
-        this.errors2.horaSegundaToma = "La hora de la segunda toma debe ser posterior a la hora de la primer toma";
-        valida = false;
-      } */
+        res.data.horaSegundaToma = "La hora de la segunda toma no es válida";
+        return;
+      }
       else {
         delete this.errors2['horaSegundaToma'];
-
       }
-      const data = { 
-        fecha_estudio : this.fechaEstudioColonos, 
-        hora_estudio : this.horaColonoscopia, 
+
+      const idUser = localStorage.getItem('userId');
+
+      const data = {
+        id_user         : idUser,
+        fecha_estudio   : this.fechaEstudioColonos, 
+        hora_estudio    : this.hora, 
         fecha_prim_toma : this.fechaPrimerToma, 
-        hora_prim_toma : this.horaPrimerToma, 
-        fecha_seg_toma : this.fechaSegundaToma, 
-        hora_seg_toma : this.horaSegundaToma
+        hora_prim_toma  : this.horaPrimerToma, 
+        fecha_seg_toma  : this.fechaSegundaToma, 
+        hora_seg_toma   : this.horaSegundaToma
       };
-      axios
-        .post("https://intestinolimpio.onrender.com/api/v1/prescription", data)
-        .then((res) => {
-          console.log(`Respuesta de back💾: ${res} `);
+
+      axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
+          
+          console.log( res.data );
+          console.log( res.data?.status );
+
+          if( res.data?.status == undefined ) {
+            this.errorMessage = res.data;
+            this.showModalError();
+          }
+
+          if( res.data?.status == 200 ) {
+            
+            localStorage.setItem( 'id_prescription', res.data?.data.id_prescription );
+            this.showModal();
+
+            this.fechaEstudioColonos = '';
+            this.hora = '';
+            this.fechaPrimerToma = '';
+            this.horaPrimerToma = '';
+            this.fechaSegundaToma = '';
+            this.horaSegundaToma = '';
+          }
         })
         .catch((err) => {
           console.log(err);
         });
     },
-
+    showModal() {
+      $('#resultRequest').modal('show');
+    },
+    showModalError() {
+      $('#errorRequest').modal('show');
+    },
     validateDate() {
       const ahora = moment();
       const seleccionFecha = moment(this.date);
@@ -807,16 +759,16 @@ export default {
         fecha_seg_toma : this.fechaSegundaToma, 
         hora_seg_toma : this.horaSegundaToma
       };
-      console.table(dataPrescription);
+      // console.table(dataPrescription);
       // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
-      axios
-        .post("https://intestinolimpio.onrender.com/api/v1/prescription", dataPrescription)
-        .then((res) => {
-          console.log(`Respuesta de back💾: ${res}`);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // axios
+      //   .post("https://intestinolimpio.onrender.com/api/v1/prescription", dataPrescription)
+      //   .then((res) => {
+      //     console.log(`Respuesta de back💾: ${res}`);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     }
   },
   computed: {
