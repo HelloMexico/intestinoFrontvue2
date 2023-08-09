@@ -387,9 +387,6 @@
                                       {{ option.text }}
                                     </option>
                                   </select>
-                                  <!-- <input type="text" class="form-control" name=""
-                                                                        id="input_ciudad" placeholder="Ciudad"
-                                                                        v-model="ciudad" @input="validarCiudad"> -->
                                   <p
                                     class="mensaje_ciudad mt-2"
                                     id="mensaje_ciudad"
@@ -708,6 +705,7 @@ export default {
       correct: {},
       options: [],
       optionsCiudad: [],
+      provinciasFormated: [],
       seleccionaOpcion: null,
       formularioValidado: false,
       showPassword: false,
@@ -773,18 +771,6 @@ export default {
       bloquear() {
           return this.formularioIniciar.telefono.trim() === "" ? true : false
       }
-  },
-  mounted() {
-    /* .get("http://127.0.0.1:3000/api/v1/data/estados") */
-    axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
-        this.options = response.data.data.map((estado) => ({
-          text  : estado.nombre,
-          value : estado.clave,
-        }));
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
   },
   methods: {
     // async crearUsuario() {
@@ -886,6 +872,7 @@ export default {
 
       if( res.status == 200 && res.data.data.rows.length > 0 ) {
         localStorage.setItem('userId', res.data.data.rows[0].id );
+        localStorage.setItem('peso', res.data.data.rows[0].peso );
         this.$router.push("/consultar");
       }
 
@@ -893,10 +880,6 @@ export default {
     },
     showModal() {
       $('#resultRequest').modal('show');
-    },
-    // Funcion para almacenar temporalmente el id_user
-    login(){
-
     },
     validarPaisLada() {
       let valida = true;
@@ -948,36 +931,62 @@ export default {
             this.formularioValidado = this.validarEdad && validarPeso; */
     },
     validarEstado() {
-      /* this.estado =
-        event.target.options[event.target.options.selectedIndex].text; */
+
       this.errors.estado = "";
-      /* console.log(this.estado);
-      console.log(event.target.value); */
-      let valida = true;
-      // Validar que el campo edad no esté vacío y sea un número positivo
+
       if (!this.estado) {
         this.errors.estado = "El estado es obligatorio";
         this.valida = false;
       } else {
-        axios
-          .post("https://intestinolimpio.onrender.com/api/v1/data/municipios", {
-            /* estado: 'Aguascalientes' */
-            /* estado: this.ciudad, */
-            estado: this.estado,
-          })
-          .then((response) => {
-            this.optionsCiudad = response.data.data.map((municipio) => ({
-              text  : municipio,
-              value : municipio,
-            }));
-            // console.log(response.data);
-            /* console.log(`Respuesta de back💾: ${response.data}`); */
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+
         delete this.errors["estado"];
+
+        if( this.selectedCountry === "Mexico" ) {
+          this.getMunicipios();
+          return;
+        }
+
+        if( this.selectedCountry === "Costa Rica" ) {
+          this.getCantones();
+          return;
+        }
       }
+    },
+    getMunicipios() {
+
+      console.log(this.estado);
+
+      axios.post("https://intestinolimpio.onrender.com/api/v1/data/municipios", {
+        estado: this.estado,
+      })
+      .then((response) => {
+        this.optionsCiudad = [];
+        this.optionsCiudad = response.data.data.map((municipio) => ({
+          text  : municipio,
+          value : municipio,
+        }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+    getCantones() {
+
+      const index = this.provinciasFormated.find( p => p.nombre == this.estado ).clave;
+      
+      axios.post("https://intestinolimpio.onrender.com/api/v1/data/canton", {
+        provincia: index,
+      })
+      .then((response) => {
+        this.optionsCiudad = [];
+        this.optionsCiudad = Object.values(response.data.data).map((canton) => ({
+          text  : canton,
+          value : canton,
+        }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     },
     validarCiudad() {
       // Validar los campos del formulario
@@ -1135,12 +1144,52 @@ export default {
       if (this.selectedCountry === "Mexico") {
         this.selectedLada = "+52";
         this.valida = false;
+        this.getEstadoMexico();
       } else if (this.selectedCountry === "Costa Rica") {
         this.selectedLada = "+506";
         this.valida = false;
+        this.getProvinciaCostaRica();
       } else {
         delete this.errors["selectedCountry"];
       }
+    },
+    getEstadoMexico() {
+      axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
+
+        this.options = [];
+        this.options = response.data.data.map((estado) => ({
+          text  : estado.nombre,
+          value : estado.clave,
+        }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+    getProvinciaCostaRica() {
+      axios.get("https://intestinolimpio.onrender.com/api/v1/data/provincia").then((response) => {
+
+
+        this.provinciasFormated = [];
+
+        Object.values(response.data.data).map( (name, index) => {
+          this.provinciasFormated.push({
+            clave : Object.keys(response.data.data)[index],
+            nombre: name
+          });
+        });
+        
+        this.options = [];
+
+        this.options = this.provinciasFormated.map((provincia) => ({
+          text  : provincia.nombre,
+          value : provincia.clave
+        }));
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     },
     async submitFormCrearPlan() {
 
@@ -1160,6 +1209,7 @@ export default {
       this.validarConfiClaveAccessos();
 
       const data = {
+        country         : this.selectedCountry,
         lada            : this.selectedLada,
         telefono        : this.telefonoCelular,
         estado          : this.estado,
@@ -1170,20 +1220,20 @@ export default {
         apellido_medico : this.apeMedTrat,
         pass            : this.claveAccesos,
       };
-      // this.$router.push('/crear');
-
-      // Comprobar si hay errores
-      if (Object.keys(this.errors).length > 0) return;
       
-      // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
-      const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
+      if (Object.keys(this.errors).length == 0) {
 
-      console.log(res.data);
-
-      if( res.data.status == 200 ) {
-        localStorage.setItem('userId', res.data.data.id_user );
-        this.$router.push("/consultar");
+        const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
+  
+        console.log(res.data);
+  
+        if( res.data.status == 200 ) {
+          localStorage.setItem('userId', res.data.data.id_user );
+          localStorage.setItem('peso', this.peso );
+          this.$router.push("/consultar");
+        }
       }
+      
     },
   },
 };

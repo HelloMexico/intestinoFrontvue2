@@ -77,15 +77,38 @@
                                 </a>
                             </div>
                             <div class="col-12 mb-3 ms-3">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">País</label>
+                            </div>
+
+                            <div class="col-11 mb-3">
+                                <!-- @checked="validarEstado" -->
+                                <select 
+                                    id="selectEstadoPerfil" 
+                                    class="form-select" 
+                                    v-model="selectPaisEnabled"
+                                    v-bind:disabled="!selectPais"
+                                    @change="selectCountry"
+                                    :class="{ 'error': submitted && !selectPaisEnabled }">
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Costa Rica"> Costa Rica </option>
+                                </select>
+                                <span class="error" style="color: red;" v-if="errors.selectPaisEnabled">{{ errors.selectPaisEnabled }}</span>
+                            </div>
+                            <div class="col-1 mb-3 g-2">
+                                <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
+                                    @click.prevent="selectPais = !selectPais"></a>
+                            </div>
+
+                            <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Estado</label>
-                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
                                 <select 
                                     id="selectEstadoPerfil" 
                                     class="form-select" 
                                     v-model="selectEstadoEnabled"
-                                    v-bind:disabled="!selectEstado" 
+                                    v-bind:disabled="!selectEstado"
+                                    @change="onSelectEstado"
                                     @checked="validarEstado"
                                     :class="{ 'error': submitted && !selectEstadoEnabled }" required>
                                     <option value="" disabled selected>Estado</option>
@@ -93,10 +116,7 @@
                                         {{ option.text }}
                                     </option>
                                 </select>
-                                <span class="error" style="color: red;" v-if="errors.selectEstadoEnabled">{{
-                                    errors.selectEstadoEnabled
-                                }}</span>
-                                <!-- <div class="invalid-feedback">El estado es obligatorio</div> -->
+                                <span class="error" style="color: red;" v-if="errors.selectEstadoEnabled">{{ errors.selectEstadoEnabled }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" id="btnEdiInpEstado" class="btnEditarPlan"
@@ -104,17 +124,27 @@
                             </div>
                             <div class="col-12 mb-3 ms-3">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ciudad</label>
-                                <!-- <input type="email" class="form-control" name="" id="emailInput" placeholder="Ciudad"> -->
                             </div>
                             <div class="col-11 mb-3">
-                                <input type="text" class="form-control" name="" id="inputCiudadPerfil"
+
+                                <select 
+                                    id="selectCiudadPerfil" 
+                                    class="form-select" 
+                                    v-model="inputCiudadEnabled"
+                                    v-bind:disabled="!inputCiudad" 
+                                    @checked="validarCiudad"
+                                    :class="{ 'error': submitted && !inputCiudadEnabled }" required>
+                                    <option value="" disabled selected>Ciudad</option>
+                                    <option v-for="option in optionsMunicipios" :key="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select>
+
+                                <!-- <input type="text" class="form-control" name="" id="inputCiudadPerfil"
                                     placeholder="Ejemplo: Mexicali" v-model="inputCiudadEnabled"
                                     v-bind:disabled="!inputCiudad" @input="validarCiudad"
-                                    :class="{ 'error': submitted && !inputCiudadEnabled }" required>
-                                <span class="error" style="color: red;" v-if="errors.inputCiudadEnabled">{{
-                                    errors.inputCiudadEnabled
-                                }}</span>
-                                <!-- <div class="invalid-feedback">Ciudad es obligatoria</div> -->
+                                    :class="{ 'error': submitted && !inputCiudadEnabled }" required> -->
+                                <span class="error" style="color: red;" v-if="errors.inputCiudadEnabled">{{ errors.inputCiudadEnabled }}</span>
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a type="button" class="btnEditarPlan" @click.prevent="inputCiudad = !inputCiudad"></a>
@@ -257,70 +287,6 @@
                             </div>
                         </div>
 
-                        <!-- <form ref="formPruebas" @submit.prevent="submitForm2">
-                            <div class="form__group">
-                                <label class="form__label">Nombre:</label>
-                                <input class="form__input form-control" type="text" v-model="name"
-                                    :class="{ 'is-invalid': submitted && !name }" />
-                                <div class="invalid-feedback">El nombre es requerido</div>
-                            </div>
-                            <div class="form__group">
-                                <label class="form__label">Correo electrónico:</label>
-                                <input class="form__input form-control" type="email" v-model="email"
-                                    :class="{ 'is-invalid': submitted && !email }"  />
-                                <div class="invalid-feedback">El correo electrónico es requerido</div>
-                            </div>
-                            <button class="form__button btn btn-primary" type="submit">Enviar</button>
-                        </form> -->
-
-                        <!-- <div class="modal fade" id="successModal2" tabindex="-1" aria-labelledby="successModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="successModalLabel">
-                                            ¡Formulario enviado!
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>
-                                            Gracias por contactarnos. Nos pondremos en contacto contigo lo
-                                            antes posible.
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            Close
-                                        </button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- <form @submit.prevent="onSubmit">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" v-model="email"
-                                    aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" v-model="password">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2"
-                                    v-model="passwordConfirm">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </form> -->
-
-                        <!-- Modal -->
-
                     </div>
                 </div>
             </div>
@@ -343,6 +309,7 @@
                 inputLadaEnabled: "",
                 inputTelPerfilEnabled: "",
                 selectEstadoEnabled: "",
+                selectPaisEnabled: "",
                 inputCiudadEnabled: "",
                 inputEdadEnabled: "",
                 inputNomMedTratEnabled: "",
@@ -351,12 +318,15 @@
 
                 selected: "",
                 options: [],
+                optionsMunicipios: [],
+                provinciasFormated: [],
                 selectedCountry: "",
                 selectedLada: "",
 
                 inputLada: null,
                 inputTelPerfil: null,
                 selectEstado: null,
+                selectPais: null,
                 inputCiudad: null,
                 inputEdad: null,
                 inputNomMedTrat: null,
@@ -388,23 +358,28 @@
             };
         },
         mounted() {
-            // Consumir una API 
-            axios
-                .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-                .then((response) => (this.info = response.data.bpi.USD.rate));
 
-            axios
-                .get("https://intestinolimpio.onrender.com/api/v1/data/estados")
-                .then((response) => {
-                    this.options = response.data.data.map((estado) => ({
-                        text    : estado.nombre,
-                        value   : estado.clave,
-                    }));
-                });
+            axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response) => (this.info = response.data.bpi.USD.rate));
 
-                this.getUserData();
+            this.getUserData();
         },
         methods: {
+            async selectCountry() {
+                if (this.selectPaisEnabled === "Mexico") {
+                    this.inputLadaEnabled = "+52";
+                    await this.getEstados();
+                } else if (this.selectPaisEnabled === "Costa Rica") {
+                    this.inputLadaEnabled = "+506";
+                    this.getProvinciaCostaRica( false );
+                }
+            },
+            async onSelectEstado() {
+                if (this.selectPaisEnabled === "Mexico") {
+                    this.getMunicipios(this.selectEstadoEnabled);
+                } else if (this.selectPaisEnabled === "Costa Rica") {
+                    this.getCantones( this.selectEstadoEnabled, this.provinciasFormated )
+                }
+            },
             validateLada() {
                 /* const regex = /^(\+){0,5}(52){0,5}$/;
                 const regex = /^(\+){0,4}{0,1}$/; */
@@ -421,10 +396,76 @@
                     this.numero = this.numero.slice(0, 10);
                 }
             },
-            async getUserData() {
+            async getEstados() {
+                axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
 
-                // this.error = error.message;
-                // this.userData = response.data;
+                    this.options = [];
+
+                    this.options = response.data.data.map((estado) => ({
+                        text    : estado.nombre,
+                        value   : estado.clave,
+                    }));
+                });
+            },
+            async getMunicipios( estado ) {
+                axios.post("https://intestinolimpio.onrender.com/api/v1/data/municipios", { estado }).then((response) => {
+
+                    this.optionsMunicipios = [];
+
+                    this.optionsMunicipios = response.data.data.map((estado) => ({
+                        text    : estado,
+                        value   : estado,
+                    }));
+                });
+            },
+            async getCantones( estado, provinciasFormated ) {
+
+                const index = provinciasFormated.find( p => p.nombre == estado ).clave;
+
+                axios.post("https://intestinolimpio.onrender.com/api/v1/data/canton", {
+                    provincia: index,
+                })
+                .then((response) => {
+
+                    this.optionsMunicipios = [];
+
+                    this.optionsMunicipios = Object.values(response.data.data).map((canton) => ({
+                        text  : canton,
+                        value : canton,
+                    }));
+
+                }).catch((error) => {
+                    console.log(error);
+                });
+            },
+            async getProvinciaCostaRica( canLoadCantones ) {
+
+                axios.get("https://intestinolimpio.onrender.com/api/v1/data/provincia").then((response) => {
+
+                    this.provinciasFormated = [];
+                    
+                    Object.values(response.data.data).map( (name, index) => {
+                        this.provinciasFormated.push({
+                            clave : Object.keys(response.data.data)[index],
+                            nombre: name
+                        });
+                    });
+
+                    canLoadCantones ? this.getCantones( this.selectEstadoEnabled, this.provinciasFormated ) : null;
+
+                    this.options = [];
+
+                    this.options = this.provinciasFormated.map((provincia) => ({
+                        text  : provincia.nombre,
+                        value : provincia.clave
+                    }));
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+            async getUserData() {
 
                 try {
                     const userId = localStorage.getItem('userId');
@@ -433,10 +474,13 @@
                         id_user : userId
                     });
 
+                    console.log( resp.data.data.rows );
+
                     if( resp.data.status == 200 && resp.data.data.rows.length > 0 ) {
 
                         const dataPost = resp.data.data.rows[0];
 
+                        this.selectPaisEnabled = dataPost.country;
                         this.inputLadaEnabled = dataPost.lada;
                         this.inputTelPerfilEnabled = dataPost.telefono;
                         this.selectEstadoEnabled = dataPost.estado;
@@ -445,9 +489,17 @@
                         this.inputNomMedTratEnabled = dataPost.nombre_medico;
                         this.inputApeMedTratEnabled = dataPost.apellido_medico;
                         this.inputClaveAccesoEnabled = dataPost.pass;
+
+                        if(this.selectPaisEnabled == 'Costa Rica' ) {
+                            await this.getProvinciaCostaRica( true );
+                        }
+
+                        if(this.selectPaisEnabled == 'Mexico' ) {
+                            await this.getEstados();
+                            this.getMunicipios(this.selectEstadoEnabled);
+                        }
+
                     }
-                    
-                    
                 } catch (error) {
                     console.log(error.message);
                 }
@@ -469,34 +521,6 @@
                         this.error = error.message;
                     });
             },
-            /* enableInputLadaNumero() {
-                this.inputLadaEnabled = true;
-                this.inputTelPerfilEnabled = true;
-            }, */
-            /* onSubmit() {
-                if (this.validateForm()) { */
-            // Show modal window with Bootstrap 5
-            /* $('#exampleModal').modal('show');
-        }
-
-    }, */
-            /* validateForm() {
-                if (!this.email) {
-                    alert('Please enter an email address.');
-                    return false;
-                }
-                if (!this.password) {
-                    alert('Please enter a password.');
-                    return false;
-                }
-                if (this.password !== this.passwordConfirm) {
-                    alert('Password and password confirmation do not match.');
-                    return false;
-                }
-                return true;
-
-            }, */
-
             validarLada() {
                 let valida = true;
                 // Validar los campos del formulario
@@ -760,6 +784,7 @@
 
                 const data = {
                     id_user         : userId,
+                    country         : this.selectPaisEnabled,
                     nombre_medico   : this.inputNomMedTratEnabled,
                     apellido_medico : this.inputApeMedTratEnabled,
                     lada            : this.inputLadaEnabled,
@@ -785,6 +810,7 @@
                         this.inputCiudad = false;
                         this.selectEstado = false;
                         this.inputClaveAcceso = false;
+                        this.selectPais = false;
                     }
                 }
 
