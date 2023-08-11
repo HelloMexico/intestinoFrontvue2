@@ -36,13 +36,11 @@
                     </div>
                     <div class="col-2 col-md-4 col-sm-3"
                         style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color:  #FF9900; width: 50px;">
-                        <a
-                            href="" 
-                            type="button"
-                            style="cursor: pointer"
-                            class="btnEditarPlan"
-                            data-bs-toggle="modal"
-                            data-bs-target="#openModal">
+                        <a 
+                            type="button" 
+                            class="btnEditarPlan" 
+                            style="background-color: ;"
+                            @click="showEditModalMovil">
                         </a>
                         <!-- Modal -->
                         <div 
@@ -66,7 +64,7 @@
                                                 <div class="input-group">
                                                     <input type="date" class="form-control inputLabelFechaModalEditarPlan" aria-label="Input group example"
                                                         aria-describedby="basic-addon1" id="inputLabelFechaModalEditarPlan"
-                                                        v-model="fechaEstudioColonos">
+                                                        v-model="dataPrescripcion.fechaEstudioColonos">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{ errors2.fechaEstudioColonos }}</span>
                                             </div>
@@ -76,7 +74,7 @@
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaColonoscopia">
+                                                        v-model="dataPrescripcion.horaColonoscopia">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaColonoscopia">{{ errors2.horaColonoscopia }}</span>
                                             </div>
@@ -86,7 +84,7 @@
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="fechaPrimerToma">
+                                                        v-model="dataPrescripcion.fechaPrimerToma">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{
                                                     errors2.fechaPrimerToma
@@ -99,7 +97,7 @@
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaPrimerToma">
+                                                        v-model="dataPrescripcion.horaPrimerToma">
                                                     <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -120,7 +118,7 @@
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="fechaSegundaToma">
+                                                        v-model="dataPrescripcion.fechaSegundaToma">
                                                     <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -141,7 +139,7 @@
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaSegundaToma">
+                                                        v-model="dataPrescripcion.horaSegundaToma">
                                                     <!-- <span class="input-group-text" id="basic-addon1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
@@ -1474,6 +1472,19 @@
                 };
 
                 $('#modalEditTomas').modal('show');
+            },
+            showEditModalMovil() {
+
+                this.dataPrescripcion = {
+                    fechaEstudioColonos : this.fechaEstudioColonos,
+                    horaColonoscopia    : this.horaColonoscopia,
+                    fechaPrimerToma     : this.fechaPrimerToma,
+                    horaPrimerToma      : this.horaPrimerToma,
+                    fechaSegundaToma    : this.fechaSegundaToma,
+                    horaSegundaToma     : this.horaSegundaToma
+                };
+
+                $('#openModal').modal('show');
             },
             validarHora: async function (event) {
 
