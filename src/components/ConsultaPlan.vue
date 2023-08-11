@@ -231,8 +231,12 @@
 
                 <div class="col-1 col-md-3 col-sm-2 columnaBotonEditarTabla"
                     style="border: 1px solid #FF9900; background-color:  #FF9900; display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                    <a type="button" class="btnEditarPlan" style="background-color: ;" data-bs-toggle="modal"
-                        data-bs-target="#modalEditTomas" @click="showModal = true"></a>
+                    <a 
+                        type="button" 
+                        class="btnEditarPlan" 
+                        style="background-color: ;"
+                        @click="showEditModal">
+                    </a>
                     <!-- Modal -->
                     <div class="modal fade" id="modalEditTomas" tabindex="-1" role="dialog" :class="{ 'show': showModal }">
                         <div class="modal-dialog modal-lg">
@@ -240,33 +244,35 @@
                                 <div class="modal-content">
                                     <div class="modal-header" style="border: none;">
 
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                            @click="showModal = false"></button>
+                                        <button 
+                                            type="button" 
+                                            class="btn-close" 
+                                            data-bs-dismiss="modal" 
+                                            aria-label="Close"
+                                            @click="showModal = false">
+                                        </button>
                                     </div>
                                     <div class="modal-body" style="border: none;">
                                         <h1 class="modal-title tituloModal" id="exampleModalLabelUno">Editar plan de tomas e hidrataciones</h1>
                                         <form ref="formEditar" name="formulario" id="formularioEditar" v-on:submit.prevent="validarHora">
                                             <div class="mb-3">
-                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de
-                                                    estudio</label>
+                                                <label for="" class="form-label labelModalEditarFechaEstu">Fecha de estudio</label>
                                                 <div class="input-group">
                                                     <input type="date" class="form-control inputLabelFechaModalEditarPlan"
                                                         placeholder="18:00 Hrs" aria-label="Input group example"
-                                                        v-model="fechaEstudioColonos" aria-describedby="basic-addon1"
+                                                        v-model="dataPrescripcion.fechaEstudioColonos" aria-describedby="basic-addon1"
                                                         id="inputLabelFechaModalEditarPlan">
                                                 </div>
-                                                <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
-                                                    errors2.fechaEstudioColonos }}</span>
+                                                <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{errors2.fechaEstudioColonos }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1 labelModalEditarHoraColonos"
                                                     class="form-label">Hora de la
                                                     colonoscopia o estudio</label>
-                                                <!-- <input type="time" class="form-control" id="exampleInputPassword1" placeholder="18:00 Hrs"> -->
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaColonoscopia">
+                                                        v-model="dataPrescripcion.horaColonoscopia">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaColonoscopia">{{ errors2.horaColonoscopia }}</span>
 
@@ -279,7 +285,7 @@
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="fechaPrimerToma">
+                                                        v-model="dataPrescripcion.fechaPrimerToma">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaPrimerToma">{{
                                                     errors2.fechaPrimerToma
@@ -292,7 +298,7 @@
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaPrimerToma">
+                                                        v-model="dataPrescripcion.horaPrimerToma">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.horaPrimerToma">{{
                                                     errors2.horaPrimerToma
@@ -306,7 +312,7 @@
                                                 <div class="input-group">
                                                     <input type="date" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="fechaSegundaToma">
+                                                        v-model="dataPrescripcion.fechaSegundaToma">
                                                 </div>
                                                 <span class="error" style="color: red" v-if="errors2.fechaSegundaToma">{{
                                                     errors2.fechaSegundaToma
@@ -318,7 +324,7 @@
                                                 <div class="input-group">
                                                     <input type="time" class="form-control" placeholder="18:00 Hrs"
                                                         aria-label="Input group example" aria-describedby="basic-addon1"
-                                                        v-model="horaSegundaToma">
+                                                        v-model="dataPrescripcion.horaSegundaToma">
                                                 </div>
 
                                                 <span class="error" style="color: red" v-if="errors2.horaSegundaToma">{{ errors2.horaSegundaToma }}</span>
@@ -547,7 +553,7 @@
 
         <br>
 
-        <div class="container ">
+        <div class="container">
 
             <div class="row">
                 <div class="col align-self-center">
@@ -1239,7 +1245,7 @@
         tabindex="-1"
         aria-labelledby="example"
         aria-hidden="true">
-            <CustomModal :message="'Hubo algun problema'"/>
+            <CustomModal :message="errorMessage"/>
         </div>
 
     </div>
@@ -1286,8 +1292,10 @@
                 hora2: "",
                 errors2: {},
                 hidratacion:{},
+                dataPrescripcion: {},
 
                 dosis1: "",
+                errorMessage: "",
                 hidratacion1: "",
                 dosis2: "",
                 hidratacion2: "",
@@ -1454,6 +1462,19 @@
 
                 this.getInfoPrescription();
             },
+            showEditModal() {
+
+                this.dataPrescripcion = {
+                    fechaEstudioColonos : this.fechaEstudioColonos,
+                    horaColonoscopia    : this.horaColonoscopia,
+                    fechaPrimerToma     : this.fechaPrimerToma,
+                    horaPrimerToma      : this.horaPrimerToma,
+                    fechaSegundaToma    : this.fechaSegundaToma,
+                    horaSegundaToma     : this.horaSegundaToma
+                };
+
+                $('#modalEditTomas').modal('show');
+            },
             validarHora: async function (event) {
 
                 this.errors2 = {};
@@ -1522,20 +1543,21 @@
     
                     const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
                         id_prescription   : id_prescription,
-                        fecha_estudio     : this.fechaEstudioColonos,
-                        hora_estudio      : this.horaColonoscopia,
-                        fecha_prim_toma   : this.fechaPrimerToma,
-                        hora_prim_toma    : this.horaPrimerToma,
-                        fecha_seg_toma    : this.fechaSegundaToma,
-                        hora_seg_toma     : this.horaSegundaToma
+                        fecha_estudio     : this.dataPrescripcion.fechaEstudioColonos,
+                        hora_estudio      : this.dataPrescripcion.horaColonoscopia,
+                        fecha_prim_toma   : this.dataPrescripcion.fechaPrimerToma,
+                        hora_prim_toma    : this.dataPrescripcion.horaPrimerToma,
+                        fecha_seg_toma    : this.dataPrescripcion.fechaSegundaToma,
+                        hora_seg_toma     : this.dataPrescripcion.horaSegundaToma
                     });
-    
-                    console.log(resp.data);
+
+                    if( resp.data?.status == undefined ) {
+                        this.errorMessage = resp.data;
+                        this.showModalError();
+                    }
 
                     if( resp.data.status == 200 ) {
                         this.closeModal();
-                    } else {
-
                     }
                     
                 } catch (error) {
