@@ -530,7 +530,7 @@
                         <div class="row g-0">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua8:</h5>
+                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
                                     <p class="card-text">Fecha: <span>{{ hidratacion?.h8?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
                                     <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h8?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
                                     <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
@@ -1548,20 +1548,18 @@
                 $('#requestError').modal('show');
             },
             descargarPdf() {
-                /* const doc = new jspdf();
-                const html = this.$refs.content.innerHTML;
 
-                doc.fromHTML(html,15,15,{
-                    width: 150,
-                })
-
-                doc.save("PlanTomas.pdf"); */
                 html2pdf(document.getElementById('element-to-converte'), {
                     margin: 0,
                     html2canvas: { scale: 2 },
                     jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
                     filename: 'Mi_Plan_De_Tomas.pdf',
                 });
+
+                // margin: 0,
+                // html2canvas: { scale: 2 },
+                // jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                // filename: 'Mi_Plan_De_Tomas.pdf',
             },
             async prescriptionDetails() {
 
@@ -1613,7 +1611,7 @@
                 } catch (error) {
                     console.log( error );
                 }
-            }
+            },
         },
         mounted: function () {
 

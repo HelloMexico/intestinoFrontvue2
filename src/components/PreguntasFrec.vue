@@ -338,9 +338,9 @@
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <button type="button" class="rounded btnGuardarPregFrec" data-bs-dismiss="modal">GUARDAR</button>
-                        <br><br>
+                        <!-- <br> -->
+                        <!-- <button type="button" class="rounded btnGuardarPregFrec" data-bs-dismiss="modal">GUARDAR</button> -->
+                        <!-- <br><br> -->
                     </div>
                 </div>
                 <br>

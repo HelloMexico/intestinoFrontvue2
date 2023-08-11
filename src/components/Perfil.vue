@@ -38,7 +38,7 @@
                                     
                                     <input 
                                     type="tel" 
-                                    maxlength="5" 
+                                    maxlength="4"
                                     class="form-control" 
                                     placeholder="Lada"
                                     id="lada"
@@ -314,6 +314,7 @@
                 inputEdadEnabled: "",
                 inputNomMedTratEnabled: "",
                 inputApeMedTratEnabled: "",
+                inputPesoEnabled: "",
                 inputClaveAccesoEnabled: "",
 
                 selected: "",
@@ -489,6 +490,7 @@
                         this.inputNomMedTratEnabled = dataPost.nombre_medico;
                         this.inputApeMedTratEnabled = dataPost.apellido_medico;
                         this.inputClaveAccesoEnabled = dataPost.pass;
+                        this.inputTelPesoEnabled = dataPost.peso;
 
                         if(this.selectPaisEnabled == 'Costa Rica' ) {
                             await this.getProvinciaCostaRica( true );
@@ -792,8 +794,9 @@
                     estado          : this.selectEstadoEnabled,
                     ciudad          : this.inputCiudadEnabled,
                     edad            : this.inputEdadEnabled,
-                    peso            : this.peso,
+                    peso            : this.inputPesoEnabled,
                     pass            : this.inputClaveAccesoEnabled,
+                    recordatorio    : 1
                 };
 
                 if( Object.keys(this.errors).length == 0 ) {

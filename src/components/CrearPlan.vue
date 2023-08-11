@@ -37,29 +37,11 @@
                 </div>
                 <div class="row">
                   <div class="col mb-3">
-                    <!-- <input type="datetime-local" v-model="date" />
-                                        <button @click="validateDate">Validar</button> -->
-                    <!-- <input type="date" v-model="date" />
-                                        <button @click="validateDate">Validar</button> -->
-                    <!--  <input type="date" class="form-control inputFechaEstudioCrear" name="" id="emailInput"> -->
                     <div class="input-group">
                       <input type="date" class="form-control inputFechaEstudioCrear" v-model="fechaEstudioColonos" />
-                      <!-- inicia icono -->
-                      <!-- <span class="input-group-text" id="basic-addon1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="bi bi-calendar" viewBox="0 0 16 16">
-                          <path
-                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z">
-                          </path>
-                        </svg>
-                      </span> -->
-                      <!-- fin icono -->
-
                     </div>
 
-                    <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{
-                      errors2.fechaEstudioColonos }}</span>
-                    <!-- <p>Fecha actual: {{ this.fechaActual }}</p> -->
+                    <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{errors2.fechaEstudioColonos }}</span>
 
                   </div>
                 </div>
@@ -68,20 +50,9 @@
                     <!-- <input type="time" class="form-control" name="" id="emailInput"
                       placeholder="Hora de la colonoscopía o estudio"> -->
                     <div class="input-group">
-                      <input type="time" class="form-control inputHoraColos" v-model="hora" />
-                      <!-- <span class="input-group-text" id="basic-addon1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="bi bi-alarm" viewBox="0 0 16 16">
-                          <path
-                            d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                          <path
-                            d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                        </svg>
-                      </span> -->
+                      <input type="time" class="form-control inputHoraColos" v-model="horaColonoscopia" />
                     </div>
-                    <span class="error" style="color: red" v-if="errors2.hora">{{ errors2.hora }}</span>
-                    <span class="error" style="color: red" v-if="errors2.horaIngresada">{{ errors2.horaIngresada
-                    }}</span>
+                    <span class="error" style="color: red" v-if="errors2.horaColonoscopia">{{ errors2.horaColonoscopia }}</span>
                     <!--  --><!-- <p>Hora ingresada colonoscopia: {{ horaIngresada }}</p> -->
                     <!-- <p>Hora actual: {{ this.horaActual }}</p> -->
                   </div>
@@ -267,12 +238,12 @@ export default {
         delete this.errors2['fechaEstudioColonos'];
       }
 
-      if (horaIngresada === '') {
-        this.errors2.horaIngresada = "La hora de la colonoscopia es obligatoria";
+      if (this.horaColonoscopia === '') {
+        this.errors2.this.horaColonoscopia = "La hora de la colonoscopia es obligatoria";
         return;
       }
       else {
-        delete this.errors2['horaIngresada'];
+        delete this.errors2['this.horaColonoscopia'];
       }
 
       if (!this.fechaPrimerToma) {
@@ -320,44 +291,14 @@ export default {
         delete this.errors2['horaSegundaToma'];
       }
 
-      const idUser = localStorage.getItem('userId');
+      const id_prescription = localStorage.getItem( 'id_prescription' );
 
-      const data = {
-        id_user         : idUser,
-        fecha_estudio   : this.fechaEstudioColonos, 
-        hora_estudio    : this.hora, 
-        fecha_prim_toma : this.fechaPrimerToma, 
-        hora_prim_toma  : this.horaPrimerToma, 
-        fecha_seg_toma  : this.fechaSegundaToma, 
-        hora_seg_toma   : this.horaSegundaToma
-      };
+      if( id_prescription != undefined ) {
+        this.updatePlanDeTomas();
+        return;
+      }
 
-      axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
-          
-          console.log( res.data );
-          console.log( res.data?.status );
-
-          if( res.data?.status == undefined ) {
-            this.errorMessage = res.data;
-            this.showModalError();
-          }
-
-          if( res.data?.status == 200 ) {
-            
-            localStorage.setItem( 'id_prescription', res.data?.data.id_prescription );
-            this.showModal();
-
-            this.fechaEstudioColonos = '';
-            this.hora = '';
-            this.fechaPrimerToma = '';
-            this.horaPrimerToma = '';
-            this.fechaSegundaToma = '';
-            this.horaSegundaToma = '';
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.crearPlanDeTomas();      
     },
     showModal() {
       $('#resultRequest').modal('show');
@@ -769,7 +710,101 @@ export default {
       //   .catch((err) => {
       //     console.log(err);
       //   });
-    }
+    },
+    async crearPlanDeTomas() {
+
+      const idUser = localStorage.getItem('userId');
+
+      const data = {
+        id_user         : idUser,
+        fecha_estudio   : this.fechaEstudioColonos, 
+        hora_estudio    : this.horaColonoscopia, 
+        fecha_prim_toma : this.fechaPrimerToma, 
+        hora_prim_toma  : this.horaPrimerToma, 
+        fecha_seg_toma  : this.fechaSegundaToma, 
+        hora_seg_toma   : this.horaSegundaToma
+      };
+
+      axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
+          
+
+          if( res.data?.status == undefined ) {
+            this.errorMessage = res.data;
+            this.showModalError();
+          }
+
+          if( res.data?.status == 200 ) {
+            
+            localStorage.setItem( 'id_prescription', res.data?.data.id_prescription );
+            this.showModal();
+
+            this.fechaEstudioColonos = '';
+            this.horaColonoscopia = '';
+            this.fechaPrimerToma = '';
+            this.horaPrimerToma = '';
+            this.fechaSegundaToma = '';
+            this.horaSegundaToma = '';
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async updatePlanDeTomas() {
+      try {
+          const id_prescription = localStorage.getItem( 'id_prescription' );
+
+          const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
+              id_prescription   : id_prescription,
+              fecha_estudio     : this.fechaEstudioColonos,
+              hora_estudio      : this.horaColonoscopia,
+              fecha_prim_toma   : this.fechaPrimerToma,
+              hora_prim_toma    : this.horaPrimerToma,
+              fecha_seg_toma    : this.fechaSegundaToma,
+              hora_seg_toma     : this.horaSegundaToma
+          });
+
+          if( resp.data?.status == undefined ) {
+            this.errorMessage = resp.data;
+            this.showModalError();
+          }
+
+          if( resp.data.status == 200 ) {
+            this.errorMessage = 'Se edito plan de tomas correctamente';
+            this.showModalError();
+          }
+          
+      } catch (error) {
+          console.log( error.message );
+          this.showModalError();
+      }
+    },
+    async getInfoPrescription() {
+
+      try {
+
+          const id_prescription = localStorage.getItem( 'id_prescription' );
+
+          console.log(id_prescription);
+
+          if( id_prescription == null ) return;
+
+          const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
+
+          if( resp.data.status == 200 ) {
+
+            this.fechaEstudioColonos = resp.data.data.id_prescription[0].fecha_estudio;
+            this.horaColonoscopia = resp.data.data.id_prescription[0].hora_estudio;
+            this.fechaPrimerToma = resp.data.data.id_prescription[0].fecha_prim_toma;
+            this.horaPrimerToma = resp.data.data.id_prescription[0].hora_prim_toma;
+            this.fechaSegundaToma = resp.data.data.id_prescription[0].fecha_seg_toma;
+            this.horaSegundaToma = resp.data.data.id_prescription[0].hora_seg_toma;
+          }
+          
+      } catch (error) {
+          console.log( error );
+      }
+    },
   },
   computed: {
     // Obtener la fecha mínima para el campo fecha dos
@@ -804,12 +839,10 @@ export default {
       }
     },
   },
-  /* mixins: [VueMoment], */
   mounted: function () {
-
     this.horaActual = moment().format("HH:mm");
-    this.fechaActual = moment().format("YYYY-MM-DD")
-    /* this.horaIngresada = moment().format("HH:mm"); */
+    this.fechaActual = moment().format("YYYY-MM-DD");
+    this.getInfoPrescription();
   },
 };
 </script>

@@ -348,7 +348,7 @@
                                   @change="validarEstado($event)"
                                 >
                                   <option value="" disabled selected>
-                                    Seleccione un estado
+                                    Seleccione un estado o provincia
                                   </option>
                                   <option
                                     v-for="option in options"
@@ -587,9 +587,9 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     role="switch"
+                                    v-model="recibirNotificaciones"
                                     id="flexSwitchCheckDefault"
                                     aria-checked=""
-                                    required
                                   />
                                   <label
                                     class="form-check-label textoSwitchAcepto"
@@ -670,6 +670,45 @@
       aria-labelledby="example"
       aria-hidden="true">
           <CustomModal :message="'Este usuario no existe'"/>
+    </div>
+
+    <div
+      class="modal fade" 
+      id="activarNotificaciones"
+      tabindex="-1"
+      aria-labelledby="example"
+      aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body" style="border: none;">
+                <p class="parrafoEstasSeguro text-center">
+                  ¿Está seguro de no querer recibir alertas por WhatsApp? Las alertas le indicarán el momento en que debe tomarse su medicamento e hidrataciones, le recomendamos activarlas.
+                </p>
+                </div>
+                <div class="modal-footer" style="border: none;">
+                    <div class="container text-center">
+                      <div class="row">
+                            <div class="col-md-4 pb-4">
+                                <button 
+                                  @click="postUserNew( false )"
+                                  type="button" 
+                                  class="rounded btnGuardarModalPlan"
+                                  data-bs-dismiss="modal"> Continuar sin activar </button>
+                            </div>
+                            <div class="col-md-4 offset-md-4">
+                                <button
+                                @click="postUserNew( true )"
+                                  type="button" 
+                                  class="rounded btnCancelarModalPlan"
+                                  data-bs-dismiss="modal"> Activar notificaciones </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
 
   </div>
@@ -709,6 +748,7 @@ export default {
       seleccionaOpcion: null,
       formularioValidado: false,
       showPassword: false,
+      recibirNotificaciones: false,
       inputTypeIcon: "password",
 
       pais: "",
@@ -815,7 +855,7 @@ export default {
         this.errors.telefono = "El número celular solo debe contener números";
         this.valida = false;
       } else if (this.telefono.length < 7) {
-        this.errors.telefono = "El número celular debe tener minimo 7 numeros";
+        this.errors.telefono = "El número celular debe tener mínimo 7 números";
         this.valida = false;
       } else if (this.telefono.length > 10) {
         this.errors.telefono =
@@ -864,16 +904,16 @@ export default {
         phone    : this.telefono, 
         password : this.claveAcceso
       });
-
-      if( res.data.data.rows.length == 0 ) {
-        this.showModal();
-        return;
-      } 
-
-      if( res.status == 200 && res.data.data.rows.length > 0 ) {
+      
+      if( res.data.status == 200 && res.data.data.rows.length > 0 ) {
         localStorage.setItem('userId', res.data.data.rows[0].id );
         localStorage.setItem('peso', res.data.data.rows[0].peso );
-        this.$router.push("/consultar");
+
+        if( res.data.prescription.status == 200 ) {
+          localStorage.setItem('id_prescription', res.data.prescription.data.id );
+        }
+        
+        this.$router.push("/crear");
       }
 
 
@@ -1208,6 +1248,20 @@ export default {
       this.validarClaveAccessos();
       this.validarConfiClaveAccessos();
 
+      
+      if (Object.keys(this.errors).length == 0) {
+
+        if( !this.recibirNotificaciones ) {
+          $('#activarNotificaciones').modal('show');
+          return;
+        };
+
+        this.postUserNew( true );
+      }
+      
+    },
+    async postUserNew( activarNotificaciones ) {
+
       const data = {
         country         : this.selectedCountry,
         lada            : this.selectedLada,
@@ -1219,11 +1273,10 @@ export default {
         nombre_medico   : this.nomMedTrat,
         apellido_medico : this.apeMedTrat,
         pass            : this.claveAccesos,
+        recordatorio    : activarNotificaciones
       };
-      
-      if (Object.keys(this.errors).length == 0) {
 
-        const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
+      const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
   
         console.log(res.data);
   
@@ -1232,9 +1285,7 @@ export default {
           localStorage.setItem('peso', this.peso );
           this.$router.push("/consultar");
         }
-      }
-      
-    },
+    }
   },
 };
 </script>
