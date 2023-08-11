@@ -11,9 +11,6 @@
             <div class="col-8 col-md-6 col-sm-6 pt-3 ps-5">
                 <h1 class="tituloPregFrecu tituloPerfil">Perfil</h1>
             </div>
-            <!-- <div class="col-auto border">
-                <p></p>
-            </div> -->
         </div>
         <br>
         <div class="row p-2">
@@ -24,42 +21,24 @@
                     </div>
                     <div class="col-xl-6 col-sm-6 col-md-6">
                         <form ref="formPerfil" class="row mb-3" @submit.prevent="enviarDatos">
-                            <!-- <div class="col-12 mb-3 ms-3">  
-                                <input type="text" v-model="info" />
-                            </div> -->
                             <div class="col-12 mb-3 ms-3">
                                 <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
                             </div>
                             <div class="col-3 mb-3">
-                                <!-- <input class="form-control" type="text" maxlength="10" name="" id="inputNumeroCel"
-                                    placeholder="Lada" :disabled="!inputLadaEnabled" v-model="inputLadaEnabled"
-                                    @input="validarLada"> -->
 
-                                    
-                                    <input 
+                                <input 
                                     type="tel" 
                                     maxlength="4"
                                     class="form-control" 
-                                    placeholder="Lada"
+                                    placeholder="Lada..."
                                     id="lada"
-                                    :disabled="!editMode"
+                                    :disabled="true"
                                     @input="validarLada"
                                     v-model="inputLadaEnabled"
                                     :class="{ 'error': submitted && !inputLadaEnabled }" required>
-                                <span class="error" style="color: red;" v-if="errors.inputLadaEnabled">{{
-                                    errors.inputLadaEnabled
-                                }}</span>
-                                <!-- <input type="tel" maxlength="5" class="form-control" placeholder="Lada"  id="lada"
-                                    v-model="inputLadaEnabled" :disabled="!editMode" 
-                                    @input="validarLada"
-                                    :class="{ 'in-inavalid': submitted && !inputLadaEnabled}"
-                                    required>
-                                <div class="invalid-feedback">Lada es obligfatoria</div> -->
+                                <span class="error" style="color: red;" v-if="errors.inputLadaEnabled">{{ errors.inputLadaEnabled }}</span>
                             </div>
                             <div class="col-8 mb-3">
-                                <!-- <input class="form-control" type="text" maxlength="4" id="inputLadaperfil"
-                                    placeholder="Escriba su número celular" v-bind:disabled="!inputTelPerfilEnabled"
-                                    v-model="inputTelPerfilEnabled" @input="validarTelefonoCelular"> -->
                                 <input class="form-control" type="tel" maxlength="10" id="inputLadaperfil"
                                     placeholder="Escriba su número celular" v-model="inputTelPerfilEnabled"
                                     :disabled="!editMode" @input="validarTelefonoCelular"
@@ -67,7 +46,6 @@
                                 <span class="error" style="color: red;" v-if="errors.inputTelPerfilEnabled">{{
                                     errors.inputTelPerfilEnabled
                                 }}</span>
-                                <!-- <div class="invalid-feedback">Lada es obligfatoria</div> -->
                             </div>
                             <div class="col-1 mb-3 g-2">
                                 <a 
@@ -366,6 +344,7 @@
         },
         methods: {
             async selectCountry() {
+                this.selectEstadoEnabled = '';
                 if (this.selectPaisEnabled === "Mexico") {
                     this.inputLadaEnabled = "+52";
                     await this.getEstados();
@@ -375,6 +354,7 @@
                 }
             },
             async onSelectEstado() {
+                this.inputCiudadEnabled = '';
                 if (this.selectPaisEnabled === "Mexico") {
                     this.getMunicipios(this.selectEstadoEnabled);
                 } else if (this.selectPaisEnabled === "Costa Rica") {
@@ -491,6 +471,10 @@
                         this.inputApeMedTratEnabled = dataPost.apellido_medico;
                         this.inputClaveAccesoEnabled = dataPost.pass;
                         this.inputTelPesoEnabled = dataPost.peso;
+
+                        if( !this.inputLadaEnabled.includes('+') ) {
+                            this.inputLadaEnabled = '+'+this.inputLadaEnabled
+                        }
 
                         if(this.selectPaisEnabled == 'Costa Rica' ) {
                             await this.getProvinciaCostaRica( true );
@@ -753,18 +737,6 @@
                     successModal.show();
                     this.$refs.formPerfil.reset();
                 }
-
-                const data = {
-                    inputLadaEnabled        : this.inputLadaEnabled,
-                    inputTelPerfilEnabled    : this.inputTelPerfilEnabled,
-                    selectEstadoEnabled     : this.selectEstadoEnabled,
-                    inputCiudadEnabled      : this.inputCiudadEnabled,
-                    inputEdadEnabled        : this.inputEdadEnabled,
-                    inputNomMedTratEnabled  : this.inputNomMedTratEnabled,
-                    inputApeMedTratEnabled  : this.inputApeMedTratEnabled,
-                    inputClaveAccesoEnabled : this.inputClaveAccesoEnabled,
-
-                };
             },
             async submitFormCrearPlan() {
 
