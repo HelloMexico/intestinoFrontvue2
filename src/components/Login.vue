@@ -900,22 +900,27 @@ export default {
       
       if ( Object.keys(this.errors).length > 0 ) return;
 
-      const res = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/login', {
+      const response = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/login', {
         phone    : this.telefono, 
         password : this.claveAcceso
+      }).catch( err => {
+
+        if( err.response.data.status == 400 && err.response.data.data.rows.length == 0 ) {
+          this.showModal();
+        }
       });
       
-      if( res.data.status == 200 && res.data.data.rows.length > 0 ) {
-        localStorage.setItem('userId', res.data.data.rows[0].id );
-        localStorage.setItem('peso', res.data.data.rows[0].peso );
+      if( response?.data.status == 200 && response?.data.data.rows.length > 0 ) {
 
-        if( res.data.prescription.status == 200 ) {
-          localStorage.setItem('id_prescription', res.data.prescription.data.id );
+        localStorage.setItem('userId', response?.data.data.rows[0].id );
+        localStorage.setItem('peso', response?.data.data.rows[0].peso );
+
+        if( response?.data.prescription.status == 200 ) {
+          localStorage.setItem('id_prescription', response?.data.prescription.data.id );
         }
         
-        this.$router.push("/crear");
+        this.$router.push("/consultar");
       }
-
 
     },
     showModal() {
@@ -1283,7 +1288,7 @@ export default {
         if( res.data.status == 200 ) {
           localStorage.setItem('userId', res.data.data.id_user );
           localStorage.setItem('peso', this.peso );
-          this.$router.push("/consultar");
+          this.$router.push("/crear");
         }
     }
   },

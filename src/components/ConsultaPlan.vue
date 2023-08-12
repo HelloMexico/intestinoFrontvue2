@@ -204,7 +204,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUnoTabla">
-                                    <p class="parrafoPrimerToma">Primera toma de Picoprep :</p>
+                                    <p class="parrafoPrimerToma">Primera toma de Picoprep:</p>
                                     <p class="parrafoFechaPrimerToma">Fecha: <span>{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }} </span></p>
                                     <p class="parrafoHoraPrimerToma">Hora: <span>{{ horaPrimerToma == '' ? 'Sin datos' : horaPrimerToma }} </span> </p>
                                 </div>
@@ -376,9 +376,9 @@
                             <div class="col-md-12">
                                 <div class="card-body" id="cardUno">
                                     <h5 class="card-title">Primera toma de PICOPREP®:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ dosis1 }}</small></p>
-                                    <p class="card-text">Fecha <span>{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }} </span> </p>
-                                    <p class="card-text">Hora: <span>{{ horaPrimerToma == '' ? 'Sin datos' : horaPrimerToma }} </span> </p>
+                                    <p class=""> <small class="text-muted"> {{ dosis1 }} </small> </p>
+                                    <p class="">Fecha: <small class="text-muted">{{ fechaPrimerToma == '' ? 'Sin datos' : fechaPrimerToma }} </small> </p>
+                                    <p class="">Hora: <small class="text-muted">{{ horaPrimerToma == '' ? 'Sin datos' : horaPrimerToma }} </small> </p>
                                 </div>
                             </div>
                         </div>
@@ -393,9 +393,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h4?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h4?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h4?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h4?.split(' ')[1] ?? 'Sin datos' }} </small></p>
                                 </div>
                             </div>
                         </div>
@@ -412,9 +412,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion1 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h1?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h1?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h1?.split(' ')[0] ?? 'Sin datos' }} </small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h1?.split(' ')[1] ?? 'Sin datos' }} </small></p>
                                 </div>
                             </div>
                         </div>
@@ -429,9 +429,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h5?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h5?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class=""> Fecha: <small class="text-muted">{{ hidratacion?.h5?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class=""> Hora:  <small class="text-muted"> {{ hidratacion?.h5?.split(' ')[1] ?? 'Sin datos' }} </small></p>
                                 </div>
                             </div>
                         </div>
@@ -448,9 +448,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion1 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h2?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h2?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h2?.split(' ')[0] ?? 'Sin datos' }}</small > </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h2?.split(' ')[1] ?? 'Sin datos' }} </small></p>
                                 </div>
                             </div>
                         </div>
@@ -465,9 +465,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h6?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h6?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h6?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> <span> {{ hidratacion?.h6?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
                                 </div>
                             </div>
                         </div>
@@ -484,9 +484,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Segunda toma de PICOPREP®️:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ dosis2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ fechaSegundaToma == '' ? 'Sin datos' : fechaSegundaToma }}</span> </p>
-                                    <p class="card-text">Hora: <span>{{ horaSegundaToma == '' ? 'Sin datos' : horaSegundaToma }} </span> </p>
+                                    <p class=""><small class="text-muted"> {{ dosis2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ fechaSegundaToma == '' ? 'Sin datos' : fechaSegundaToma }}</small> </p>
+                                    <p class="">Hora: <small class="text-muted">{{ horaSegundaToma == '' ? 'Sin datos' : horaSegundaToma }} </small> </p>
                                 </div>
                             </div>
                         </div>
@@ -501,9 +501,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h7?.split(' ')[0] ?? 'Sin datos'}}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h7?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h7?.split(' ')[0] ?? 'Sin datos'}}</small> </p>
+                                    <p class="">Hora:  <small class="text-muted">{{ hidratacion?.h7?.split(' ')[1] ?? 'Sin datos' }} </small></p>
                                 </div>
                             </div>
                         </div>
@@ -518,9 +518,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h3?.split(' ')[0] ?? 'Sin datos'}}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h3?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted"> {{ hidratacion?.h3?.split(' ')[0] ?? 'Sin datos'}} </small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h3?.split(' ')[1] ?? 'Sin datos' }} </small> </p>
                                 </div>
                             </div>
                         </div>
@@ -535,9 +535,9 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class="card-text"><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="card-text">Fecha: <span>{{ hidratacion?.h8?.split(' ')[0] ?? 'Sin datos' }}</span> </p>
-                                    <p class="card-text"><small class="text-muted">Hora: <span> {{ hidratacion?.h8?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h8?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class="">Hora: <small class="text-muted"> {{ hidratacion?.h8?.split(' ')[1] ?? 'Sin datos' }} </small></p>
                                 </div>
                             </div>
                         </div>
@@ -1462,12 +1462,21 @@
             },
             showEditModal() {
 
+                const aux = this.fechaEstudioColonos.split('-');
+                const otraFecha = `${aux[2]}-${aux[1]}-${aux[0]}`;
+
+                const aux2 = this.fechaPrimerToma.split('-');
+                const otraFecha2 = `${aux2[2]}-${aux2[1]}-${aux2[0]}`;
+
+                const aux3 = this.fechaSegundaToma.split('-');
+                const otraFecha3 = `${aux3[2]}-${aux3[1]}-${aux3[0]}`;
+
                 this.dataPrescripcion = {
-                    fechaEstudioColonos : this.fechaEstudioColonos,
+                    fechaEstudioColonos : otraFecha,
                     horaColonoscopia    : this.horaColonoscopia,
-                    fechaPrimerToma     : this.fechaPrimerToma,
+                    fechaPrimerToma     : otraFecha2,
                     horaPrimerToma      : this.horaPrimerToma,
-                    fechaSegundaToma    : this.fechaSegundaToma,
+                    fechaSegundaToma    : otraFecha3,
                     horaSegundaToma     : this.horaSegundaToma
                 };
 
@@ -1475,12 +1484,21 @@
             },
             showEditModalMovil() {
 
+                const aux = this.fechaEstudioColonos.split('-');
+                const otraFecha = `${aux[2]}-${aux[1]}-${aux[0]}`;
+
+                const aux2 = this.fechaPrimerToma.split('-');
+                const otraFecha2 = `${aux2[2]}-${aux2[1]}-${aux2[0]}`;
+
+                const aux3 = this.fechaSegundaToma.split('-');
+                const otraFecha3 = `${aux3[2]}-${aux3[1]}-${aux3[0]}`;
+
                 this.dataPrescripcion = {
-                    fechaEstudioColonos : this.fechaEstudioColonos,
+                    fechaEstudioColonos : otraFecha,
                     horaColonoscopia    : this.horaColonoscopia,
-                    fechaPrimerToma     : this.fechaPrimerToma,
+                    fechaPrimerToma     : otraFecha2,
                     horaPrimerToma      : this.horaPrimerToma,
-                    fechaSegundaToma    : this.fechaSegundaToma,
+                    fechaSegundaToma    : otraFecha3,
                     horaSegundaToma     : this.horaSegundaToma
                 };
 
@@ -1554,11 +1572,11 @@
     
                     const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
                         id_prescription   : id_prescription,
-                        fecha_estudio     : this.dataPrescripcion.fechaEstudioColonos,
+                        fecha_estudio     : moment(this.dataPrescripcion.fechaEstudioColonos).format('DD-MM-YYYY'),
                         hora_estudio      : this.dataPrescripcion.horaColonoscopia,
-                        fecha_prim_toma   : this.dataPrescripcion.fechaPrimerToma,
+                        fecha_prim_toma   : moment(this.dataPrescripcion.fechaPrimerToma).format('DD-MM-YYYY'),
                         hora_prim_toma    : this.dataPrescripcion.horaPrimerToma,
-                        fecha_seg_toma    : this.dataPrescripcion.fechaSegundaToma,
+                        fecha_seg_toma    : moment(this.dataPrescripcion.fechaSegundaToma).format('DD-MM-YYYY'),
                         hora_seg_toma     : this.dataPrescripcion.horaSegundaToma
                     });
 
@@ -1630,15 +1648,21 @@
                         this.fechaSegundaToma    = resp.data.data.id_prescription[0].fecha_seg_toma;
                         this.horaSegundaToma     = resp.data.data.id_prescription[0].hora_seg_toma;
 
-                        this.hidratacion.h1 = moment(`${this.fechaPrimerToma} ${this.horaPrimerToma}`).add(1, 'hours').format('YYYY-MM-DD HH:mm');
-                        this.hidratacion.h2 = moment(`${this.fechaPrimerToma} ${this.horaPrimerToma}`).add(2, 'hours').format('YYYY-MM-DD HH:mm');
+                        const aux = this.fechaPrimerToma.split('-');
+                        const otraFecha = `${aux[2]}-${aux[1]}-${aux[0]}`;
 
-                        this.hidratacion.h3 = moment(`${this.fechaSegundaToma} ${this.horaSegundaToma}`).add(1, 'hours').format('YYYY-MM-DD HH:mm');
-                        this.hidratacion.h4 = moment(`${this.fechaSegundaToma} ${this.horaSegundaToma}`).add(2, 'hours').format('YYYY-MM-DD HH:mm');
-                        this.hidratacion.h5 = moment(`${this.fechaSegundaToma} ${this.horaSegundaToma}`).add(3, 'hours').format('YYYY-MM-DD HH:mm');
-                        this.hidratacion.h6 = moment(`${this.fechaSegundaToma} ${this.horaSegundaToma}`).add(4, 'hours').format('YYYY-MM-DD HH:mm');
-                        this.hidratacion.h7 = moment(`${this.fechaSegundaToma} ${this.horaSegundaToma}`).add(5, 'hours').format('YYYY-MM-DD HH:mm');
-                        this.hidratacion.h8 = moment(`${this.fechaSegundaToma} ${this.horaSegundaToma}`).add(6, 'hours').format('YYYY-MM-DD HH:mm');
+                        const aux2 = this.fechaSegundaToma.split('-');
+                        const otraFecha2 = `${aux2[2]}-${aux2[1]}-${aux2[0]}`;
+
+                        this.hidratacion.h1 = moment(`${otraFecha} ${this.horaPrimerToma}`).add(1, 'hours').format('DD-MM-YYYY HH:mm');
+                        this.hidratacion.h2 = moment(`${otraFecha} ${this.horaPrimerToma}`).add(2, 'hours').format('DD-MM-YYYY HH:mm');
+
+                        this.hidratacion.h3 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(1, 'hours').format('DD-MM-YYYY HH:mm');
+                        this.hidratacion.h4 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(2, 'hours').format('DD-MM-YYYY HH:mm');
+                        this.hidratacion.h5 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(3, 'hours').format('DD-MM-YYYY HH:mm');
+                        this.hidratacion.h6 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(4, 'hours').format('DD-MM-YYYY HH:mm');
+                        this.hidratacion.h7 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(5, 'hours').format('DD-MM-YYYY HH:mm');
+                        this.hidratacion.h8 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(6, 'hours').format('DD-MM-YYYY HH:mm');
                     }
                     
                 } catch (error) {
@@ -3198,8 +3222,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
         Color: #707070;
     }
 
-    .card-text small.text-muted {
-        font-family: 'OpenSans-Bold';
+    .card-text small {
         font-size: 15px;
         Color: #707070;
     }
@@ -3305,10 +3328,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     .columnaBtnDudas {
         /*  display: flex; */
         text-align: right;
-    }
-
-    .filaDosPermisos {
-        /* padding-top: 150px; */
     }
 
     .parrafoDevice {

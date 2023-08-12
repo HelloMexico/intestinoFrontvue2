@@ -692,24 +692,6 @@ export default {
       const fechaActual = this.fechaActual ? moment(this.fechaActual, 'YYYY-MM-DD') : '';
       //Valida que el campo fecha colonoscopia no este vació y sea una fechs
       console.log(moment(this.fechaEstudioColonos).isSame(fechaActual));
-      const dataPrescription = { 
-        fecha_estudio : this.fechaEstudioColonos, 
-        hora_estudio : this.horaColonoscopia, 
-        fecha_prim_toma : this.fechaPrimerToma, 
-        hora_prim_toma : this.horaPrimerToma, 
-        fecha_seg_toma : this.fechaSegundaToma, 
-        hora_seg_toma : this.horaSegundaToma
-      };
-      // console.table(dataPrescription);
-      // Emviando los datos del formulario Crear plan de tomas a la API Methodo: Post
-      // axios
-      //   .post("https://intestinolimpio.onrender.com/api/v1/prescription", dataPrescription)
-      //   .then((res) => {
-      //     console.log(`Respuesta de back💾: ${res}`);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
     },
     async crearPlanDeTomas() {
 
@@ -717,12 +699,12 @@ export default {
 
       const data = {
         id_user         : idUser,
-        fecha_estudio   : this.fechaEstudioColonos, 
-        hora_estudio    : this.horaColonoscopia, 
-        fecha_prim_toma : this.fechaPrimerToma, 
-        hora_prim_toma  : this.horaPrimerToma, 
-        fecha_seg_toma  : this.fechaSegundaToma, 
-        hora_seg_toma   : this.horaSegundaToma
+        fecha_estudio     : moment(this.fechaEstudioColonos).format('DD-MM-YYYY'),
+        hora_estudio      : this.horaColonoscopia,
+        fecha_prim_toma   : moment(this.fechaPrimerToma).format('DD-MM-YYYY'),
+        hora_prim_toma    : this.horaPrimerToma,
+        fecha_seg_toma    : moment(this.fechaSegundaToma).format('DD-MM-YYYY'),
+        hora_seg_toma     : this.horaSegundaToma
       };
 
       axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
@@ -756,11 +738,11 @@ export default {
 
           const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
               id_prescription   : id_prescription,
-              fecha_estudio     : this.fechaEstudioColonos,
+              fecha_estudio     : moment(this.fechaEstudioColonos).format('DD-MM-YYYY'),
               hora_estudio      : this.horaColonoscopia,
-              fecha_prim_toma   : this.fechaPrimerToma,
+              fecha_prim_toma   : moment(this.fechaPrimerToma).format('DD-MM-YYYY'),
               hora_prim_toma    : this.horaPrimerToma,
-              fecha_seg_toma    : this.fechaSegundaToma,
+              fecha_seg_toma    : moment(this.fechaSegundaToma).format('DD-MM-YYYY'),
               hora_seg_toma     : this.horaSegundaToma
           });
 
@@ -793,11 +775,20 @@ export default {
 
           if( resp.data.status == 200 ) {
 
-            this.fechaEstudioColonos = resp.data.data.id_prescription[0].fecha_estudio;
+            const aux = resp.data.data.id_prescription[0].fecha_estudio.split('-');
+            const otraFecha = `${aux[2]}-${aux[1]}-${aux[0]}`;
+
+            const aux2 = resp.data.data.id_prescription[0].fecha_prim_toma.split('-');
+            const otraFecha2 = `${aux2[2]}-${aux2[1]}-${aux2[0]}`;
+
+            const aux3 = resp.data.data.id_prescription[0].fecha_seg_toma.split('-');
+            const otraFecha3 = `${aux3[2]}-${aux3[1]}-${aux3[0]}`;
+
+            this.fechaEstudioColonos = otraFecha;
             this.horaColonoscopia = resp.data.data.id_prescription[0].hora_estudio;
-            this.fechaPrimerToma = resp.data.data.id_prescription[0].fecha_prim_toma;
+            this.fechaPrimerToma = otraFecha2;
             this.horaPrimerToma = resp.data.data.id_prescription[0].hora_prim_toma;
-            this.fechaSegundaToma = resp.data.data.id_prescription[0].fecha_seg_toma;
+            this.fechaSegundaToma = otraFecha3;
             this.horaSegundaToma = resp.data.data.id_prescription[0].hora_seg_toma;
           }
           
