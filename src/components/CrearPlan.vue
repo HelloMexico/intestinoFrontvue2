@@ -239,7 +239,7 @@ export default {
       }
 
       if (this.horaColonoscopia === '') {
-        this.errors2.this.horaColonoscopia = "La hora de la colonoscopia es obligatoria";
+        this.errors2.horaColonoscopia = "La hora de la colonoscopia es obligatoria";
         return;
       }
       else {
@@ -726,6 +726,8 @@ export default {
             this.horaPrimerToma = '';
             this.fechaSegundaToma = '';
             this.horaSegundaToma = '';
+
+            this.$router.push("/consultar");
           }
         })
         .catch((err) => {

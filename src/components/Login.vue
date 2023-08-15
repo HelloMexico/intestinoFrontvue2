@@ -449,7 +449,8 @@
                                     placeholder="Peso del paciente"
                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                     type="number"
-                                    maxlength="3"
+                                    step="any"
+                                    maxlength="6"
                                     v-model="peso"
                                     @input="validarPeso"
                                   />
@@ -669,7 +670,7 @@
       tabindex="-1"
       aria-labelledby="example"
       aria-hidden="true">
-          <CustomModal :message="'Este usuario no existe'"/>
+          <CustomModal :message="'Usuario no econtrado. Verifique que su número celular y contraseñas sean correctas o esté registrado'"/>
     </div>
 
     <div
@@ -915,8 +916,8 @@ export default {
         localStorage.setItem('userId', response?.data.data.rows[0].id );
         localStorage.setItem('peso', response?.data.data.rows[0].peso );
 
-        if( response?.data.prescription.status == 200 ) {
-          localStorage.setItem('id_prescription', response?.data.prescription.data.id );
+        if( response?.data.prescription.status == 200 && response?.data?.prescription?.data ) {
+          localStorage.setItem('id_prescription', response?.data?.prescription?.data?.id );
         }
         
         this.$router.push("/consultar");
