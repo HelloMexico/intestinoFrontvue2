@@ -181,7 +181,13 @@
                 <!-- <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
 
                 </div> -->
-                <div class="col-3 col-md-2 col-sm-3 columnaTabla" style="  border: 1px solid #FF9900;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p> Recuerde que durante la preparación solo podrá seguir una dieta de líquidos claros. Para más información revise la sección de preguntas frecuentes. </p>
+                    </div>
+                </div>
+
+                <div class="col-3 col-md-2 col-sm-3 columnaTabla" style=" border: 1px solid #FF9900;">
                     <div class="card mb-3" style="  border: none;">
                         <div class="row">
                             <div class="col-md-12">
@@ -364,8 +370,11 @@
 
                 </div>
             </div>
+
             <br><br>
+
             <div class="row">
+                
                 <div class="col-1 col-md-3 col-sm-5 text-center columnaUno">
                     <img src="../assets/img/web/681332-300-300 1_2.png" alt="..." width="">
                 </div>
@@ -384,97 +393,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 col-md-3 col-sm-3 text-center columnaUno">
-                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
-                </div>
-                <div class="col-5 col-md-3 col-sm-3 columnaDos">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h4?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
-                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h4?.split(' ')[1] ?? 'Sin datos' }} </small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
-                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
-                </div>
-                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
-                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h1?.split(' ')[0] ?? 'Sin datos' }} </small> </p>
-                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h1?.split(' ')[1] ?? 'Sin datos' }} </small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
-                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
-                </div>
-                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class=""> Fecha: <small class="text-muted">{{ hidratacion?.h5?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
-                                    <p class=""> Hora:  <small class="text-muted"> {{ hidratacion?.h5?.split(' ')[1] ?? 'Sin datos' }} </small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
-                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
-                </div>
-                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
-                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h2?.split(' ')[0] ?? 'Sin datos' }}</small > </p>
-                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h2?.split(' ')[1] ?? 'Sin datos' }} </small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
-                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
-                </div>
-                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
-                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
-                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h6?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
-                                    <p class="">Hora:  <small class="text-muted"> <span> {{ hidratacion?.h6?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
+
                 <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
                     <img src="../assets/img/web/681332-300-300 1_2.png" class="imgMediPicoprep" alt="..." width="">
                 </div>
@@ -492,6 +411,27 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1 col-md-3 col-sm-3 text-center columnaUno">
+                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
+                </div>
+                <div class="col-5 col-md-3 col-sm-3 columnaDos">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros1</h5>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h4?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h4?.split(' ')[1] ?? 'Sin datos' }} </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
                     <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
                 </div>
@@ -500,7 +440,7 @@
                         <div class="row g-0">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros6</h5>
                                     <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                     <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h7?.split(' ')[0] ?? 'Sin datos'}}</small> </p>
                                     <p class="">Hora:  <small class="text-muted">{{ hidratacion?.h7?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -509,6 +449,11 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+
+            <div class="row">
+
                 <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
                     <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
                 </div>
@@ -517,7 +462,25 @@
                         <div class="row g-0">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros2</h5>
+                                    <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h1?.split(' ')[0] ?? 'Sin datos' }} </small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h1?.split(' ')[1] ?? 'Sin datos' }} </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
+                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
+                </div>
+                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros7</h5>
                                     <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                     <p class="">Fecha: <small class="text-muted"> {{ hidratacion?.h3?.split(' ')[0] ?? 'Sin datos'}} </small> </p>
                                     <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h3?.split(' ')[1] ?? 'Sin datos' }} </small> </p>
@@ -526,6 +489,11 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+
+            <div class="row">
+
                 <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
                     <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
                 </div>
@@ -534,7 +502,25 @@
                         <div class="row g-0">
                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <h5 class="card-title">Hidratación con 250 ml de agua:</h5>
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros3</h5>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class=""> Fecha: <small class="text-muted">{{ hidratacion?.h5?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class=""> Hora:  <small class="text-muted"> {{ hidratacion?.h5?.split(' ')[1] ?? 'Sin datos' }} </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
+                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
+                </div>
+                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros8</h5>
                                     <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                     <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h8?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
                                     <p class="">Hora: <small class="text-muted"> {{ hidratacion?.h8?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -543,6 +529,50 @@
                         </div>
                     </div>
                 </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
+                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
+                </div>
+                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros4</h5>
+                                    <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h2?.split(' ')[0] ?? 'Sin datos' }}</small > </p>
+                                    <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h2?.split(' ')[1] ?? 'Sin datos' }} </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xl-1 col-md-3 col-sm-3 text-center columnaUno">
+                    <img src="../assets/img/web/vaso-de-agua (2).png" class="imgVasoAgua" alt="..." width="">
+                </div>
+                <div class="col-xl-5 col-md-3 col-sm-3 columnaDos">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Hidratación con 250 ml de líquidos claros5</h5>
+                                    <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
+                                    <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h6?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
+                                    <p class="">Hora:  <small class="text-muted"> <span> {{ hidratacion?.h6?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             <br>
             <!-- </div> -->
@@ -1600,17 +1630,21 @@
             },
             descargarPdf() {
 
-                html2pdf(document.getElementById('element-to-converte'), {
-                    margin: 0,
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
+                html2pdf( document.getElementById('element-to-converte'), {
+                    margin: 0.3,
+                    html2canvas: { scale: 1 },
+                    jsPDF: { 
+                        unit: 'in',
+                        format: 'A4',
+                        orientation: 'portrait'
+                    },
                     filename: 'Mi_Plan_De_Tomas.pdf',
                 });
-
                 // margin: 0,
                 // html2canvas: { scale: 2 },
-                // jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                // jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
                 // filename: 'Mi_Plan_De_Tomas.pdf',
+
             },
             async prescriptionDetails() {
 

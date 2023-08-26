@@ -712,6 +712,14 @@
         </div>
       </div>
 
+      <div class="row filaDosPermisos">
+          <div class="col text-center columnaParrafos">
+              <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
+              <p class="parrafoAviso">AVISO COFEPRIS</p>
+              <p class="parrafoNumeroReg">No. REG. MEX: 012M2013 SSA</p>
+          </div>
+      </div>
+
   </div>
 
   
@@ -1730,7 +1738,7 @@ footer {
 }
 
 .filaDosPermisos {
-  padding-top: 100px;
+  padding-top: 45%;
 }
 
 .columnaParrafos {
@@ -2813,7 +2821,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
   }
 
   .parrafoUno {
-    margin-top: -30px;
+    margin-top: 10px;
     font-family: "OpenSans-Regular";
     font-size: 14px;
     color: #707070;
@@ -2932,10 +2940,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
   .columnaBtnDudas {
     /*  display: flex; */
     text-align: right;
-  }
-
-  .filaDosPermisos {
-    padding-top: 150px;
   }
 
   .parrafoDevice {
@@ -3368,8 +3372,4 @@ body .main .password-container .password span {
   /* font-size: 4px; */
 }
 
-/**/
-/* Cierre seccion DIGITAL EXPERIENCES*/
-@media screen and (max-height: 500px) {
-}
 </style>
