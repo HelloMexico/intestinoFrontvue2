@@ -685,7 +685,7 @@
 
                 <div class="modal-body" style="border: none;">
                 <p class="parrafoEstasSeguro text-center">
-                  ¿Está seguro de no querer recibir alertas por WhatsApp? Las alertas le indicarán el momento en que debe tomarse su medicamento e hidrataciones, le recomendamos activarlas.
+                  Las alertas solo durarán el tiempo que dure su proceso de limpieza intestinal, por lo que le recomendamos activarlas para poder acompañarle.
                 </p>
                 </div>
                 <div class="modal-footer" style="border: none;">

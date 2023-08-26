@@ -769,8 +769,6 @@ export default {
 
           const id_prescription = localStorage.getItem( 'id_prescription' );
 
-          console.log(id_prescription);
-
           if( id_prescription == null ) return;
 
           const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
@@ -1569,50 +1567,14 @@ a {
     height: 16px;
 } */
 
-/* Inician Estilos para input Fecha de estudio */
-input.inputFechaEstudioCrear[type="date"] {
-  font-family: "OpenSans-Regular";
-  color: #8b8a8a;
-}
 
-input.inputFechaEstudioCrear[type="date"]:before {
-  content: "Fecha de estudio:  ";
-  font-family: "OpenSans-Regular";
-  /* font-size: 40px; */
-  /* margin: 0 auto;
-    text-align: center; */
-  /* line-break: normal; */
-  /* margin-right: 2rem; */
-  line-height: normal;
+input.inputFechaEstudioCrear[type="date"]::before {
+  content     : "Fecha de estudio:";
+  font-family : "OpenSans-Regular";
+  line-height : normal;
   color: #8b8a8a;
   margin-right: 2rem;
-  /* width: 200px;
-  height: 20px; */
-  /* text-align: center;
-  justify-content: center;
-  align-items: center; */
-  /*  margin-left: 10px; */
 }
-
-input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator {
-  /* display: block; */
-  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario\ 2.png") no-repeat;
-  background: none; */
-  width: 20px;
-  height: 22px;
-  color: #8b8a8a;
-}
-
-input.inputFechaEstudioCrear[type="date"]::-webkit-calendar-picker-indicator:hover {
-  /* display: block; */
-  /* background: url("../assets/img/web/herramienta-de-simbolo-de-interfaz-de-calendario.png") no-repeat;
-  background: none; */
-  width: 20px;
-  height: 22px;
-  color: #8b8a8a;
-}
-
-/* Terminan Estilos para input Fecha de estudio */
 
 /* Inician Estilos para input Hora de la colonoscopía o estudio */
 input.inputHoraColos[type="time"]:before {
@@ -1789,8 +1751,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
     margin-left: auto;
     margin-right: auto; */
 }
-
-.contenedorMovil {}
 
 .fila {
   display: none;
@@ -2044,22 +2004,17 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 /* Termina estilos para Plan de tomas e hidratacion */
 
 /* Inician estilos para Modal boton Editar Plan de Tomas */
-/* Inician Estilos label Fecha de estudio */
 .labelModalEditarFechaEstu {
   font-family: "OpenSans-Regular";
   color: #515151;
   font-size: 16px;
 }
 
-/* Terminan Estilos label Fecha de estudio */
-/* Inician Estilos label Fecha de estudio */
 .labelModalEditarHoraColonos {
   font-family: "OpenSans-Regular";
   color: #515151;
   font-size: 16px;
 }
-
-/* Terminan Estilos label Fecha de estudio */
 
 /* Inician Estilos para botón Guardar de Modal - Editar Plan*/
 .btnGuardarModalPlan {
