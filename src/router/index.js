@@ -1,74 +1,57 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import isAuthenticatedGuard from './auth-guard';
 
 Vue.use(VueRouter);
 
 const routes = [
-  /* {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-  }, */
+
   {
     path: '/',
-    name: 'home',
+    name: 'login',
+    beforeEnter: isAuthenticatedGuard,
     component: HomeView,
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    beforeEnter: isAuthenticatedGuard,
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
   {
     path: '/crear',
     name: 'crear',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/CrearPlanView.vue'),
-  },
+    beforeEnter: isAuthenticatedGuard,
+    component: () => import(/* webpackChunkName: "about" */ '../views/CrearPlanView.vue'),  },
   {
     path: '/consultar',
     name: 'consultar',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    beforeEnter: isAuthenticatedGuard,
     component: () => import(/* webpackChunkName: "about" */ '../views/ConsultaPlanView.vue'),
   },
-  {
+  { 
     path: '/preg',
     name: 'preg',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    beforeEnter: isAuthenticatedGuard,
     component: () => import(/* webpackChunkName: "about" */ '../views/PreguntasFrecView.vue'),
   },
   {
     path: '/perfil',
     name: 'perfil',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    beforeEnter: isAuthenticatedGuard,
     component: () => import(/* webpackChunkName: "about" */ '../views/PerfilView.vue'),
   },
   {
     path: '/olvidar',
     name: 'olvida',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/OlvidarPasswordView.vue'),
+    // beforeEnter: isAuthenticatedGuard,
+    component: () => import(/* webpackChunkName: "about" */ '../views/OlvidarPasswordView.vue')
   },
   {
     path: '/nuevo',
     name: 'nuevo',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    // beforeEnter: isAuthenticatedGuard,
     component: () => import(/* webpackChunkName: "about" */ '../views/NuevoPasswordView.vue'),
   },
 ];
