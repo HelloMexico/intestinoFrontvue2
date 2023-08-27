@@ -17,7 +17,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p> Recuerde que durante la preparación solo podrá seguir una dieta de líquidos claros. Para más información revise la sección de preguntas frecuentes. </p>
+                        <p> IMPORTANTE: Recuerde que durante la preparación solo podrá seguir una dieta de líquidos claros. Para más información revise la sección de preguntas frecuentes. </p>
                     </div>
                 </div>
 
@@ -182,7 +182,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p> Recuerde que durante la preparación solo podrá seguir una dieta de líquidos claros. Para más información revise la sección de preguntas frecuentes. </p>
+                        <p> IMPORTANTE: Recuerde que durante la preparación solo podrá seguir una dieta de líquidos claros. Para más información revise la sección de preguntas frecuentes. </p>
                     </div>
                 </div>
 
@@ -405,7 +405,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros1</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h1?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
                                             <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h1?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -426,7 +426,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros2</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h2?.split(' ')[0] ?? 'Sin datos' }} </small> </p>
                                             <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h2?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -447,7 +447,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros3</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                             <p class=""> Fecha: <small class="text-muted">{{ hidratacion?.h3?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
                                             <p class=""> Hora:  <small class="text-muted"> {{ hidratacion?.h3?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -468,7 +468,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros4</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion1 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h4?.split(' ')[0] ?? 'Sin datos' }}</small > </p>
                                             <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h4?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -489,7 +489,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros5</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h5?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
                                             <p class="">Hora:  <small class="text-muted"> <span> {{ hidratacion?.h5?.split(' ')[1] ?? 'Sin datos' }} </span> </small></p>
@@ -535,7 +535,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros6</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h6?.split(' ')[0] ?? 'Sin datos'}}</small> </p>
                                             <p class="">Hora:  <small class="text-muted">{{ hidratacion?.h6?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -556,7 +556,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros7</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted"> {{ hidratacion?.h7?.split(' ')[0] ?? 'Sin datos'}} </small> </p>
                                             <p class="">Hora:  <small class="text-muted"> {{ hidratacion?.h7?.split(' ')[1] ?? 'Sin datos' }} </small> </p>
@@ -577,7 +577,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-12">
                                         <div class="card-body">
-                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros8</h5>
+                                            <h5 class="card-title">Hidratación con 250 ml de líquidos claros</h5>
                                             <p class=""><small class="text-muted"> {{ hidratacion2 }} </small></p>
                                             <p class="">Fecha: <small class="text-muted">{{ hidratacion?.h8?.split(' ')[0] ?? 'Sin datos' }}</small> </p>
                                             <p class="">Hora: <small class="text-muted"> {{ hidratacion?.h8?.split(' ')[1] ?? 'Sin datos' }} </small></p>
@@ -1672,8 +1672,6 @@
                 if( this.browserWidth <= 429 ) {
                     margin = [0.4, 0.1, 0.7, 0.1];
                 }
-                
-                console.log(margin);
 
                 html2pdf( document.getElementById('element-to-converte'), {
                     margin      : margin,

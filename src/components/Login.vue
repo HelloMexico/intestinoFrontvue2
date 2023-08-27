@@ -50,15 +50,13 @@
                   >
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
-                        <!-- eslint-disable-next-line max-len -->
                         <button
                           class="btnInicia rounded collapsed"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#flush-collapseOne"
                           aria-expanded="false"
-                          aria-controls="flush-collapseOne"
-                        >
+                          aria-controls="flush-collapseOne">
                           INICIAR SESIÓN
                         </button>
                       </h2>
@@ -186,24 +184,17 @@
                                   <div
                                     style="
                                       display: flex;
-                                      flex-direction: row-reverse;
-                                    "
-                                  >
-                                    <!--  <input type="submit" value="CONTINUAR"
-                                                                        class="btnContinuar rounded"> -->
-                                    <!-- <router-link class="btnContinuar rounded" to="/crear"
-                                                                        tag="button">CONTINUAR</router-link> -->
+                                      gap: 14px;
+                                      flex-direction: row-reverse;">
+
+                                      <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
+
                                     <button
                                       type="submit"
-                                      class="btnContinuar rounded"
-                                    >
+                                      class="btnContinuar rounded">
                                       CONTINUAR
                                     </button>
-                                    <!-- <button :disabled="bloquear"
-                                                                    class=" rounded">CONTINUAR</button> -->
-                                    <!-- <router-link class="btnContinuar rounded" to="/crear"
-                                                                        tag="button" type="submit">CONTINUAR</router-link> -->
-                                    <!-- <button  v-on:click="submitForm">continuar e ir a vista crear</button> -->
+
                                   </div>
                                   <br />
                                 </div>
@@ -632,23 +623,14 @@
                               </div>
                               <br />
                               <div class="contenidoCentrado">
-                                <!-- <a style="cursor: pointer;" id="btnContinuarForm"
-                                                                    class="btnContinuar rounded">Continuar</a> -->
-                                <!-- eslint-disable-next-line max-len -->
-                                <!-- <input class="btnContinuar rounded" type="submit"
-                                                                    value="CONTINUAR"> -->
 
                                 <button
                                   type="submit"
                                   class="btnContinuar rounded">
                                   CONTINUAR
                                 </button>
-                                <!-- <router-link to="/crear" type="submit"
-                                                                    class="btnContinuar rounded">Go to
-                                                                    Home</router-link> -->
 
-                                <!-- <button to="/crear">Form validado ir a crear</button> -->
-                                <!-- <a to="/crear" class="btnContinuar rounded" type="submit">CREAR</a> -->
+                                <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
                               </div>
                             </form>
                           </div>
@@ -759,6 +741,8 @@ export default {
       showPassword: false,
       recibirNotificaciones: false,
       inputTypeIcon: "password",
+      
+      showLoading: false,
 
       pais: "",
       lada: "",
@@ -902,6 +886,7 @@ export default {
     async submitForm() {
 
       this.errors = {};
+      this.showLoading = true;
 
       // Comprobar si hay errores
       this.validateTelefono();
@@ -916,6 +901,7 @@ export default {
 
         if( err.response.data.status == 400 && err.response.data.data.rows.length == 0 ) {
           this.showModal();
+          this.showLoading = false;
         }
       });
       
@@ -928,6 +914,7 @@ export default {
           localStorage.setItem('id_prescription', response?.data?.prescription?.data?.id );
         }
         
+        this.showLoading = false;
         this.$router.push("/consultar");
       }
 
@@ -1276,6 +1263,8 @@ export default {
     },
     async postUserNew( activarNotificaciones ) {
 
+      this.showLoading = true;
+
       const data = {
         country         : this.selectedCountry,
         lada            : this.selectedLada,
@@ -1298,6 +1287,8 @@ export default {
           localStorage.setItem('userId', res.data.data.id_user );
           localStorage.setItem('peso', this.peso );
           this.$router.push("/crear");
+
+          this.showLoading = false;
         }
     }
   },
@@ -1587,6 +1578,8 @@ export default {
 }
 
 .contenidoCentrado {
+  display: flex;
+  gap: 14px;
   text-align: center;
 }
 

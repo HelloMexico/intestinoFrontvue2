@@ -21,8 +21,9 @@
                     </div>
                     <div class="col-xl-6 col-sm-6 col-md-6">
                         <form ref="formPerfil" class="row mb-3" @submit.prevent="enviarDatos">
-                            <div class="col-12 mb-3 ms-3">
+                            <div class="col-12 mb-3 ms-3 loadingSpiner">
                                 <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
+                                <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
                             </div>
                             <div class="col-3 mb-3">
 
@@ -221,10 +222,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <!-- <button type="submit" class="btnGuardar rounded">GUARDAR</button> -->
+                                <div class="col loadingSpiner">
                                     <button type="submit" class="btnGuardar rounded text-center">GUARDAR</button>
-
+                                    <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
                                 </div>
 
                             </div>
@@ -330,6 +330,8 @@
                 lada: '',
                 numero: '',
                 editMode: false,
+
+                showLoading: false,
 
                 name: '',
                 email: '',
@@ -449,13 +451,14 @@
             async getUserData() {
 
                 try {
+
+                    this.showLoading = true;
+
                     const userId = localStorage.getItem('userId');
 
                     const resp = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/me', {
                         id_user : userId
                     });
-
-                    console.log( resp.data.data.rows );
 
                     if( resp.data.status == 200 && resp.data.data.rows.length > 0 ) {
 
@@ -484,6 +487,8 @@
                             await this.getEstados();
                             this.getMunicipios(this.selectEstadoEnabled);
                         }
+
+                        this.showLoading = false;
 
                     }
                 } catch (error) {
@@ -756,6 +761,8 @@
 
                 const userId = localStorage.getItem('userId');
 
+                this.showLoading = true;
+
                 const data = {
                     id_user         : userId,
                     country         : this.selectPaisEnabled,
@@ -786,6 +793,8 @@
                         this.selectEstado = false;
                         this.inputClaveAcceso = false;
                         this.selectPais = false;
+
+                        this.showLoading = false;
                     }
                 }
 
@@ -875,6 +884,11 @@
 
 .vr {
     display: none;
+}
+
+.loadingSpiner {
+    display: flex;
+    gap: 14px;
 }
 
 /*pruebas*/

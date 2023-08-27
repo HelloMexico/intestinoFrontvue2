@@ -33,6 +33,7 @@
                       Por favor coloque la fecha y hora de las tomas indicadas
                       por tu médico.
                     </p>
+                    <div class="spinner-border text-primary" role="status" v-if="showLoadingPage"></div>
                   </div>
                 </div>
                 <div class="row">
@@ -135,11 +136,13 @@
                 <div class="row">
                   <div class="col mb-3">
                     <div class="contenidoCentrado">
-                      <!-- <a type="submit" class="btnCrearPlan rounded" href="">CREAR PLAN DE TOMAS</a> -->
-                      <!-- <input class="btnCrearPlan  rounded" value="CREAR PLAN DE TOMAS"> -->
+
                       <button class="btnCrearPlan rounded">
                         CREAR PLAN DE TOMAS
                       </button>
+
+                      <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
+
                     </div>
                   </div>
                 </div>
@@ -195,7 +198,9 @@ export default {
       errors2: {},
       errorMessage:'',
 
-      /* fechaActual: "", */
+      showLoading:false,
+      showLoadingPage:false,
+
       fechaEstudioColonos: "",
       horaColonoscopia: "",
       fechaPrimerToma: "",
@@ -707,10 +712,13 @@ export default {
         hora_seg_toma     : this.horaSegundaToma
       };
 
+      this.showLoading = true;
+
       axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
           
 
           if( res.data?.status == undefined ) {
+            this.showLoading = false;
             this.errorMessage = res.data;
             this.showModalError();
           }
@@ -727,15 +735,20 @@ export default {
             this.fechaSegundaToma = '';
             this.horaSegundaToma = '';
 
+            this.showLoading = false;
             this.$router.push("/consultar");
           }
         })
         .catch((err) => {
+          this.showLoading = false;
           console.log(err);
         });
     },
     async updatePlanDeTomas() {
+
       try {
+
+          this.showLoading = true;
           const id_prescription = localStorage.getItem( 'id_prescription' );
 
           const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
@@ -750,15 +763,18 @@ export default {
 
           if( resp.data?.status == undefined ) {
             this.errorMessage = resp.data;
+            this.showLoading = false;
             this.showModalError();
           }
 
           if( resp.data.status == 200 ) {
             this.errorMessage = 'Se edito plan de tomas correctamente';
+            this.showLoading = false;
             this.showModalError();
           }
           
       } catch (error) {
+        this.showLoading = false;
           console.log( error.message );
           this.showModalError();
       }
@@ -767,9 +783,14 @@ export default {
 
       try {
 
+          this.showLoadingPage = true;
+
           const id_prescription = localStorage.getItem( 'id_prescription' );
 
-          if( id_prescription == null ) return;
+          if( id_prescription == null ) {
+            this.showLoadingPage = false;
+            return
+          };
 
           const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
 
@@ -790,10 +811,13 @@ export default {
             this.horaPrimerToma = resp.data.data.id_prescription[0].hora_prim_toma;
             this.fechaSegundaToma = otraFecha3;
             this.horaSegundaToma = resp.data.data.id_prescription[0].hora_seg_toma;
+
+            this.showLoadingPage = false;
           }
           
       } catch (error) {
           console.log( error );
+          this.showLoadingPage = false;
       }
     },
   },
@@ -1080,23 +1104,6 @@ export default {
   border: 1px solid #ffffff;
 }
 
-/* .btnCrearPlan {
-    width: 100%;
-    height: 50px;
-    color: #FFFFFF;
-    border: none;
-    background-color: #FF9900;
-}
-
-.btnCrearPlan {
-    background-image: url("../assets/img/mobile/Grupo\ 25.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 349px;
-    width: 100%;
-    height: 45px;
-} */
 .btnCrearPlan {
   font-family: "Segoe-UI-Semibold";
   font-size: 20px;
@@ -1106,6 +1113,7 @@ export default {
   border: none;
   background-color: #ff9900;
   text-decoration: none;
+  
 }
 
 .btnCrearPlan:hover {
@@ -1121,6 +1129,8 @@ export default {
 
 .contenidoCentrado {
   text-align: center;
+  display: flex;
+  gap: 14px;
 }
 
 .contenidoCentradoItems {
