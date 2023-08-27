@@ -1337,6 +1337,8 @@
                 hidratacion:{},
                 dataPrescripcion: {},
 
+                browserWidth: 0,
+
                 dosis1: "",
                 errorMessage: "",
                 hidratacion1: "",
@@ -1645,15 +1647,43 @@
             },
             descargarPdf() {
 
+                let margin = 0;
+
+                if( this.browserWidth > 1200  ) {
+                    margin = [0.1, 0.1, 0.5, 0.1];
+                }
+
+                if( this.browserWidth >= 1200 && this.browserWidth < 1400 ) {
+                    margin = [0.1, 0.1, 0.2, 0.1];
+                }
+
+                if( this.browserWidth >= 992 && this.browserWidth < 1200 ) {
+                    margin = [0.4, 0.1, 0.7, 0.1];
+                }
+
+                if( this.browserWidth >= 768 && this.browserWidth < 990 ) {
+                    margin = [0.4, 0.1, 0.7, 0.1];
+                }
+
+                if( this.browserWidth >= 430 && this.browserWidth < 768 ) {
+                    margin = [0.4, 0.1, 0.7, 0.1];
+                }
+
+                if( this.browserWidth <= 429 ) {
+                    margin = [0.4, 0.1, 0.7, 0.1];
+                }
+                
+                console.log(margin);
+
                 html2pdf( document.getElementById('element-to-converte'), {
-                    margin: [0.3, 0.1, 0.3, 0.1],
-                    html2canvas: { scale: 1 },
-                    jsPDF: { 
-                        unit: 'in',
-                        format: 'A4',
-                        orientation: 'portrait'
+                    margin      : margin,
+                    html2canvas : { scale: 1 },
+                    filename     : 'Mi_Plan_De_Tomas.pdf',
+                    jsPDF       : { 
+                        unit        : 'in',
+                        format      : 'A4',
+                        orientation : 'portrait'
                     },
-                    filename: 'Mi_Plan_De_Tomas.pdf',
                 });
                 // margin: 0,
                 // html2canvas: { scale: 2 },
@@ -1720,6 +1750,12 @@
             },
         },
         mounted: function () {
+
+            this.browserWidth = window.innerWidth;
+
+            window.addEventListener('resize', () => {
+                this.browserWidth = window.innerWidth;
+            });
 
             this.horaActual = moment().format("HH:mm");
             this.fechaActual = moment().format("YYYY-MM-DD")
@@ -2877,7 +2913,7 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .columnaDos {
-    width: 60%;
+    width: 100%;
 }
 
 .columnaUnoTablaEs {
