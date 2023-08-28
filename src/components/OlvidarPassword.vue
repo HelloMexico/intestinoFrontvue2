@@ -25,7 +25,16 @@
                 <router-link class="btnEnvioCorreo rounded text-center" to="/nuevo">Enviar número de recuperación</router-link >
             </div>
         </div>
+        
         <br><br><br><br><br><br><br><br><br><br>
+
+        <div class="row filaDosPermisos">
+          <div class="col text-center columnaParrafos">
+              <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
+              <p class="parrafoAviso">AVISO COFEPRIS</p>
+              <p class="parrafoNumeroReg">No. REG. MEX: 012M2013 SSA</p>
+          </div>
+      </div>
     </div>
 </template>
 <script type="text/javascript" src="../js/jspdf.min.js"></script>

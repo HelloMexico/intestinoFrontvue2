@@ -8,7 +8,10 @@
                     <!-- <a type="button" class="btnFlecha" href="index.html">
                     </a> -->
                 </div>
-                <div class="col-10 col-md-10">
+                <div class="col-10 col-md-10 loadingInfo">
+
+                    <div class="spinner-border text-primary spiner" role="status" v-if="loadingPlan"></div>
+
                     <h1 class="tituloPlanToma" id="tituloPlan">Plan de tomas e hidrataciones</h1>
                 </div>
             </div>
@@ -1338,6 +1341,7 @@
                 dataPrescripcion: {},
 
                 browserWidth: 0,
+                loadingPlan: false,
 
                 dosis1: "",
                 errorMessage: "",
@@ -1666,7 +1670,7 @@
                 }
 
                 if( this.browserWidth >= 430 && this.browserWidth < 768 ) {
-                    margin = [0.4, 0.1, 0.7, 0.1];
+                    margin = [0.1, 0.1, 0.3, 0.1];
                 }
 
                 if( this.browserWidth <= 429 ) {
@@ -1714,6 +1718,10 @@
 
                     const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
 
+                    this.loadingPlan = true;
+
+                    console.log(this.loadingPlan);
+
                     if( resp.data.status == 200 ) {
 
                         this.hidratacion = {};
@@ -1740,10 +1748,13 @@
                         this.hidratacion.h6 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(1, 'hours').format('DD-MM-YYYY HH:mm');
                         this.hidratacion.h7 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(2, 'hours').format('DD-MM-YYYY HH:mm');
                         this.hidratacion.h8 = moment(`${otraFecha2} ${this.horaSegundaToma}`).add(3, 'hours').format('DD-MM-YYYY HH:mm');
+
+                        this.loadingPlan = false;
                     }
                     
                 } catch (error) {
                     console.log( error );
+                    this.loadingPlan = false;
                 }
             },
         },
@@ -1756,7 +1767,8 @@
             });
 
             this.horaActual = moment().format("HH:mm");
-            this.fechaActual = moment().format("YYYY-MM-DD")
+            this.fechaActual = moment().format("YYYY-MM-DD");
+
             this.getInfoPrescription();
             this.prescriptionDetails();
         },
@@ -1982,25 +1994,16 @@
     text-align: center;
 }
 
-/* .btnInicia {
-    background-image: url("../assets/img/mobile/Iniciar\ sesion_blanco.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 349px;
-    width: 100%;
-    height: 45px;
+.loadingInfo {
+    display: flex;
+    gap: 14px;
+    /* width: 100%; */
 }
 
-.btnInicia:hover {
-    background-image: url("../assets/img/mobile/Iniciar\ sesion_Azul.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 349px;
-    width: 100%;
-    height: 45px;
-} */
+.spiner {
+    margin-top: 8px;
+}
+
 .btnInicia {
     font-family: 'Segoe-UI-Semibold';
     /* font-family: 'Segoe-UI-Bold'; */

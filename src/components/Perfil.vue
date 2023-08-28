@@ -23,7 +23,7 @@
                         <form ref="formPerfil" class="row mb-3" @submit.prevent="enviarDatos">
                             <div class="col-12 mb-3 ms-3 loadingSpiner">
                                 <label for="formGroupExampleInput" class="form-label">Teléfono celular</label>
-                                <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
+                                <div class="spinner-border text-primary" role="status" v-if="showLoadingPerfil"></div>
                             </div>
                             <div class="col-3 mb-3">
 
@@ -332,6 +332,7 @@
                 editMode: false,
 
                 showLoading: false,
+                showLoadingPerfil: false,
 
                 name: '',
                 email: '',
@@ -452,7 +453,7 @@
 
                 try {
 
-                    this.showLoading = true;
+                    this.showLoadingPerfil = true;
 
                     const userId = localStorage.getItem('userId');
 
@@ -488,7 +489,7 @@
                             this.getMunicipios(this.selectEstadoEnabled);
                         }
 
-                        this.showLoading = false;
+                        this.showLoadingPerfil = false;
 
                     }
                 } catch (error) {

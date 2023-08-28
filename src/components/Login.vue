@@ -185,6 +185,7 @@
                                     style="
                                       display: flex;
                                       gap: 14px;
+                                      width: 100%;
                                       flex-direction: row-reverse;">
 
                                       <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
@@ -622,6 +623,7 @@
                                 </label>
                               </div>
                               <br />
+                              
                               <div class="contenidoCentrado">
 
                                 <button
@@ -630,7 +632,8 @@
                                   CONTINUAR
                                 </button>
 
-                                <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
+                                <!-- <div class="spinner-border text-primary" role="status" v-if="showLoading"></div> -->
+
                               </div>
                             </form>
                           </div>
@@ -886,13 +889,14 @@ export default {
     async submitForm() {
 
       this.errors = {};
-      this.showLoading = true;
 
       // Comprobar si hay errores
       this.validateTelefono();
       this.validateClaveAcceso();
       
       if ( Object.keys(this.errors).length > 0 ) return;
+
+      this.showLoading = true;
 
       const response = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/login', {
         phone    : this.telefono, 
@@ -1580,6 +1584,7 @@ export default {
 .contenidoCentrado {
   display: flex;
   gap: 14px;
+  width: 100%;
   text-align: center;
 }
 
@@ -1598,25 +1603,6 @@ export default {
   text-align: right;
 }
 
-/* .btnContinuar {
-    background-image: url("../assets/img/mobile/Grupo\ 175.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 349px;
-    width: 100%;
-    height: 45px;
-}
-
-.btnContinuar:hover {
-    background-image: url("../assets/img/mobile/Grupo\ 234.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 349px;
-    width: 100%;
-    height: 45px;
-} */
 .btnContinuar {
   font-family: "OpenSans-Semibold";
   color: #ffffff;
@@ -2259,9 +2245,6 @@ input.inputHoraSegToma[type="time"]::-webkit-calendar-picker-indicator:hover {
   /* display: block;
     margin-left: auto;
     margin-right: auto; */
-}
-
-.contenedorMovil {
 }
 
 .fila {

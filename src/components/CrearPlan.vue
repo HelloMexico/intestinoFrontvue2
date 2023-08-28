@@ -41,6 +41,7 @@
                     <div class="input-group">
                       <input type="date" class="form-control inputFechaEstudioCrear" v-model="fechaEstudioColonos" />
                     </div>
+                    
 
                     <span class="error" style="color: red" v-if="errors2.fechaEstudioColonos">{{errors2.fechaEstudioColonos }}</span>
 
