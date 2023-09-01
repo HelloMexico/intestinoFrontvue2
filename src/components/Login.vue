@@ -714,6 +714,7 @@
 import axios from "axios";
 import AvisoPrivacidad from "../components/modals/AvisoPrivacidad.vue";
 import CustomModal from "../components/modals/ShowCustomModal.vue";
+import BaseUrl from "./apis/base_url";
 
 export default {
   name : "Login",
@@ -744,6 +745,8 @@ export default {
       showPassword: false,
       recibirNotificaciones: false,
       inputTypeIcon: "password",
+
+      baseUrl:{},
       
       showLoading: false,
 
@@ -809,29 +812,6 @@ export default {
       }
   },
   methods: {
-    // async crearUsuario() {
-
-    //   try {
-
-    //     const dataForm = {
-    //       lada            : this.lada,
-    //       telefono        : this.telefono,
-    //       estado          : this.estado,
-    //       ciudad          : this.ciudad,
-    //       edad            : this.edad,
-    //       peso            : this.peso,
-    //       nombre_medico   : this.nombre_medico,
-    //       apellido_medico : this.apellido_medico,
-    //       pass            : this.pass,
-    //     };
-
-    //     const response = await axios.post( "https://intestinolimpio.onrender.com/api/v1/user", dataForm );
-
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
     irVistaCrear() {
       this.$router.push({ path: "/crear" });
     },
@@ -897,30 +877,37 @@ export default {
       if ( Object.keys(this.errors).length > 0 ) return;
 
       this.showLoading = true;
+      // const response = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/login', {
 
-      const response = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/login', {
-        phone    : this.telefono, 
-        password : this.claveAcceso
-      }).catch( err => {
+        try {
 
-        if( err.response.data.status == 400 && err.response.data.data.rows.length == 0 ) {
+          const response = await axios.post(this.baseUrl.baseUrl + '/user/login', {
+            phone    : this.telefono, 
+            password : this.claveAcceso
+          });
+
+          if( err.response.data.status == 400 && err.response.data.data.rows.length == 0 ) {
+            this.showModal();
+            this.showLoading = false;
+          }
+
+          if( response?.data.status == 200 && response?.data.data.rows.length > 0 ) {
+
+            localStorage.setItem('userId', response?.data.data.rows[0].id );
+            localStorage.setItem('peso', response?.data.data.rows[0].peso );
+
+            if( response?.data.prescription.status == 200 && response?.data?.prescription?.data ) {
+              localStorage.setItem('id_prescription', response?.data?.prescription?.data?.id );
+            }
+
+            this.showLoading = false;
+            this.$router.push("/consultar");
+          }
+          
+        } catch (error) {
           this.showModal();
           this.showLoading = false;
         }
-      });
-      
-      if( response?.data.status == 200 && response?.data.data.rows.length > 0 ) {
-
-        localStorage.setItem('userId', response?.data.data.rows[0].id );
-        localStorage.setItem('peso', response?.data.data.rows[0].peso );
-
-        if( response?.data.prescription.status == 200 && response?.data?.prescription?.data ) {
-          localStorage.setItem('id_prescription', response?.data?.prescription?.data?.id );
-        }
-        
-        this.showLoading = false;
-        this.$router.push("/consultar");
-      }
 
     },
     showModal() {
@@ -999,9 +986,8 @@ export default {
     },
     getMunicipios() {
 
-      console.log(this.estado);
-
-      axios.post("https://intestinolimpio.onrender.com/api/v1/data/municipios", {
+      // axios.post("https://intestinolimpio.onrender.com/api/v1/data/municipios", {
+      axios.post(this.baseUrl.baseUrl + "/data/municipios", {
         estado: this.estado,
       })
       .then((response) => {
@@ -1019,7 +1005,8 @@ export default {
 
       const index = this.provinciasFormated.find( p => p.nombre == this.estado ).clave;
       
-      axios.post("https://intestinolimpio.onrender.com/api/v1/data/canton", {
+      // axios.post("https://intestinolimpio.onrender.com/api/v1/data/canton", {
+      axios.post(this.baseUrl.baseUrl + "/data/canton", {
         provincia: index,
       })
       .then((response) => {
@@ -1199,7 +1186,8 @@ export default {
       }
     },
     getEstadoMexico() {
-      axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
+      // axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
+      axios.get( this.baseUrl.baseUrl +  "/data/estados" ).then((response) => {
 
         this.options = [];
         this.options = response.data.data.map((estado) => ({
@@ -1212,8 +1200,8 @@ export default {
       });
     },
     getProvinciaCostaRica() {
-      axios.get("https://intestinolimpio.onrender.com/api/v1/data/provincia").then((response) => {
-
+      // axios.get("https://intestinolimpio.onrender.com/api/v1/data/provincia").then((response) => {
+      axios.get( this.baseUrl.baseUrl + "/data/provincia" ).then((response) => {
 
         this.provinciasFormated = [];
 
@@ -1283,7 +1271,8 @@ export default {
         recordatorio    : activarNotificaciones
       };
 
-      const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
+      // const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
+      const res = await axios.post( this.baseUrl.baseUrl + "/user", data);
   
         console.log(res.data);
   
@@ -1296,6 +1285,9 @@ export default {
         }
     }
   },
+  mounted() {
+    this.baseUrl = new BaseUrl();
+  }
 };
 </script>
 

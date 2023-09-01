@@ -181,6 +181,7 @@
 import moment from "moment";
 import axios from "axios";
 import CustomModal from "../components/modals/ShowCustomModal.vue";
+import BaseUrl from './apis/base_url';
 
 export default {
   name: "CrearPlan",
@@ -201,6 +202,8 @@ export default {
 
       showLoading:false,
       showLoadingPage:false,
+
+      baseUrl:{},
 
       fechaEstudioColonos: "",
       horaColonoscopia: "",
@@ -715,7 +718,8 @@ export default {
 
       this.showLoading = true;
 
-      axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
+      // axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
+      axios.post( this.baseUrl.baseUrl + "/prescription", data ).then((res) => {
           
 
           if( res.data?.status == undefined ) {
@@ -752,7 +756,8 @@ export default {
           this.showLoading = true;
           const id_prescription = localStorage.getItem( 'id_prescription' );
 
-          const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
+          // const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
+          const resp = await axios.put(this.baseUrl.baseUrl + "/prescription", {
               id_prescription   : id_prescription,
               fecha_estudio     : moment(this.fechaEstudioColonos).format('DD-MM-YYYY'),
               hora_estudio      : this.horaColonoscopia,
@@ -793,7 +798,8 @@ export default {
             return
           };
 
-          const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
+          // const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
+          const resp = await axios.post( this.baseUrl.baseUrl + "/prescription/me", { id_prescription });
 
           if( resp.data.status == 200 ) {
 
@@ -856,6 +862,7 @@ export default {
     },
   },
   mounted: function () {
+    this.baseUrl = new BaseUrl();
     this.horaActual = moment().format("HH:mm");
     this.fechaActual = moment().format("YYYY-MM-DD");
     this.getInfoPrescription();

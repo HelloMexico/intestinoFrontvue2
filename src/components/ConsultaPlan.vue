@@ -1302,6 +1302,7 @@
     import html2pdf from 'html2pdf.js';
     import axios from "axios";
     import CustomModal from "../components/modals/ShowCustomModal.vue";
+    import BaseUrl from "./apis/base_url";
 
     export default {
         name : 'ConsultaPlan',
@@ -1342,6 +1343,8 @@
 
                 browserWidth: 0,
                 loadingPlan: false,
+
+                baseUrl:{},
 
                 dosis1: "",
                 errorMessage: "",
@@ -1621,7 +1624,8 @@
                 try {
                     const id_prescription = localStorage.getItem( 'id_prescription' );
     
-                    const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
+                    // const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
+                    const resp = await axios.put( this.baseUrl.baseUrl + "/prescription", {
                         id_prescription   : id_prescription,
                         fecha_estudio     : moment(this.dataPrescripcion.fechaEstudioColonos).format('DD-MM-YYYY'),
                         hora_estudio      : this.dataPrescripcion.horaColonoscopia,
@@ -1699,7 +1703,8 @@
 
                 if( peso == null ) return;
 
-                const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/user/prescriptionDetails", { peso } );
+                // const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/user/prescriptionDetails", { peso } );
+                const resp = await axios.post( this.baseUrl.baseUrl + "/user/prescriptionDetails", { peso } );
 
                 if( resp.data.status == 200 ) {
                     this.dosis1 = resp.data.data.dosis1.detalles;
@@ -1716,7 +1721,8 @@
 
                     if( id_prescription == null ) return;
 
-                    const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
+                    // const resp = await axios.post("https://intestinolimpio.onrender.com/api/v1/prescription/me", { id_prescription });
+                    const resp = await axios.post( this.baseUrl.baseUrl + "/prescription/me", { id_prescription });
 
                     this.loadingPlan = true;
 
@@ -1758,7 +1764,9 @@
                 }
             },
         },
-        mounted: function () {
+        mounted () {
+
+            this.baseUrl = new BaseUrl();
 
             this.browserWidth = window.innerWidth;
 

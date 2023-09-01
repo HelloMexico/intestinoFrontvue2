@@ -275,6 +275,7 @@
 
 <script>
     import axios from "axios";
+    import BaseUrl from "./apis/base_url";
 
     export default {
         name: 'Perfil',
@@ -294,6 +295,8 @@
                 inputApeMedTratEnabled: "",
                 inputPesoEnabled: "",
                 inputClaveAccesoEnabled: "",
+
+                baseUrl:{},
 
                 selected: "",
                 options: [],
@@ -341,6 +344,8 @@
         },
         mounted() {
 
+            this.baseUrl = new BaseUrl();
+
             axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response) => (this.info = response.data.bpi.USD.rate));
 
             this.getUserData();
@@ -381,7 +386,8 @@
                 }
             },
             async getEstados() {
-                axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
+                // axios.get("https://intestinolimpio.onrender.com/api/v1/data/estados").then((response) => {
+                axios.get( this.baseUrl.baseUrl + "/data/estados").then((response) => {
 
                     this.options = [];
 
@@ -392,7 +398,8 @@
                 });
             },
             async getMunicipios( estado ) {
-                axios.post("https://intestinolimpio.onrender.com/api/v1/data/municipios", { estado }).then((response) => {
+                // axios.post("https://intestinolimpio.onrender.com/api/v1/data/municipios", { estado }).then((response) => {
+                axios.post( this.baseUrl.baseUrl  + "/data/municipios", { estado }).then((response) => {
 
                     this.optionsMunicipios = [];
 
@@ -406,7 +413,8 @@
 
                 const index = provinciasFormated.find( p => p.nombre == estado ).clave;
 
-                axios.post("https://intestinolimpio.onrender.com/api/v1/data/canton", {
+                // axios.post("https://intestinolimpio.onrender.com/api/v1/data/canton", {
+                axios.post( this.baseUrl.baseUrl + "/data/canton", {
                     provincia: index,
                 })
                 .then((response) => {
@@ -424,7 +432,8 @@
             },
             async getProvinciaCostaRica( canLoadCantones ) {
 
-                axios.get("https://intestinolimpio.onrender.com/api/v1/data/provincia").then((response) => {
+                // axios.get("https://intestinolimpio.onrender.com/api/v1/data/provincia").then((response) => {
+                axios.get( this.baseUrl.baseUrl  + "/data/provincia" ).then((response) => {
 
                     this.provinciasFormated = [];
                     
@@ -457,7 +466,8 @@
 
                     const userId = localStorage.getItem('userId');
 
-                    const resp = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/me', {
+                    // const resp = await axios.post('https://intestinolimpio.onrender.com/api/v1/user/me', {
+                    const resp = await axios.post( this.baseUrl.baseUrl + '/user/me', {
                         id_user : userId
                     });
 
@@ -781,7 +791,8 @@
 
                 if( Object.keys(this.errors).length == 0 ) {
 
-                    const resp = await axios.put('https://intestinolimpio.onrender.com/api/v1/user', data);
+                    // const resp = await axios.put('https://intestinolimpio.onrender.com/api/v1/user', data);
+                    const resp = await axios.put( this.baseUrl.baseUrl + '/user', data);
     
                     if( resp.data.status == 200 ) {
                         await this.getUserData();
