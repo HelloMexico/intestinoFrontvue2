@@ -886,7 +886,7 @@ export default {
             password : this.claveAcceso
           });
 
-          if( err.response.data.status == 400 && err.response.data.data.rows.length == 0 ) {
+          if( response.data.status == 400 && response.data.data.rows.length == 0 ) {
             this.showModal();
             this.showLoading = false;
           }
@@ -895,6 +895,7 @@ export default {
 
             localStorage.setItem('userId', response?.data.data.rows[0].id );
             localStorage.setItem('peso', response?.data.data.rows[0].peso );
+            localStorage.setItem('phone', this.telefono );
 
             if( response?.data.prescription.status == 200 && response?.data?.prescription?.data ) {
               localStorage.setItem('id_prescription', response?.data?.prescription?.data?.id );
@@ -1274,11 +1275,10 @@ export default {
       // const res = await axios.post("https://intestinolimpio.onrender.com/api/v1/user", data);
       const res = await axios.post( this.baseUrl.baseUrl + "/user", data);
   
-        console.log(res.data);
-  
         if( res.data.status == 200 ) {
           localStorage.setItem('userId', res.data.data.id_user );
           localStorage.setItem('peso', this.peso );
+          localStorage.setItem('phone', this.telefonoCelular );
           this.$router.push("/crear");
 
           this.showLoading = false;

@@ -705,6 +705,8 @@ export default {
     async crearPlanDeTomas() {
 
       const idUser = localStorage.getItem('userId');
+      const peso   = localStorage.getItem('peso');
+      const phone  = localStorage.getItem('phone');
 
       const data = {
         id_user         : idUser,
@@ -713,7 +715,9 @@ export default {
         fecha_prim_toma   : moment(this.fechaPrimerToma).format('DD-MM-YYYY'),
         hora_prim_toma    : this.horaPrimerToma,
         fecha_seg_toma    : moment(this.fechaSegundaToma).format('DD-MM-YYYY'),
-        hora_seg_toma     : this.horaSegundaToma
+        hora_seg_toma     : this.horaSegundaToma,
+        peso,
+        phone,
       };
 
       this.showLoading = true;
@@ -755,6 +759,8 @@ export default {
 
           this.showLoading = true;
           const id_prescription = localStorage.getItem( 'id_prescription' );
+          const peso   = localStorage.getItem('peso');
+          const phone  = localStorage.getItem('phone');
 
           // const resp = await axios.put("https://intestinolimpio.onrender.com/api/v1/prescription", {
           const resp = await axios.put(this.baseUrl.baseUrl + "/prescription", {
@@ -764,7 +770,9 @@ export default {
               fecha_prim_toma   : moment(this.fechaPrimerToma).format('DD-MM-YYYY'),
               hora_prim_toma    : this.horaPrimerToma,
               fecha_seg_toma    : moment(this.fechaSegundaToma).format('DD-MM-YYYY'),
-              hora_seg_toma     : this.horaSegundaToma
+              hora_seg_toma     : this.horaSegundaToma,
+              peso,
+              phone
           });
 
           if( resp.data?.status == undefined ) {
