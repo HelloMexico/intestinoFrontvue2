@@ -701,7 +701,7 @@
           <div class="col text-center columnaParrafos">
               <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
               <p class="parrafoAviso">AVISO COFEPRIS</p>
-              <p class="parrafoNumeroReg">No. REG. MEX: 012M2013 SSA</p>
+              <p class="parrafoNumeroReg">No. REG. MEX: 2315052002C00837</p>
           </div>
       </div>
 

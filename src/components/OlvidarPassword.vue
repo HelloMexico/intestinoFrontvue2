@@ -33,6 +33,8 @@
                         aria-controls="flush-collapseTwo">
                             Enviar número de recuperación
                     </button>
+
+                    <div class="spinner-border text-primary" role="status" v-if="showLoading"></div>
             </div>
         </div>
 
@@ -101,7 +103,7 @@
           <div class="col text-center columnaParrafos">
               <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
               <p class="parrafoAviso">AVISO COFEPRIS</p>
-              <p class="parrafoNumeroReg">No. REG. MEX: 012M2013 SSA</p>
+              <p class="parrafoNumeroReg">No. REG. MEX: 2315052002C00837</p>
           </div>
       </div>
     </div>
@@ -124,6 +126,7 @@ export default {
             recoverPassword: "",
             baseUrl:{},
             shoChangePassword:false,
+            showLoading:false,
             otp:"",
             newPassword:"",
         };
@@ -132,21 +135,28 @@ export default {
         async sendRecoverPassword() {
 
             try {
+
+                if( this.recoverPassword.length != 10 ) return;
+                
+                this.showLoading = true;
                 const resp = await axios.post(this.baseUrl.baseUrl + '/user/otp', { phone: this.recoverPassword });
 
                 if( resp.data.status == 200 ) {
                     this.shoChangePassword = true;
+                    this.showLoading = false;
                     this.otp = resp.data.data;
                 }
                 
             } catch (error) {
                 console.log(error);
+                this.showLoading = false;
             }
         },
 
         async changePassword() {
 
             try {
+                this.showLoading = true;
                 const resp = await axios.post(this.baseUrl.baseUrl + '/user/validateOtp', { 
                     phone   : this.recoverPassword,
                     otp     : this.otp,
@@ -155,9 +165,11 @@ export default {
 
                 if( resp.data.status == 200 ) {
                     $('#changePasswordModal').modal('show');
+                    this.showLoading = false;
                 }
                 
             } catch (error) {
+                this.showLoading = false;
                 console.log(error);
             }
         },

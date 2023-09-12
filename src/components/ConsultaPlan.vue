@@ -1188,7 +1188,7 @@
                                                     </p>
 
                                                     <p class="tituloModalNegrita">19. NÚMERO DE REGISTRO DEL MEDICAMENTO</p>
-                                                    <p class="parraffoJustificado">Reg. No.: 012M2013 SSA IV </p>
+                                                    <p class="parraffoJustificado">Reg. No.: 2315052002C00837 IV </p>
                                                     <pre class="parraffoJustificado">Clave IPP:
                 CCDS 15346; Dec 2013 Ver. 2.0 _ ENC_AL                                                SEP 2019</pre>
                                                 </div>
