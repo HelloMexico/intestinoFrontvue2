@@ -723,35 +723,37 @@ export default {
       this.showLoading = true;
 
       // axios.post("https://intestinolimpio.onrender.com/api/v1/prescription", data).then((res) => {
-      axios.post( this.baseUrl.baseUrl + "/prescription", data ).then((res) => {
+
+        try {
+            const res = await axios.post( this.baseUrl.baseUrl + "/prescription", data );
+      
+            if( res.data?.status == undefined ) {
+                this.showLoading = false;
+                this.errorMessage = res.data;
+                this.showModalError();
+            }
+      
+            if( res.data?.status == 200 ) {
+              
+              localStorage.setItem( 'id_prescription', res.data?.data.id_prescription );
+              this.showModal();
+      
+              this.fechaEstudioColonos = '';
+              this.horaColonoscopia = '';
+              this.fechaPrimerToma = '';
+              this.horaPrimerToma = '';
+              this.fechaSegundaToma = '';
+              this.horaSegundaToma = '';
+      
+              this.showLoading = false;
+              this.$router.push("/consultar");
+          }
           
-
-          if( res.data?.status == undefined ) {
-            this.showLoading = false;
-            this.errorMessage = res.data;
-            this.showModalError();
-          }
-
-          if( res.data?.status == 200 ) {
-            
-            localStorage.setItem( 'id_prescription', res.data?.data.id_prescription );
-            this.showModal();
-
-            this.fechaEstudioColonos = '';
-            this.horaColonoscopia = '';
-            this.fechaPrimerToma = '';
-            this.horaPrimerToma = '';
-            this.fechaSegundaToma = '';
-            this.horaSegundaToma = '';
-
-            this.showLoading = false;
-            this.$router.push("/consultar");
-          }
-        })
-        .catch((err) => {
+        } catch (error) {
           this.showLoading = false;
-          console.log(err);
-        });
+          console.log(error);
+        }
+    
     },
     async updatePlanDeTomas() {
 

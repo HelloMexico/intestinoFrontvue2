@@ -8,23 +8,92 @@
             </div>
         </div>
         <br><br>
-        <div class="row">
+        <div class="row" v-if="!shoChangePassword">
             <div class="col">
                 <p class="text-center" style="font-family: 'OpenSans-Bold';">Ingresa tu número asociado</p>
             </div>
         </div>
         <br>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" v-if="!shoChangePassword">
             <div class="col" style="margin: 0 auto;">
-                <input class="form-control" type="email" name="" id="" style="font-family: 'OpenSans-Bold';" placeholder="Número telefónico">
+                <input  v-model="recoverPassword" class="form-control" type="number" style="font-family: 'OpenSans-Bold';" placeholder="Número telefónico">
             </div>
         </div>
         <br><br>
-        <div class="row"> 
+        <div class="row" v-if="!shoChangePassword"> 
             <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-                <router-link class="btnEnvioCorreo rounded text-center" to="/nuevo">Enviar número de recuperación</router-link >
+                <!-- <router-link class="btnEnvioCorreo rounded text-center" to="/nuevo">Enviar número de recuperación</router-link > -->
+                    <button
+                        @click="sendRecoverPassword()"
+                        class="btnCrearPlan rounded collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseTwo">
+                            Enviar número de recuperación
+                    </button>
             </div>
         </div>
+
+        <div v-if="shoChangePassword">
+            <div class="row justify-content-center">
+                <div class="col" style="margin: 0 auto;">
+                    <input class="form-control" type="text" v-model="otp" style="font-family: 'OpenSans-Bold';" placeholder="OTP">
+                </div>
+            </div>
+            <br><br>
+            <div class="row justify-content-center">
+                <div class="col" style="margin: 0 auto;">
+                    <input class="form-control" type="password" v-model="newPassword" style="font-family: 'OpenSans-Bold';" placeholder="Nueva contraseña">
+                </div>
+            </div>
+            <br><br>
+            <div class="row"> 
+                <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                    <button class="btnEnvioCorreo rounded" @click="changePassword()">Cambiar contraseña</button>
+                </div>
+            </div>
+        </div>
+
+    <div
+      class="modal fade" 
+      id="changePasswordModal"
+      tabindex="-1"
+      aria-labelledby="example"
+      aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body" style="border: none;">
+                <p class="parrafoEstasSeguro text-center">
+                  Su contraseña se cambio satisfactoriamente
+                </p>
+                </div>
+                <div class="modal-footer" style="border: none;">
+                    <div class="container text-center">
+                      <div class="row">
+                            <div class="col-md-4 offset-md-4">
+                                <button 
+                                  @click="goToLogin()"
+                                  type="button" 
+                                  class="rounded btnGuardarModalPlan"
+                                  data-bs-dismiss="modal"> Aceptar </button>
+                            </div>
+                            <!-- <div class="col-md-4 offset-md-4">
+                                <button
+                                @click="postUserNew( true )"
+                                  type="button" 
+                                  class="rounded btnCancelarModalPlan"
+                                  data-bs-dismiss="modal"> Activar notificaciones </button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
         
         <br><br><br><br><br><br><br><br><br><br>
 
@@ -37,9 +106,13 @@
       </div>
     </div>
 </template>
-<script type="text/javascript" src="../js/jspdf.min.js"></script>
+
+<!-- <script type="text/javascript" src="../js/jspdf.min.js"></script> -->
+
 <script>
 import moment from 'moment';
+import axios from "axios";
+import BaseUrl from "./apis/base_url";
 
 export default {
     name: 'OlvidarPassword',
@@ -48,78 +121,49 @@ export default {
     },
     data() {
         return {
-            fecha1: "",
-            fecha2: "",
-            hora1: "",
-            hora2: "",
-            errors2: {},
+            recoverPassword: "",
+            baseUrl:{},
+            shoChangePassword:false,
+            otp:"",
+            newPassword:"",
         };
     },
     methods: {
-        submitForm2() {
-            // Validar los campos del segundo formulario
-            this.errors2 = {};
-            let valid2 = true;
+        async sendRecoverPassword() {
 
-            // Validar que el campo fecha uno no esté vacío y sea una fecha válida
-            if (!this.fecha1) {
-                this.errors2.fecha1 = "La fecha uno es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fecha1, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fecha1 = "La fecha uno no es válida";
-                valid2 = false;
-            }
+            try {
+                const resp = await axios.post(this.baseUrl.baseUrl + '/user/otp', { phone: this.recoverPassword });
 
-            // Validar que el campo fecha dos no esté vacío y sea una fecha válida
-            if (!this.fecha2) {
-                this.errors2.fecha2 = "La fecha dos es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.fecha2, "YYYY-MM-DD", true).isValid()) {
-                this.errors2.fecha2 = "La fecha dos no es válida";
-                valid2 = false;
+                if( resp.data.status == 200 ) {
+                    this.shoChangePassword = true;
+                    this.otp = resp.data.data;
+                }
+                
+            } catch (error) {
+                console.log(error);
             }
+        },
 
-            // Validar que el campo fecha dos sea posterior al campo fecha uno
-            // Usando el método isAfter de moment.js para comparar las fechas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.fecha1).isAfter(this.fecha2)) {
-                this.errors2.fecha2 =
-                    "La fecha dos debe ser posterior a la fecha uno";
-                valid2 = false;
-            }
+        async changePassword() {
 
-            // Validar que el campo hora uno no esté vacío y sea una hora válida
-            if (!this.hora1) {
-                this.errors2.hora1 = "La hora uno es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.hora1, "HH:mm", true).isValid()) {
-                this.errors2.hora1 = "La hora uno no es válida";
-                valid2 = false;
-            }
+            try {
+                const resp = await axios.post(this.baseUrl.baseUrl + '/user/validateOtp', { 
+                    phone   : this.recoverPassword,
+                    otp     : this.otp,
+                    password: this.newPassword,
+                });
 
-            // Validar que el campo hora dos no esté vacío y sea una hora válida
-            if (!this.hora2) {
-                this.errors2.hora2 = "La hora dos es obligatoria";
-                valid2 = false;
-            } else if (!moment(this.hora2, "HH:mm", true).isValid()) {
-                this.errors2.hora2 = "La hora dos no es válida";
-                valid2 = false;
+                if( resp.data.status == 200 ) {
+                    $('#changePasswordModal').modal('show');
+                }
+                
+            } catch (error) {
+                console.log(error);
             }
+        },
 
-            // Validar que el campo hora dos sea posterior al campo hora uno
-            // Usando el método isAfter de moment.js para comparar las horas
-            // https://momentjs.com/docs/#/query/is-after/
-            else if (moment(this.hora1, "HH:mm").isAfter(this.hora2, "HH:mm")) {
-                this.errors2.hora2 =
-                    "La hora dos debe ser posterior a la hora uno";
-                valid2 = false;
-            }
-
-            // Si todos los campos son válidos, enviar el formulario
-            if (valid2) {
-                alert("Los datoa del formulario se enviaron correctamente");
-                // Aquí puedes hacer lo que quieras con los datos del formulario, como enviarlos a una base de datos o a una API
-            }
+        goToLogin() {
+            this.$router.push("/");
         },
     },
     computed: {
@@ -147,6 +191,9 @@ export default {
             }
         },
     },
+    mounted () {
+        this.baseUrl = new BaseUrl();
+    }
 };
 </script>
 
