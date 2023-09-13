@@ -12,8 +12,8 @@
             <div class="row filaDosPermisos">
                 <div class="col text-center columnaParrafos">
                     <p class="parrafoIntestinoAño">Intestino Limpio 2023.</p>
-                    <p class="parrafoAviso">AVISO COFEPRIS</p>
-                    <p class="parrafoNumeroReg">No. REG. MEX: 2315052002C00837</p>
+              <p class="parrafoNumeroReg">No. de aviso: 2315052002C00837</p>
+              <p class="parrafoNumeroReg">No. Reg. Mex: 012M2013 SSA</p>
                 </div>
             </div>
         </div>
