@@ -144,7 +144,7 @@ export default {
                 if( resp.data.status == 200 ) {
                     this.shoChangePassword = true;
                     this.showLoading = false;
-                    this.otp = resp.data.data;
+                    // this.otp = resp.data.data;
                 }
                 
             } catch (error) {

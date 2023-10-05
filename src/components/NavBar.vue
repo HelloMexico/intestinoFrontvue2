@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contactanos.html">
+                        <a class="nav-link" href="https://wa.me/5574535499" target="_blank">
                             <p class="parraffo"> <img src="../assets/img/web/whatsapp (1).png" alt="">
                                 Contáctanos vía WhatsApp</p>
                         </a>

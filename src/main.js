@@ -1,5 +1,5 @@
 import Vue from 'vue';
-
+import VueAnalytics from 'vue-analytics';
 import App from './App.vue';
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,6 +12,12 @@ import router from './router';
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
+
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: 'UA-6143259011',
+  router
+});
 
 Vue.use(PrimeVue);
 Vue.component('Calendar',Calendar);
